@@ -14,4 +14,8 @@ import java.util.Map;
  */
 public interface CompanyRepository {
      List<Company> getCompanies(Map<String, String> params);
+     boolean addOrUpdateCompany(Company c);
+     boolean deleteCompany(int id);
+     Company getCompanyById(int id);
 }
+

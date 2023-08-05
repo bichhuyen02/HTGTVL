@@ -39,7 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Job.findAll", query = "SELECT j FROM Job j"),
     @NamedQuery(name = "Job.findById", query = "SELECT j FROM Job j WHERE j.id = :id"),
     @NamedQuery(name = "Job.findByTitle", query = "SELECT j FROM Job j WHERE j.title = :title"),
-    @NamedQuery(name = "Job.findByLinkApply", query = "SELECT j FROM Job j WHERE j.linkApply = :linkApply"),
     @NamedQuery(name = "Job.findByJobNature", query = "SELECT j FROM Job j WHERE j.jobNature = :jobNature"),
     @NamedQuery(name = "Job.findByAddress", query = "SELECT j FROM Job j WHERE j.address = :address"),
     @NamedQuery(name = "Job.findBySalary", query = "SELECT j FROM Job j WHERE j.salary = :salary"),
@@ -60,11 +59,6 @@ public class Job implements Serializable {
     private String title;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "link_apply")
-    private String linkApply;
-    @Basic(optional = false)
-    @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "description")
@@ -73,11 +67,11 @@ public class Job implements Serializable {
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
-    @Column(name = "requirement")
-    private String requirement;
+    @Column(name = "requiment")
+    private String requiment;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 45)
     @Column(name = "job_nature")
     private String jobNature;
     @Basic(optional = false)
@@ -85,7 +79,9 @@ public class Job implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "address")
     private String address;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "salary")
     private String salary;
     @Column(name = "create_time")
@@ -112,14 +108,14 @@ public class Job implements Serializable {
         this.id = id;
     }
 
-    public Job(Integer id, String title, String linkApply, String description, String requirement, String jobNature, String address) {
+    public Job(Integer id, String title, String description, String requiment, String jobNature, String address, String salary) {
         this.id = id;
         this.title = title;
-        this.linkApply = linkApply;
         this.description = description;
-        this.requirement = requirement;
+        this.requiment = requiment;
         this.jobNature = jobNature;
         this.address = address;
+        this.salary = salary;
     }
 
     public Integer getId() {
@@ -138,14 +134,6 @@ public class Job implements Serializable {
         this.title = title;
     }
 
-    public String getLinkApply() {
-        return linkApply;
-    }
-
-    public void setLinkApply(String linkApply) {
-        this.linkApply = linkApply;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -154,12 +142,12 @@ public class Job implements Serializable {
         this.description = description;
     }
 
-    public String getRequirement() {
-        return requirement;
+    public String getRequiment() {
+        return requiment;
     }
 
-    public void setRequirement(String requirement) {
-        this.requirement = requirement;
+    public void setRequiment(String requiment) {
+        this.requiment = requiment;
     }
 
     public String getJobNature() {

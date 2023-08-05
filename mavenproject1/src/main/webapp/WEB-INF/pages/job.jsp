@@ -8,8 +8,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<div class="text-danger mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
 <section>
-    <div class="text-danger mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
+    <div class="b">                
+        <a href="<c:url value="/addJob" />" class="btn btn-success ">Thêm công việc</a>
+    </div>
     <nav class="Page container">
 
         <ul class="pagination ">
@@ -24,16 +27,12 @@
                         </c:forEach>
                 </ul>
             </c:if>
-            <div class="a">                
-                <a href="<c:url value="/addJob" />" class="btn btn-success ">Thêm công việc</a>
-            </div>
-            
         </ul>
     </nav>
 
     <table class="table table-hover container">
         <thead>
-            <tr>
+            <tr class="tb">
                 <th>title</th>
                 <th>job_nature</th>
                 <th>address</th>
@@ -53,7 +52,7 @@
                     <td>
                         <img style="width: 100px; height: 100px" src="${j.companyId.image}" alt="$${j.companyId.image}"/>
                     </td>  
-                    
+
                     <td>
                         <a href="#" class="btn btn-info">Cập nhật</a>
                         <button class="btn btn-danger mt-2">Xóa</button>

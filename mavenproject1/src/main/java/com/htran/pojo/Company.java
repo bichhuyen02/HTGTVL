@@ -17,10 +17,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -33,9 +35,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
     @NamedQuery(name = "Company.findById", query = "SELECT c FROM Company c WHERE c.id = :id"),
     @NamedQuery(name = "Company.findByName", query = "SELECT c FROM Company c WHERE c.name = :name"),
-    @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image"),
-    @NamedQuery(name = "Company.findByLinkCompany", query = "SELECT c FROM Company c WHERE c.linkCompany = :linkCompany")})
+    @NamedQuery(name = "Company.findByLinkCompany", query = "SELECT c FROM Company c WHERE c.linkCompany = :linkCompany"),
+    @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image")})
 public class Company implements Serializable {
+
+    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,15 +55,17 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "image")
-    private String image;
+    @Column(name = "link_company")
+    private String linkCompany;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "link_company")
-    private String linkCompany;
+    @Column(name = "image")
+    private String image;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private Set<Job> jobSet;
+    @Transient
+    private MultipartFile file;
 
     public Company() {
     }
@@ -68,11 +74,11 @@ public class Company implements Serializable {
         this.id = id;
     }
 
-    public Company(Integer id, String name, String image, String linkCompany) {
+    public Company(Integer id, String name, String linkCompany, String image) {
         this.id = id;
         this.name = name;
-        this.image = image;
         this.linkCompany = linkCompany;
+        this.image = image;
     }
 
     public Integer getId() {
@@ -91,20 +97,20 @@ public class Company implements Serializable {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getLinkCompany() {
         return linkCompany;
     }
 
     public void setLinkCompany(String linkCompany) {
         this.linkCompany = linkCompany;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @XmlTransient
@@ -141,4 +147,17 @@ public class Company implements Serializable {
         return "com.htran.pojo.Company[ id=" + id + " ]";
     }
     
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 }

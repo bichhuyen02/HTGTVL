@@ -32,14 +32,15 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
-    @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName"),
+    @NamedQuery(name = "User.findByFisrtName", query = "SELECT u FROM User u WHERE u.fisrtName = :fisrtName"),
     @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName"),
     @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+    @NamedQuery(name = "User.findByPhone", query = "SELECT u FROM User u WHERE u.phone = :phone"),
     @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
-    @NamedQuery(name = "User.findByAvatar", query = "SELECT u FROM User u WHERE u.avatar = :avatar"),
-    @NamedQuery(name = "User.findByStatus", query = "SELECT u FROM User u WHERE u.status = :status"),
-    @NamedQuery(name = "User.findByRole", query = "SELECT u FROM User u WHERE u.role = :role")})
+    @NamedQuery(name = "User.findByImage", query = "SELECT u FROM User u WHERE u.image = :image"),
+    @NamedQuery(name = "User.findByUserRole", query = "SELECT u FROM User u WHERE u.userRole = :userRole"),
+    @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,12 +51,12 @@ public class User implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "first_name")
-    private String firstName;
+    @Size(min = 1, max = 255)
+    @Column(name = "fisrt_name")
+    private String fisrtName;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 255)
     @Column(name = "last_name")
     private String lastName;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -64,30 +65,34 @@ public class User implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "email")
     private String email;
+    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 10)
+    @Column(name = "phone")
+    private String phone;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "avatar")
-    private String avatar;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "status")
-    private short status;
+    @Column(name = "image")
+    private String image;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "role")
-    private String role;
+    @Column(name = "user_role")
+    private String userRole;
+    @Column(name = "active")
+    private Boolean active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<Notifi> notifiSet;
 
@@ -98,16 +103,16 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String firstName, String lastName, String email, String username, String password, String avatar, short status, String role) {
+    public User(Integer id, String fisrtName, String lastName, String email, String phone, String username, String password, String image, String userRole) {
         this.id = id;
-        this.firstName = firstName;
+        this.fisrtName = fisrtName;
         this.lastName = lastName;
         this.email = email;
+        this.phone = phone;
         this.username = username;
         this.password = password;
-        this.avatar = avatar;
-        this.status = status;
-        this.role = role;
+        this.image = image;
+        this.userRole = userRole;
     }
 
     public Integer getId() {
@@ -118,12 +123,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFisrtName() {
+        return fisrtName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFisrtName(String fisrtName) {
+        this.fisrtName = fisrtName;
     }
 
     public String getLastName() {
@@ -142,6 +147,14 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -158,28 +171,28 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getImage() {
+        return image;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public short getStatus() {
-        return status;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setStatus(short status) {
-        this.status = status;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
-    public String getRole() {
-        return role;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @XmlTransient

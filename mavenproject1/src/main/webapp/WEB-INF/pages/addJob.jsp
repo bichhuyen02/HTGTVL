@@ -18,17 +18,12 @@
     </div>
 
     <div class="form-floating mb-3 mt-3">
-        <form:input type="text" class="form-control" path="linkApply" id="linkApply" placeholder="Link Trang" name="linkApply" />
-        <label for="name">Link Trang</label>
-    </div>
-
-    <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="description" id="description" placeholder="Mô Tả" name="description" />
         <label for="name">Mô Tả</label>
     </div>
 
     <div class="form-floating mb-3 mt-3">
-        <form:input type="text" class="form-control" path="requirement" id="requirement" placeholder="Yêu Cầu" name="requirement" />
+        <form:input type="text" class="form-control" path="requiment" id="requiment" placeholder="Yêu Cầu" name="requiment" />
         <label for="name">Yêu Cầu</label>
     </div>
 
@@ -48,24 +43,29 @@
     </div>
 
     <div>
-        <span> Khu Vực: </span>
-        <select>
-            <c:forEach items="${locations}" var="l">
-                <option>${l.name}</option>
-            </c:forEach>
-        </select>
+        <div class="form-floating">
+            <form:select class="form-select" id="locationId" name="locationId" path="locationId">
+                <c:forEach items="${locations}" var="l">
+                    <option>${l.name}</option>
+                </c:forEach>
+            </form:select>
+            <label for="location" class="form-label">Khu vuc</label>
+        </div>
     </div>
 
     <div>
-        <span> Doanh Nghiệp: </span>
-        <select>
-            <c:forEach items="${companies}" var="c">
-                <option>${c.name}</option>
-            </c:forEach>
-        </select>
+        <div class="form-floating mb-3 mt-3">
+            <form:select class="form-select" id="companyId" name="companyId" path="companyId">
+
+                <c:forEach items="${companies}" var="c">
+                    <option>${c.name}</option>
+                </c:forEach>
+            </form:select>
+            <label for="location" class="form-label">Doanh Nghiep</label>
+        </div>
     </div>
 
-        
+
     <div class="nut">
         <button type="button" class="btn btn-primary">Thêm</button>
         <button type="button" class="btn btn-danger">Hủy</button>

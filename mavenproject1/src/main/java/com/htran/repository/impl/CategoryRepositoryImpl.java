@@ -48,7 +48,8 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         try {
             if (c.getId() == null) {
                 s.save(c);
-            }else {
+            } 
+            else {
                 s.update(c);
             }
             return true;

@@ -12,11 +12,21 @@ div img {
 .a{
     position: absolute;
     right:0;
+    top: 14%;
     margin-right: 210px;
  }
  
+ .b{
+    position: absolute;
+    right:0;
+    top: 24%;
+    margin-right: 210px;
+ }
+
+ 
+ 
  .nut button{
-     padding-left: 25px;
+    padding-left: 25px;
     padding-right: 25px;
  }
  
