@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
 @Table(name = "job")
@@ -67,11 +67,11 @@ public class Job implements Serializable {
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
-    @Column(name = "requiment")
-    private String requiment;
+    @Column(name = "requirement")
+    private String requirement;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 255)
     @Column(name = "job_nature")
     private String jobNature;
     @Basic(optional = false)
@@ -79,9 +79,7 @@ public class Job implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "address")
     private String address;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "salary")
     private String salary;
     @Column(name = "create_time")
@@ -108,14 +106,13 @@ public class Job implements Serializable {
         this.id = id;
     }
 
-    public Job(Integer id, String title, String description, String requiment, String jobNature, String address, String salary) {
+    public Job(Integer id, String title, String description, String requirement, String jobNature, String address) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.requiment = requiment;
+        this.requirement = requirement;
         this.jobNature = jobNature;
         this.address = address;
-        this.salary = salary;
     }
 
     public Integer getId() {
@@ -142,12 +139,12 @@ public class Job implements Serializable {
         this.description = description;
     }
 
-    public String getRequiment() {
-        return requiment;
+    public String getRequirement() {
+        return requirement;
     }
 
-    public void setRequiment(String requiment) {
-        this.requiment = requiment;
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
     }
 
     public String getJobNature() {

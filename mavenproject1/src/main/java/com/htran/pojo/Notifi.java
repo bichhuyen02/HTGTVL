@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
 @Table(name = "notifi")
@@ -40,6 +40,8 @@ public class Notifi implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notifiId")
+    private Set<Apply> applySet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "notifiId")
     private Set<Rating> ratingSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "notifiId")
@@ -64,6 +66,15 @@ public class Notifi implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @XmlTransient
+    public Set<Apply> getApplySet() {
+        return applySet;
+    }
+
+    public void setApplySet(Set<Apply> applySet) {
+        this.applySet = applySet;
     }
 
     @XmlTransient

@@ -10,16 +10,16 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2023-08-04T18:34:39")
+@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2023-08-08T00:06:14")
 @StaticMetamodel(Job.class)
 public class Job_ { 
 
-    public static volatile SingularAttribute<Job, String> requiment;
     public static volatile SingularAttribute<Job, String> address;
     public static volatile SingularAttribute<Job, String> jobNature;
     public static volatile SetAttribute<Job, CategoryJob> categoryJobSet;
     public static volatile SingularAttribute<Job, Date> outOffTime;
     public static volatile SingularAttribute<Job, String> description;
+    public static volatile SingularAttribute<Job, String> requirement;
     public static volatile SingularAttribute<Job, String> title;
     public static volatile SingularAttribute<Job, String> salary;
     public static volatile SetAttribute<Job, Notifi> notifiSet;

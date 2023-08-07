@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
 @Table(name = "company")
@@ -35,11 +35,9 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
     @NamedQuery(name = "Company.findById", query = "SELECT c FROM Company c WHERE c.id = :id"),
     @NamedQuery(name = "Company.findByName", query = "SELECT c FROM Company c WHERE c.name = :name"),
-    @NamedQuery(name = "Company.findByLinkCompany", query = "SELECT c FROM Company c WHERE c.linkCompany = :linkCompany"),
-    @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image")})
+    @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image"),
+    @NamedQuery(name = "Company.findByLinkCompany", query = "SELECT c FROM Company c WHERE c.linkCompany = :linkCompany")})
 public class Company implements Serializable {
-
-    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,15 +53,16 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "link_company")
-    private String linkCompany;
+    @Column(name = "image")
+    private String image;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "image")
-    private String image;
+    @Column(name = "link_company")
+    private String linkCompany;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private Set<Job> jobSet;
+    
     @Transient
     private MultipartFile file;
 
@@ -74,11 +73,11 @@ public class Company implements Serializable {
         this.id = id;
     }
 
-    public Company(Integer id, String name, String linkCompany, String image) {
+    public Company(Integer id, String name, String image, String linkCompany) {
         this.id = id;
         this.name = name;
-        this.linkCompany = linkCompany;
         this.image = image;
+        this.linkCompany = linkCompany;
     }
 
     public Integer getId() {
@@ -97,20 +96,20 @@ public class Company implements Serializable {
         this.name = name;
     }
 
-    public String getLinkCompany() {
-        return linkCompany;
-    }
-
-    public void setLinkCompany(String linkCompany) {
-        this.linkCompany = linkCompany;
-    }
-
     public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getLinkCompany() {
+        return linkCompany;
+    }
+
+    public void setLinkCompany(String linkCompany) {
+        this.linkCompany = linkCompany;
     }
 
     @XmlTransient
@@ -160,4 +159,5 @@ public class Company implements Serializable {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
+    
 }

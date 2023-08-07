@@ -13,6 +13,7 @@
     <class>com.htran.pojo.Comment</class>
     <class>com.htran.pojo.CategoryJob</class>
     <class>com.htran.pojo.Category</class>
+    <class>com.htran.pojo.Apply</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/csdl_tuyendung?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

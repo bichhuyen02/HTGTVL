@@ -18,6 +18,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.htran.repository.CompanyRepository;
+import java.util.ArrayList;
+import javax.persistence.criteria.Predicate;
 import org.hibernate.HibernateException;
 
 /**

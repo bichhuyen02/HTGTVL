@@ -23,7 +23,7 @@
     </div>
 
     <div class="form-floating mb-3 mt-3">
-        <form:input type="text" class="form-control" path="requiment" id="requiment" placeholder="Yêu Cầu" name="requiment" />
+        <form:input type="text" class="form-control" path="requirement" id="requirement" placeholder="Yêu Cầu" name="requirement" />
         <label for="name">Yêu Cầu</label>
     </div>
 

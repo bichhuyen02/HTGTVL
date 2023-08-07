@@ -25,13 +25,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Admin
  */
 @Entity
-@Table(name = "comment")
+@Table(name = "apply")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
-    @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
-    @NamedQuery(name = "Comment.findByContent", query = "SELECT c FROM Comment c WHERE c.content = :content")})
-public class Comment implements Serializable {
+    @NamedQuery(name = "Apply.findAll", query = "SELECT a FROM Apply a"),
+    @NamedQuery(name = "Apply.findById", query = "SELECT a FROM Apply a WHERE a.id = :id"),
+    @NamedQuery(name = "Apply.findByCv", query = "SELECT a FROM Apply a WHERE a.cv = :cv"),
+    @NamedQuery(name = "Apply.findByDescription", query = "SELECT a FROM Apply a WHERE a.description = :description")})
+public class Apply implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,22 +43,25 @@ public class Comment implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "content")
-    private String content;
+    @Column(name = "cv")
+    private String cv;
+    @Size(max = 255)
+    @Column(name = "description")
+    private String description;
     @JoinColumn(name = "notifi_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Notifi notifiId;
 
-    public Comment() {
+    public Apply() {
     }
 
-    public Comment(Integer id) {
+    public Apply(Integer id) {
         this.id = id;
     }
 
-    public Comment(Integer id, String content) {
+    public Apply(Integer id, String cv) {
         this.id = id;
-        this.content = content;
+        this.cv = cv;
     }
 
     public Integer getId() {
@@ -68,12 +72,20 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getCv() {
+        return cv;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCv(String cv) {
+        this.cv = cv;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Notifi getNotifiId() {
@@ -94,10 +106,10 @@ public class Comment implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Comment)) {
+        if (!(object instanceof Apply)) {
             return false;
         }
-        Comment other = (Comment) object;
+        Apply other = (Apply) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -106,7 +118,7 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "com.htran.pojo.Comment[ id=" + id + " ]";
+        return "com.htran.pojo.Apply[ id=" + id + " ]";
     }
     
 }

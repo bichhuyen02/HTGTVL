@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
 @Table(name = "category_job")
@@ -36,9 +36,9 @@ public class CategoryJob implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JoinColumn(name = "category_ib", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Category categoryId;
+    private Category categoryIb;
     @JoinColumn(name = "job_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Job jobId;
@@ -58,12 +58,12 @@ public class CategoryJob implements Serializable {
         this.id = id;
     }
 
-    public Category getCategoryId() {
-        return categoryId;
+    public Category getCategoryIb() {
+        return categoryIb;
     }
 
-    public void setCategoryId(Category categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryIb(Category categoryIb) {
+        this.categoryIb = categoryIb;
     }
 
     public Job getJobId() {

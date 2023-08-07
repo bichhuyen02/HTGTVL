@@ -29,6 +29,7 @@ com\htran\pojo\Category_.class
 com\htran\pojo\Comment_.class
 com\htran\controllers\ApiCompanyController.class
 com\htran\controllers\IndexController.class
+com\htran\pojo\Apply_.class
 com\htran\service\impl\JobServiceImpl.class
 com\htran\repository\LocationRepository.class
 com\htran\pojo\User_.class
@@ -38,6 +39,7 @@ com\htran\repository\impl\LocationRepositoryImpl.class
 com\htran\service\CompanyService.class
 com\htran\controllers\AddCompanyController.class
 com\htran\configs\HibernateConfig.class
+com\htran\pojo\Apply.class
 com\htran\service\impl\LocationServiceImpl.class
 com\htran\configs\TilesConfig.class
 com\htran\repository\impl\CompanyRepositoryImpl.class

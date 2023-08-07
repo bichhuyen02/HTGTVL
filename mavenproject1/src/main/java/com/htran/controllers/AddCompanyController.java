@@ -29,7 +29,7 @@ public class AddCompanyController {
     private CompanyService companyService;
 
     @GetMapping("/addCompany")
-    public String addCompany(Model model, @RequestParam Map<String, String> params) {
+    public String addCompany(Model model) {
         model.addAttribute("addCompany", new Company());
 
         return "addCompany";
