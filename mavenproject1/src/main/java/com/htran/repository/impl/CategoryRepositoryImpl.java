@@ -43,7 +43,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     @Override
-    public boolean addCategory(Category c) {
+    public boolean addOrUpdateCategory(Category c) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
             if (c.getId() == null) {
@@ -59,4 +59,22 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         }
     }
 
+    @Override
+    public Category getCategoryById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+         return s.get(Category.class, id);
+    }
+    
+    @Override
+    public boolean deleteCategory(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+      try {
+            Category c = this.getCategoryById(id);
+            s.delete(c);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

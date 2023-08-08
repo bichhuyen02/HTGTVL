@@ -28,7 +28,19 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public boolean addCategory(Category c) {
-        return this.cateRepo.addCategory(c);
+    public boolean addOrUpdateCategory(Category c) {
+        return this.cateRepo.addOrUpdateCategory(c);
     }
+
+    @Override
+    public Category getCategoryById(int id) {
+        return this.cateRepo.getCategoryById(id);
+    }
+
+    @Override
+    public boolean deleteCategory(int id) {
+        return this.cateRepo.deleteCategory(id);
+    }
+
+    
 }

@@ -15,5 +15,7 @@ import java.util.Map;
 public interface CategoryRepository {
     List<Category> getCategories(Map<String, String> params);
     
-    boolean addCategory(Category c);
+    boolean addOrUpdateCategory(Category c);
+    boolean deleteCategory(int id);
+    Category getCategoryById(int id);
 }

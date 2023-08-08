@@ -28,11 +28,13 @@
                     <td>${c.id}</td>
                     <td>${c.name}</td>                  
                     <td>
-                        <a href="#" class="btn btn-info">Cập nhật</a>
-                        <button class="btn btn-danger mt-2">Xóa</button>
+                            <c:url value="/addCate/${c.id}" var="api" />
+                            <a href="${api}" class="btn btn-info">Cập nhật</a>
+                            <button class="btn btn-danger" onclick="deleteCategory('${api}')">Xóa</button>
                     </td>
                 </tr> 
             </c:forEach>
         </tbody>
     </table>
 </section>
+<script src="<c:url value="/js/main.js" />"></script>

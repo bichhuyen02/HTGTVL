@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,9 +32,15 @@ public class AddCateController {
         return "addCate";
     }
     
+    @GetMapping("/addCate/{id}")
+    public String update(Model model, @PathVariable(value = "id") int id) {
+        model.addAttribute("addCates", this.cateService.getCategoryById(id));
+        return "addCate";
+    }
+    
     @PostMapping("/addCate")
     public String add(@ModelAttribute(value = "addCates") Category c) {
-        if (this.cateService.addCategory(c) == true)
+        if (this.cateService.addOrUpdateCategory(c) == true)
             return "redirect:/categories";
         
         return "addCate";

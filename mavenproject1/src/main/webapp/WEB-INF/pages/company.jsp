@@ -17,7 +17,6 @@
         <table class="table table-hover container  ">
             <thead>
                 <tr>
-                    <!--<th>id </th>-->
                     <th></th>
                     <th>Name</th>
                     <th>Link company</th>
@@ -26,7 +25,6 @@
             <tbody>
                 <c:forEach items="${companies}" var="c">
                     <tr>
-                        <!--<td>${c.id}</td>-->
                         <td>
                             <img style="width: 100px; height: 100px" src="${c.image}" alt="${c.name}"/>
                         </td>  

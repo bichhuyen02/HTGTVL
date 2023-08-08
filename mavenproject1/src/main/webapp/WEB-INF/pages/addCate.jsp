@@ -9,18 +9,28 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="text-danger mt-4 mb-4 text-center"><h2>QUẢN LÝ NGÀNH NGHỀ </h2></div>
-<form:form cssClass="container " modelAttribute="addCates" method="post" enctype="multipart/form-data">
+
+<c:url value="/addCate" var="action" />
+<form:form cssClass="container " modelAttribute="addCates" action="${action}" method="post" enctype="multipart/form-data">
+    <form:hidden path="id" />
     
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên Ngành Nghề" name="name" />
         <label for="name">Tên Ngành Nghề </label>
     </div>
 
-    <div class="form-floating mb-3 mt-3">
-        <input type="submit" value="Thêm sản phẩm" class="btn btn-info" />
+        <div class="form-floating mb-3 mt-3">
+        <form:input type="text" class="form-control" path="description" id="description" placeholder="Mô Tả" name="description" />
+        <label for="name">Mô Tả</label>
     </div>
-<!--    <div class="nut">
-        <button type="button" class="btn btn-primary">Thêm</button>
-        <button type="button" class="btn btn-danger">Hủy</button>
-    </div>-->
+        
+   <div class="form-floating mb-3 mt-3">
+        <button type="submit" class="btn btn-info">
+            <c:choose>
+                <c:when test="${addCates.id != null}">Cập nhật ngành nghề</c:when>
+                <c:otherwise>Thêm ngành nghề</c:otherwise>
+            </c:choose>
+        </button>
+    </div>
+
 </form:form>

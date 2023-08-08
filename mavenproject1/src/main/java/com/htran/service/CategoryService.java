@@ -15,5 +15,7 @@ import java.util.Map;
 public interface CategoryService {
     List<Category> getCategories(Map<String, String> params);
     
-    boolean addCategory(Category c);
+    boolean addOrUpdateCategory(Category c);
+    Category getCategoryById(int id);
+    boolean deleteCategory(int id);
 }

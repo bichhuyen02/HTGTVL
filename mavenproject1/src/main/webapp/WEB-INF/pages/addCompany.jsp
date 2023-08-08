@@ -12,7 +12,7 @@
 
 <c:url value="/addCompany" var="action" />
 
-<form:form cssClass="container " modelAttribute="addCompanies" method="post" enctype="multipart/form-data">
+<form:form cssClass="container" modelAttribute="addCompanies" action="${action}" method="post" enctype="multipart/form-data">
     <form:hidden path="id" />
     <form:hidden path="image" />
     

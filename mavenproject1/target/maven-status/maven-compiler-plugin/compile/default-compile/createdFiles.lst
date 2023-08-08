@@ -8,6 +8,7 @@ com\htran\pojo\Job.class
 com\htran\repository\impl\CategoryRepositoryImpl.class
 com\htran\service\impl\CompanyServiceImpl.class
 com\htran\service\impl\CategoryServiceImpl.class
+com\htran\controllers\ApiCategoryController.class
 com\htran\service\LocationService.class
 com\htran\configs\WebAppContextConfig.class
 com\htran\pojo\Location_.class

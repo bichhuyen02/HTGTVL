@@ -33,8 +33,8 @@ public class ApiCompanyController {
         this.companyService.deleteCompany(id);
     }
     
-    @GetMapping("/addCompany/")
-    public ResponseEntity<List<Company>> list(@RequestParam Map<String, String> params) {
-        return new ResponseEntity<>(this.companyService.getCompanies(params), HttpStatus.OK);
-    }
+//    @GetMapping("/addCompany/")
+//    public ResponseEntity<List<Company>> list(@RequestParam Map<String, String> params) {
+//        return new ResponseEntity<>(this.companyService.getCompanies(params), HttpStatus.OK);
+//    }
 }

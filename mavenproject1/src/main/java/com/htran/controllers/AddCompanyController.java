@@ -30,7 +30,7 @@ public class AddCompanyController {
 
     @GetMapping("/addCompany")
     public String addCompany(Model model) {
-        model.addAttribute("addCompany", new Company());
+        model.addAttribute("addCompanies", new Company());
 
         return "addCompany";
     }
