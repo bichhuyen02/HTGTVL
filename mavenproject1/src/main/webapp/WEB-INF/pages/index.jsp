@@ -5,6 +5,8 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
 <c:url value="/" var="action" />
 
 <div class="text-danger mt-4 mb-4 text-center"><h2>VIỆC LÀM TUYỂN GẤP</h2></div>

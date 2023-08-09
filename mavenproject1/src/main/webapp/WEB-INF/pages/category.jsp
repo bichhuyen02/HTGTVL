@@ -18,19 +18,19 @@
     <table class="table table-hover container">
         <thead>
             <tr>
-                <th>id </th>
                 <th>name</th>
+                <th>description</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach items="${categories}" var="c">
                 <tr>
-                    <td>${c.id}</td>
-                    <td>${c.name}</td>                  
+                    <td>${c.name}</td>   
+                    <td>${c.description}</td>
                     <td>
                             <c:url value="/addCate/${c.id}" var="api" />
                             <a href="${api}" class="btn btn-info">Cập nhật</a>
-                            <button class="btn btn-danger" onclick="deleteCategory('${api}')">Xóa</button>
+                            <button class="btn btn-danger" onclick="deleteCompany('${api}')">Xóa</button>
                     </td>
                 </tr> 
             </c:forEach>

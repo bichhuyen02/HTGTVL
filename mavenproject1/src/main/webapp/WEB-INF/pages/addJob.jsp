@@ -38,6 +38,14 @@
     </div>
 
     <div class="form-floating mb-3 mt-3">
+        <form:select class="form-control" path="jobNature" id="jobNature" name="jobNature">
+            <option>Full Time</option>
+            <option>Pass Time</option>
+        </form:select>
+        <label for="name">Loại</label>
+    </div>
+        
+    <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="outOffTime" id="outOffTime" placeholder="Ngày Hết Hạn" name="outOffTime" />
         <label for="name">Ngày Hết Hạn</label>
     </div>
@@ -49,7 +57,7 @@
                     <option>${l.name}</option>
                 </c:forEach>
             </form:select>
-            <label for="location" class="form-label">Khu vuc</label>
+            <label for="location" class="form-label">Khu Vực</label>
         </div>
     </div>
 
