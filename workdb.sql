@@ -54,7 +54,7 @@ CREATE TABLE `category` (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +63,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Kinh Doanh',NULL),(2,'Làm Đẹp','');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +136,7 @@ CREATE TABLE `company` (
   `link_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idcompany_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +145,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (1,'TẬP ĐOÀN CÔNG NGHIỆP - VIỄN THÔNG QUÂN ĐỘI','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690350832/Viettel_orsvwp.webp','https://www.topcv.vn/brand/congnghiepvienthongquandoi'),(2,'VNPT TECHNOLOGY - CÔNG TY CỔ PHẦN CÔNG NGHỆ CÔNG NGHIỆP BƯU CHÍNH VIỄN THÔNG','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690350808/VNPT_yduww6.webp','https://www.topcv.vn/brand/vnpttechnology'),(3,'Ngân Hàng TMCP Sài Gòn SCB','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690350940/SCB_ainkcz.webp','https://www.topcv.vn/brand/scbbank'),(4,'CÔNG TY TNHH BOSCH GLOBAL SOFTWARE TECHNOLOGIES','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351045/Bosch_fdw1hn.webp','https://www.topcv.vn/brand/boschglobalsoftwaretechnologies'),(5,'CÔNG TY CỔ PHẦN GIÁO DỤC & ĐÀO TẠO IMAP VIỆT NAM','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351117/Imap_tl44rx.webp','https://www.topcv.vn/brand/imap'),(6,'FPT Software','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351425/fpt-software_q0yglq.webp','https://www.topcv.vn/cong-ty/fpt-software/3.html'),(7,'Công ty cổ phần Hạ tầng Viễn thông CMC Telecom','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351568/cmc-telecom_nhuzsh.webp','https://www.topcv.vn/cong-ty/cong-ty-co-phan-ha-tang-vien-thong-cmc-telecom/9827.html'),(8,'CHICKEN PLUS','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351760/CHICKEN_PLUS_q8qgmr.png','https://chickenplus.com.vn/'),(9,'Hệ thống siêu thị CoopMart','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690352024/coopmart_ydkapu.png','http://www.co-opmart.com.vn/print/thong-tin-tuyen-dung_5039_0_1.html'),(10,'HỆ THỐNG CIRCLE K','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690352261/ckclub_omjvki.png','https://www.circlek.com.vn/vi/co-hoi-nghe-nghiep/'),(11,'The Coffee House','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690355538/coffeeHouse_dvlo4u.webp','https://tuyendung.thecoffeehouse.com/'),(12,'HighLand Coffee','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690355607/highlands_f9hjdt.png','https://careers.highlandscoffee.com.vn/vi/trang-chu/');
+INSERT INTO `company` VALUES (1,'TẬP ĐOÀN CÔNG NGHIỆP - VIỄN THÔNG QUÂN ĐỘI','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690350832/Viettel_orsvwp.webp','https://www.topcv.vn/brand/congnghiepvienthongquandoi'),(2,'VNPT TECHNOLOGY - CÔNG TY CỔ PHẦN CÔNG NGHỆ CÔNG NGHIỆP BƯU CHÍNH VIỄN THÔNG','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690350808/VNPT_yduww6.webp','https://www.topcv.vn/brand/vnpttechnology'),(3,'Ngân Hàng TMCP Sài Gòn SCB','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690350940/SCB_ainkcz.webp','https://www.topcv.vn/brand/scbbank'),(4,'CÔNG TY TNHH BOSCH GLOBAL SOFTWARE TECHNOLOGIES','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351045/Bosch_fdw1hn.webp','https://www.topcv.vn/brand/boschglobalsoftwaretechnologies'),(5,'CÔNG TY CỔ PHẦN GIÁO DỤC & ĐÀO TẠO IMAP VIỆT NAM','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351117/Imap_tl44rx.webp','https://www.topcv.vn/brand/imap'),(6,'FPT Software','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351425/fpt-software_q0yglq.webp','https://www.topcv.vn/cong-ty/fpt-software/3.html'),(7,'Công ty cổ phần Hạ tầng Viễn thông CMC Telecom','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351568/cmc-telecom_nhuzsh.webp','https://www.topcv.vn/cong-ty/cong-ty-co-phan-ha-tang-vien-thong-cmc-telecom/9827.html'),(8,'CHICKEN PLUS','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690351760/CHICKEN_PLUS_q8qgmr.png','https://chickenplus.com.vn/'),(9,'Hệ thống siêu thị CoopMart','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690352024/coopmart_ydkapu.png','http://www.co-opmart.com.vn/print/thong-tin-tuyen-dung_5039_0_1.html'),(10,'Hệ Thống Circle K','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690352261/ckclub_omjvki.png','https://www.circlek.com.vn/vi/co-hoi-nghe-nghiep/'),(11,'The Coffee House','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690355538/coffeeHouse_dvlo4u.webp','https://tuyendung.thecoffeehouse.com/'),(12,'HighLand Coffee','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1690355607/highlands_f9hjdt.png','https://careers.highlandscoffee.com.vn/vi/trang-chu/');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,10 +226,10 @@ CREATE TABLE `notifi` (
   `job_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `user_idx` (`user_id`),
   KEY `job_idx` (`job_id`),
+  KEY `us_idx` (`user_id`),
   CONSTRAINT `job_id` FOREIGN KEY (`job_id`) REFERENCES `job` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `us` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -277,19 +278,17 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_role` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `active` bit(1) DEFAULT NULL,
-  `user_role` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` bit(1) DEFAULT b'1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -298,6 +297,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'huyen','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_ADMIN','Tsần Thị Bích','Huyền','tsanthibichhuyen251@gmail.com','0386858149','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1691033297/b1e5zfzoihsbc7qpim3a.jpg',_binary '');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -310,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-07 23:29:53
+-- Dump completed on 2023-08-10 11:13:05
