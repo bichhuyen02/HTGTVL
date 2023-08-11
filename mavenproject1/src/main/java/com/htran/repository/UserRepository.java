@@ -5,6 +5,8 @@
 package com.htran.repository;
 
 import com.htran.pojo.User;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -12,4 +14,5 @@ import com.htran.pojo.User;
  */
 public interface UserRepository {
     User getUserByUsername(String username);
+    List<User> getUsers(Map<String, String> params);
 }

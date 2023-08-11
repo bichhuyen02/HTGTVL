@@ -8,6 +8,8 @@ import com.htran.pojo.User;
 import com.htran.repository.UserRepository;
 import com.htran.service.UserService;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,6 +39,11 @@ public class UserServiceImpl implements UserService{
         
         return new org.springframework.security.core.userdetails.User(
                 u.getUsername(), u.getPassword(), authorities);
+    }
+
+    @Override
+    public List<User> getUsers(Map<String, String> params) {
+        return this.userRepo.getUsers(params);
     }
 
 }

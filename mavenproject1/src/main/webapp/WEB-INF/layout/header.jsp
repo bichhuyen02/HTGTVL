@@ -25,7 +25,7 @@
                     <a class="nav-link" href="<c:url value="/companies"/>">Doanh Nghiệp</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${action}">Người Dùng </a>
+                    <a class="nav-link" href="<c:url value="/User"/>">Người Dùng </a>
                 </li>
 
                 <se:authorize access="hasRole('ROLE_ADMIN')">

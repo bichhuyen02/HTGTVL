@@ -6,7 +6,12 @@ package com.htran.repository.impl;
 
 import com.htran.pojo.User;
 import com.htran.repository.UserRepository;
+import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -30,6 +35,18 @@ public class UserRepositoryImpl implements UserRepository{
         q.setParameter("un", username);
         
         return (User) q.getSingleResult();
+    }
+
+    @Override
+    public List<User> getUsers(Map<String, String> params) {
+        Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<User> q = b.createQuery(User.class);
+        Root root = q.from(User.class);
+        q.select(root);
+
+        Query query = s.createQuery(q);
+        return query.getResultList();
     }
     
 }

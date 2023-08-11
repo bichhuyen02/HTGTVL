@@ -4,6 +4,7 @@
  */
 package com.htran.controllers;
 
+import com.htran.pojo.User;
 import com.htran.service.UserService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Admin
  */
 @Controller
-public class UserController {
-   @Autowired
+public class addUserController {
+    @Autowired
     private UserService userService;
     
-    @GetMapping("/User")
-    public String user(Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("users", this.userService.getUsers(params));
-        return "users";
+    @GetMapping("/addUser")
+    public String addUser(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("addUsers", new User());
+        
+        return "addUser";
     }
 }
