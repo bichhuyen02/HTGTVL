@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class AddUserController {
-    @Autowired
+     @Autowired
     private UserService userService;
     
     @GetMapping("/addUser")
@@ -28,4 +28,5 @@ public class AddUserController {
         
         return "addUser";
     }
+    
 }
