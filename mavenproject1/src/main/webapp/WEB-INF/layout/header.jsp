@@ -25,7 +25,7 @@
                     <a class="nav-link" href="<c:url value="/companies"/>">Doanh Nghiệp</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/User"/>">Người Dùng </a>
+                    <a class="nav-link" href="<c:url value="/user"/>">Người Dùng </a>
                 </li>
 
                 <se:authorize access="hasRole('ROLE_ADMIN')">
@@ -56,10 +56,11 @@
                 </c:choose>
 
             </ul>
-            <form class="d-flex" action="${action}">
+            <a href="<c:url value="/jobs" />" class="btn btn-outline-success">Quản lý</a>
+<!--            <form class="d-flex" action="${action}">
                 <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
                 <button class="btn btn-primary" type="submit">Tìm</button>
-            </form>
+            </form>-->
 
         </div>
     </div>

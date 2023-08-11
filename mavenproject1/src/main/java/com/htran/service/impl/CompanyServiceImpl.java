@@ -46,8 +46,7 @@ public class CompanyServiceImpl implements CompanyService {
             } catch (IOException ex) {
                 Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        
+        }      
         return this.companyRepo.addOrUpdateCompany(c);
     }
 

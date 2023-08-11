@@ -65,6 +65,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="title" value="thêm người dùng" />
         <put-attribute name="content" value="/WEB-INF/pages/addUser.jsp" />
     </definition>
-    
 </tiles-definitions>
 

@@ -27,8 +27,8 @@
     </div>
 
     <div class="form-floating mb-3 mt-3">
-        <form:input type="file" class="form-control" path="file" id="file" placeholder="logo " name="file" />
-        <label for="logo">Logo </label>
+        <form:input type="file" class="form-control" path="file" id="file" placeholder="logo" name="file" />
+        <label for="avatar">logo </label>
         <c:if test="${addCompanies.image != null}">
             <img src="${addCompanies.image}" width="120" />
         </c:if>

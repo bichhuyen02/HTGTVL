@@ -15,4 +15,6 @@ import java.util.Map;
 public interface UserRepository {
     User getUserByUsername(String username);
     List<User> getUsers(Map<String, String> params);
+    
+//    boolean addOrUpdateUser(User user);
 }

@@ -18,10 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class UserController {
-   @Autowired
+    
+    @Autowired
     private UserService userService;
     
-    @GetMapping("/User")
+    @GetMapping("/user")
     public String user(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("users", this.userService.getUsers(params));
         return "users";

@@ -64,7 +64,6 @@ public class CompanyRepositoryImpl implements CompanyRepository {
             ex.printStackTrace();
             return false;
         }
-
     }
 
     @Override

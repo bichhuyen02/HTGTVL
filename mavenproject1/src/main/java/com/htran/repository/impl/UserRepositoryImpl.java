@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -38,7 +39,7 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     @Override
-    public List<User> getUsers(Map<String, String> params) {
+    public List<User> getUsers(Map<String, String> map) {
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<User> q = b.createQuery(User.class);
@@ -48,5 +49,21 @@ public class UserRepositoryImpl implements UserRepository{
         Query query = s.createQuery(q);
         return query.getResultList();
     }
+
+//    @Override
+//    public boolean addOrUpdateUser(User user) {
+//        Session s = this.factory.getObject().getCurrentSession();
+//        try {
+//            if (user.getId() == null) {
+//                s.save(user);
+//            } else {
+//                s.update(user);
+//            }
+//            return true;
+//        } catch (HibernateException ex) {
+//            ex.printStackTrace();
+//            return false;
+//        }
+//    }
     
 }

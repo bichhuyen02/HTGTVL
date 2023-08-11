@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
- * @author Admin
+ * @author ACER
  */
 @Controller
-public class addUserController {
+public class AddUserController {
     @Autowired
     private UserService userService;
     
