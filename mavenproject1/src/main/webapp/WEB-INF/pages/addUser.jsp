@@ -51,8 +51,8 @@
         
     <div class="form-floating">
             <form:select class="form-select" id="userRole" name="userRole" path="userRole">
-                <option value="ROLE-USER">Người Ứng Tuyển</option>
-                <option value="ROLE-EMP">Nhà Tuyển Dụng</option>
+                <option value="ROLE_USER">Người Ứng Tuyển</option>
+                <option value="ROLE_EMP">Nhà Tuyển Dụng</option>
             </form:select>
             <label for="location" class="form-label">Vai Trò</label>
     </div>
@@ -60,7 +60,7 @@
     <div class="form-floating mb-3 mt-3">
         <button type="submit" class="btn btn-info">
             <c:choose>
-                <c:when test="${addUser.id != null}">Cập nhật người dùng</c:when>
+                <c:when test="${addUsers.id != null}">Cập nhật người dùng</c:when>
                 <c:otherwise>Thêm người dùng</c:otherwise>
             </c:choose>
         </button>

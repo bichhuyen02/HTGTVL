@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -33,11 +34,12 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
     "com.htran.repository",
     "com.htran.service"
 })
+//@PropertySource("classpath:configs.properties")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Autowired
     private UserDetailsService userDetailsService;
-     @Autowired
+    @Autowired
     private Environment env;
 
     @Bean
@@ -78,24 +80,24 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
         http.csrf().disable();
     }
     
-     @Bean
+    @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
                 = new Cloudinary(ObjectUtils.asMap(
-                        "cloud_name", this.env.getProperty("cloudinary.cloud_name"),
-                        "api_key", this.env.getProperty("cloudinary.api_key"),
-                        "api_secret", this.env.getProperty("cloudinary.api_secret"),
+                        "cloud_name", "dtoc5lqfe",
+                        "api_key", "346556316858336",
+                        "api_secret", "ijP4MyTWOXI-behy-Z3TUso5UAA",
                         "secure", true));
         return cloudinary;
     }
     
-//        @Bean
-//    public CommonsMultipartResolver multipartResolver() {
-//        CommonsMultipartResolver resolver
-//                = new CommonsMultipartResolver();
-//        resolver.setDefaultEncoding("UTF-8");
-//        return resolver;
-//    }
+   @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver
+                = new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("UTF-8");
+        return resolver;
+    }
     
      @Bean
     public SimpleDateFormat simpleDateFormat() {

@@ -16,4 +16,5 @@ public interface UserRepository {
     User getUserByUsername(String username);
     List<User> getUsers(Map<String, String> params);
     boolean addOrUpdateUser(User user);
+    User getUserById(int id);
 }

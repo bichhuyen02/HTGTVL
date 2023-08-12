@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
- * @author Admin
+ * @author ACER
  */
 @Entity
 @Table(name = "company")
@@ -38,6 +38,20 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image"),
     @NamedQuery(name = "Company.findByLinkCompany", query = "SELECT c FROM Company c WHERE c.linkCompany = :linkCompany")})
 public class Company implements Serializable {
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -144,20 +158,6 @@ public class Company implements Serializable {
     @Override
     public String toString() {
         return "com.htran.pojo.Company[ id=" + id + " ]";
-    }
-    
-    /**
-     * @return the file
-     */
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    /**
-     * @param file the file to set
-     */
-    public void setFile(MultipartFile file) {
-        this.file = file;
     }
     
 }
