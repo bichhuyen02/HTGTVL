@@ -35,9 +35,9 @@ public class UserServiceImpl implements UserService{
     
 //    @Autowired
 //    private Cloudinary cloudinary;
-//
-//    @Autowired
-//    public BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    public BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -58,18 +58,19 @@ public class UserServiceImpl implements UserService{
          return this.userRepo.getUsers(params);
     }
 
-//    @Override
-//    public boolean addOrUpdateUser(User user) {
-////       user.setPassword(this.passwordEncoder.encode(user.getPassword()));
-////       user.setUserRole("USER");
-////         if (!user.getFile().isEmpty()) {
-////            try {
-////                Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-////                user.setAvatar(res.get("secure_url").toString());
-////            } catch (IOException ex) {
-////                Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-////        } 
-//        return this.userRepo.addOrUpdateUser(user);
-//    }
+    @Override
+    public boolean addOrUpdateUser(User user) {
+       user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+//         if (!user.getFile().isEmpty()) {
+//            try {
+//                Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+//                user.setAvatar(res.get("secure_url").toString());
+//            } catch (IOException ex) {
+//                Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } 
+        return this.userRepo.addOrUpdateUser(user);
+    }
+
+   
 }

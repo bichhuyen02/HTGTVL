@@ -4,6 +4,7 @@
  */
 package com.htran.repository.impl;
 
+import com.htran.pojo.Company;
 import com.htran.pojo.Job;
 import com.htran.repository.JobRepository;
 import java.util.List;
@@ -67,9 +68,30 @@ public class JobRepositoryImpl implements JobRepository {
     }
 
     @Override
-    public boolean addOrUpdateJob(Job j) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Job getJobById(int id) {
+         Session s = this.factory.getObject().getCurrentSession();
+         return s.get(Job.class, id);
     }
+    
+    @Override
+    public boolean addOrUpdateJob(Job j) {
+       throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean deleteJob(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+      try {
+            Job j = this.getJobById(id);
+            s.delete(j);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+   
 
     
 }

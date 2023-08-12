@@ -45,7 +45,7 @@
     </div>
 
     <div class="form-floating mb-3 mt-3">
-        <form:input type="file" class="form-control" path="avatar" id="avatar" placeholder="avatar" name="avatar" />
+        <form:input type="file" class="form-control" path="file" id="file" placeholder="avatar" name="file" />
         <label for="logo">avatar</label>
     </div>
         

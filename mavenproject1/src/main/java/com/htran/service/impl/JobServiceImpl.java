@@ -31,10 +31,22 @@ public class JobServiceImpl implements JobService {
     public int countJob() {
        return this.jobRepo.countJob();
     }
+    
+    @Override
+    public Job getJobById(int id) {
+        return this.jobRepo.getJobById(id);
+    }
 
     @Override
     public boolean addOrUpdateJob(Job job) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.jobRepo.addOrUpdateJob(job);
     }
+
+    @Override
+    public boolean deleteJob(int id) {
+        return this.jobRepo.deleteJob(id);
+    }
+
+    
 
 }

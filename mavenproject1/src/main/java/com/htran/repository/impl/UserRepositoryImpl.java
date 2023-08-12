@@ -49,21 +49,21 @@ public class UserRepositoryImpl implements UserRepository{
         Query query = s.createQuery(q);
         return query.getResultList();
     }
-
-//    @Override
-//    public boolean addOrUpdateUser(User user) {
-//        Session s = this.factory.getObject().getCurrentSession();
-//        try {
-//            if (user.getId() == null) {
-//                s.save(user);
-//            } else {
-//                s.update(user);
-//            }
-//            return true;
-//        } catch (HibernateException ex) {
-//            ex.printStackTrace();
-//            return false;
-//        }
-//    }
+    
+    @Override
+    public boolean addOrUpdateUser(User user) {
+       Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (user.getId() == null) {
+                s.save(user);
+            } else {
+                s.update(user);
+            }
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
     
 }

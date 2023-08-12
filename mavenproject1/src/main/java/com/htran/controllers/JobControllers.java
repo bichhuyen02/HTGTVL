@@ -44,11 +44,4 @@ public class JobControllers {
         return "jobs";
     }
 
-//    @PostMapping("/products")
-//    public String add(@ModelAttribute(value = "product") Job p) {
-//        if (this.jobService.addOrUpdateProduct(p) == true)
-//            return "redirect:/";
-//        
-//        return "products";
-//    }
 }

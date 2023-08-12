@@ -4,6 +4,7 @@
  */
 package com.htran.repository;
 
+import com.htran.pojo.Company;
 import com.htran.pojo.Job;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,8 @@ public interface JobRepository {
     List<Job> getJobs(Map<String, String> params);
     int countJob();
     boolean addOrUpdateJob(Job j);
+    boolean deleteJob(int id);
+    Job getJobById(int id);
 }
 
 

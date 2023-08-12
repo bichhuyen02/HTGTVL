@@ -40,13 +40,13 @@
     <div class="form-floating mb-3 mt-3">
         <form:select class="form-control" path="jobNature" id="jobNature" name="jobNature">
             <option>Full Time</option>
-            <option>Pass Time</option>
+            <option>Part Time</option>
         </form:select>
         <label for="name">Loại</label>
     </div>
         
     <div class="form-floating mb-3 mt-3">
-        <form:input type="text" class="form-control" path="outOffTime" id="outOffTime" placeholder="Ngày Hết Hạn" name="outOffTime" />
+        <form:input type="date" class="form-control" path="outOffTime" id="outOffTime" placeholder="Ngày Hết Hạn" name="outOffTime" />
         <label for="name">Ngày Hết Hạn</label>
     </div>
 
@@ -54,7 +54,10 @@
         <div class="form-floating">
             <form:select class="form-select" id="locationId" name="locationId" path="locationId">
                 <c:forEach items="${locations}" var="l">
-                    <option>${l.name}</option>
+                    <c:choose>
+                    <c:when test="${l.id == addjobs.locationId.id}"><option value="${l.id}" selected>${l.name}</option></c:when>
+                    <c:otherwise><option value="${l.id}">${l.name}</option></c:otherwise>
+                    </c:choose>
                 </c:forEach>
             </form:select>
             <label for="location" class="form-label">Khu Vực</label>
@@ -66,7 +69,10 @@
             <form:select class="form-select" id="companyId" name="companyId" path="companyId">
 
                 <c:forEach items="${companies}" var="c">
-                    <option>${c.name}</option>
+                    <c:choose>
+                    <c:when test="${c.id == addjobs.companyId.id}"><option value="${c.id}" selected>${c.name}</option></c:when>
+                    <c:otherwise><option value="${c.id}">${c.name}</option></c:otherwise>
+                    </c:choose>
                 </c:forEach>
             </form:select>
             <label for="location" class="form-label">Doanh Nghiep</label>
@@ -74,9 +80,13 @@
     </div>
 
 
-    <div class="nut">
-        <button type="button" class="btn btn-primary">Thêm</button>
-        <button type="button" class="btn btn-danger">Hủy</button>
+    <div class="form-floating mb-3 mt-3">
+        <button type="submit" class="btn btn-info">
+            <c:choose>
+                <c:when test="${addjobs.id != null}">Cập nhật Doanh Nghiệp</c:when>
+                <c:otherwise>Thêm Doanh Nghiệp</c:otherwise>
+            </c:choose>
+        </button>
     </div>
 
 </form:form>

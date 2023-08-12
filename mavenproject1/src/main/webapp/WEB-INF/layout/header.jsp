@@ -9,7 +9,7 @@
 <%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <c:url value="/" var="action" />
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-3 p-3" >
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark  p-3" >
     <div class="container-fluid">
         <a class="navbar-brand" href="${action}">JOB24H-WEBSITE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">

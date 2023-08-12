@@ -63,16 +63,5 @@ public class WebAppContextConfig implements WebMvcConfigurer{
         resolver.setDefaultEncoding("UTF-8");
         return resolver;
     }
-    
-//   @Bean
-//    public Cloudinary cloudinary() {
-//        Cloudinary cloudinary
-//                = new Cloudinary(ObjectUtils.asMap(
-//                        "cloud_name", this.env.getProperty("cloudinary.cloud_name"),
-//                        "api_key", this.env.getProperty("cloudinary.api_key"),
-//                        "api_secret", this.env.getProperty("cloudinary.api_secret"),
-//                        "secure", true));
-//        return cloudinary;
-//    }
    
 }

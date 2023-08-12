@@ -19,4 +19,6 @@ public interface JobService {
     int countJob();
 
     boolean addOrUpdateJob(Job j);
+    boolean deleteJob(int id);
+    Job getJobById(int id);
 }

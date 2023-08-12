@@ -54,11 +54,13 @@
                     </td>  
 
                     <td>
-                        <a href="#" class="btn btn-info">Cập nhật</a>
-                        <button class="btn btn-danger mt-2">Xóa</button>
+                            <c:url value="/addJob/${j.id}" var="api" />
+                            <a href="${api}" class="btn btn-info">Cập nhật</a>
+                            <button class="btn btn-danger" onclick="deleteCompany('${api}')">Xóa</button>
                     </td>
                 </tr> 
             </c:forEach>
         </tbody>
     </table>
 </section>
+<script src="<c:url value="/js/main.js" />"></script>
