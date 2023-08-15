@@ -76,10 +76,9 @@ public class Company implements Serializable {
     private String linkCompany;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private Set<Job> jobSet;
-    
+
     @Transient
     private MultipartFile file;
-
     public Company() {
     }
 

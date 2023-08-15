@@ -10,3 +10,8 @@ function deleteCompany(path) {
         });
     }
 }
+
+function showPassword() {
+  var passwordField = document.getElementById("pwd");
+  passwordField.type = "text";
+}

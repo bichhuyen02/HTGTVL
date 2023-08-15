@@ -9,7 +9,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <section>
-    <div class="text-danger mt-4 mb-4 text-center"><h2>DANH SÁCH CHUYÊN NGÀNH</h2></div>
+    <div class="text-info mt-4 mb-4 text-center"><h2>DANH SÁCH CHUYÊN NGÀNH</h2></div>
 
     <div class="a">                
         <a href="<c:url value="/addCate" />" class="btn btn-success ">Thêm công việc</a>
@@ -17,9 +17,10 @@
 
     <table class="table table-hover container">
         <thead>
-            <tr>
-                <th>name</th>
-                <th>description</th>
+            <tr class="table-primary">
+                <th>Tên</th>
+                <th>Mô tả </th>
+                <th>Thao tác </th>
             </tr>
         </thead>
         <tbody>

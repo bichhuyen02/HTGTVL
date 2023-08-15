@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div class="text-danger mt-4 mb-4 text-center"><h2>QUẢN LÝ NGÀNH NGHỀ </h2></div>
+<div class="text-info mt-4 mb-4 text-center"><h2>QUẢN LÝ NGÀNH NGHỀ </h2></div>
 
 <c:url value="/addCate" var="action" />
 <form:form cssClass="container " modelAttribute="addCates" action="${action}" method="post" enctype="multipart/form-data">

@@ -9,7 +9,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <section>
-    <div class="text-danger mt-4 mb-4 text-center"><h2>DANH SÁCH NGƯỜI DÙNG</h2></div>
+    <div class="text-info mt-4 mb-4 text-center"><h2>DANH SÁCH NGƯỜI DÙNG</h2></div>
 
     <div class="a">                
         <a href="<c:url value="/addUser" />" class="btn btn-success ">Thêm Người Dùng</a>
@@ -17,24 +17,25 @@
 
     <table class="table table-hover container">
         <thead>
-            <tr>
+            <tr class="table-primary">
                 <th>Họ Tên</th>
-                <th>email</th>
+                <th>Email</th>
                 <th>SĐT</th>
                 <th>Tên đăng nhập</th>
+                <th>Thao tác </th>
             </tr>
         </thead>
         <tbody>
             <c:forEach items="${users}" var="u">
                 <tr>
-                    <td>${u.firstName} ${u.lastName}</td>   
+                    <td>${u.name} </td>   
                     <td>${u.email}</td>
                     <td>${u.phone}</td>
                     <td>${u.username}</td>
                     <td>
-<!--                            <c:url value="/addCate/${u.id}" var="api" />
+                        <c:url value="/addUser/${u.id}" var="api" />
                             <a href="${api}" class="btn btn-info">Cập nhật</a>
-                            <button class="btn btn-danger" onclick="deleteCompany('${api}')">Xóa</button>-->
+                            <button class="btn btn-danger" onclick="deleteCompany('${api}')">Xóa</button>
                     </td>
                 </tr> 
             </c:forEach>

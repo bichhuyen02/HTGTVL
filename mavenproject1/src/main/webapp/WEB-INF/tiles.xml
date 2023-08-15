@@ -15,6 +15,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="" />
     </definition>
     
+     <definition name="baseLayout2" template="/WEB-INF/layout/base.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="footer" value="" />
+        <put-attribute name="content" value="" />
+    </definition>
+    
+         <definition name="baseLayout3" template="/WEB-INF/layout/base.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+        <put-attribute name="footer" value="" />
+        <put-attribute name="content" value="" />
+    </definition>
+    
     <definition name="index" extends="baseLayout">
         <put-attribute name="title" value="Trang chủ" />
         <put-attribute name="content" value="/WEB-INF/pages/index.jsp" />
@@ -25,7 +39,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/job.jsp" />
     </definition>
     
-    <definition name="addJob" extends="baseLayout">
+    <definition name="addJob" extends="baseLayout3">
         <put-attribute name="title" value="Thêm CV" />
         <put-attribute name="content" value="/WEB-INF/pages/addJob.jsp" />
     </definition>
@@ -35,7 +49,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/category.jsp" />
     </definition>
     
-    <definition name="addCate" extends="baseLayout">
+    <definition name="addCate" extends="baseLayout3">
         <put-attribute name="title" value="Thêm Chuyên Ngành" />
         <put-attribute name="content" value="/WEB-INF/pages/addCate.jsp" />
     </definition>
@@ -46,12 +60,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/company.jsp" />
     </definition>
     
-    <definition name="addCompany" extends="baseLayout">
+    <definition name="addCompany" extends="baseLayout3">
         <put-attribute name="title" value="Thêm Doanh Nghiệp" />
         <put-attribute name="content" value="/WEB-INF/pages/addCompany.jsp" />
     </definition>
     
-    <definition name="login" extends="baseLayout">
+    <definition name="login" extends="baseLayout2">
         <put-attribute name="title" value="Đăng nhập" />
         <put-attribute name="content" value="/WEB-INF/pages/login.jsp" />
     </definition>
@@ -61,7 +75,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
     </definition>
     
-    <definition name="addUser" extends="baseLayout">
+    <definition name="addUser" extends="baseLayout2">
         <put-attribute name="title" value="thêm người dùng" />
         <put-attribute name="content" value="/WEB-INF/pages/addUser.jsp" />
     </definition>

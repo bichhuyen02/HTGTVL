@@ -44,11 +44,11 @@ public class AddCompanyController {
     @PostMapping("/addCompany")
     public String add(@ModelAttribute(value = "addCompanies") @Valid Company c,
             BindingResult rs) {
-        if (!rs.hasErrors()) {
+//        if (!rs.hasErrors()) {
             if (this.companyService.addOrUpdateCompany(c) == true) {
                 return "redirect:/companies";
             }
-        }
+//        }
         return "addCompany";
     }
 }

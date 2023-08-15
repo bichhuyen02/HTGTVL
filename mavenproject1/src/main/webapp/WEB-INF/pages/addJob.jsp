@@ -10,7 +10,7 @@
 
 <!--enctype="multipart/form-data"-->
 
-<div class="text-danger mt-4 mb-4 text-center"><h2>QUẢN LÝ CÔNG VIỆC</h2></div>
+<div class="text-info mt-4 mb-4 text-center"><h2>QUẢN LÝ CÔNG VIỆC</h2></div>
 <form:form cssClass="container " modelAttribute="addjobs">
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="title" id="title" placeholder="Tên công việc" name="title" />

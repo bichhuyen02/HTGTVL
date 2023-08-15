@@ -8,18 +8,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:url value="/login" var="action" />
-<form method="post" action="${action}">
-    <div class="form-floating mb-3 mt-3">
-        <input type="text" class="form-control" id="name" placeholder="Tên đăng nhập" name="username">
-        <label for="name">Tên đăng nhập</label>
+
+<div class="register-photo form-dangnhap">
+
+    <div class="form-container">
+        <div class="image-holder"></div>
+        <form method="post" action="${action}">
+            <h2 class="text-center"><strong>ĐĂNG NHẬP </strong></h2>
+            <div class="form-group">
+                <input class="form-control" id="name" type="username" name="username" placeholder="Tên đăng nhập"></div>
+            <div class="form-group">
+                <input class="form-control" id="pwd" type="password" name="password" placeholder="Mật khẩu"></div>
+            <div class="form-group">
+                <div class="d-flex justify-content-between">
+                    <div class="form-check"> <input class="form-check-input" onclick="showPassword()" type="checkbox" value="" id="flexCheckDefault"> <label class="form-check-label" for="flexCheckDefault"> Hiển thị mật khẩu </label> </div>
+<!--                    <div> <a href="#" class="text-info">Quên mật khẩu </a> </div>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn-login btn btn-success btn-block " type="submit" value ="Đăng Nhập">Đăng nhập</button>
+            </div>
+            <p class="text-center">Bạn chưa có tài khoản? <a href="<c:url value="/addUser" />">Đăng ký</a> 
+            </p> 
+             <p class="text-center"><a href="<c:url value="/" />">Quay về</a> 
+                </p>
     </div>
 
-    <div class="form-floating mt-3 mb-3">
-        <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="password">
-        <label for="pwd">Mật khẩu</label>
-    </div>
-    
-    <div class="form-floating mt-3 mb-3">
-        <input type="submit" value="Đăng nhập" class="btn btn-danger" />
-    </div>
-</form>
+<script src="<c:url value="/js/main.js" />"></script>
+<<link rel="stylesheet" href="<c:url value="/css/login.css" />"/>

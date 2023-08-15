@@ -7,6 +7,7 @@ package com.htran.configs;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import java.text.SimpleDateFormat;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -39,7 +40,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Autowired
     private UserDetailsService userDetailsService;
-    @Autowired
+    @Resource
     private Environment env;
 
     @Bean
@@ -80,16 +81,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
         http.csrf().disable();
     }
     
-    @Bean
+     @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
                 = new Cloudinary(ObjectUtils.asMap(
-                        "cloud_name", "dtoc5lqfe",
-                        "api_key", "346556316858336",
-                        "api_secret", "ijP4MyTWOXI-behy-Z3TUso5UAA",
+                        "cloud_name", this.env.getProperty("cloudinary.cloud_name"),
+                        "api_key", this.env.getProperty("cloudinary.api_key"),
+                        "api_secret", this.env.getProperty("cloudinary.api_secret"),
                         "secure", true));
         return cloudinary;
     }
+    
     
    @Bean
     public CommonsMultipartResolver multipartResolver() {

@@ -6,7 +6,9 @@ package com.htran.controllers;
 
 import com.htran.service.CompanyService;
 import java.util.Map;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author ACER
  */
+
 @Controller
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @Autowired
+    @Resource
     private Environment env;
     
     @RequestMapping("/companies")

@@ -9,7 +9,7 @@
 <%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <c:url value="/" var="action" />
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark  p-3" >
+<nav class="navbar navbar-expand-sm p-3 " >
     <div class="container-fluid">
         <a class="navbar-brand" href="${action}">JOB24H-WEBSITE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -56,7 +56,7 @@
                 </c:choose>
 
             </ul>
-            <a href="<c:url value="/jobs" />" class="btn btn-outline-success">Quản lý</a>
+            <a href="<c:url value="/jobs" />" class="btn btn-success">Quản lý</a>
 <!--            <form class="d-flex" action="${action}">
                 <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
                 <button class="btn btn-primary" type="submit">Tìm</button>

@@ -21,11 +21,13 @@ import com.htran.repository.CompanyRepository;
 import java.util.ArrayList;
 import javax.persistence.criteria.Predicate;
 import org.hibernate.HibernateException;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  *
  * @author ACER
  */
+@PropertySource("classpath:configs.properties")
 @Repository
 @Transactional
 public class CompanyRepositoryImpl implements CompanyRepository {

@@ -71,7 +71,7 @@
     </a>
 </div>
 
-<div class="text-primary mt-4 mb-4 text-center"><h2>VIỆC LÀM TUYỂN GẤP</h2></div>
+<div class="text-info mt-4 mb-4 text-center"><h2>VIỆC LÀM TUYỂN GẤP</h2></div>
 <div class="container">
     <div class="row">
         
@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="photo">
-                            <img src="" class="img-responsive" alt="a" />
+                            <img src="https://res.cloudinary.com/dtoc5lqfe/image/upload/v1692092057/coffee_c7xemc.webp" class="img-responsive" alt="a" />
                         </div>
 
                     </div>
