@@ -4,9 +4,7 @@
  */
 package com.htran.controllers;
 
-import com.htran.pojo.Job;
-import com.htran.service.CompanyService;
-import com.htran.service.JobService;
+import com.htran.pojo.Location;
 import com.htran.service.LocationService;
 import java.util.Map;
 import javax.validation.Valid;
@@ -25,40 +23,31 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author ACER
  */
 @Controller
-public class AddJobController {
-
-    @Autowired
-    private JobService jobService;
-    
-    @Autowired
-    private CompanyService companyService;
-    
-    @Autowired
+public class AddLocationController {
+     @Autowired
     private LocationService locationService;
-
-    @GetMapping("/addJob")
-    public String addjob(Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("addjobs", new Job());
-        model.addAttribute("locations", this.locationService.getLocations(params));
-        model.addAttribute("companies", this.companyService.getCompanies(params));
+    
+    @GetMapping("/addLocation")
+    public String addLocation(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("addLocations", new Location());
         
-        return "addJob";
+        return "addLocation";
     }
     
-    @GetMapping("/addJob/{id}")
+    @GetMapping("/addLocation/{id}")
     public String update(Model model, @PathVariable(value = "id") int id) {
-        model.addAttribute("addjobs", this.jobService.getJobById(id));
-        return "addJob";
+        model.addAttribute("addLocations", this.locationService.getLocationById(id));
+        return "addLocation";
     }
     
-    @PostMapping("/addJob")
-    public String add(@ModelAttribute(value = "addjobs") @Valid Job j,
+    @PostMapping("/addLocation")
+    public String add(@ModelAttribute(value = "addLocations") @Valid Location lctn,  
             BindingResult rs) {
-        if (!rs.hasErrors()) {
-            if (this.jobService.addOrUpdateJob(j) == true) {
-                return "redirect:/jobs";
+       //        if (!rs.hasErrors()) {
+            if (this.locationService.addOrUpdateLocation(lctn) == true) {
+                return "redirect:/location";
             }
-        }
-        return "addJob";
+//        }
+        return "addLocation";
     }
 }

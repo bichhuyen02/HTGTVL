@@ -14,4 +14,7 @@ import java.util.Map;
  */
 public interface LocationService {
      List<Location> getLocations(Map<String, String> params);
+     boolean addOrUpdateLocation(Location lctn);
+    Location getLocationById(int id);
+    boolean deleteLocation(int id);
 }

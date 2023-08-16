@@ -19,12 +19,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class LocationServiceImpl implements LocationService{
 
-        @Autowired
+    @Autowired
     private LocationRepository locationRepo;
         
     @Override
     public List<Location> getLocations(Map<String, String> params) {
         return this.locationRepo.getLocations(params);
+    }
+
+    @Override
+    public boolean addOrUpdateLocation(Location lctn) {
+         return this.locationRepo.addOrUpdateLocation(lctn);
+    }
+
+    @Override
+    public Location getLocationById(int id) {
+       return this.locationRepo.getLocationById(id);
+    }
+
+    @Override
+    public boolean deleteLocation(int id) {
+       return this.locationRepo.deleteLocation(id);
     }
     
 }

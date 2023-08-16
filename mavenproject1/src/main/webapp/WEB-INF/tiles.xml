@@ -54,6 +54,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/addCate.jsp" />
     </definition>
     
+    <definition name="location" extends="baseLayout3">
+        <put-attribute name="title" value="Khu Vực" />
+        <put-attribute name="content" value="/WEB-INF/pages/location.jsp" />
+    </definition>
+    
+    <definition name="addLocation" extends="baseLayout2">
+        <put-attribute name="title" value="Thêm Khu Vực" />
+        <put-attribute name="content" value="/WEB-INF/pages/addLocation.jsp" />
+    </definition>
+    
+    
     
      <definition name="companies" extends="baseLayout">
         <put-attribute name="title" value="Doanh Nghiệp" />

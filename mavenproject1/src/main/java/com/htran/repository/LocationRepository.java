@@ -14,4 +14,7 @@ import java.util.Map;
  */
 public interface LocationRepository {
     List<Location> getLocations(Map<String, String> params);
+    boolean addOrUpdateLocation(Location lctn);
+    boolean deleteLocation(int id);
+    Location getLocationById(int id);
 }

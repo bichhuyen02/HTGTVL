@@ -16,10 +16,10 @@
         <article class="card-body mx-auto" style="width: 45%;">
             <h2 class="card-title  text-center text-white">ĐĂNG KÝ TÀI KHOẢN</h2>
             <p class="text-center">Sử dụng tài khoản miễn phí!</p>
-            <p>
+<!--            <p>
                 <a href="" class="btn btn-block btn-gmail"> <i class="fa fa-envelope"></i>       Đăng nhập gmail</a>
                 <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Đăng nhập facebook</a>
-            </p>
+            </p>-->
             <p class="divider-text">
                 <span ></span>
             </p>
@@ -28,7 +28,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
                     </div>
-                    <input type="text" class="form-control" path="name" id="name" placeholder="Họ và tên" name="name" />
+                    <form:input type="text" class="form-control" path="name" id="name" placeholder="Họ và tên" name="name" />
                 </div>
 
 
@@ -46,14 +46,14 @@
                     <span class="input-group-text"> 
                         <i class="fa fa-phone"style="color:#3376BC"></i>
                     </span>
-                    <input type="number" class="form-control" path="phone" id="phone" placeholder="Số điện thoại" name="phone" />
+                    <form:input type="number" class="form-control" path="phone" id="phone" placeholder="Số điện thoại" name="phone" />
                 </div>
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
                     </div>
-                    <input type="text" class="form-control" path="username" id="username" placeholder="Tên đăng nhập" name="username" />
+                    <form:input type="text" class="form-control" path="username" id="username" placeholder="Tên đăng nhập" name="username" />
 
                 </div>
 
@@ -61,7 +61,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <input class="form-control" type="text" path="password" id="password" placeholder="Tạo mật khẩu" name="password" />
+                    <form:input class="form-control" type="text" path="password" id="password" placeholder="Tạo mật khẩu" name="password" />
                 </div> <!-- form-group// --> 
 
                 <div class="form-group input-group">

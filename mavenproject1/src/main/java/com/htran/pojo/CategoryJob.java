@@ -36,7 +36,7 @@ public class CategoryJob implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "category_ib", referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryIb;
     @JoinColumn(name = "job_id", referencedColumnName = "id")

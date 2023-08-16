@@ -19,13 +19,13 @@
             <h2 class="card-title  text-center text-white">QUẢN LÝ DOANH NGHIỆP</h2>
             <form>
                 <div class="form-floating mb-3 mt-3">
-                    <input type="text" class="form-control" path="name" id="name" placeholder="Tên doanh nghiệp" name="name" />
+                    <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên doanh nghiệp" name="name" />
                     <label for="name">Tên doanh nghiệp </label>
 
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
-                    <input type="text" class="form-control" path="linkCompany" id="linkCompany" placeholder="Link giới thiệu " name="linkCompany" />
+                    <form:input type="text" class="form-control" path="linkCompany" id="linkCompany" placeholder="Link giới thiệu " name="linkCompany" />
                     <label for="name">Trang doanh nghiệp </label>
 
                 </div>
@@ -34,7 +34,7 @@
                     <form:input type="file" class="form-control" path="file" id="file" placeholder="logo" name="file" />
                     <label for="avatar">logo </label>
                     <c:if test="${addCompanies.image != null}">
-                        <img src="${addCompanies.image}" width="120" />
+                        <img src="${addCompanies.image}" width="120" height="100" />
                     </c:if>
                 </div>
             </form>

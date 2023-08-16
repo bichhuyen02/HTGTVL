@@ -25,6 +25,9 @@
                     <a class="nav-link" href="<c:url value="/companies"/>">Doanh Nghiệp</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/location"/>">Khu Vực </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/user"/>">Người Dùng </a>
                 </li>
 

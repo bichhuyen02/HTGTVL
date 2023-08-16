@@ -8,17 +8,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url value="/addCate" var="action" />
+<c:url value="/addLocation" var="action" />
 
-<form:form cssClass="container " modelAttribute="addCates" action="${action}" method="post" enctype="multipart/form-data">
+<form:form cssClass="container " modelAttribute="addLocations" action="${action}" method="post" enctype="multipart/form-data">
     <form:hidden path="id" />
 
     <div class="card nen frm ">
         <article class="card-body mx-auto" style="width: 50%;">
             <h2 class="card-title  text-center text-white">QUẢN LÝ NGÀNH NGHỀ</h2>
             <div class="form-floating mb-3 mt-3">
-                <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên Ngành Nghề" name="name" />
-                <label for="name">Tên Ngành Nghề </label>
+                <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên Khu Vực" name="name" />
+                <label for="name">Tên Khu Vực </label>
             </div>
 
             <div class="form-floating mb-3 mt-3">
@@ -29,12 +29,14 @@
             <div class="form-floating mb-3 mt-3">
                 <button type="submit" class="btn btn-info">
                     <c:choose>
-                        <c:when test="${addCates.id != null}">Cập nhật ngành nghề</c:when>
-                        <c:otherwise>Thêm ngành nghề</c:otherwise>
+                        <c:when test="${addLocations.id != null}">Cập nhật khu vực</c:when>
+                        <c:otherwise>Thêm khu vực</c:otherwise>
                     </c:choose>
                 </button>
             </div>
-        </form:form>
-    </article>
-</div>
+        </article>
+   
+    </div>
+</form:form>
+
 
