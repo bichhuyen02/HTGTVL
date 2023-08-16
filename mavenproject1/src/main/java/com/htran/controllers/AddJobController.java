@@ -39,8 +39,8 @@ public class AddJobController {
     @GetMapping("/addJob")
     public String addjob(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("addjobs", new Job());
-        model.addAttribute("locations", this.locationService.getLocations(params));
-        model.addAttribute("companies", this.companyService.getCompanies(params));
+//        model.addAttribute("locations", this.locationService.getLocations(params));
+//        model.addAttribute("companies", this.companyService.getCompanies(params));
         
         return "addJob";
     }

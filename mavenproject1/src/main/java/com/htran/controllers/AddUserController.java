@@ -8,8 +8,8 @@ import com.htran.pojo.User;
 import com.htran.service.UserService;
 import java.util.Map;
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Controller
 public class AddUserController {
-     @Autowired
+    @Autowired
     private UserService userService;
     
     @GetMapping("/addUser")

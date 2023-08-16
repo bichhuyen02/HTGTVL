@@ -75,7 +75,19 @@ public class JobRepositoryImpl implements JobRepository {
     
     @Override
     public boolean addOrUpdateJob(Job j) {
-       throw new UnsupportedOperationException("Not supported yet.");
+       Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (j.getId() == null) {
+                s.save(j);
+            } else {
+                s.update(j);
+            }
+
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override

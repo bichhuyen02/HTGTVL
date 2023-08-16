@@ -80,4 +80,9 @@ public class UserServiceImpl implements UserService {
         return this.userRepo.getUserById(id);
     }
 
+    @Override
+    public boolean deleteUser(int id) {
+        return this.userRepo.deleteUser(id);
+    }
+
 }

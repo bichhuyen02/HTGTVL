@@ -30,9 +30,6 @@ public class UserRepositoryImpl implements UserRepository{
     @Autowired
     private LocalSessionFactoryBean factory;
     
-//    @Autowired
-//    public BCryptPasswordEncoder passwordEncoder;
-    
     @Override
     public User getUserByUsername(String username) {
         Session s = this.factory.getObject().getCurrentSession();
@@ -57,7 +54,6 @@ public class UserRepositoryImpl implements UserRepository{
     @Override
     public boolean addOrUpdateUser(User user) {
        Session s = this.factory.getObject().getCurrentSession();
-//       user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         try {
             if (user.getId() == null) {
                 s.save(user);
@@ -75,6 +71,19 @@ public class UserRepositoryImpl implements UserRepository{
     public User getUserById(int id) {
          Session s = this.factory.getObject().getCurrentSession();
          return s.get(User.class, id);
+    }
+
+    @Override
+    public boolean deleteUser(int id) {
+      Session s = this.factory.getObject().getCurrentSession();
+      try {
+            User u = this.getUserById(id);
+            s.delete(u);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
     
 }

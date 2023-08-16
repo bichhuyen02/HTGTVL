@@ -45,7 +45,8 @@
                     <form:select class="form-control" path="jobNature" id="jobNature" name="jobNature">                      
                         <form:option value="Full time">Full time</form:option>
                         <form:option value="Part time">Part time</form:option>
-                    </form:select> 
+                    </form:select>
+                    <label for="jobNature" class="form-label">Loại</label>
                 </div>
 
                 <div class="form-group input-group">
@@ -71,15 +72,6 @@
                     </form:select>
                     <label for="company" class="form-label">Khu Vực</label>
                 </div>
-
-                <ul>
-                    <c:forEach items="${locations}" var="l">
-                        <li>${l.name}</li>
-                    </c:forEach>
-                </ul>
-
-
-
 
                 <div class="form-floating mt-3 mb-3">
                     <form:select class="form-select" id="companyId" name="companyId" path="companyId">

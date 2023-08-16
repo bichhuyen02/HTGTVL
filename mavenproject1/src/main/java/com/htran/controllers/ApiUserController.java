@@ -4,10 +4,9 @@
  */
 package com.htran.controllers;
 
-import com.htran.service.JobService;
+import com.htran.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @RestController
-public class ApiJobController {
-    @Autowired
-    private JobService jobService;
+public class ApiUserController {
+     @Autowired
+    private UserService userService;
     
-    @DeleteMapping("/addJob/{id}")
+    @DeleteMapping("/addUser/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "id") int id) {
-        this.jobService.deleteJob(id);
+        this.userService.deleteUser(id);
     }
 }

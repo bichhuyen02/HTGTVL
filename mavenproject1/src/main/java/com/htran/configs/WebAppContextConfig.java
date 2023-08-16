@@ -4,12 +4,19 @@
  */
 package com.htran.configs;
 
+import com.dht.formatters.CategoryFormatter;
+import com.dht.formatters.CompanyFormatter;
+import com.dht.formatters.JobFormatter;
+import com.dht.formatters.LocationFormatter;
+import com.dht.formatters.NotifiFormatter;
+import com.dht.formatters.UserFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -45,6 +52,15 @@ public class WebAppContextConfig implements WebMvcConfigurer{
         registry.addResourceHandler("/js/***").addResourceLocations("/resources/js/");
     }
     
+     @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new CategoryFormatter());
+        registry.addFormatter(new LocationFormatter());
+        registry.addFormatter(new CompanyFormatter());
+        registry.addFormatter(new UserFormatter());
+        registry.addFormatter(new JobFormatter());
+        registry.addFormatter(new NotifiFormatter());
+    }
     
 //   @Bean
 //   public InternalResourceViewResolver internalResourceViewResolver(){
