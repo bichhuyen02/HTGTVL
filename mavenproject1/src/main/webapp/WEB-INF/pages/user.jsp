@@ -10,8 +10,10 @@
 
 <section>
     <div class="text-info mt-4 mb-4 text-center"><h2>DANH SÁCH NGƯỜI DÙNG</h2></div>
+    
+    <hr></hr>
 
-    <div class="a">                
+    <div class="d">                
         <a href="<c:url value="/addUser" />" class="btn btn-success ">Thêm Người Dùng</a>
     </div>
 
@@ -22,6 +24,7 @@
                 <th>Email</th>
                 <th>SĐT</th>
                 <th>Tên đăng nhập</th>
+
                 <th>Thao tác </th>
             </tr>
         </thead>
@@ -32,6 +35,7 @@
                     <td>${u.email}</td>
                     <td>${u.phone}</td>
                     <td>${u.username}</td>
+                    
                     <td>
                         <c:url value="/addUser/${u.id}" var="api" />
                             <a href="${api}" class="btn btn-info">Cập nhật</a>

@@ -51,7 +51,7 @@
                     <td>${j.salary}</td>
                     <td>${j.locationId.name}</td>
                     <td>
-                        <img style="width: 120px; height: 120px" src="${j.companyId.image}" alt="$${j.companyId.image}"/>
+                        <img style="width: 120px; height: 120px" src="${j.companyId.image}" alt="${j.companyId.image}"/>
                     </td>  
 
                     <td>
@@ -59,6 +59,8 @@
                             <a href="${api}" class="btn btn-info">Cập nhật</a>
                             <button class="btn btn-danger mt-2" onclick="deleteCompany('${api}')">Xóa</button>
                     </td>
+                    
+                    
                 </tr> 
             </c:forEach>
         </tbody>

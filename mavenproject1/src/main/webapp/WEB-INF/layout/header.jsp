@@ -10,11 +10,11 @@
 
 <c:url value="/" var="action" />
 <nav class="navbar navbar-expand-sm p-3 " >
-    <div class="container-fluid">
-        <a class="navbar-brand" href="${action}">JOB24H-WEBSITE</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+    <div class="container-fluid ">
+        <a class="navbar-brand text-white" href="${action}">JOB24H-WEBSITE</a>
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button>-->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav me-auto">
 
@@ -45,12 +45,12 @@
                             <a class="nav-link text-info" href="<c:url value="/" />">Chào ${pageContext.request.userPrincipal.name}!</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/logout" />">Đăng xuất</a>
+                            <a class="nav-link" href="<c:url value="/logout" />">Đăng Xuất</a>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/login" />">Đăng nhập</a>
+                            <a class="nav-link" href="<c:url value="/login" />">Đăng Nhập</a>
                         </li>
                     </c:otherwise>
                 </c:choose>

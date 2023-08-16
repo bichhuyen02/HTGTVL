@@ -1,9 +1,6 @@
-
 /*menu*/
 .navbar {
     background: linear-gradient(  #5567C9, #C7D7FB);
-    color:#3C284B;
-    font-weight: 100%;
 }
 div img {
     width: 200px;
@@ -21,16 +18,29 @@ div img {
 .a{
     position: absolute;
     right:0;
-    top: 14%;
+    top: 17%;
     margin-right: 210px;
  }
  
- .b{
+.b{
     position: absolute;
     right:0;
-    top: 24%;
-    margin-right: 210px;
+    top: 22%;
+    margin-right: 190px;
  }
+ .c{
+    position: absolute;
+    right:0;
+    top: 13.5%;
+    margin-right: 190px;
+}
+.d{
+    position: absolute;
+    right:0;
+    top: 17%;
+    margin-right: 190px;
+    
+}
 
  
  
@@ -360,12 +370,9 @@ div img {
 {
     margin-top: 20px;
 }
-/*login*/
-.btn-login{
-    background-color: #3376BC !important;
-}
 
 
+/*dangky*/
 .register-photo {
   
     padding-top: 170px;
@@ -496,4 +503,13 @@ div img {
  
 .btn-gmail i{
     margin-right: 3% ;
+}
+.form-dn{
+    margin-top: 17% ;
+}
+.fm{
+    margin-top: 3.5% ;
+}
+.frm{
+     margin-top: 20% ;
 }

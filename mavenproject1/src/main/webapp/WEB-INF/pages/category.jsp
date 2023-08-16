@@ -9,10 +9,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <section>
-    <div class="text-info mt-4 mb-4 text-center"><h2>DANH SÁCH CHUYÊN NGÀNH</h2></div>
-
+    <div class="text-info mt-4 mb-4 text-center"><h2>DANH SÁCH  NGÀNH NGHỀ</h2></div>
+    <hr></hr>
     <div class="a">                
-        <a href="<c:url value="/addCate" />" class="btn btn-success ">Thêm công việc</a>
+        <a href="<c:url value="/addCate" />" class="btn btn-success ">Thêm ngành nghề</a>
     </div>
 
     <table class="table table-hover container">

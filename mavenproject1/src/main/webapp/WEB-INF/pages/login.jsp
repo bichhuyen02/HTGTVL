@@ -9,12 +9,13 @@
 
 <c:url value="/login" var="action" />
 
-<div class="register-photo form-dangnhap">
+<div class="register-photo">
 
     <div class="form-container">
         <div class="image-holder"></div>
         <form method="post" action="${action}">
-            <h2 class="text-center"><strong>ĐĂNG NHẬP </strong></h2>
+            <h2 class="text-center text-primary"><strong>ĐĂNG NHẬP </strong></h2>
+            
             <div class="form-group">
                 <input class="form-control" id="name" type="username" name="username" placeholder="Tên đăng nhập"></div>
             <div class="form-group">
@@ -26,7 +27,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn-login btn btn-success btn-block " type="submit" value ="Đăng Nhập">Đăng nhập</button>
+                <button class="btn-login btn btn-info btn-block" type="submit" value ="Đăng Nhập">Đăng nhập</button>
             </div>
             <p class="text-center">Bạn chưa có tài khoản? <a href="<c:url value="/addUser" />">Đăng ký</a> 
             </p> 
@@ -35,4 +36,4 @@
     </div>
 
 <script src="<c:url value="/js/main.js" />"></script>
-<<link rel="stylesheet" href="<c:url value="/css/login.css" />"/>
+<link rel="stylesheet" href="<c:url value="/css/login.css" />"/>
