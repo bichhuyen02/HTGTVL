@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div class="text-info mt-4 mb-5 text-center"><h2>QUẢN LÝ DOANH NGHIỆP</h2></div>
+<div class="text-primary mt-4 mb-5 text-center"><h2>QUẢN LÝ DOANH NGHIỆP</h2></div>
 <hr></hr>
 <section>
     <div class="c">                
@@ -28,14 +28,14 @@
                 <c:forEach items="${companies}" var="c">
                     <tr>
                         <td>
-                            <img style="width: 110px; height: 110px" src="${c.image}" alt="${c.name}"/>
+                            <img style="width: 100px; height: 100px" src="${c.image}" alt="${c.name}"/>
                         </td>  
                         <td>${c.name}</td>
-                        <td>${c.linkCompany}</td>
+                      <td>${c.linkCompany}</td>
                         <td>
                             <c:url value="/addCompany/${c.id}" var="api" />
                             <a href="${api}" class="btn btn-info">Cập nhật</a>
-                            <button class="btn btn-danger mt-2" onclick="deleteCompany('${api}')">Xóa</button>
+                            <button class="btn btn-danger " onclick="deleteCompany('${api}')">Xóa</button>
                         </td>
                     </tr> 
                 </c:forEach>

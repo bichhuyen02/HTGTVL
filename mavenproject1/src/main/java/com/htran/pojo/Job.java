@@ -27,6 +27,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -82,9 +83,11 @@ public class Job implements Serializable {
     @Size(max = 45)
     @Column(name = "salary")
     private String salary;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "out_off_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date outOffTime;

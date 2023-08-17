@@ -12,7 +12,7 @@
 <form:form cssClass="container " modelAttribute="addjobs" action="${action}" method="post" enctype="multipart/form-data">
     <form:hidden path="id" />
 
-    <div class="card nen fm">
+    <div class="card nen ">
         <article class="card-body mx-auto" style="width: 50%;">
             <h2 class="card-title  text-center text-white">QUẢN LÝ CÔNG VIỆC</h2>
             <form>
@@ -22,12 +22,12 @@
                 </div>
 
                 <div class="form-group input-group">
-                    <form:input type="text" class="form-control" path="description" id="description" placeholder="Mô Tả" name="description" />
+                    <form:textarea class="form-control" path="description" id="description" placeholder="Mô Tả" name="description" />
 
                 </div>
 
                 <div class="form-group input-group">
-                    <form:input type="text" class="form-control" path="requirement" id="requirement" placeholder="Yêu Cầu" name="requirement" />
+                    <form:textarea type="text" class="form-control" path="requirement" id="requirement" placeholder="Yêu Cầu" name="requirement" />
 
                 </div>
 
@@ -40,21 +40,23 @@
                     <form:input type="text" class="form-control" path="salary" id="salary" placeholder="Lương" name="salary" />
 
                 </div>
-
+                    
+                <div class="form-floating mt-3 mb-3">
+                    <form:input type="date" class="form-control" path="outOffTime" id="outOffTime" placeholder="Ngày Hết Hạn" name="outOffTime" />
+                    <label for="jobNature" class="form-label">Ngày kết thúc</label>
+                </div>
+                    
                 <div class="form-floating mt-3 mb-3">
                     <form:select class="form-control" path="jobNature" id="jobNature" name="jobNature">                      
-                        <form:option value="Full time">Full time</form:option>
-                        <form:option value="Part time">Part time</form:option>
+                        <form:option value="Full-time">Full-time</form:option>
+                        <form:option value="Part-time">Part-time</form:option>
                     </form:select>
                     <label for="jobNature" class="form-label">Loại</label>
                 </div>
 
+
+
                 <div class="form-group input-group">
-                    <form:input type="date" class="form-control" path="outOffTime" id="outOffTime" placeholder="Ngày Hết Hạn" name="outOffTime" />
-
-                </div>
-
-                <div class="form-floating mt-3 mb-3">
                     <form:select class="form-select" id="locationId" name="locationId" path="locationId">
                         <c:forEach items="${locations}" var="l">
                             <c:choose>
@@ -70,10 +72,9 @@
                             </c:choose>
                         </c:forEach>
                     </form:select>
-                    <label for="company" class="form-label">Khu Vực</label>
                 </div>
 
-                <div class="form-floating mt-3 mb-3">
+                <div class="form-group input-group">
                     <form:select class="form-select" id="companyId" name="companyId" path="companyId">
                         <c:forEach items="${companies}" var="c">
                             <c:choose>
@@ -89,21 +90,27 @@
                             </c:choose>
                         </c:forEach>
                     </form:select>
-                    <label for="company" class="form-label">Doanh Nghiệp</label>
                 </div>
 
 
 
-                <div class="form-floating mb-3 mt-3">
+                <div class="form-floating mb-3 mt-3 ">
                     <button type="submit" class="btn btn-info">
                         <c:choose>
                             <c:when test="${addjobs.id != null}">Cập nhật Doanh Nghiệp</c:when>
-                            <c:otherwise>Thêm Doanh Nghiệp</c:otherwise>
+                            <c:otherwise>Thêm </c:otherwise>
                         </c:choose>
                     </button>
+           
+                    <button type="submit" class="btn btn-danger">Hủy</button>
+                        
+                  
                 </div>
+                <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a> 
+                </p>
 
             </form:form>
     </article>
+
 </div>
 

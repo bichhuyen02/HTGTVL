@@ -4,7 +4,7 @@
  */
 package com.htran.controllers;
 
-import com.htran.service.UserService;
+import com.htran.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Admin
+ * @author ACER
  */
 @RestController
-public class ApiUserController {
+public class ApiLocationController {
     @Autowired
-    private UserService userService;
+    private LocationService locationService;
     
-    @DeleteMapping("/addUser/{id}")
+    @DeleteMapping("/addLocation/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "id") int id) {
-        this.userService.deleteUser(id);
+        this.locationService.deleteLocation(id);
     }
 }

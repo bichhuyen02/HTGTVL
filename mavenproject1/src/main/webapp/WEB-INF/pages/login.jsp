@@ -31,8 +31,8 @@
             </div>
             <p class="text-center">Bạn chưa có tài khoản? <a href="<c:url value="/addUser" />">Đăng ký</a> 
             </p> 
-             <p class="text-center"><a href="<c:url value="/" />">Quay về</a> 
-                </p>
+             <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a> 
+             </p>
     </div>
 
 <script src="<c:url value="/js/main.js" />"></script>

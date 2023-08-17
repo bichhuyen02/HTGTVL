@@ -1,16 +1,37 @@
 /*menu*/
+.nav-item a{
+    
+    font-size: 17px;
+    color:#361D9D;
+}
+.nav-item a:hover{
+    color: white;
+}
 .navbar {
     background: linear-gradient(  #5567C9, #C7D7FB);
 }
+/*footer*/
+footer{
+    background: linear-gradient(  #5567C9, #C7D7FB);
+    color:#361D9D; 
+}
+footer:hover{
+    color: white;
+}
+/*nut form them*/
+
+
+/*menu*/
+/*doanh nghiep tot nhat*/
+
 div img {
     width: 200px;
     height: 200px;
 
 }
 
-.card-img-top{
-     background:#d4d8d8;    
-}
+
+/*button*/
 .col-sm-6{
    width: 200px;
    left: 20px;
@@ -41,9 +62,9 @@ div img {
     margin-right: 190px;
     
 }
+/*button*/
 
- 
- 
+/* nút trên slide*/
  .nut button{
     padding-left: 25px;
     padding-right: 25px;
@@ -272,10 +293,11 @@ div img {
     animation-name: slideInRight;
 }
 /*end slide*/
+/*doanh nghiep cong viec */
 .col-item
 {
     border: 2px solid #2323A1;
-    border-radius: 5px;
+    border-radius: 8px;
     background: #FFF;
 }
 .col-item .photo img
@@ -293,27 +315,28 @@ div img {
 .col-item:hover .info {
     background-color: rgba(215, 215, 244, 0.5); 
 }
-.col-item .price
+/*.col-item .price
 {
-    /*width: 50%;*/
+    width: 50%;
     float: left;
     margin-top: 5px;
-}
+}*/
 
-.col-item .price h5
+/*.col-item .price h5
 {
     line-height: 20px;
     margin: 0;
-}
+}*/
 
-.price-text-color
+/*.price-text-color
 {
     color: #00990E;
-}
+}*/
 
 .col-item .info .rating
 {
-    color: yellow;
+    font-size: 20px;
+    color:#ffff00 ;
 }
 
 .col-item .rating

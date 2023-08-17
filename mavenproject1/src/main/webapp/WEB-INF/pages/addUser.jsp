@@ -16,10 +16,10 @@
         <article class="card-body mx-auto" style="width: 45%;">
             <h2 class="card-title  text-center text-white">ĐĂNG KÝ TÀI KHOẢN</h2>
             <p class="text-center">Sử dụng tài khoản miễn phí!</p>
-<!--            <p>
-                <a href="" class="btn btn-block btn-gmail"> <i class="fa fa-envelope"></i>       Đăng nhập gmail</a>
-                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Đăng nhập facebook</a>
-            </p>-->
+            <!--            <p>
+                            <a href="" class="btn btn-block btn-gmail"> <i class="fa fa-envelope"></i>       Đăng nhập gmail</a>
+                            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Đăng nhập facebook</a>
+                        </p>-->
             <p class="divider-text">
                 <span ></span>
             </p>
@@ -98,7 +98,7 @@
                 </div> <!-- form-group// -->      
                 <p class="text-center">Bạn đã có tài khoản? <a href="<c:url value="/login" />">Đăng nhập</a> 
                 </p> 
-                <p class="text-center"><a href="<c:url value="/" />">Quay về</a> 
+                <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a> 
                 </p>  
             </form>
         </article>

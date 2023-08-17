@@ -34,9 +34,12 @@
                     </c:choose>
                 </button>
             </div>
+            <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a> 
+            </p>
         </article>
-   
+
     </div>
 </form:form>
+
 
 

@@ -7,8 +7,13 @@ package com.htran.service.impl;
 import com.htran.pojo.Job;
 import com.htran.repository.JobRepository;
 import com.htran.service.JobService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +26,9 @@ public class JobServiceImpl implements JobService {
 
     @Autowired
     private JobRepository jobRepo;
+    
+    @Autowired
+    private SimpleDateFormat simpleDateFormat;
 
     @Override
     public List<Job> getJobs(Map<String, String> params) {
@@ -39,6 +47,13 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public boolean addOrUpdateJob(Job job) {
+        try {
+            Date currentDate = new Date();
+            job.setCreateTime(this.simpleDateFormat
+                    .parse(this.simpleDateFormat.format(currentDate)));
+        } catch (ParseException ex) {
+            Logger.getLogger(JobServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return this.jobRepo.addOrUpdateJob(job);
     }
 

@@ -20,10 +20,10 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-7 col-12 order-md-1 order-2">
-                            <h4>Present your <br>
-                                awesome product</h4>
-                            <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
-                                necessitatibus praesentium voluptatum deleniti atque corrupti.</p>
+                            <h4>Đón lấy thành công <br>
+                              việc làm hấp dẫn</h4>
+                            <p>Tiếp cận 10,000+ doanh nghiệp tuyển dụng uy tín.  <br>
+                                Việc làm mới mỗi ngày với mức lương cao, hấp dẫn, chế độ đãi ngộ cực tốt!</p>
                             <a href="#">BUY NOW</a> </div>
                         <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://myxteam.vn/wp-content/uploads/2020/08/9.5-Gia%CC%89i-pha%CC%81p-de%CC%82%CC%89-xu%CC%9B%CC%89-ly%CC%81-khi-co%CC%81-xung-do%CC%A3%CC%82t-xa%CC%89y-ra-khi-la%CC%80m-vie%CC%A3%CC%82c-nho%CC%81m.png" class="mx-auto" alt="slide"></div>
                     </div>
@@ -35,10 +35,10 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-7 col-12 order-md-1 order-2">
-                            <h4>Present your <br>
-                                awesome product</h4>
-                            <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
-                                necessitatibus praesentium voluptatum deleniti atque corrupti.</p>
+                            <h4>Tìm việc làm <br>
+                              ổn định tương lai</h4>
+                            <p>Tiếp cận 10,000+ doanh nghiệp tuyển dụng uy tín.  <br>
+                                Việc làm mới mỗi ngày với mức lương cao, hấp dẫn, chế độ đãi ngộ cực tốt!</p>
                             <a href="#">BUY NOW</a> </div>
                         <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://myxteam.vn/wp-content/uploads/2020/08/4-ky%CC%83-na%CC%86ng-gia%CC%89i-quye%CC%82%CC%81t-ma%CC%82u-thua%CC%82%CC%89n-ca%CC%82%CC%80n-bie%CC%82%CC%81t-khi-la%CC%80m-vie%CC%A3%CC%82c-nho%CC%81m.png" class="mx-auto" alt="slide"></div>
                     </div>
@@ -50,10 +50,10 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-7 col-12 order-md-1 order-2">
-                            <h4>Ở đây có <br>
-                                việc làm tốt</h4>
-                            <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
-                                necessitatibus praesentium voluptatum deleniti atque corrupti.</p>
+                            <h4>Việc làm nhanh <br>
+                               tin tuyển dụng mới nhất</h4>
+                            <p>Tiếp cận 10,000+ doanh nghiệp tuyển dụng uy tín.  <br>
+                                Việc làm mới mỗi ngày với mức lương cao, hấp dẫn, chế độ đãi ngộ cực tốt!</p>
                             <a href="#">BUY NOW</a> </div>
                         <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://myxteam.vn/wp-content/uploads/2020/08/8.Qua%CC%89n-ly%CC%81-tho%CC%9B%CC%80i-gian-trong-la%CC%80m-vie%CC%A3%CC%82c-nho%CC%81m-B.png" class="mx-auto" alt="slide"></div>
                     </div>
@@ -71,107 +71,45 @@
     </a>
 </div>
 
-<div class="text-info mt-4 mb-4 text-center"><h2>VIỆC LÀM TUYỂN GẤP</h2></div>
-<div class="container">
+<div class="text-primary mt-4 mb-4 text-center"><h2>DOANH NGHIỆP TỐT NHẤT</h2></div>
+
+<section class="container">
+    <c:set var="cout" value="0"/>
+
     <div class="row">
-        
         <div class="carousel-inner">
-
             <div class="row">
-                <div class="col-sm-3">
-                    <div class="col-item">
-                        <div class="info">
-                            <div class="row">
-                                <div class="price col-md-6">
-                                    <h5>Product A</h5>
-                                    <h5 class="price-text-color">$7.99</h5>
-                                </div>
-                                <div class="rating hidden-sm col-md-6">
-                                    <i class=" fa fa-star"></i>
-                                    <i class=" fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
+                <c:forEach items="${companies}" var="c">
 
-                        <div class="photo">
-                            <img src="https://brademar.com/wp-content/uploads/2022/09/FE-CREDIT-Logo-PNG-1.png" class="img-responsive" alt="a" />
-                        </div>
+                    <c:if test="${cout < 4}">
 
-                    </div>
-                </div>
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="info">
+                                    <div class="row">
 
-                <div class="col-sm-3">
-                    <div class="col-item">
-                        <div class="info">
-                            <div class="row">
-                                <div class="price col-md-6">
-                                    <h5>Product B</h5>
-                                    <h5 class="price-text-color">$9.99</h5>
-                                </div>
-                                <div class="rating hidden-sm col-md-6">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class=" fa fa-star"></i>
+                                       <h4 class="card-name">${c.name}</h4>
+
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class=" fa fa-star"></i>
+                                            <i class=" fa fa-star"></i>
+                                            <i class=" fa fa-star"></i>
+                                          
+                                           
+                                        </div>
+                                         <img src="${c.image}" class="photo" alt="${c.name}">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="photo">
-                            <img src="https://images.glints.com/unsafe/1200x0/glints-dashboard.s3.amazonaws.com/company-logo/481a5d92fb0fd8247b64ca67ba00425d.png" class="img-responsive" alt="a" />
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="col-item">
-                        <div class="info">
-                            <div class="row">
-                                <div class="price col-md-6">
-                                    <h5>Product B</h5>
-                                    <h5 class="price-text-color">$9.99</h5>
-                                </div>
-                                <div class="rating hidden-sm col-md-6">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class=" fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="photo">
-                            <img src="https://res.cloudinary.com/dtoc5lqfe/image/upload/v1692092057/coffee_c7xemc.webp" class="img-responsive" alt="a" />
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="col-item">
-                        <div class="info">
-                            <div class="row">
-                                <div class="price col-md-6">
-                                    <h5>Another product</h5>
-                                    <h5 class="price-text-color">$3.75</h5>
-                                </div>
-                                <div class="rating hidden-sm col-md-6">
-                                    <i class=" fa fa-star"></i>
-                                    <i class=" fa fa-star"></i>
-                                    <i class=" fa fa-star"></i>
-                                    <i class=" fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="photo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/MINISTOP_logo.svg/1280px-MINISTOP_logo.svg.png" class="img-responsive" alt="a" />
-                        </div>
-                    </div>
-                </div>
+                        <c:set var="cout" value="${cout+1}"/>
+                    </c:if>
+                </c:forEach>
             </div>
         </div>
     </div>
-</div>
+</section>
+
 
 <div class="text-primary mt-4 mb-4 text-center"><h2>TOP NGÀNH NGHỀ NỔI BẬT  </h2></div>
 <div class="job container" >
@@ -214,20 +152,37 @@
 
 </div>
 
+
 <div class="text-primary mt-4 mb-4 text-center"><h2>VIỆC LÀM TUYỂN GẤP</h2></div>
-
 <section class="container">
-    <c:forEach items="${jobs}" var="j">
-        <div class="card">
-            <img src="${j.companyId.image}" class="card-img-top" alt="${j.title}">
-            <div class="card-body">
-                <h5 class="card-title">${j.title}</h5>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Cập nhật 3 phút trước </small>
-            </div>
-    </c:forEach>
+    <c:set var="couts" value="0"/>
+    <div class="row">
+        <div class="carousel-inner">
+            <div class="row">
 
+                <c:forEach items="${jobs}" var="j">
+                    <c:if test="${couts < 4}">
+                        <div class="col-sm-3 " >
+                            <div class="col-item">
+                                <div class="info">
+                                    <div class="row">
+                                        <img src="${j.companyId.image}" class="card-img-top" alt="${j.title}">
+                                        <h5 class="card-title">${j.title}</h5>
+
+                                        <div class="card-footer" >
+                                            <small class="text-muted">Cập nhật ${j.createTime} </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <c:set var="couts" value="${couts+1}"/>
+                    </c:if>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
 </section>
+
 
 

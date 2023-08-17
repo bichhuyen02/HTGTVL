@@ -9,7 +9,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <section>
-    <div class="text-info mt-4 mb-4 text-center"><h2>DANH SÁCH KHU VỰC</h2></div>
+    <div class="text-primary mt-4 mb-4 text-center"><h2>DANH SÁCH KHU VỰC</h2></div>
     <hr></hr>
     <div class="a">                
         <a href="<c:url value="/addLocation" />" class="btn btn-success ">Thêm khu vực</a>

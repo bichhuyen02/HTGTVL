@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div class="text-info mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
+<div class="text-primary mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
 <section>
     <div class="b">                
         <a href="<c:url value="/addJob" />" class="btn btn-success ">Thêm công việc</a>
@@ -35,7 +35,7 @@
             <tr class="table-primary">
                 <th>Tên công việc</th>
                 <th>Loại công việc</th>
-                <th>Địa chỉ</th>
+<!--                <th>Địa chỉ</th>-->
                 <th>Lương</th>
                 <th>Khu vực</th>
                 <th>Doanh nghiệp</th>
@@ -47,7 +47,7 @@
                 <tr>
                     <td>${j.title}</td>
                     <td>${j.jobNature}</td>
-                    <td>${j.address}</td>
+<!--                    <td>${j.address}</td>-->
                     <td>${j.salary}</td>
                     <td>${j.locationId.name}</td>
                     <td>
@@ -57,7 +57,7 @@
                     <td>
                             <c:url value="/addJob/${j.id}" var="api" />
                             <a href="${api}" class="btn btn-info">Cập nhật</a>
-                            <button class="btn btn-danger mt-2" onclick="deleteCompany('${api}')">Xóa</button>
+                            <button class="btn btn-danger " onclick="deleteCompany('${api}')">Xóa</button>
                     </td>
                     
                     

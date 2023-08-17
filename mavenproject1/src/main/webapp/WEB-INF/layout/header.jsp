@@ -19,26 +19,26 @@
             <ul class="navbar-nav me-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/jobs"/>">Công Việc</a>
+                    <a class="nav-link  " href="<c:url value="/jobs"/>"><strong>Công Việc</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/companies"/>">Doanh Nghiệp</a>
+                    <a class="nav-link" href="<c:url value="/companies"/>"><strong>Doanh Nghiệp</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/location"/>">Khu Vực </a>
+                    <a class="nav-link" href="<c:url value="/location"/>"><strong>Khu Vực</strong> </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/user"/>">Người Dùng </a>
+                    <a class="nav-link" href="<c:url value="/user"/>"><strong>Người Dùng</strong> </a>
                 </li>
 
                 <se:authorize access="hasRole('ROLE_ADMIN')">
                     <div>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/categories"/>">Ngành Nghề</a>
+                            <a class="nav-link" href="<c:url value="/categories"/>"><strong>Ngành Nghề</strong></a>
                         </li>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="${action}">Thống Kê</a>
+                        <a class="nav-link" href="${action}"><strong>Thống Kê</strong></a>
                     </li>
                 </se:authorize>
 
@@ -48,22 +48,22 @@
                             <a class="nav-link text-info" href="<c:url value="/" />">Chào ${pageContext.request.userPrincipal.name}!</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/logout" />">Đăng Xuất</a>
+                            <a class="nav-link" href="<c:url value="/logout" />"><strong>Đăng Xuất</strong></a>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/login" />">Đăng Nhập</a>
+                            <a class="nav-link" href="<c:url value="/login" />"><strong>Đăng Nhập</strong></a>
                         </li>
                     </c:otherwise>
                 </c:choose>
 
             </ul>
-            <a href="<c:url value="/jobs" />" class="btn btn-success">Quản lý</a>
-<!--            <form class="d-flex" action="${action}">
+            
+            <form class="d-flex" action="${action}">
                 <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
                 <button class="btn btn-primary" type="submit">Tìm</button>
-            </form>-->
+            </form>
 
         </div>
     </div>
