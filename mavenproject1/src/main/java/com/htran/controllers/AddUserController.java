@@ -43,11 +43,20 @@ public class AddUserController {
     @PostMapping("/addUser")
     public String add(@ModelAttribute(value = "addUsers") @Valid User u,
             BindingResult rs) {
-        if (!rs.hasErrors()) {
-            if (this.userService.addOrUpdateUser(u) == true) {
-                return "redirect:/user";
+        String errMsg ="";
+        if (u.getPassword().equals(u.getConfirmPassword())){
+            if (!rs.hasErrors()) {
+                if (this.userService.addOrUpdateUser(u) == true) {
+                    return "redirect:/user";
+                } else {
+                    errMsg = "Đã có lỗi xảy ra!!!!";
+                }
             }
         }
-        return "addUser";
+        else{
+            errMsg = "Mật khẩu không khớp!!!";
+        }   
+        
+         return "addUser";
     }
 }

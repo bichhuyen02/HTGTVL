@@ -32,14 +32,13 @@
                 </div>
 
 
-
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> 
                             <i class="fa fa-envelope" style="color:#3376BC"></i> 
                         </span>
                     </div>
-                    <input name="email" class="form-control" id="email" path="email" placeholder="Email" type="email" name="email">
+                    <form:input type="email" name="email" class="form-control" id="email" path="email" placeholder="Email" />
                 </div>
 
                 <div class="form-group input-group">
@@ -61,15 +60,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input class="form-control" type="text" path="password" id="password" placeholder="Tạo mật khẩu" name="password" />
+                    <form:input class="form-control" type="password" path="password" id="password" placeholder="Tạo mật khẩu" name="password" />
                 </div> <!-- form-group// --> 
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <input class="form-control" type="password" path="password" id="password" placeholder="Xác nhận mật khẩu" name="password" />
-                </div> <!-- form-group// -->   
+                    <form:input class="form-control" type="password" path="confirmPassword" id="confirmPassword" placeholder="Xác nhận mật khẩu" name="confirmPassword" />
+                </div> 
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -81,11 +80,14 @@
                         <option value="ROLE_EMP">Nhà tuyển dụng</option>
 
                     </select>
-                </div> <!-- form-group end.// -->
+                </div> 
 
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="file" class="form-control" path="file" id="file" placeholder="avatar" name="file" />
                     <label for="logo">avatar</label>
+                     <c:if test="${addUsers.avatar != null}">
+                        <img src="${addUsers.avatar}" width="120" height="100" />
+                    </c:if>
                 </div>
 
                 <div class="form-group">

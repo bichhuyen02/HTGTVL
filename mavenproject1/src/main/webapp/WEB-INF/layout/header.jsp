@@ -12,9 +12,9 @@
 <nav class="navbar navbar-expand-sm p-3 " >
     <div class="container-fluid ">
         <a class="navbar-brand text-white" href="${action}">JOB24H-WEBSITE</a>
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>-->
+        <!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>-->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav me-auto">
 
@@ -31,16 +31,16 @@
                     <a class="nav-link" href="<c:url value="/user"/>"><strong>Người Dùng</strong> </a>
                 </li>
 
-                <se:authorize access="hasRole('ROLE_ADMIN')">
-                    <div>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/categories"/>"><strong>Ngành Nghề</strong></a>
-                        </li>
-                    </div>
+
+                <div>
                     <li class="nav-item">
-                        <a class="nav-link" href="${action}"><strong>Thống Kê</strong></a>
+                        <a class="nav-link" href="<c:url value="/categories"/>"><strong>Ngành Nghề</strong></a>
                     </li>
-                </se:authorize>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="${action}"><strong>Thống Kê</strong></a>
+                </li>
+
 
                 <c:choose>
                     <c:when test="${pageContext.request.userPrincipal.name != null}">
@@ -59,7 +59,7 @@
                 </c:choose>
 
             </ul>
-            
+
             <form class="d-flex" action="${action}">
                 <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
                 <button class="btn btn-primary" type="submit">Tìm</button>

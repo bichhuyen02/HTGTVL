@@ -47,8 +47,9 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public boolean addOrUpdateJob(Job job) {
+        Date currentDate = new Date();
         try {
-            Date currentDate = new Date();
+            
             job.setCreateTime(this.simpleDateFormat
                     .parse(this.simpleDateFormat.format(currentDate)));
         } catch (ParseException ex) {

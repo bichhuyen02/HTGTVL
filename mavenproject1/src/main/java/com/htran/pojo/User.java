@@ -45,6 +45,20 @@ import org.springframework.web.multipart.MultipartFile;
 public class User implements Serializable {
 
     /**
+     * @return the confirmPassword
+     */
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    /**
+     * @param confirmPassword the confirmPassword to set
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    /**
      * @return the file
      */
     public MultipartFile getFile() {
@@ -106,6 +120,10 @@ public class User implements Serializable {
 
     @Transient
     private MultipartFile file;
+    
+    @Transient
+    private String confirmPassword;
+            
     public User() {
     }
 
