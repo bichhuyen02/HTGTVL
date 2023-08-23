@@ -1,6 +1,6 @@
 /*menu*/
 .nav-item a{
-    
+
     font-size: 17px;
     color:#361D9D;
 }
@@ -12,12 +12,16 @@
 }
 /*footer*/
 footer{
+    
     background: linear-gradient(  #5567C9, #C7D7FB);
-    color:#361D9D; 
+    color:#361D9D;
 }
 footer:hover{
     color: white;
 }
+
+
+
 /*nut form them*/
 
 
@@ -33,23 +37,23 @@ div img {
 
 /*button*/
 .col-sm-6{
-   width: 200px;
-   left: 20px;
+    width: 200px;
+    left: 20px;
 }
 .a{
     position: absolute;
     right:0;
     top: 17%;
     margin-right: 210px;
- }
- 
+}
+
 .b{
     position: absolute;
     right:0;
     top: 22%;
     margin-right: 190px;
- }
- .c{
+}
+.c{
     position: absolute;
     right:0;
     top: 13.5%;
@@ -60,24 +64,24 @@ div img {
     right:0;
     top: 17%;
     margin-right: 190px;
-    
+
 }
 /*button*/
 
 /* nút trên slide*/
- .nut button{
+.nut button{
     padding-left: 25px;
     padding-right: 25px;
- }
- 
- .nut button:first-child{
-    margin-left: 84%; 
- }
- 
- .container{
-     max-width: 540px;
- }
- */*slide*/
+}
+
+.nut button:first-child{
+    margin-left: 84%;
+}
+
+.container{
+    max-width: 540px;
+}
+*/*slide*/
 
 #myCarousel h4{
     margin-left: 100px;
@@ -125,7 +129,7 @@ div img {
     display:block;
     height:auto;
     width:80%;
- 
+
 }
 #myCarousel h4, #myCarousel p, #myCarousel a, #myCarousel .carousel-item .mask img{
     -webkit-animation-duration: 1s;
@@ -144,7 +148,7 @@ div img {
     position:relative;
     z-index:1;
     background: linear-gradient( #C7D7FB, #361D9D);
-/*    background:url(https://i.imgur.com/6axE29k.jpg) center center no-repeat;*/
+    /*    background:url(https://i.imgur.com/6axE29k.jpg) center center no-repeat;*/
     background-size:cover;
 }
 
@@ -313,25 +317,9 @@ div img {
     margin-top: 1px;
 }
 .col-item:hover .info {
-    background-color: rgba(215, 215, 244, 0.5); 
+    background-color: rgba(215, 215, 244, 0.5);
 }
-/*.col-item .price
-{
-    width: 50%;
-    float: left;
-    margin-top: 5px;
-}*/
 
-/*.col-item .price h5
-{
-    line-height: 20px;
-    margin: 0;
-}*/
-
-/*.price-text-color
-{
-    color: #00990E;
-}*/
 
 .col-item .info .rating
 {
@@ -397,7 +385,7 @@ div img {
 
 /*dangky*/
 .register-photo {
-  
+
     padding-top: 170px;
 }
 
@@ -453,7 +441,7 @@ div img {
 .register-photo form .form-check {
     font-size: 13px;
     line-height: 20px
- 
+
 }
 
 .register-photo form .btn-primary {
@@ -494,7 +482,7 @@ div img {
 .divider-text span {
     padding: 7px;
     font-size: 12px;
-    position: relative;   
+    position: relative;
     z-index: 2;
 }
 .divider-text:after {
@@ -523,7 +511,7 @@ div img {
 .nen {
     background:  linear-gradient(  #6C7EE1, #C7D7FB) ;
 }
- 
+
 .btn-gmail i{
     margin-right: 3% ;
 }
@@ -534,5 +522,7 @@ div img {
     margin-top: 3.5% ;
 }
 .frm{
-     margin-top: 20% ;
+    margin-top: 20% ;
 }
+/*doanh nghiệp tốt nhất*/
+
