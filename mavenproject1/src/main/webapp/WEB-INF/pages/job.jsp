@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+ <script src="<c:url value="/js/main.js" />"></script>
+<link rel="stylesheet" href="<c:url value="/css/index1.css" />"/>
 
 <div class="text-primary mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
 <section>
@@ -30,40 +32,51 @@
         </ul>
     </nav>
 
-    <table class="table table-hover container">
-        <thead>
-            <tr class="table-primary">
-                <th>Tên công việc</th>
-                <th>Loại công việc</th>
-<!--                <th>Địa chỉ</th>-->
-                <th>Lương</th>
-                <th>Khu vực</th>
-                <th>Doanh nghiệp</th>
-                <th>Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${jobs}" var="j">
-                <tr>
-                    <td>${j.title}</td>
-                    <td>${j.jobNature}</td>
-<!--                    <td>${j.address}</td>-->
-                    <td>${j.salary}</td>
-                    <td>${j.locationId.name}</td>
-                    <td>
-                        <img style="width: 120px; height: 120px" src="${j.companyId.image}" alt="${j.companyId.image}"/>
-                    </td>  
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="">
+                    <div class="table-responsive">
+                        <table class="table project-list-table table-nowrap align-middle table-borderless">
+                            <thead>
+                                <tr class="table-primary">
 
-                    <td>
-                            <c:url value="/addJob/${j.id}" var="api" />
-                            <a href="${api}" class="btn btn-info">Cập nhật</a>
-                            <button class="btn btn-danger " onclick="deleteCompany('${api}')">Xóa</button>
-                    </td>
-                    
-                    
-                </tr> 
-            </c:forEach>
-        </tbody>
-    </table>
+                                    <th scope="col">Tên công việc</th>
+                                    <th scope="col">Loại công việc</th>
+
+                                    <th scope="col">Lương</th>
+                                    <th scope="col">Khu vực</th>
+                                    <th scope="col">Doanh nghiệp</th>
+                                    <th scope="col" style="width: 200px;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${jobs}" var="j">
+                                    <tr>
+                                        <td>${j.title}</td>
+                                        <td>${j.jobNature}</td>
+
+                                        <td>${j.salary}</td>
+                                        <td>${j.locationId.name}</td>
+                                        <td>
+                                            <img style="width: 70px; height: 70px" src="${j.companyId.image}" alt="${j.companyId.image}" class="avatar-sm rounded-circle me-2"/>
+                                        </td>  
+
+                                        <td>
+                                            <c:url value="/addJob/${j.id}" var="api" />
+                                            <a href="${api}" class="btn btn-info">Cập nhật</a>
+                                            <button class="btn btn-danger " onclick="deleteCompany('${api}')">Xóa</button>
+                                        </td>
+
+
+                                    </tr> 
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<script src="<c:url value="/js/main.js" />"></script>
+

@@ -41,7 +41,7 @@
                                 ổn định tương lai</h4>
                             <p>Tiếp cận 10,000+ doanh nghiệp tuyển dụng uy tín.  <br>
                                 Việc làm mới mỗi ngày với mức lương cao, hấp dẫn, chế độ đãi ngộ cực tốt!</p>
-                            <a href="#">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> </div>
+                            <a href="<c:url value="/jobs" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> </div>
                         <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://myxteam.vn/wp-content/uploads/2020/08/4-ky%CC%83-na%CC%86ng-gia%CC%89i-quye%CC%82%CC%81t-ma%CC%82u-thua%CC%82%CC%89n-ca%CC%82%CC%80n-bie%CC%82%CC%81t-khi-la%CC%80m-vie%CC%A3%CC%82c-nho%CC%81m.png" class="mx-auto" alt="slide"></div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                                 tin tuyển dụng mới nhất</h4>
                             <p>Tiếp cận 10,000+ doanh nghiệp tuyển dụng uy tín.  <br>
                                 Việc làm mới mỗi ngày với mức lương cao, hấp dẫn, chế độ đãi ngộ cực tốt!</p>
-                            <a href="#">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> </div>
+                            <a href="<c:url value="/jobs" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> </div>
                         <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://myxteam.vn/wp-content/uploads/2020/08/8.Qua%CC%89n-ly%CC%81-tho%CC%9B%CC%80i-gian-trong-la%CC%80m-vie%CC%A3%CC%82c-nho%CC%81m-B.png" class="mx-auto" alt="slide"></div>
                     </div>
                 </div>
@@ -161,173 +161,52 @@
     </div>
 
 </div>
-<!--vieclam tuyen gap-->
-<div class="container mt-5 pt-4">
-    <div class="row align-items-end mb-4 pb-2">
-        <div class="col-md-8">
-            <div class="section-title text-center text-md-start">
-                <h4 class="title mb-4">Find the perfect jobs</h4>
-                <p class="text-muted mb-0 para-desc">Start work with Leaping. Build responsive, mobile-first projects on the web with the world's most popular front-end component library.</p>
-            </div>
-        </div> 
 
-        <div class="col-md-4 mt-4 mt-sm-0 d-none d-md-block">
-            <div class="text-center text-md-end">
-                <a href="#" class="text-primary">View more Jobs <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-        </div><!--end col-->
-    </div><!--end row-->
+<!--    doc cong ty-->
+<div class="text-primary mt-4 mb-4 text-center"><h2> CÔNG TY NỔI BẬT</h2></div>
 
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2 ">
-            <div class="card border-0 bg-light rounded shadow hover-job">
-                <div class="card-body p-4 ">
-                    <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Full time</span>
-                    <h5>Web Designer</h5>
-                    <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">Bootdey.com LLC.</a></span>
-                        <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> USA</span>
-                    </div>
 
-                    <div class="mt-3">
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card border-0 bg-light rounded shadow">
-                <div class="card-body p-4">
-                    <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                    <h5>Front-end Developer</h5>
-                    <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">Bootdey.com LLC.</a></span>
-                        <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> USA</span>
-                    </div>
-
-                    <div class="mt-3">
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card border-0 bg-light rounded shadow">
-                <div class="card-body p-4">
-                    <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Contract</span>
-                    <h5>Web Developer</h5>
-                    <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">Bootdey.com LLC.</a></span>
-                        <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> USA</span>
-                    </div>
-
-                    <div class="mt-3">
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card border-0 bg-light rounded shadow">
-                <div class="card-body p-4">
-                    <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">WFH</span>
-                    <h5>Back-end Developer</h5>
-                    <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">Bootdey.com LLC.</a></span>
-                        <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> USA</span>
-                    </div>
-
-                    <div class="mt-3">
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card border-0 bg-light rounded shadow">
-                <div class="card-body p-4">
-                    <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Full time</span>
-                    <h5>UX / UI Designer</h5>
-                    <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">Bootdey.com LLC.</a></span>
-                        <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> USA</span>
-                    </div>
-
-                    <div class="mt-3">
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card border-0 bg-light rounded shadow">
-                <div class="card-body p-4">
-                    <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                    <h5>Tester</h5>
-                    <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">Bootdey.com LLC.</a></span>
-                        <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> USA</span>
-                    </div>
-
-                    <div class="mt-3">
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-12 mt-4 pt-2 d-block d-md-none text-center">
-            <a href="#" class="btn btn-primary">View more Jobs <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-        </div><!--end col-->
-    </div><!--end row-->
+<div class="col-md-4 mt-4 mt-sm-0 d-none d-md-block  ml-4">
+    <div class="text-center text-md-end">
+        <a href="<c:url value="/companyDetail" />" class="text-primary">Xem chi tiết <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+    </div>
 </div>
-<!--end vieclam-->
-
-<!--<div class="text-primary mt-4 mb-4 text-center"><h2>NHÀ TUYỂN DỤNG NỔI BẬT</h2></div>
 
 <section class="container">
     <c:set var="cout" value="0"/>
-
     <div class="row">
-        <div class="carousel-inner">
-            <div class="row">
-                <c:forEach items="${companies}" var="c">
+        <c:forEach items="${companies}" var="c">
 
-                    <c:if test="${cout < 4}">
+            <c:if test="${cout < 12}">
+                <div class="col-sm-6 col-lg-4 m-15px-tb">
 
-                        <div class="col-sm-3">
-                            <div class="col-item">
-                                <div class="info">
-                                    <div class="row">
+                    <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
+                        <!--                    <a class="overlay-link" href="#"></a>-->
 
-                                        <h4 class="card-name">${c.name}</h4>
+                        <div class="  border-radius-50 d-inline-block">
+                            <img src="${c.image}" class="photohinh"alt="${c.name}">
 
-                                        <div class="rating hidden-sm col-md-6">
-                                            <i class=" fa fa-star"></i>
-                                            <i class=" fa fa-star"></i>
-                                            <i class=" fa fa-star"></i>
-
-
-                                        </div>
-                                        <img src="${c.image}" class="photo" alt="${c.name}">
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <c:set var="cout" value="${cout+1}"/>
-                    </c:if>
-                </c:forEach>
-            </div>
-        </div>
-    </div>
-</section>-->
+                        <div class="p-20px-l media-body">
+                            <div class="sao">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
 
-<div class="text-primary mt-4 mb-4 text-center"><h2>TOP NGÀNH NGHỀ NỔI BẬT</h2></div>
+                            </div>
+                            <h6 class="m-5px-tb">${c.name}</h6>
+
+                        </div>
+                    </div>
+                </div>
+                <c:set var="cout" value="${cout+1}"/>
+            </c:if>
+        </c:forEach>
+    </div>
+</section>
+<!--end congty-->
+
+<div class="text-primary mt-4 mb-4 text-center"><h2> NGÀNH NGHỀ NỔI BẬT</h2></div>
 <div class="container">
     <div class="row">
 
@@ -336,17 +215,15 @@
             <div class="our-team-main">
 
                 <div class="team-front">
-                    <img src="http://placehold.it/110x110/9c27b0/fff?text=Dilip" class="img-fluid" />
+                    <img src="https://thuthuatnhanh.com/wp-content/uploads/2021/06/Hinh-anh-lam-viec-nhom-hieu-qua-nhat.jpg" class="img-fluid" />
                     <h3>MARKETING</h3>
-                    
+
                 </div>
 
                 <div class="team-back">
                     <span>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-                        natoque penatibus et magnis dis parturient montes,
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-                        natoque.
+                        Marketing  được phát triển cùng với sự kết hợp của nhiều công cụ như Website, mạng xã hội, Google Adwords… 
+                        Chính vì thế mà ngành mang đến nhiều cơ hội việc làm cho các ứng viên ở nhiều vị trí. Mặc dù còn xa lạ với nhiều người nhưng sức hút của Marketing là vô cùng lớn.
                     </span>
                 </div>
 
@@ -361,14 +238,14 @@
                 <div class="team-front">
                     <img src="https://thuthuatnhanh.com/wp-content/uploads/2021/06/Hinh-anh-lam-viec-nhom-hieu-qua-nhat.jpg" class="img-fluid" />
                     <h3>CÔNG NGHỆ THÔNG TIN</h3>
-<!--                    <p>Web Designer</p>-->
+                    <!--                    <p>Web Designer</p>-->
                 </div>
 
                 <div class="team-back">
                     <span>
-                       Công nghệ thông tin đòi hỏi trí tuệ cũng như sự nhạy bén cao, cần phải thực hành để nắm bắt được những công nghệ mới.
-                       Nghành công nghệ thông tin chưa bao giờ hết hot bởi cơ hội việc làm, mức lương “khủng” mà nó đem lại sau khi ra trường.
-                       
+                        Công nghệ thông tin đòi hỏi trí tuệ cũng như sự nhạy bén cao, cần phải thực hành để nắm bắt được những công nghệ mới.
+                        Nghành công nghệ thông tin chưa bao giờ hết hot bởi cơ hội việc làm, mức lương “khủng” mà nó đem lại sau khi ra trường.
+
                     </span>
                 </div>
 
@@ -376,22 +253,20 @@
         </div>
         <!--team-2-->
 
-        <!--team-3-->
+
         <div class="col-lg-4">
             <div class="our-team-main">
 
                 <div class="team-front">
-                    <img src="http://placehold.it/110x110/607d8b/fff?text=Dilip" class="img-fluid" />
-                    <h3>TÀI CHÍNH NGÂN HÀNG</h3>
-               
+                    <img src="https://thuthuatnhanh.com/wp-content/uploads/2021/06/Hinh-anh-lam-viec-nhom-hieu-qua-nhat.jpg" class="img-fluid" />
+                    <h3>LOGISTICS</h3>
+
                 </div>
 
                 <div class="team-back">
                     <span>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-                        natoque penatibus et magnis dis parturient montes,
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-                        natoque.
+                        Nhân lực khan hiếm, mức lương hấp dẫn là những lý do khiến người học lựa chọn theo đuổi và viết tiếp đam mê với lĩnh vực logistics và quản trị chuỗi cung ứng.
+                        Ngành học này vươn top và tỏa sức nóng mãnh liệt trong thời gian gần đây.
                     </span>
                 </div>
 
@@ -399,209 +274,44 @@
         </div>
     </div>
 </div>
-<section class="section">
-    <div class="container">
-        <div class="row md-m-25px-b m-45px-b justify-content-center text-center">
-            <div class="col-lg-8">
-                <h3 class="h1 m-15px-b">Job Positions</h3>
-                <p class="m-0px font-2">Luper is a HTML5 template based on Sass and Bootstrap 4 with modern and creative multipurpose design you can use it as a startups.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 theme-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 green-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 yellow-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 pink-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 theme-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 dark-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 yellow-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 green-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 blue-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 blue-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 pink-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 m-15px-tb">
-                <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                    <a class="overlay-link" href="#"></a>
-                    <div class="icon-50 yellow-bg white-color border-radius-50 d-inline-block">
-                        <i class="number">LD</i>
-                    </div>
-                    <div class="p-20px-l media-body">
-                        <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">Full time</span>
-                        <h6 class="m-5px-tb">Laravel Developer</h6>
-                        <p class="m-0px font-small">San Francisco, US</p>
-                    </div>
-                </div>
-            </div>
+<!--cong viec-->\
+<div class="text-primary mt-4 mb-4 text-center"><h2>CÔNG VIỆC ĐANG TUYỂN</h2></div>
+<div class="container">
 
-            <div class="col-12 p-25px-t text-center">
-                <a class="m-btn m-btn-radius m-btn-theme" href="#">Load More</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--<div class="text-primary mt-4 mb-4 text-center"><h2>VIỆC LÀM TUYỂN GẤP</h2></div>
-<section class="container">
-    <c:set var="couts" value="0"/>
     <div class="row">
-        <div class="carousel-inner">
-            <div class="row">
+        <c:set var="couts" value="0"/>
+        <c:forEach items="${jobs}" var="j">
+            <c:if test="${couts < 6}">
 
-                <c:forEach items="${jobs}" var="j">
-                    <c:if test="${couts < 4}">
-                        <div class="col-sm-3 " >
-                            <div class="col-item">
-                                <div class="info">
-                                    <div class="row">
-                                        <img src="${j.companyId.image}" class="card-img-top" alt="${j.title}">
-                                        <h5 class="card-title">${j.title}</h5>
+                <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2 ">
 
-                                        <div class="card-footer" >
-                                            <small class="text-muted">Cập nhật ${j.createTime} </small>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="card border-0 bg-light rounded shadow hover-job">
+                        <div class="card-body p-4 ">
+
+                            <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">${j.jobNature}</span>
+                            <h5>${j.title}</h5>
+                            <div class="mt-3">
+                                <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">${j.companyId.name}</a></span>
+                                <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> ${j.locationId.name}</span>
                             </div>
+
+                            <div class="mt-3">
+
+                                <a href="<c:url value="/jobDetail" />" class="btn btn-info">Xem chi tiết</a>
+                            </div>
+                            <c:set var="couts" value="${couts+1}"/>
+
                         </div>
-                        <c:set var="couts" value="${couts+1}"/>
-                    </c:if>
-                </c:forEach>
-            </div>
-        </div>
+                    </div>
+
+                </div>
+            </c:if>
+        </c:forEach>
     </div>
-</section>-->
+</div>
+    <!--end cong viec-->
+
+
 
 
 

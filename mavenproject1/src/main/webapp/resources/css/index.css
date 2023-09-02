@@ -24,17 +24,6 @@ footer:hover{
 
 /*nut form them*/
 
-
-/*menu*/
-/*doanh nghiep tot nhat*/
-
-div img {
-    width: 200px;
-    height: 200px;
-
-}
-
-
 /*button*/
 .col-sm-6{
     width: 200px;
@@ -43,7 +32,7 @@ div img {
 .a{
     position: absolute;
     right:0;
-    top: 17%;
+    top:17%;
     margin-right: 210px;
 }
 
@@ -51,19 +40,19 @@ div img {
     position: absolute;
     right:0;
     top: 22%;
-    margin-right: 190px;
+    margin-right: 206px;
 }
 .c{
     position: absolute;
     right:0;
     top: 13.5%;
-    margin-right: 190px;
+    margin-right: 206px;
 }
 .d{
     position: absolute;
     right:0;
     top: 17%;
-    margin-right: 190px;
+    margin-right: 206px;
 
 }
 /*button*/
@@ -81,7 +70,7 @@ div img {
 .container{
     max-width: 540px;
 }
-*/*slide*/
+*/*slide đau trang chu*/
 
 #myCarousel h4{
     margin-left: 100px;
@@ -297,93 +286,8 @@ div img {
     animation-name: slideInRight;
 }
 /*end slide*/
-/*doanh nghiep cong viec */
-.col-item
-{
-    border: 2px solid #2323A1;
-    border-radius: 8px;
-    background: #FFF;
-}
-.col-item .photo img
-{
-    margin: 0 auto;
-    width: 100%;
-}
 
-.col-item .info
-{
-    padding: 10px;
-    border-radius: 0 0 5px 5px;
-    margin-top: 1px;
-}
-.col-item:hover .info {
-    background-color: rgba(215, 215, 244, 0.5);
-}
-
-
-.col-item .info .rating
-{
-    font-size: 20px;
-    color:#ffff00 ;
-}
-
-.col-item .rating
-{
-    /*width: 50%;*/
-    float: left;
-    font-size: 17px;
-    text-align: right;
-    line-height: 52px;
-    margin-bottom: 10px;
-    height: 52px;
-}
-
-.col-item .separator
-{
-    border-top: 1px solid #FFCCCC;
-}
-
-.clear-left
-{
-    clear: left;
-}
-
-.col-item .separator p
-{
-    line-height: 20px;
-    margin-bottom: 0;
-    margin-top: 10px;
-    text-align: center;
-}
-
-.col-item .separator p i
-{
-    margin-right: 5px;
-}
-.col-item .btn-add
-{
-    width: 50%;
-    float: left;
-}
-
-.col-item .btn-add
-{
-    border-right: 1px solid #CC9999;
-}
-
-.col-item .btn-details
-{
-    width: 50%;
-    float: left;
-    padding-left: 10px;
-}
-.controls
-{
-    margin-top: 20px;
-}
-
-
-/*dangky*/
+/*formdangky*/
 .register-photo {
 
     padding-top: 170px;
@@ -495,19 +399,6 @@ div img {
     z-index: 1;
 }
 
-.btn-facebook {
-    background-color: #405D9D !important;
-    color: #fff !important;
-}
-
-.btn-facebook:hover,
-.btn-gmail:hover{
-    color:#2323A1 !important;
-}
-.btn-gmail {
-    background-color: #F47735  !important;
-    color: #fff !important;
-}
 .nen {
     background:  linear-gradient(  #6C7EE1, #C7D7FB) ;
 }
@@ -524,5 +415,5 @@ div img {
 .frm{
     margin-top: 20% ;
 }
-/*doanh nghiệp tốt nhất*/
+
 

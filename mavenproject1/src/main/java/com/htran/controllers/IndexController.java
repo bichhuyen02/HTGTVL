@@ -29,7 +29,7 @@ public class IndexController {
     @Autowired
     private JobService jobService;
     
-     @Autowired
+    @Autowired
     private LocationService locationService;
     
     @Autowired
