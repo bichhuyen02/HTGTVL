@@ -8,6 +8,7 @@ import com.htran.pojo.Job;
 import com.htran.service.CompanyService;
 import com.htran.service.JobService;
 import com.htran.service.LocationService;
+import com.htran.service.PositionService;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +36,16 @@ public class AddJobController {
     
     @Autowired
     private LocationService locationService;
+    
+    @Autowired
+    private PositionService posiService;
 
     @GetMapping("/addJob")
     public String addjob(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("addjobs", new Job());
 //        model.addAttribute("locations", this.locationService.getLocations(params));
 //        model.addAttribute("companies", this.companyService.getCompanies(params));
+        model.addAttribute("positions", this.posiService.getPositions(params));
         
         return "addJob";
     }
@@ -54,11 +59,11 @@ public class AddJobController {
     @PostMapping("/addJob")
     public String add(@ModelAttribute(value = "addjobs") @Valid Job j,
             BindingResult rs) {
-        if (!rs.hasErrors()) {
+        //if (!rs.hasErrors()) {
             if (this.jobService.addOrUpdateJob(j) == true) {
                 return "redirect:/jobs";
             }
-        }
+        //}
         return "addJob";
     }
 }

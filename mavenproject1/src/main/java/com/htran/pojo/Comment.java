@@ -5,6 +5,7 @@
 package com.htran.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,17 +13,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
 @Table(name = "comment")
@@ -30,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
     @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
-    @NamedQuery(name = "Comment.findByContent", query = "SELECT c FROM Comment c WHERE c.content = :content")})
+    @NamedQuery(name = "Comment.findByCreateTime", query = "SELECT c FROM Comment c WHERE c.createTime = :createTime")})
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,14 +44,28 @@ public class Comment implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Lob
+    @Size(min = 1, max = 2147483647)
     @Column(name = "content")
     private String content;
-    @JoinColumn(name = "notifi_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Notifi notifiId;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "create_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+    
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    @ManyToOne
+    private Company companyId;
+    
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userId;
 
     public Comment() {
     }
@@ -55,9 +74,10 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public Comment(Integer id, String content) {
+    public Comment(Integer id, String content, Date createTime) {
         this.id = id;
         this.content = content;
+        this.createTime = createTime;
     }
 
     public Integer getId() {
@@ -76,12 +96,28 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public Notifi getNotifiId() {
-        return notifiId;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setNotifiId(Notifi notifiId) {
-        this.notifiId = notifiId;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Company getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Company companyId) {
+        this.companyId = companyId;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override

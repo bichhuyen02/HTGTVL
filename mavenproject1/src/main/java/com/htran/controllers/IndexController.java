@@ -8,6 +8,8 @@ import com.htran.service.CategoryService;
 import com.htran.service.CompanyService;
 import com.htran.service.JobService;
 import com.htran.service.LocationService;
+import com.htran.service.PositionService;
+import com.htran.service.UserService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -30,16 +32,28 @@ public class IndexController {
     private JobService jobService;
     
     @Autowired
+    private CategoryService cateService;
+    
+     @Autowired
     private LocationService locationService;
     
     @Autowired
     private CompanyService companyService;
     
-     @ModelAttribute
+    @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private PositionService posiService;
+    
+    @ModelAttribute
     public void commonAttr(Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("companies", this.companyService.getCompanies(params));
+        model.addAttribute("companies", this.companyService.getCompaniesByAccIdT());
         model.addAttribute("locations", this.locationService.getLocations(params));
         model.addAttribute("jobs", this.jobService.getJobs(params));
+        model.addAttribute("categories", this.cateService.getCategories(params));
+        model.addAttribute("users", this.userService.getUsers(params));
+        model.addAttribute("positions", this.posiService.getPositions(params));
     }
     
     @GetMapping("/")

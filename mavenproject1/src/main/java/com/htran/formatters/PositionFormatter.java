@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dht.formatters;
+package com.htran.formatters;
 
-import com.htran.pojo.Company;
+import com.htran.pojo.Position;
 import java.text.ParseException;
 import java.util.Locale;
 import org.springframework.format.Formatter;
@@ -13,16 +13,16 @@ import org.springframework.format.Formatter;
  *
  * @author Admin
  */
-public class CompanyFormatter implements Formatter<Company>{
+public class PositionFormatter implements Formatter<Position>{
 
     @Override
-    public String print(Company company, Locale locale) {
-        return String.valueOf(company.getId());
+    public String print(Position position, Locale locale) {
+        return String.valueOf(position.getId());
     }
 
     @Override
-    public Company parse(String companyId, Locale locale) throws ParseException {
-        return new Company(Integer.parseInt(companyId));
+    public Position parse(String positionId, Locale locale) throws ParseException {
+        return new Position(Integer.parseInt(positionId));
     }
     
 }

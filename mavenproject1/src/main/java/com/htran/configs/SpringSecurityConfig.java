@@ -33,7 +33,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @ComponentScan(basePackages = {
     "com.htran.controllers",
     "com.htran.repository",
-    "com.htran.service"
+    "com.htran.service",
+    "com.htran.formatters"
 })
 //@PropertySource("classpath:configs.properties")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{

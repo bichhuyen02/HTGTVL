@@ -38,7 +38,7 @@
                             <i class="fa fa-envelope" style="color:#3376BC"></i> 
                         </span>
                     </div>
-                    <form:input type="email" name="email" class="form-control" id="email" path="email" placeholder="Email" />
+                    <form:input type="email" name="mail" class="form-control" id="mail" path="mail" placeholder="Mail" />
                 </div>
 
                 <div class="form-group input-group">
@@ -53,7 +53,6 @@
                         <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
                     </div>
                     <form:input type="text" class="form-control" path="username" id="username" placeholder="Tên đăng nhập" name="username" />
-
                 </div>
 
                 <div class="form-group input-group">
@@ -72,15 +71,24 @@
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-building"style="color:#3376BC"></i> </span>
+                        <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <select class="form-control" id="userRole" name="userRole" path="userRole">
-
-                        <option value="ROLE_USER">Người ứng tuyển</option>
-                        <option value="ROLE_EMP">Nhà tuyển dụng</option>
-
-                    </select>
-                </div> 
+                    <form:input class="form-control" type="text" path="majors" id="majors" placeholder="Chuyên ngành" name="majors" />
+                </div>
+                
+                 <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
+                    </div>
+                    <form:input class="form-control" type="text" path="experience" id="experience" placeholder="Kinh nghiệm" name="experience" />
+                </div>
+                
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
+                    </div>
+                    <form:input class="form-control" type="text" path="gender" id="gender" placeholder="Giới Tính" name="gender" />
+                </div>
 
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="file" class="form-control" path="file" id="file" placeholder="avatar" name="file" />

@@ -7,12 +7,12 @@ package com.htran.pojo;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
 @Table(name = "category")
@@ -32,8 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
     @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
-    @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
-    @NamedQuery(name = "Category.findByDescription", query = "SELECT c FROM Category c WHERE c.description = :description")})
+    @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,14 +43,15 @@ public class Category implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 100)
     @Column(name = "name")
     private String name;
-    @Size(max = 255)
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryIb")
-    private Set<CategoryJob> categoryJobSet;
+    @OneToMany(mappedBy = "categoryId")
+    private Set<Job> jobSet;
 
     public Category() {
     }
@@ -90,12 +90,12 @@ public class Category implements Serializable {
     }
 
     @XmlTransient
-    public Set<CategoryJob> getCategoryJobSet() {
-        return categoryJobSet;
+    public Set<Job> getJobSet() {
+        return jobSet;
     }
 
-    public void setCategoryJobSet(Set<CategoryJob> categoryJobSet) {
-        this.categoryJobSet = categoryJobSet;
+    public void setJobSet(Set<Job> jobSet) {
+        this.jobSet = jobSet;
     }
 
     @Override

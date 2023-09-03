@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dht.formatters;
+package com.htran.formatters;
 
-import com.htran.pojo.Notifi;
+import com.htran.pojo.User;
 import java.text.ParseException;
 import java.util.Locale;
 import org.springframework.format.Formatter;
@@ -13,16 +13,16 @@ import org.springframework.format.Formatter;
  *
  * @author Admin
  */
-public class NotifiFormatter implements Formatter<Notifi>{
+public class UserFormatter implements Formatter<User>{
 
     @Override
-    public String print(Notifi notifi, Locale locale) {
-        return String.valueOf(notifi.getId());
+    public String print(User user, Locale locale) {
+        return String.valueOf(user.getId());
     }
 
     @Override
-    public Notifi parse(String notifiId, Locale locale) throws ParseException {
-        return new Notifi(Integer.parseInt(notifiId));
+    public User parse(String userId, Locale locale) throws ParseException {
+        return new User(Integer.parseInt(userId));
     }
     
 }

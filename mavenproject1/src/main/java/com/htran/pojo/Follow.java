@@ -16,19 +16,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
-@Table(name = "category_job")
+@Table(name = "follow")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CategoryJob.findAll", query = "SELECT c FROM CategoryJob c"),
-    @NamedQuery(name = "CategoryJob.findById", query = "SELECT c FROM CategoryJob c WHERE c.id = :id")})
-public class CategoryJob implements Serializable {
+    @NamedQuery(name = "Follow.findAll", query = "SELECT f FROM Follow f"),
+    @NamedQuery(name = "Follow.findById", query = "SELECT f FROM Follow f WHERE f.id = :id"),
+    @NamedQuery(name = "Follow.findByContent", query = "SELECT f FROM Follow f WHERE f.content = :content")})
+public class Follow implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,18 +38,27 @@ public class CategoryJob implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Category categoryIb;
-    @JoinColumn(name = "job_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Job jobId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "content")
+    private boolean content;
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    @ManyToOne
+    private Company companyId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userId;
 
-    public CategoryJob() {
+    public Follow() {
     }
 
-    public CategoryJob(Integer id) {
+    public Follow(Integer id) {
         this.id = id;
+    }
+
+    public Follow(Integer id, boolean content) {
+        this.id = id;
+        this.content = content;
     }
 
     public Integer getId() {
@@ -58,20 +69,28 @@ public class CategoryJob implements Serializable {
         this.id = id;
     }
 
-    public Category getCategoryIb() {
-        return categoryIb;
+    public boolean getContent() {
+        return content;
     }
 
-    public void setCategoryIb(Category categoryIb) {
-        this.categoryIb = categoryIb;
+    public void setContent(boolean content) {
+        this.content = content;
     }
 
-    public Job getJobId() {
-        return jobId;
+    public Company getCompanyId() {
+        return companyId;
     }
 
-    public void setJobId(Job jobId) {
-        this.jobId = jobId;
+    public void setCompanyId(Company companyId) {
+        this.companyId = companyId;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -84,10 +103,10 @@ public class CategoryJob implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CategoryJob)) {
+        if (!(object instanceof Follow)) {
             return false;
         }
-        CategoryJob other = (CategoryJob) object;
+        Follow other = (Follow) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -96,7 +115,7 @@ public class CategoryJob implements Serializable {
 
     @Override
     public String toString() {
-        return "com.htran.pojo.CategoryJob[ id=" + id + " ]";
+        return "com.htran.pojo.Follow[ id=" + id + " ]";
     }
     
 }

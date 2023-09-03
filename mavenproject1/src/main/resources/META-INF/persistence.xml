@@ -14,6 +14,10 @@
     <class>com.htran.pojo.CategoryJob</class>
     <class>com.htran.pojo.Category</class>
     <class>com.htran.pojo.Apply</class>
+    <class>com.htran.pojo.Account</class>
+    <class>com.htran.pojo.Cv</class>
+    <class>com.htran.pojo.Follow</class>
+    <class>com.htran.pojo.Position</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/csdl_tuyendung?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

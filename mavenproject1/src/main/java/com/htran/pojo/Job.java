@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +30,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
 @Table(name = "job")
@@ -40,11 +39,14 @@ import org.springframework.format.annotation.DateTimeFormat;
     @NamedQuery(name = "Job.findAll", query = "SELECT j FROM Job j"),
     @NamedQuery(name = "Job.findById", query = "SELECT j FROM Job j WHERE j.id = :id"),
     @NamedQuery(name = "Job.findByTitle", query = "SELECT j FROM Job j WHERE j.title = :title"),
-    @NamedQuery(name = "Job.findByJobNature", query = "SELECT j FROM Job j WHERE j.jobNature = :jobNature"),
     @NamedQuery(name = "Job.findByAddress", query = "SELECT j FROM Job j WHERE j.address = :address"),
+    @NamedQuery(name = "Job.findByJobNature", query = "SELECT j FROM Job j WHERE j.jobNature = :jobNature"),
     @NamedQuery(name = "Job.findBySalary", query = "SELECT j FROM Job j WHERE j.salary = :salary"),
+    @NamedQuery(name = "Job.findByLevel", query = "SELECT j FROM Job j WHERE j.level = :level"),
     @NamedQuery(name = "Job.findByCreateTime", query = "SELECT j FROM Job j WHERE j.createTime = :createTime"),
-    @NamedQuery(name = "Job.findByOutOffTime", query = "SELECT j FROM Job j WHERE j.outOffTime = :outOffTime")})
+    @NamedQuery(name = "Job.findByOutOffTime", query = "SELECT j FROM Job j WHERE j.outOffTime = :outOffTime"),
+    @NamedQuery(name = "Job.findByQuantity", query = "SELECT j FROM Job j WHERE j.quantity = :quantity"),
+    @NamedQuery(name = "Job.findByExperience", query = "SELECT j FROM Job j WHERE j.experience = :experience")})
 public class Job implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,54 +55,102 @@ public class Job implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "title")
     private String title;
+    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "description")
     private String description;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 2147483647)
-    @Column(name = "requirement")
-    private String requirement;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "job_nature")
-    private String jobNature;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "address")
     private String address;
-    @Size(max = 45)
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "job_nature")
+    private String jobNature;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "salary")
     private String salary;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "level")
+    private String level;
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "create_time")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date createTime;
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "out_off_time")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date outOffTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobId")
-    private Set<CategoryJob> categoryJobSet;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "quantity")
+    private String quantity;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "experience")
+    private String experience;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "benefits")
+    private String benefits;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "skill")
+    private String skill;
+    
+    @OneToMany(mappedBy = "jobId")
+    private Set<Cv> cvSet;
+    
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @ManyToOne
+    private Category categoryId;
+    
     @JoinColumn(name = "company_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Company companyId;
+    
     @JoinColumn(name = "location_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Location locationId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobId")
-    private Set<Notifi> notifiSet;
+    
+    @JoinColumn(name = "position_id", referencedColumnName = "id")
+    @ManyToOne
+    private Position positionId;
 
     public Job() {
     }
@@ -109,13 +159,20 @@ public class Job implements Serializable {
         this.id = id;
     }
 
-    public Job(Integer id, String title, String description, String requirement, String jobNature, String address) {
+    public Job(Integer id, String title, String description, String address, String jobNature, String salary, String level, Date createTime, Date outOffTime, String quantity, String experience, String benefits, String skill) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.requirement = requirement;
-        this.jobNature = jobNature;
         this.address = address;
+        this.jobNature = jobNature;
+        this.salary = salary;
+        this.level = level;
+        this.createTime = createTime;
+        this.outOffTime = outOffTime;
+        this.quantity = quantity;
+        this.experience = experience;
+        this.benefits = benefits;
+        this.skill = skill;
     }
 
     public Integer getId() {
@@ -142,12 +199,12 @@ public class Job implements Serializable {
         this.description = description;
     }
 
-    public String getRequirement() {
-        return requirement;
+    public String getAddress() {
+        return address;
     }
 
-    public void setRequirement(String requirement) {
-        this.requirement = requirement;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getJobNature() {
@@ -158,20 +215,20 @@ public class Job implements Serializable {
         this.jobNature = jobNature;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getSalary() {
         return salary;
     }
 
     public void setSalary(String salary) {
         this.salary = salary;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public Date getCreateTime() {
@@ -190,13 +247,53 @@ public class Job implements Serializable {
         this.outOffTime = outOffTime;
     }
 
-    @XmlTransient
-    public Set<CategoryJob> getCategoryJobSet() {
-        return categoryJobSet;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setCategoryJobSet(Set<CategoryJob> categoryJobSet) {
-        this.categoryJobSet = categoryJobSet;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getBenefits() {
+        return benefits;
+    }
+
+    public void setBenefits(String benefits) {
+        this.benefits = benefits;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    @XmlTransient
+    public Set<Cv> getCvSet() {
+        return cvSet;
+    }
+
+    public void setCvSet(Set<Cv> cvSet) {
+        this.cvSet = cvSet;
+    }
+
+    public Category getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Category categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Company getCompanyId() {
@@ -215,13 +312,12 @@ public class Job implements Serializable {
         this.locationId = locationId;
     }
 
-    @XmlTransient
-    public Set<Notifi> getNotifiSet() {
-        return notifiSet;
+    public Position getPositionId() {
+        return positionId;
     }
 
-    public void setNotifiSet(Set<Notifi> notifiSet) {
-        this.notifiSet = notifiSet;
+    public void setPositionId(Position positionId) {
+        this.positionId = positionId;
     }
 
     @Override

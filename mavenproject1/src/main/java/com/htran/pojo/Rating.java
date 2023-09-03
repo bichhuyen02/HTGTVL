@@ -17,12 +17,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
 @Table(name = "rating")
@@ -30,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Rating.findAll", query = "SELECT r FROM Rating r"),
     @NamedQuery(name = "Rating.findById", query = "SELECT r FROM Rating r WHERE r.id = :id"),
-    @NamedQuery(name = "Rating.findByContent", query = "SELECT r FROM Rating r WHERE r.content = :content")})
+    @NamedQuery(name = "Rating.findByRate", query = "SELECT r FROM Rating r WHERE r.rate = :rate")})
 public class Rating implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,12 +40,14 @@ public class Rating implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "content")
-    private String content;
-    @JoinColumn(name = "notifi_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Notifi notifiId;
+    @Column(name = "rate")
+    private int rate;
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    @ManyToOne
+    private Company companyId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userId;
 
     public Rating() {
     }
@@ -55,9 +56,9 @@ public class Rating implements Serializable {
         this.id = id;
     }
 
-    public Rating(Integer id, String content) {
+    public Rating(Integer id, int rate) {
         this.id = id;
-        this.content = content;
+        this.rate = rate;
     }
 
     public Integer getId() {
@@ -68,20 +69,28 @@ public class Rating implements Serializable {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public int getRate() {
+        return rate;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 
-    public Notifi getNotifiId() {
-        return notifiId;
+    public Company getCompanyId() {
+        return companyId;
     }
 
-    public void setNotifiId(Notifi notifiId) {
-        this.notifiId = notifiId;
+    public void setCompanyId(Company companyId) {
+        this.companyId = companyId;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override

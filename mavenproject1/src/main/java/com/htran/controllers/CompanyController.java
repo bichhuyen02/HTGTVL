@@ -4,6 +4,7 @@
  */
 package com.htran.controllers;
 
+import com.htran.service.AccountService;
 import com.htran.service.CompanyService;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -24,13 +25,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
+    
+    @Autowired
+    private AccountService accService;
 
     @Resource
     private Environment env;
     
     @RequestMapping("/companies")
     public String major(Model model, @RequestParam Map<String, String> params) {
-          model.addAttribute("companies", this.companyService.getCompanies(params));
+        model.addAttribute("companies", this.companyService.getCompanies(params));
+        model.addAttribute("companiesT", this.companyService.getCompaniesByAccIdT());
+        model.addAttribute("companiesF", this.companyService.getCompaniesByAccIdF());
         return "companies";
     }
 }

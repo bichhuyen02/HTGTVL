@@ -297,7 +297,7 @@
 
                             <div class="mt-3">
 
-                                <a href="<c:url value="/jobDetail" />" class="btn btn-info">Xem chi tiết</a>
+                                <a href="<c:url value="/jobDetail/${j.id}" />" class="btn btn-info">Xem chi tiết</a>
                             </div>
                             <c:set var="couts" value="${couts+1}"/>
 
@@ -309,7 +309,7 @@
         </c:forEach>
     </div>
 </div>
-    <!--end cong viec-->
+<!--end cong viec-->
 
 
 

@@ -4,12 +4,13 @@
  */
 package com.htran.configs;
 
-import com.dht.formatters.CategoryFormatter;
-import com.dht.formatters.CompanyFormatter;
-import com.dht.formatters.JobFormatter;
-import com.dht.formatters.LocationFormatter;
-import com.dht.formatters.NotifiFormatter;
-import com.dht.formatters.UserFormatter;
+import com.htran.formatters.CategoryFormatter;
+import com.htran.formatters.CompanyFormatter;
+import com.htran.formatters.JobFormatter;
+import com.htran.formatters.LocationFormatter;
+import com.htran.formatters.PositionFormatter;
+import com.htran.formatters.UserFormatter;
+import com.htran.pojo.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -36,7 +37,8 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages={
     "com.htran.controllers",
     "com.htran.repository",
-    "com.htran.service"
+    "com.htran.service",
+    "com.htran.formatters"
 })
 @PropertySource("classpath:configs.properties")
 public class WebAppContextConfig implements WebMvcConfigurer{
@@ -59,7 +61,7 @@ public class WebAppContextConfig implements WebMvcConfigurer{
         registry.addFormatter(new CompanyFormatter());
         registry.addFormatter(new UserFormatter());
         registry.addFormatter(new JobFormatter());
-        registry.addFormatter(new NotifiFormatter());
+        registry.addFormatter(new PositionFormatter());
     }
     
 //   @Bean

@@ -14,7 +14,10 @@ import java.util.Map;
  */
 public interface CompanyService {
      List<Company> getCompanies(Map<String, String> params);
+     List<Company> getCompaniesByAccIdT();
+     List<Company> getCompaniesByAccIdF();
      boolean addOrUpdateCompany(Company c);
+     boolean UpdateActive(int id);
      Company getCompanyById(int id);
      boolean deleteCompany(int id);
 }

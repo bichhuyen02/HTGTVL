@@ -4,17 +4,21 @@
  */
 package com.htran.repository.impl;
 
+import com.htran.pojo.Account;
 import com.htran.pojo.User;
+import com.htran.repository.AccountRepository;
 import com.htran.repository.UserRepository;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -26,19 +30,15 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
+@PropertySource("classpath:configs.properties")
 public class UserRepositoryImpl implements UserRepository{
+    
     @Autowired
     private LocalSessionFactoryBean factory;
     
-    @Override
-    public User getUserByUsername(String username) {
-        Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("From User Where username=:un");
-        q.setParameter("un", username);
-        
-        return (User) q.getSingleResult();
-    }
-
+    @Autowired
+    private AccountRepository accRepo;
+    
     @Override
     public List<User> getUsers(Map<String, String> map) {
         Session s = this.factory.getObject().getCurrentSession();
@@ -56,9 +56,23 @@ public class UserRepositoryImpl implements UserRepository{
        Session s = this.factory.getObject().getCurrentSession();
         try {
             if (user.getId() == null) {
+                Account acc = new Account();
+                acc.setUsername(user.getUsername());
+                acc.setPassword(user.getPassword());
+                acc.setUserRole("ROLE_USER");
+                acc.setActive(Boolean.TRUE);
+                s.save(acc);
+                
+                user.setAccountId(acc);
                 s.save(user);
             } else {
                 s.update(user);
+                Account acc = new Account();
+                acc = this.accRepo.getAccountById(user.getAccountId().getId());
+                acc.setUsername(user.getUsername());
+                acc.setPassword(user.getPassword());
+                acc.setUserRole("ROLE_EMP");
+                s.update(acc);
             }
             return true;
         } catch (HibernateException ex) {

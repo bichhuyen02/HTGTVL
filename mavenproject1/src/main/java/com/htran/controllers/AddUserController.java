@@ -30,7 +30,6 @@ public class AddUserController {
     @GetMapping("/addUser")
     public String addUser(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("addUsers", new User());
-        
         return "addUser";
     }
     
@@ -45,13 +44,13 @@ public class AddUserController {
             BindingResult rs) {
         String errMsg ="";
         if (u.getPassword().equals(u.getConfirmPassword())){
-            if (!rs.hasErrors()) {
+           // if (!rs.hasErrors()) {
                 if (this.userService.addOrUpdateUser(u) == true) {
                     return "redirect:/user";
                 } else {
                     errMsg = "Đã có lỗi xảy ra!!!!";
                 }
-            }
+            //}
         }
         else{
             errMsg = "Mật khẩu không khớp!!!";

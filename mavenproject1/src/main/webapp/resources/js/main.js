@@ -15,3 +15,16 @@ function showPassword() {
   var passwordField = document.getElementById("pwd");
   passwordField.type = "text";
 }
+
+function updateActive(path) {
+    if (confirm("Bạn chắc chắn duyệt không?") === true) {
+        fetch(path, {
+            method: "put"
+        }).then(res => {
+            if (res.status === 204)
+                location.reload();
+            else
+                alert("Hệ thống có lỗi! Vui lòng quay lại sau!");
+        });
+    }
+}

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -22,10 +23,9 @@ public class JobDetailController {
      @Autowired
     private JobService jobService;
      
-    @GetMapping("/jobDetail")
-    public String jobDetail(Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("jobDetails", new Job());
-        
+    @GetMapping("/jobDetail/{id}")
+    public String jobDetail(Model model, @PathVariable(value = "id") int id) {
+        model.addAttribute("jobDetails", this.jobService.getJobById(id));  
         return "jobDetail";
     }
     

@@ -5,9 +5,7 @@
 package com.htran.pojo;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,22 +15,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Entity
-@Table(name = "notifi")
+@Table(name = "cv")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Notifi.findAll", query = "SELECT n FROM Notifi n"),
-    @NamedQuery(name = "Notifi.findById", query = "SELECT n FROM Notifi n WHERE n.id = :id")})
-public class Notifi implements Serializable {
+    @NamedQuery(name = "Cv.findAll", query = "SELECT c FROM Cv c"),
+    @NamedQuery(name = "Cv.findById", query = "SELECT c FROM Cv c WHERE c.id = :id"),
+    @NamedQuery(name = "Cv.findByCv", query = "SELECT c FROM Cv c WHERE c.cv = :cv")})
+public class Cv implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,24 +39,28 @@ public class Notifi implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notifiId")
-    private Set<Apply> applySet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notifiId")
-    private Set<Rating> ratingSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notifiId")
-    private Set<Comment> commentSet;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "cv")
+    private String cv;
     @JoinColumn(name = "job_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Job jobId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private User userId;
 
-    public Notifi() {
+    public Cv() {
     }
 
-    public Notifi(Integer id) {
+    public Cv(Integer id) {
         this.id = id;
+    }
+
+    public Cv(Integer id, String cv) {
+        this.id = id;
+        this.cv = cv;
     }
 
     public Integer getId() {
@@ -68,31 +71,12 @@ public class Notifi implements Serializable {
         this.id = id;
     }
 
-    @XmlTransient
-    public Set<Apply> getApplySet() {
-        return applySet;
+    public String getCv() {
+        return cv;
     }
 
-    public void setApplySet(Set<Apply> applySet) {
-        this.applySet = applySet;
-    }
-
-    @XmlTransient
-    public Set<Rating> getRatingSet() {
-        return ratingSet;
-    }
-
-    public void setRatingSet(Set<Rating> ratingSet) {
-        this.ratingSet = ratingSet;
-    }
-
-    @XmlTransient
-    public Set<Comment> getCommentSet() {
-        return commentSet;
-    }
-
-    public void setCommentSet(Set<Comment> commentSet) {
-        this.commentSet = commentSet;
+    public void setCv(String cv) {
+        this.cv = cv;
     }
 
     public Job getJobId() {
@@ -121,10 +105,10 @@ public class Notifi implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Notifi)) {
+        if (!(object instanceof Cv)) {
             return false;
         }
-        Notifi other = (Notifi) object;
+        Cv other = (Cv) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -133,7 +117,7 @@ public class Notifi implements Serializable {
 
     @Override
     public String toString() {
-        return "com.htran.pojo.Notifi[ id=" + id + " ]";
+        return "com.htran.pojo.Cv[ id=" + id + " ]";
     }
     
 }

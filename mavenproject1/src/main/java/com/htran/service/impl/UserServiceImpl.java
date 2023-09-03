@@ -29,7 +29,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Admin
  */
-@Service("userDetailsService")
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -40,20 +40,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public BCryptPasswordEncoder passwordEncoder;
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User u = this.userRepo.getUserByUsername(username);
-        if (u == null) {
-            throw new UsernameNotFoundException("Invalid user!");
-        }
-
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority(u.getUserRole()));
-
-        return new org.springframework.security.core.userdetails.User(
-                u.getUsername(), u.getPassword(), authorities);
-    }
 
     @Override
     public List<User> getUsers(Map<String, String> params) {
@@ -84,5 +70,4 @@ public class UserServiceImpl implements UserService {
     public boolean deleteUser(int id) {
         return this.userRepo.deleteUser(id);
     }
-
 }
