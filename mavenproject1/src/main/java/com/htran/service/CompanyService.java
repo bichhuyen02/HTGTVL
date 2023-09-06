@@ -19,5 +19,6 @@ public interface CompanyService {
      boolean addOrUpdateCompany(Company c);
      boolean UpdateActive(int id);
      Company getCompanyById(int id);
+     Company getCompanyByAccId(int id);
      boolean deleteCompany(int id);
 }

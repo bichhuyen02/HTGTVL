@@ -4,6 +4,7 @@
     Author     : HUYEN TRAN
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:url value="/" var="action" />
 
@@ -166,12 +167,6 @@
 <div class="text-primary mt-4 mb-4 text-center"><h2> CÔNG TY NỔI BẬT</h2></div>
 
 
-<div class="col-md-4 mt-4 mt-sm-0 d-none d-md-block  ml-4">
-    <div class="text-center text-md-end">
-        <a href="<c:url value="/companyDetail" />" class="text-primary">Xem chi tiết <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-    </div>
-</div>
-
 <section class="container">
     <c:set var="cout" value="0"/>
     <div class="row">
@@ -195,7 +190,15 @@
 
                             </div>
                             <h6 class="m-5px-tb">${c.name}</h6>
-
+                        </div>
+                        <div class="col-md-4 mt-4 mt-sm-0 d-none d-md-block  ml-4">
+                            <div class="text-center text-md-end">
+                                <a href="<c:url value="/companyDetail/${c.id}" />" class="text-primary">
+                                    Xem chi tiết <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                                                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                                                      class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12">
+                                           </line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                            </div>
                         </div>
                     </div>
                 </div>

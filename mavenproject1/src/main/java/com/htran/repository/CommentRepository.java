@@ -4,23 +4,16 @@
  */
 package com.htran.repository;
 
+import com.htran.pojo.Comment;
 import com.htran.pojo.Company;
-import com.htran.pojo.Job;
 import java.util.List;
 import java.util.Map;
 
 /**
  *
- * @author HUYEN TRAN
+ * @author Admin
  */
-public interface JobRepository {
-    List<Job> getJobs(Map<String, String> params);
-    List<Job> getJobsByComId(Company com);
-    int countJob();
-    boolean addOrUpdateJob(Job j);
-    boolean deleteJob(int id);
-    Job getJobById(int id);
+public interface CommentRepository {
+  List<Comment> getCommentsbyCompanyId(Company com);
+  boolean addComment(Comment cmt);  
 }
-
-
-    

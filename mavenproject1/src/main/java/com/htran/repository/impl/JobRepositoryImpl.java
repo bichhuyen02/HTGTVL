@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -101,6 +102,21 @@ public class JobRepositoryImpl implements JobRepository {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Job> getJobsByComId(Company com) {
+        Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<Job> q = b.createQuery(Job.class);
+        Root root = q.from(Job.class);
+        q.select(root);
+        Predicate predicates = b.equal(root.get("companyId"), com);
+        q.orderBy(b.desc(root.get("id")));
+        q.where(predicates);
+
+        Query query = s.createQuery(q);
+        return query.getResultList();
     }
 
    

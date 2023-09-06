@@ -17,31 +17,37 @@
                 </button>-->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav me-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link  " href="<c:url value="/jobs"/>"><strong>Công Việc</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/companies"/>"><strong>Doanh Nghiệp</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/location"/>"><strong>Khu Vực</strong> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/user"/>"><strong>Người Dùng</strong> </a>
-                </li>
-
-
-                <div>
+                <se:authorize access="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/categories"/>"><strong>Ngành Nghề</strong></a>
+                        <a class="nav-link  " href="<c:url value="/jobs"/>"><strong>Công Việc</strong></a>
                     </li>
-                </div>
-                <li class="nav-item">
-                    <a class="nav-link" href="${action}"><strong>Thống Kê</strong></a>
-                </li>
+                </se:authorize>
+               
+                
+                <se:authorize access="not hasRole('ROLE_EMP')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/companies"/>"><strong>Doanh Nghiệp</strong></a>
+                    </li>
+                </se:authorize>
+                    
+                <se:authorize access="hasRole('ROLE_ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/admin/location"/>"><strong>Khu Vực</strong> </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/admin/categories"/>"><strong>Ngành Nghề</strong></a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/admin/user"/>"><strong>Người Dùng</strong> </a>
+                    </li>    
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="${action}"><strong>Thống Kê</strong></a>
+                    </li>
+                </se:authorize>
+                    
                 <c:choose>
                     <c:when test="${pageContext.request.userPrincipal.name != null}">
                         <li class="nav-item">

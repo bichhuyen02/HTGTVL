@@ -32,7 +32,7 @@ public class AccountRepositoryImpl implements AccountRepository{
     @Override
     public Account getAccountByUsername(String username) {
         Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("From User Where username=:un");
+        Query q = s.createQuery("From Account Where username=:un");
         q.setParameter("un", username);
         
         return (Account) q.getSingleResult();
@@ -71,7 +71,7 @@ public class AccountRepositoryImpl implements AccountRepository{
     @Override
     public Account getAccountById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
-         return s.get(Account.class, id);
+        return s.get(Account.class, id);
     }
     
 }

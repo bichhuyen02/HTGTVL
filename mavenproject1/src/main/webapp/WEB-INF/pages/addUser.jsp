@@ -7,11 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <c:url value="/addUser" var="action" />
 <form:form cssClass="container " modelAttribute="addUsers" action="${action}" method="post" enctype="multipart/form-data">
     <form:hidden path="id" />
-
+    <form:hidden path="avatar" />
+    <form:hidden path="accountId" />
+    
     <div class="card nen">
         <article class="card-body mx-auto" style="width: 45%;">
             <h2 class="card-title  text-center text-white">ĐĂNG KÝ TÀI KHOẢN</h2>

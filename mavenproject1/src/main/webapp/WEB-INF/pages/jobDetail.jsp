@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <link rel="stylesheet" href="<c:url value="/css/index1.css" />"/>
 
@@ -93,10 +94,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-block">Ứng tuyển ngay </button>
-
-                                </td>
+                                <se:authorize access="!isAuthenticated()">
+                                    <td>
+                                        <a href="<c:url value="/login" />" class="btn btn-success btn-block">Ứng tuyển ngay </a>
+                                    </td>
+                                </se:authorize>
+                                <se:authorize access="hasRole('ROLE_USER')">
+                                    <td>
+                                       <a href="<c:url value="/jobDetail/${jobDetails.id}/applyCv" />" class="btn btn-success btn-block">Ứng tuyển ngay </a>
+                                    </td>
+                                 </se:authorize>
                                 <td>
                                     <button type="button" class="btn btn-outline-success btn-block">Lưu tin</button>
                                 </td>
@@ -164,3 +171,5 @@
 
     </div>
 </div>
+                            
+<script src="<c:url value="/js/home.js" />"></script>

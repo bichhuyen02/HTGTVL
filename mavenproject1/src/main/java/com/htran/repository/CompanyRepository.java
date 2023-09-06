@@ -4,6 +4,7 @@
  */
 package com.htran.repository;
 
+import com.htran.pojo.Account;
 import com.htran.pojo.Company;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ public interface CompanyRepository {
      List<Company> getCompanies(Map<String, String> params);
      List<Company> getCompaniesByAccIdT();
      List<Company> getCompaniesByAccIdF();
+     Company getCompanyByAccId(int id);
      boolean addOrUpdateCompany(Company c);
      boolean UpdateActive(int id);
      boolean deleteCompany(int id);

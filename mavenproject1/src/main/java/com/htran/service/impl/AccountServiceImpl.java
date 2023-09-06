@@ -22,30 +22,28 @@ import org.springframework.stereotype.Service;
  * @author Admin
  */
 @Service("userDetailsService")
-public class AccountServiceImpl implements AccountService{
-    
+public class AccountServiceImpl implements AccountService {
+
     @Autowired
     private AccountRepository accRepo;
-    
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account u = this.accRepo.getAccountByUsername(username);
-        if(u.getActive()== true)
-        {
+        if (u.getActive() == true) {
             if (u == null) {
-            throw new UsernameNotFoundException("Invalid user!");
-        }
+                throw new UsernameNotFoundException("Invalid user!");
+            }
 
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority(u.getUserRole()));
+            Set<GrantedAuthority> authorities = new HashSet<>();
+            authorities.add(new SimpleGrantedAuthority(u.getUserRole()));
 
-        return new org.springframework.security.core.userdetails.User(
-                u.getUsername(), u.getPassword(), authorities);
+            return new org.springframework.security.core.userdetails.User(
+                    u.getUsername(), u.getPassword(), authorities);
         }
-        return (UserDetails) new org.springframework.security.
-                core.userdetails.UsernameNotFoundException("Bạn chưa có quyền!!!");
+        return (UserDetails) new org.springframework.security.core.userdetails.UsernameNotFoundException("Bạn chưa có quyền!!!");
     }
-    
+
     @Override
     public Account getAccountByUsername(String username) {
         return this.accRepo.getAccountByUsername(username);
@@ -65,5 +63,5 @@ public class AccountServiceImpl implements AccountService{
     public List<Account> getAccountByActiveFalse() {
         return this.accRepo.getAccountByActiveFalse();
     }
-    
+
 }

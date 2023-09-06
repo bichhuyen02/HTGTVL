@@ -112,13 +112,11 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -131,61 +129,50 @@ public class Company implements Serializable {
     @Column(name = "date_of_incorporation")
     @Temporal(TemporalType.DATE)
     private Date dateOfIncorporation;
-    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "description")
     private String description;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "link_company")
     private String linkCompany;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "scale")
     private String scale;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "mail")
     private String mail;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "image")
     private String image;
-    
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "phone")
     private String phone;
-    
     @OneToMany(mappedBy = "companyId")
     private Set<Rating> ratingSet;
-    
     @OneToMany(mappedBy = "companyId")
     private Set<Comment> commentSet;
-    
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
-    
     @OneToMany(mappedBy = "companyId")
     private Set<Follow> followSet;
-    
     @OneToMany(mappedBy = "companyId")
     private Set<Job> jobSet;
-
+    
     @Transient
     private MultipartFile file;
     
@@ -197,7 +184,7 @@ public class Company implements Serializable {
     
     @Transient
     private String confirmPassword;
-    
+
     public Company() {
     }
 

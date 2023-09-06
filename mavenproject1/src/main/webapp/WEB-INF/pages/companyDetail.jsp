@@ -7,98 +7,83 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <link rel="stylesheet" href="<c:url value="/css/index1.css" />"/>
 
+<c:url value="/companyDetail/${copaDetails.id}" var="action" />
 <div id="main-content" class="blog-page">
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12 left-box mt-4">
+
                 <div class="card single_post">
                     <div class="body">
                         <div class="img-post">
-                            <img alt="" style="width:180px;" title="" class="rounded-circle img-thumbnail isTooltip " src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="Usuario"> 
+                            <img alt="" style="width:180px;" title="" class="rounded-circle img-thumbnail isTooltip " src="${copaDetails.image}" data-original-title="Usuario"> 
                         </div>
-                        <h3>All photographs are accurate </h3>
+                        <h3>${copaDetails.name}</h3>
                         <button type="button" class="btn btn-outline-success  "> + Theo dõi công ty</button>
                     </div>                        
                 </div>
 
                 <div class="card">
                     <div class="header">
-                        <h2>Comments 3</h2>
+                        <h2>Bình Luận</h2>
                     </div>
                     <div class="body">
+                        <c:set var="cout" value="0"/>
                         <ul class="comment-reply list-unstyled">
-                            <li class="row clearfix">
-                                <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
-                                <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                    <h5 class="m-b-0">Gigi Hadid </h5>
-                                    <p>Why are there so many tutorials on how to decouple WordPress? how fast and easy it is to get it running (and keep it running!) and its massive ecosystem. </p>
-                                    <ul class="list-inline">
-                                        <li><a href="javascript:void(0);">Mar 09 2018</a></li>
-                                        <li><a href="javascript:void(0);">Reply</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li class="row clearfix">
-                                <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Awesome Image"></div>
-                                <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                    <h5 class="m-b-0">Christian Louboutin</h5>
-                                    <p>Great tutorial but few issues with it? If i try open post i get following errors. Please can you help me?</p>
-                                    <ul class="list-inline">
-                                        <li><a href="javascript:void(0);">Mar 12 2018</a></li>
-                                        <li><a href="javascript:void(0);">Reply</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li class="row clearfix">
-                                <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Awesome Image"></div>
-                                <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                    <h5 class="m-b-0">Kendall Jenner</h5>
-                                    <p>Very nice and informative article. In all the years I've done small and side-projects as a freelancer, I've ran into a few problems here and there.</p>
-                                    <ul class="list-inline">
-                                        <li><a href="javascript:void(0);">Mar 20 2018</a></li>
-                                        <li><a href="javascript:void(0);">Reply</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                            <c:forEach items="${cmts}" var="c">
+                                <c:if test="${cout < 6}">
+                                    <li class="row clearfix">
+                                        <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="${c.userId.avatar}" alt="Awesome Image"></div>
+                                        <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                            <h5 class="m-b-0">${c.userId.name}</h5>
+                                            <p>${c.content}</p>
+                                            <ul class="list-inline">
+                                                <li><a href="javascript:void(0);">${c.createTime}</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <c:set var="cout" value="${cout+1}"/>
+                                </c:if>
+                            </c:forEach>
                         </ul>                                        
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="header">
-                        <h2>Leave a reply <small>Your email address will not be published. Required fields are marked*</small></h2>
-                    </div>
-                    <div class="body">
-                        <div class="comment-form ">
-                            <form class="row clearfix">
-                                <div class="col-sm-6 ">
-                                    <div class="form-group ">
-                                        <input type="text" class="form-control " placeholder="Your Name">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 ">
-                                    <div class="form-group mr-4">
-                                        <input type="text" class="form-control" placeholder="Email Address">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ">
-                                    <div class="form-group">
-                                        <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>
-                                </div>                                
-                            </form>
+                <se:authorize access="!hasRole('ROLE_EMP')">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Mời <small>Bạn đánh giá</small></h2>
                         </div>
+                        <se:authorize access="!isAuthenticated()">
+                            <a href="<c:url value="/login" />" class="btn btn-block btn-primary">Đăng nhập để bình luận</a>
+                        </se:authorize>
+                        <se:authorize access="hasRole('ROLE_USER')">
+                            <div class="body">
+
+                                <div class="comment-form ">
+                                    <form:form cssclass="row clearfix" modelAttribute="cmt" action="${action}" method="post" enctype="multipart/form-data">
+
+                                        <div class="col-sm-12 ">
+                                            <div class="form-group">
+                                                <form:textarea rows="4" class="form-control no-resize" id="content" name="content"
+                                                               path="content" placeholder="Please type what you want..."></form:textarea>
+                                                </div>
+
+
+                                            <button type="submit" onclick="Comment()" class="btn btn-block btn-primary">Bình luận</button>
+                                            </div>                                
+                                    </form:form>
+
+                                </div>
+                            </div>
+                        </se:authorize>
                     </div>
-                </div>
+                </se:authorize>
             </div>
 
             <div class="col-lg-4 col-md-12 right-box mt-4">
-
 
                 <div class="card">
                     <div class="header">
@@ -106,16 +91,10 @@
                     </div>
                     <div class="body widget">
                         <ul class="list-unstyled categories-clouds m-b-0">
-                            <li><a href="javascript:void(0);">eCommerce</a></li>
-                            <li><a href="javascript:void(0);">Microsoft Technologies</a></li>
-                            <li><a href="javascript:void(0);">Creative UX</a></li>
-                            <li><a href="javascript:void(0);">Wordpress</a></li>
-                            <li><a href="javascript:void(0);">Angular JS</a></li>
-                            <li><a href="javascript:void(0);">Enterprise Mobility</a></li>
-                            <li><a href="javascript:void(0);">Website Design</a></li>
-                            <li><a href="javascript:void(0);">HTML5</a></li>
-                            <li><a href="javascript:void(0);">Infographics</a></li>
-                            <li><a href="javascript:void(0);">Wordpress Development</a></li>
+                            <li><a href="<c:url value="${copaDetails.linkCompany}"/>">Trang chủ công ty</a></li>
+                            <li>Ngày thành lập: ${copaDetails.dateOfIncorporation}</li>
+                            <li>Nhân lực: ${copaDetails.scale}</li>
+                            <li>Mô tả: ${copaDetails.description}</li>                
                         </ul>
                     </div>
                 </div>
@@ -130,8 +109,12 @@
                                 <div class="single_post">
                                     <p class="m-b-0">Địa chỉ</p>
                                     <span></span>
-                                    <div class="img-post">
-                                        <img src="https://www.bootdey.com/image/280x280/87CEFA/000000" alt="Awesome Image">                                        
+                                    <div class="body widget">
+                                        <ul class="list-unstyled categories-clouds m-b-0">
+                                            <li>Địa chỉ: ${copaDetails.address}</li>
+                                            <li>Mail: ${copaDetails.mail}</li>
+                                            <li>Số điện thoại: ${copaDetails.phone}</li>                
+                                        </ul>
                                     </div>                                            
                                 </div>
                                 <div class="single_post">
@@ -146,10 +129,9 @@
                     </div>
                 </div>
 
-
-
             </div>
         </div>
 
     </div>
 </div>
+<script src="<c:url value="/js/comment.js" />"></script>

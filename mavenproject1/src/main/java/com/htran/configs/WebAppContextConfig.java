@@ -4,6 +4,7 @@
  */
 package com.htran.configs;
 
+import com.htran.formatters.AccountFormatter;
 import com.htran.formatters.CategoryFormatter;
 import com.htran.formatters.CompanyFormatter;
 import com.htran.formatters.JobFormatter;
@@ -38,7 +39,8 @@ import org.springframework.web.servlet.view.JstlView;
     "com.htran.controllers",
     "com.htran.repository",
     "com.htran.service",
-    "com.htran.formatters"
+    "com.htran.formatters",
+    "com.htran.handlers"
 })
 @PropertySource("classpath:configs.properties")
 public class WebAppContextConfig implements WebMvcConfigurer{
@@ -62,6 +64,7 @@ public class WebAppContextConfig implements WebMvcConfigurer{
         registry.addFormatter(new UserFormatter());
         registry.addFormatter(new JobFormatter());
         registry.addFormatter(new PositionFormatter());
+        registry.addFormatter(new AccountFormatter());
     }
     
 //   @Bean

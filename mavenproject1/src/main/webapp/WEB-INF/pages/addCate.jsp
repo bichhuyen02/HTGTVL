@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <c:url value="/addCate" var="action" />
 
@@ -15,14 +16,16 @@
 
     <div class="card nen frm ">
         <article class="card-body mx-auto" style="width: 50%;">
+            
             <h2 class="card-title  text-center text-white">QUẢN LÝ NGÀNH NGHỀ</h2>
-            <div class="form-floating mb-3 mt-3">
+           <div class="form-floating mb-3 mt-3">
                 <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên Ngành Nghề" name="name" />
                 <label for="name">Tên Ngành Nghề </label>
             </div>
 
             <div class="form-floating mb-3 mt-3">
-                <form:input type="text" class="form-control" path="description" id="description" placeholder="Mô Tả" name="description" />
+                <form:input type="text" class="form-control" path="description" id="description" 
+                            placeholder="Mô Tả" name="description" />
                 <label for="name">Mô Tả</label>
             </div>
 
@@ -36,7 +39,8 @@
             </div>
             <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a> 
             </p>
-        </form:form>
-    </article>
-</div>
+
+        </article>
+    </div>
+</form:form>
 

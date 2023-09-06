@@ -4,6 +4,7 @@
  */
 package com.htran.service;
 
+import com.htran.pojo.Company;
 import com.htran.pojo.Job;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,7 @@ import java.util.Map;
 public interface JobService {
 
     List<Job> getJobs(Map<String, String> params);
-
+    List<Job> getJobsByComId(Company com);
     int countJob();
 
     boolean addOrUpdateJob(Job j);

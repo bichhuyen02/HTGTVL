@@ -26,7 +26,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -55,99 +54,80 @@ public class Job implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "title")
     private String title;
-    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "description")
     private String description;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "address")
     private String address;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "job_nature")
     private String jobNature;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "salary")
     private String salary;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "level")
     private String level;
-    
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;
-    
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
     @NotNull
     @Column(name = "out_off_time")
     @Temporal(TemporalType.DATE)
     private Date outOffTime;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "quantity")
     private String quantity;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "experience")
     private String experience;
-    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "benefits")
     private String benefits;
-    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "skill")
     private String skill;
-    
     @OneToMany(mappedBy = "jobId")
     private Set<Cv> cvSet;
-    
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
     private Category categoryId;
-    
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
-    
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     @ManyToOne
     private Location locationId;
-    
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     @ManyToOne
     private Position positionId;

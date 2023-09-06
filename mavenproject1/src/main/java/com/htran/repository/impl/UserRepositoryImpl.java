@@ -55,8 +55,21 @@ public class UserRepositoryImpl implements UserRepository{
     public boolean addOrUpdateUser(User user) {
        Session s = this.factory.getObject().getCurrentSession();
         try {
+            Account acc = new Account();
+            User u = user;
+            if(user.getId() != null){
+                //com = this.getCompanyById(c.getId());
+                
+                int id = u.getAccountId().getId();
+                acc = this.accRepo.getAccountById(id);
+
+                acc.setUsername(u.getUsername());
+                acc.setPassword(u.getPassword());
+                acc.setUserRole("ROLE_USER");
+                s.update(acc);
+            }
+            
             if (user.getId() == null) {
-                Account acc = new Account();
                 acc.setUsername(user.getUsername());
                 acc.setPassword(user.getPassword());
                 acc.setUserRole("ROLE_USER");
@@ -66,13 +79,7 @@ public class UserRepositoryImpl implements UserRepository{
                 user.setAccountId(acc);
                 s.save(user);
             } else {
-                s.update(user);
-                Account acc = new Account();
-                acc = this.accRepo.getAccountById(user.getAccountId().getId());
-                acc.setUsername(user.getUsername());
-                acc.setPassword(user.getPassword());
-                acc.setUserRole("ROLE_EMP");
-                s.update(acc);
+                s.update(u);
             }
             return true;
         } catch (HibernateException ex) {
@@ -84,7 +91,11 @@ public class UserRepositoryImpl implements UserRepository{
     @Override
     public User getUserById(int id) {
          Session s = this.factory.getObject().getCurrentSession();
-         return s.get(User.class, id);
+         User u = s.get(User.class, id);
+         u.setUsername(u.getAccountId().getUsername());
+         u.setPassword(u.getAccountId().getPassword());
+         u.setConfirmPassword(u.getAccountId().getPassword());
+         return u;
     }
 
     @Override
@@ -92,12 +103,23 @@ public class UserRepositoryImpl implements UserRepository{
       Session s = this.factory.getObject().getCurrentSession();
       try {
             User u = this.getUserById(id);
+            Account a = this.accRepo.getAccountById(u.getAccountId().getId());
             s.delete(u);
+            s.delete(a);
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public User getUserByAccId(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From User Where account_id=:un");
+        q.setParameter("un", id);
+        
+        return (User) q.getSingleResult();
     }
     
 }

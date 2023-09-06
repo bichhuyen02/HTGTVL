@@ -89,4 +89,9 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Company> getCompaniesByAccIdF() {
         return this.companyRepo.getCompaniesByAccIdF();
     }
+
+    @Override
+    public Company getCompanyByAccId(int id) {
+        return this.companyRepo.getCompanyByAccId(id);
+    }
 }

@@ -44,7 +44,6 @@ public class Comment implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -56,7 +55,7 @@ public class Comment implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_time")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date createTime;
     
     @JoinColumn(name = "company_id", referencedColumnName = "id")

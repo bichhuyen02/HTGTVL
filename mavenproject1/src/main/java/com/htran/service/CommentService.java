@@ -4,17 +4,15 @@
  */
 package com.htran.service;
 
-import com.htran.pojo.User;
+import com.htran.pojo.Comment;
+import com.htran.pojo.Company;
 import java.util.List;
-import java.util.Map;
+
 /**
  *
  * @author Admin
  */
-public interface UserService{
-    List<User> getUsers(Map<String, String> params);
-    boolean addOrUpdateUser(User user);
-    User getUserById(int id);
-    User getUserByAccId(int id);
-    boolean deleteUser(int id);
+public interface CommentService {
+  List<Comment> getCommentsbyCompanyId(Company com);
+  boolean addComment(Comment cmt);
 }

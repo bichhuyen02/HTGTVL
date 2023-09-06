@@ -34,7 +34,6 @@ public class CompanyController {
     
     @RequestMapping("/companies")
     public String major(Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("companies", this.companyService.getCompanies(params));
         model.addAttribute("companiesT", this.companyService.getCompaniesByAccIdT());
         model.addAttribute("companiesF", this.companyService.getCompaniesByAccIdF());
         return "companies";

@@ -36,7 +36,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
-    
+
     @Autowired
     private AccountRepository accRepo;
 
@@ -63,7 +63,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
             q.where(predicates.toArray(Predicate[]::new));
         }
-        
+
         q.orderBy(b.desc(root.get("id")));
 
         Query query = s.createQuery(q);
@@ -74,25 +74,31 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     public boolean addOrUpdateCompany(Company c) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
+            Account acc = new Account();
+            Company com = c;
+            if(c.getId() != null){
+                //com = this.getCompanyById(c.getId());
+                
+                int id = com.getAccountId().getId();
+                acc = this.accRepo.getAccountById(id);
+
+                acc.setUsername(com.getUsername());
+                acc.setPassword(com.getPassword());
+                acc.setUserRole("ROLE_EMP");
+                s.update(acc);
+            }
+            
             if (c.getId() == null) {
-                Account acc = new Account();
                 acc.setUsername(c.getUsername());
                 acc.setPassword(c.getPassword());
                 acc.setUserRole("ROLE_EMP");
                 acc.setActive(Boolean.FALSE);
                 s.save(acc);
-                
+
                 c.setAccountId(acc);
                 s.save(c);
             } else {
-                s.update(c);
-                Account acc = new Account();
-                acc = this.accRepo.getAccountById(c.getAccountId().getId());
-                acc.setUsername(c.getUsername());
-                acc.setPassword(c.getPassword());
-                acc.setUserRole("ROLE_EMP");
-                s.update(acc);
-                
+                s.update(com);
             }
 
             return true;
@@ -105,15 +111,21 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     @Override
     public Company getCompanyById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
-        return s.get(Company.class, id);
+        Company c = s.get(Company.class, id);
+        c.setUsername(c.getAccountId().getUsername());
+        c.setPassword(c.getAccountId().getPassword());
+        c.setConfirmPassword(c.getAccountId().getPassword());
+        return c;
     }
-    
+
     @Override
     public boolean deleteCompany(int id) {
-       Session s = this.factory.getObject().getCurrentSession();
-      try {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
             Company c = this.getCompanyById(id);
+            Account a = this.accRepo.getAccountById(c.getAccountId().getId());
             s.delete(c);
+            s.delete(a);
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
@@ -140,22 +152,22 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     public List<Company> getCompaniesByAccIdT() {
         List<Company> c = new ArrayList<>();
         List<Account> acc = this.accRepo.getAccountByActiveTrue();
-        
+
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Company> q = b.createQuery(Company.class);
         Root root = q.from(Company.class);
         q.select(root);
-        
+
         for (Account a : acc) {
             Predicate predicates = b.equal(root.get("accountId"), a.getId());
             q.where(predicates);
-            
+
             q.orderBy(b.desc(root.get("id")));
 
             Query query = s.createQuery(q);
             c.addAll(query.getResultList());
-        }     
+        }
         return c;
     }
 
@@ -163,23 +175,32 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     public List<Company> getCompaniesByAccIdF() {
         List<Company> c = new ArrayList<>();
         List<Account> acc = this.accRepo.getAccountByActiveFalse();
-        
+
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Company> q = b.createQuery(Company.class);
         Root root = q.from(Company.class);
         q.select(root);
-        
+
         for (Account a : acc) {
             Predicate predicates = b.equal(root.get("accountId"), a.getId());
             q.where(predicates);
-            
+
             q.orderBy(b.desc(root.get("id")));
 
             Query query = s.createQuery(q);
             c.addAll(query.getResultList());
-        }     
+        }
         return c;
+    }
+
+    @Override
+    public Company getCompanyByAccId(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Company Where account_id=:un");
+        q.setParameter("un", id);
+        
+        return (Company) q.getSingleResult();
     }
 
 }

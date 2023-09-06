@@ -4,6 +4,7 @@
  */
 package com.htran.service.impl;
 
+import com.htran.pojo.Company;
 import com.htran.pojo.Job;
 import com.htran.repository.JobRepository;
 import com.htran.service.JobService;
@@ -61,6 +62,11 @@ public class JobServiceImpl implements JobService {
     @Override
     public boolean deleteJob(int id) {
         return this.jobRepo.deleteJob(id);
+    }
+
+    @Override
+    public List<Job> getJobsByComId(Company com) {
+        return this.jobRepo.getJobsByComId(com);
     }
 
     

@@ -6,6 +6,8 @@ package com.htran.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.htran.handlers.LoginSuccessHandler;
+import com.htran.handlers.LogoutSuccessHandler;
 import java.text.SimpleDateFormat;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +36,23 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
     "com.htran.controllers",
     "com.htran.repository",
     "com.htran.service",
-    "com.htran.formatters"
+    "com.htran.formatters",
+    "com.htran.handlers"
 })
 //@PropertySource("classpath:configs.properties")
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
-    
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private UserDetailsService userDetailsService;
+
     @Resource
     private Environment env;
+
+    @Autowired
+    private LoginSuccessHandler loginHandler;
+    
+    @Autowired
+    private LogoutSuccessHandler logoutHandler;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -65,24 +75,30 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
         http.formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password");
-        
-        http.formLogin().defaultSuccessUrl("/")
-                .failureUrl("/login?error");
-        
-        http.logout().logoutSuccessUrl("/login");
-        
+
+        http.formLogin().successHandler(this.loginHandler).failureUrl("/login?error");
+
+        http.logout().addLogoutHandler(this.logoutHandler);;
+
         http.exceptionHandling()
                 .accessDeniedPage("/login?accessDenied");
+
+        http.authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/admin/**")
+                .access("hasRole('ROLE_ADMIN')");
         
-//        http.authorizeRequests().antMatchers("/").permitAll()
-//                .antMatchers("/**/add")
-//                .access("hasRole('ROLE_ADMIN')");
-//        .antMatchers("/**/pay")
-//                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+        http.authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/emp/**")
+                .access("hasRole('ROLE_EMP')");
+
+        http.authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/user/**")
+                .access("hasRole('ROLE_User')");
+        
         http.csrf().disable();
     }
-    
-     @Bean
+
+    @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
                 = new Cloudinary(ObjectUtils.asMap(
@@ -92,17 +108,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                         "secure", true));
         return cloudinary;
     }
-    
-    
-   @Bean
+
+    @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver
                 = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");
         return resolver;
     }
-    
-     @Bean
+
+    @Bean
     public SimpleDateFormat simpleDateFormat() {
         return new SimpleDateFormat("yyyy-MM-dd");
     }

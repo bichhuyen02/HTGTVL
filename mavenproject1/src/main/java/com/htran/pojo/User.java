@@ -106,66 +106,54 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "mail")
     private String mail;
-    
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "phone")
     private String phone;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "avatar")
     private String avatar;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "majors")
     private String majors;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "experience")
     private String experience;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 3)
     @Column(name = "gender")
     private String gender;
-    
     @OneToMany(mappedBy = "userId")
     private Set<Cv> cvSet;
-    
     @OneToMany(mappedBy = "userId")
     private Set<Rating> ratingSet;
-    
     @OneToMany(mappedBy = "userId")
     private Set<Comment> commentSet;
-    
     @OneToMany(mappedBy = "userId")
     private Set<Follow> followSet;
-    
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
-
+    
     @Transient
     private MultipartFile file;
     

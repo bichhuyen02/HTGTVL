@@ -13,9 +13,9 @@ import java.util.Map;
  * @author Admin
  */
 public interface UserRepository {
-//    User getUserByAccoutId(int id);
     List<User> getUsers(Map<String, String> params);
     boolean addOrUpdateUser(User user);
     User getUserById(int id);
+    User getUserByAccId(int id);
     boolean deleteUser(int id);
 }

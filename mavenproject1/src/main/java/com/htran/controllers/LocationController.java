@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author ACER
  */
 @Controller
+@RequestMapping("/admin")
 public class LocationController {
     @Autowired
     private LocationService locationService;

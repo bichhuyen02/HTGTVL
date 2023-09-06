@@ -15,14 +15,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="" />
     </definition>
     
-     <definition name="baseLayout2" template="/WEB-INF/layout/base.jsp">
+    <definition name="baseLayout2" template="/WEB-INF/layout/base.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="" />
         <put-attribute name="footer" value="" />
         <put-attribute name="content" value="" />
     </definition>
     
-         <definition name="baseLayout3" template="/WEB-INF/layout/base.jsp">
+    <definition name="baseLayout3" template="/WEB-INF/layout/base.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
         <put-attribute name="footer" value="" />
@@ -49,7 +49,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/jobDetail.jsp" />
     </definition>
     
-     <definition name="companyDetail" extends="baseLayout3">
+    <definition name="companyDetail" extends="baseLayout3">
         <put-attribute name="title" value="Chi Tiết Công Ty" />
         <put-attribute name="content" value="/WEB-INF/pages/companyDetail.jsp" />
     </definition>
@@ -74,9 +74,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/addLocation.jsp" />
     </definition>
     
-    
-    
-     <definition name="companies" extends="baseLayout">
+    <definition name="companies" extends="baseLayout">
         <put-attribute name="title" value="Doanh Nghiệp" />
         <put-attribute name="content" value="/WEB-INF/pages/company.jsp" />
     </definition>
@@ -99,6 +97,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
     <definition name="addUser" extends="baseLayout2">
         <put-attribute name="title" value="thêm người dùng" />
         <put-attribute name="content" value="/WEB-INF/pages/addUser.jsp" />
+    </definition>
+    
+    <definition name="applyCv" extends="baseLayout2">
+        <put-attribute name="title" value="nộp cv" />
+        <put-attribute name="content" value="/WEB-INF/pages/applyCv.jsp" />
     </definition>
 </tiles-definitions>
 

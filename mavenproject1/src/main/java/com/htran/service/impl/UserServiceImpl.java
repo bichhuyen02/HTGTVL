@@ -70,4 +70,9 @@ public class UserServiceImpl implements UserService {
     public boolean deleteUser(int id) {
         return this.userRepo.deleteUser(id);
     }
+
+    @Override
+    public User getUserByAccId(int id) {
+        return this.userRepo.getUserByAccId(id);
+    }
 }
