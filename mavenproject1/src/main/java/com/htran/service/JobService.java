@@ -4,6 +4,7 @@
  */
 package com.htran.service;
 
+import com.htran.pojo.Category;
 import com.htran.pojo.Company;
 import com.htran.pojo.Job;
 import java.util.List;
@@ -22,4 +23,5 @@ public interface JobService {
     boolean addOrUpdateJob(Job j);
     boolean deleteJob(int id);
     Job getJobById(int id);
+    List<Job> getJobsByCateId(Category cate);
 }

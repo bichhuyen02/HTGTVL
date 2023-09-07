@@ -56,9 +56,6 @@ public class JobControllers {
         if(acc.getUserRole()=="ROLE_EMP"){
             Company com = this.companyService.getCompanyByAccId(acc.getId());
             model.addAttribute("jobsC", this.jobService.getJobsByComId(com));
-        }else{
-            User u = this.userService.getUserByAccId(acc.getId());
-            model.addAttribute("jobs", this.jobService.getJobs(params));
         }
         
         

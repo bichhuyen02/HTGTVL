@@ -8,6 +8,7 @@ import com.htran.pojo.Cv;
 import com.htran.pojo.Job;
 import com.htran.repository.CvRepository;
 import com.htran.repository.JobRepository;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,13 @@ public class CvRepositoryImpl implements CvRepository{
             ex.printStackTrace();
             return false;
         }
+    }
+
+
+
+    @Override
+    public List<Cv> getCvByJobId(Job job) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

@@ -22,14 +22,14 @@
                         <a class="nav-link  " href="<c:url value="/jobs"/>"><strong>Công Việc</strong></a>
                     </li>
                 </se:authorize>
-               
-                
+
+
                 <se:authorize access="not hasRole('ROLE_EMP')">
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/companies"/>"><strong>Doanh Nghiệp</strong></a>
                     </li>
                 </se:authorize>
-                    
+
                 <se:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/admin/location"/>"><strong>Khu Vực</strong> </a>
@@ -41,17 +41,38 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/admin/user"/>"><strong>Người Dùng</strong> </a>
-                    </li>    
+                    </li>  
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="${action}"><strong>Thống Kê</strong></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><strong>Thống Kê</strong></a>
+                        <ul class="dropdown-menu">
+           
+                            <li class="dropdown-item">
+                                <a href="<c:url value="/admin/monthStats"/>">
+                                    <i class="fas fa-plus mr-2"></i>
+                                    <strong class="hide-nav">Doanh thu theo tháng</strong>
+                                </a> 
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="<c:url value="/admin/quarterStats"/>">
+                                    <i class="fas fa-plus mr-2"></i>
+                                    <strong class="hide-nav">Doanh thu theo quý</strong>
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="<c:url value="/admin/yearStats"/>">
+                                    <i class="fas fa-plus mr-2"></i>
+                                    <strong class="hide-nav">Doanh thu theo năm</strong>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </se:authorize>
-                    
+
                 <c:choose>
                     <c:when test="${pageContext.request.userPrincipal.name != null}">
                         <li class="nav-item">
-                            <a class="nav-link text-info" href="<c:url value="/" />">Chào ${pageContext.request.userPrincipal.name}!</a>
+                            <a class="nav-link text-info" href="<c:url value="/profile" />">Chào ${pageContext.request.userPrincipal.name}!</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<c:url value="/logout" />"><strong>Đăng Xuất</strong></a>

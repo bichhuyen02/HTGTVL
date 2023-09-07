@@ -89,7 +89,7 @@
 <se:authorize access="hasRole('ROLE_USER')">
     <div class="text-primary mt-4 mb-5 text-center"><h2>DANH SÁCH DOANH NGHIỆP</h2></div> 
     <hr></hr>
-
+<!--phan trang-->
     <div class="row mt-6 wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
         <div class="col-12">
             <div class="pagination text-small text-uppercase text-extra-dark-gray">
@@ -104,6 +104,7 @@
         </div>
     </div>
     <br>
+<!--    end phan trang -->
 
     <div class="container">
 

@@ -94,6 +94,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
     </definition>
     
+    <definition name="profiles" extends="baseLayout">
+        <put-attribute name="title" value="hồ sơ người dùng" />
+        <put-attribute name="content" value="/WEB-INF/pages/profile.jsp" />
+    </definition>
+    
     <definition name="addUser" extends="baseLayout2">
         <put-attribute name="title" value="thêm người dùng" />
         <put-attribute name="content" value="/WEB-INF/pages/addUser.jsp" />
@@ -103,5 +108,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="title" value="nộp cv" />
         <put-attribute name="content" value="/WEB-INF/pages/applyCv.jsp" />
     </definition>
+    
+    <definition name="stats" extends="baseLayout3">
+        <put-attribute name="title" value="Thống kê báo cáo" />
+        <put-attribute name="content" value="/WEB-INF/pages/stats.jsp" />
+    </definition>
+    
+    
+    <definition name="monthStats" extends="baseLayout3">
+        <put-attribute name="title" value="Thống kê theo tháng" />
+        <put-attribute name="content" value="/WEB-INF/pages/monthStats.jsp" />
+    </definition>
+    
+    <definition name="quarterStats" extends="baseLayout3">
+        <put-attribute name="title" value="Thống kê theo quý" />
+        <put-attribute name="content" value="/WEB-INF/pages/quarterStats.jsp" />
+    </definition>
+    
+    <definition name="yearStats" extends="baseLayout3">
+        <put-attribute name="title" value="Thống kê theo năm" />
+        <put-attribute name="content" value="/WEB-INF/pages/yearStats.jsp" />
+    </definition>
+    
 </tiles-definitions>
 

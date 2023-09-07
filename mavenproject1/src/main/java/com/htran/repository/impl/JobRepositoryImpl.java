@@ -4,9 +4,11 @@
  */
 package com.htran.repository.impl;
 
+import com.htran.pojo.Category;
 import com.htran.pojo.Company;
 import com.htran.pojo.Job;
 import com.htran.repository.JobRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
@@ -48,6 +50,20 @@ public class JobRepositoryImpl implements JobRepository {
         
         Query query = s.createQuery(q);
         if (params != null) {
+            List<Predicate> predicates = new ArrayList<>();
+            
+//            String kw = params.get("kw");
+//            if (kw != null && !kw.isEmpty()) {
+//                predicates.add(b.like(root.get("title"), String.format("%%%s%%", kw)));
+//            }
+
+//            String accId = params.get("accId");
+//            if (accId != null && !accId.isEmpty()) {
+//                predicates.add(b.equal(root.get("accountId"), Integer.parseInt(accId)));
+//            }
+
+            q.where(predicates.toArray(Predicate[]::new));
+            
             String page = params.get("page");
             int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
             if (page != null) {
@@ -113,6 +129,21 @@ public class JobRepositoryImpl implements JobRepository {
         q.select(root);
         Predicate predicates = b.equal(root.get("companyId"), com);
         q.orderBy(b.desc(root.get("id")));
+        q.where(predicates);
+
+        Query query = s.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Job> getJobsByCateId(Category cate) {
+        Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<Job> q = b.createQuery(Job.class);
+        Root root = q.from(Job.class);
+        q.select(root);
+        Predicate predicates = b.equal(root.get("categoryId"), cate);
+//        q.orderBy(b.desc(root.get("id")));
         q.where(predicates);
 
         Query query = s.createQuery(q);

@@ -12,8 +12,9 @@
 <link rel="stylesheet" href="<c:url value="/css/index1.css" />"/>
 <link rel="stylesheet" href="<c:url value="/css/search.css" />"/>
 
-<div class="text-primary mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
+
 <se:authorize access="hasRole('ROLE_ADMIN')">
+    <div class="text-primary mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
     <section>
         <div class="b">                
             <a href="<c:url value="/addJob" />" class="btn btn-success ">Thêm công việc</a>
@@ -85,6 +86,7 @@
 </se:authorize>
 
 <se:authorize access="hasRole('ROLE_EMP')">
+    <div class="text-primary mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
     <section>
         <div class="b">                
             <a href="<c:url value="/addJob" />" class="btn btn-success ">Thêm công việc</a>
@@ -156,22 +158,75 @@
 </se:authorize>
 
 <se:authorize access="hasRole('ROLE_USER')">
-    <!--phan trang-->
-    <div class="row mt-6 wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
-        <div class="col-12">
-            <div class="pagination text-small text-uppercase text-extra-dark-gray">
-                <ul>
-                    <li><a href="#!"><i class="fas fa-long-arrow-alt-left me-1 d-none d-sm-inline-block"></i> Prev</a></li>
-                    <li class="active"><a href="#!">1</a></li>
-                    <li><a href="#!">2</a></li>
-                    <li><a href="#!">3</a></li>
-                    <li><a href="#!">Next <i class="fas fa-long-arrow-alt-right ms-1 d-none d-sm-inline-block"></i></a></li>
-                </ul>
-            </div>
+        <div class="text-primary mt-4 mb-4 text-center"><h2>DANH SÁCH CÔNG VIỆC</h2></div>
+    <!--tim-->
+    <section class="d-flex" style=" justify-content: center; ">   
+        <div class="dropdown dropdown-menu-end ">
+            <button type="button" class="btn btn-info  dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-building"></i> Doanh nghiệp
+            </button>
+            <ul class="dropdown-menu">
+                <c:forEach items="${companies}" var="c">
+                    <c:url value="/" var="searchUrl">
+                        <c:param name="companyId" value="${c.id}" />
+                    </c:url>
+                    <li>
+                        <a class="dropdown-item" href="${searchUrl}">${c.name}</a>
+                    </li>
+                </c:forEach>
+            </ul>
         </div>
-    </div>
-    <br>
-    <!--    end phan trang -->
+
+        <div class="dropdown dropdown-menu-end ml-2">
+            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-location-dot"></i> Địa điểm
+            </button>
+            <ul class="dropdown-menu">
+                <c:forEach items="${locations}" var="c">
+                    <c:url value="/" var="searchUrl">
+                        <c:param name="locationId" value="${c.id}" />
+                    </c:url>
+                    <li>
+                        <a class="dropdown-item" href="${searchUrl}">${c.name}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+
+        <div class="dropdown dropdown-menu-end ml-2">
+            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-briefcase"></i> Ngành nghề
+            </button>
+            <ul class="dropdown-menu">
+                <c:forEach items="${categories}" var="c">
+                    <c:url value="/" var="searchUrl">
+                        <c:param name="cateId" value="${c.id}" />
+                    </c:url>
+                    <li>
+                        <a class="dropdown-item" href="${searchUrl}">${c.name}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+
+        <div class="dropdown dropdown-menu-end ml-2">
+            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa-regular fa-address-book"></i> Cấp bậc
+            </button>
+            <ul class="dropdown-menu">
+                <c:forEach items="${positions}" var="c">
+                    <c:url value="/" var="searchUrl">
+                        <c:param name="positionId" value="${c.id}" />
+                    </c:url>
+                    <li>
+                        <a class="dropdown-item" href="${searchUrl}">${c.name}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+        <button class="btn btn-primary ml-2" type="button">Tìm Kiếm</button>
+    </section>
+
     <section class="section">
         <div class="container">
             <div class="row">
@@ -199,5 +254,21 @@
                 </c:forEach>
             </div>
         </div>
+        <!--phan trang-->
+        <div class="row mt-6 wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
+            <div class="col-12">
+                <div class="pagination text-small text-uppercase text-extra-dark-gray">
+                    <ul>
+                        <li><a href="#!"><i class="fas fa-long-arrow-alt-left me-1 d-none d-sm-inline-block"></i> Prev</a></li>
+                        <li class="active"><a href="#!">1</a></li>
+                        <li><a href="#!">2</a></li>
+                        <li><a href="#!">3</a></li>
+                        <li><a href="#!">Next <i class="fas fa-long-arrow-alt-right ms-1 d-none d-sm-inline-block"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!--    end phan trang -->
     </section>
 </se:authorize>

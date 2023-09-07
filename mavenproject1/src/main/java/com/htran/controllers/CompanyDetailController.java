@@ -63,7 +63,7 @@ public class CompanyDetailController {
         cmt.setUserId(u);
         cmt.setCompanyId(com);
         if (this.cmtService.addComment(cmt) == true) {
-            return "companyDetail";
+            return "redirect:/companyDetail/{id}";
         }
         //}
         return "companyDetail";

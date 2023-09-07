@@ -5,6 +5,8 @@
 package com.htran.repository;
 
 import com.htran.pojo.Cv;
+import com.htran.pojo.Job;
+import java.util.List;
 
 /**
  *
@@ -12,4 +14,5 @@ import com.htran.pojo.Cv;
  */
 public interface CvRepository {
     boolean addCv(Cv cv);
+    List<Cv> getCvByJobId(Job job);
 }

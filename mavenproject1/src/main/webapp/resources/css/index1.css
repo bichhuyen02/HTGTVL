@@ -1,6 +1,6 @@
 body{
     background-color:#f1f7fc;
-    
+
 }
 /*user*/
 
@@ -56,13 +56,13 @@ img, svg {
 }
 /*end user*/
 /*chi tiet job*/
- .inf-content{
+.inf-content{
     border:1px solid #DDDDDD;
     -webkit-border-radius:10px;
     -moz-border-radius:10px;
     border-radius:10px;
     box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
-}	
+}
 /*chi tiết công ty+job*/
 
 .card {
@@ -380,7 +380,7 @@ img, svg {
 
 
 .box-shadow-only-hover:hover {
-  box-shadow: 0 1.5rem 3rem rgba(22, 28, 45, 0.1);
+    box-shadow: 0 1.5rem 3rem rgba(22, 28, 45, 0.1);
 }
 .border-color-gray {
     border-color: #6C7EE1 !important;
@@ -388,4 +388,6 @@ img, svg {
 .border-all-1 {
     border: 1px solid;
 }
+
+
 

@@ -4,6 +4,7 @@
  */
 package com.htran.service.impl;
 
+import com.htran.pojo.Category;
 import com.htran.pojo.Company;
 import com.htran.pojo.Job;
 import com.htran.repository.JobRepository;
@@ -69,6 +70,10 @@ public class JobServiceImpl implements JobService {
         return this.jobRepo.getJobsByComId(com);
     }
 
-    
+    @Override
+    public List<Job> getJobsByCateId(Category cate) {
+       return this.jobRepo.getJobsByCateId(cate);
+    }
+
 
 }
