@@ -5,16 +5,16 @@
 package com.htran.repository;
 
 import com.htran.pojo.Category;
+import com.htran.pojo.Job;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
-public interface CategoryRepository {
-    List<Category> getCategories(Map<String, String> params);
-    boolean addOrUpdateCategory(Category c);
-    boolean deleteCategory(int id);
-    Category getCategoryById(int id);
+public interface StatsRepository {
+    List<Object[]> statsMajor();
+    List<Object[]> statsRevenue(int year);
+    List<Object[]> quarterStats(int quarter, int year);
 }

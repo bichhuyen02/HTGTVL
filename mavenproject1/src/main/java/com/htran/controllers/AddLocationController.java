@@ -9,6 +9,8 @@ import com.htran.service.LocationService;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AddLocationController {
      @Autowired
     private LocationService locationService;
+     
+     @Autowired
+    private JavaMailSender mailSender;
     
     @GetMapping("/addLocation")
     public String addLocation(Model model, @RequestParam Map<String, String> params) {
@@ -45,7 +50,13 @@ public class AddLocationController {
             BindingResult rs) {
        //        if (!rs.hasErrors()) {
             if (this.locationService.addOrUpdateLocation(lctn) == true) {
-                return "redirect:/location";
+                  SimpleMailMessage simpleMail = new SimpleMailMessage();
+                simpleMail.setTo("2051050017anh@ou.edu.vn");
+                simpleMail.setSubject("Thông báo");
+                simpleMail.setText(lctn.getName());
+        
+                mailSender.send(simpleMail);
+                return "redirect:/admin/location";
             }
 //        }
         return "addLocation";

@@ -48,7 +48,7 @@ public class CommentRepositoryImpl implements CommentRepository{
 
     @Override
     public boolean addComment(Comment cmt) {
-         Session s = this.factory.getObject().getCurrentSession();
+        Session s = this.factory.getObject().getCurrentSession();
         try {
             s.save(cmt);
             return true;

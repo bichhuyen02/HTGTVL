@@ -11,6 +11,7 @@ import com.htran.service.LocationService;
 import com.htran.service.PositionService;
 import com.htran.service.UserService;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -57,8 +58,10 @@ public class IndexController {
     }
     
     @GetMapping("/")
-    public String index(Model model, @RequestParam Map<String, String> params) {
+    public String index(Model model, @RequestParam Map<String, String> params,  HttpSession session) {
         model.addAttribute("jobs", this.jobService.getJobs(params));
+        model.addAttribute("currentUser", session.getAttribute("currentUser"));
+
         return "index";
     }
    

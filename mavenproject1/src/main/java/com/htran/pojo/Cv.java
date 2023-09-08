@@ -5,6 +5,7 @@
 package com.htran.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,22 +36,9 @@ import org.springframework.web.multipart.MultipartFile;
 @NamedQueries({
     @NamedQuery(name = "Cv.findAll", query = "SELECT c FROM Cv c"),
     @NamedQuery(name = "Cv.findById", query = "SELECT c FROM Cv c WHERE c.id = :id"),
-    @NamedQuery(name = "Cv.findByCv", query = "SELECT c FROM Cv c WHERE c.cv = :cv")})
+    @NamedQuery(name = "Cv.findByCv", query = "SELECT c FROM Cv c WHERE c.cv = :cv"),
+    @NamedQuery(name = "Cv.findByDayCreate", query = "SELECT c FROM Cv c WHERE c.dayCreate = :dayCreate")})
 public class Cv implements Serializable {
-
-    /**
-     * @return the file
-     */
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    /**
-     * @param file the file to set
-     */
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,6 +55,9 @@ public class Cv implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "content")
     private String content;
+    @Column(name = "day_create")
+    @Temporal(TemporalType.DATE)
+    private Date dayCreate;
     @JoinColumn(name = "job_id", referencedColumnName = "id")
     @ManyToOne
     private Job jobId;
@@ -111,6 +104,14 @@ public class Cv implements Serializable {
         this.content = content;
     }
 
+    public Date getDayCreate() {
+        return dayCreate;
+    }
+
+    public void setDayCreate(Date dayCreate) {
+        this.dayCreate = dayCreate;
+    }
+
     public Job getJobId() {
         return jobId;
     }
@@ -150,6 +151,20 @@ public class Cv implements Serializable {
     @Override
     public String toString() {
         return "com.htran.pojo.Cv[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
     
 }

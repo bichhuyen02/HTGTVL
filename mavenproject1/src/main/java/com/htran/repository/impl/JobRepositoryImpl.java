@@ -45,33 +45,47 @@ public class JobRepositoryImpl implements JobRepository {
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Job> q = b.createQuery(Job.class);
         Root root = q.from(Job.class);
-        q.orderBy(b.desc(root.get("id")));
         q.select(root);
-        
-        Query query = s.createQuery(q);
+
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
-            
-//            String kw = params.get("kw");
-//            if (kw != null && !kw.isEmpty()) {
-//                predicates.add(b.like(root.get("title"), String.format("%%%s%%", kw)));
-//            }
 
-//            String accId = params.get("accId");
-//            if (accId != null && !accId.isEmpty()) {
-//                predicates.add(b.equal(root.get("accountId"), Integer.parseInt(accId)));
-//            }
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                predicates.add(b.like(root.get("title"), String.format("%%%s%%", kw)));
+            }
+
+            String locationId = params.get("locationId");
+            if (locationId != null && !locationId.isEmpty()) {
+                predicates.add(b.equal(root.get("locationId"), Integer.parseInt(locationId)));
+            }
+
+            String companyId = params.get("companyId");
+            if (companyId != null && !companyId.isEmpty()) {
+                predicates.add(b.equal(root.get("companyId"), Integer.parseInt(companyId)));
+            }
+
+            String positionId = params.get("positionId");
+            if (positionId != null && !positionId.isEmpty()) {
+                predicates.add(b.equal(root.get("positionId"), Integer.parseInt(positionId)));
+            }
+
+            String cateId = params.get("categoryId");
+            if (cateId != null && !cateId.isEmpty()) {
+                predicates.add(b.equal(root.get("categoryId"), Integer.parseInt(cateId)));
+            }
 
             q.where(predicates.toArray(Predicate[]::new));
-            
-            String page = params.get("page");
-            int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
-            if (page != null) {
-                query.setFirstResult((Integer.parseInt(page) - 1) * pageSize);
-                query.setMaxResults(pageSize);
-            }
         }
+        q.orderBy(b.desc(root.get("id")));
+        Query query = s.createQuery(q);
 
+        String page = params.get("page");
+        int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
+        if (page != null) {
+            query.setFirstResult((Integer.parseInt(page) - 1) * pageSize);
+            query.setMaxResults(pageSize);
+        }
         return query.getResultList();
 
     }
@@ -86,13 +100,13 @@ public class JobRepositoryImpl implements JobRepository {
 
     @Override
     public Job getJobById(int id) {
-         Session s = this.factory.getObject().getCurrentSession();
-         return s.get(Job.class, id);
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(Job.class, id);
     }
-    
+
     @Override
     public boolean addOrUpdateJob(Job j) {
-       Session s = this.factory.getObject().getCurrentSession();
+        Session s = this.factory.getObject().getCurrentSession();
         try {
             if (j.getId() == null) {
                 s.save(j);
@@ -110,7 +124,7 @@ public class JobRepositoryImpl implements JobRepository {
     @Override
     public boolean deleteJob(int id) {
         Session s = this.factory.getObject().getCurrentSession();
-      try {
+        try {
             Job j = this.getJobById(id);
             s.delete(j);
             return true;
@@ -142,17 +156,11 @@ public class JobRepositoryImpl implements JobRepository {
         CriteriaQuery<Job> q = b.createQuery(Job.class);
         Root root = q.from(Job.class);
         q.select(root);
-        Predicate predicates = b.equal(root.get("categoryId"), cate);
-//        q.orderBy(b.desc(root.get("id")));
+        Predicate predicates = b.equal(root.get("categoryId"), cate);;
         q.where(predicates);
 
         Query query = s.createQuery(q);
         return query.getResultList();
     }
 
-   
-
-    
 }
-
-

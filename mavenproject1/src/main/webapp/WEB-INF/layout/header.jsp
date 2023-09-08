@@ -71,9 +71,15 @@
 
                 <c:choose>
                     <c:when test="${pageContext.request.userPrincipal.name != null}">
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="<c:url value="/profile" />">Chào ${pageContext.request.userPrincipal.name}!</a>
+                        <li class="nav-item" >
+                            <!--<img src="${sessionScope.currentUser.username}" alt="Avatar" class="avatar">-->
+                            <a class="nav-link text-info" href="<c:url value="/profile" />">Chào ${sessionScope.currentUser.username}</a>
                         </li>
+                        
+<!--                        <li class="nav-item">
+                            <a class="nav-link text-info" href="<c:url value="/profile" />">Chào ${pageContext.request.userPrincipal.name}!</a>
+                        </li>-->
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="<c:url value="/logout" />"><strong>Đăng Xuất</strong></a>
                         </li>

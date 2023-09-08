@@ -5,6 +5,7 @@
 package com.htran.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,11 +19,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -36,6 +40,7 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
+    @NamedQuery(name = "User.findByBirthDate", query = "SELECT u FROM User u WHERE u.birthDate = :birthDate"),
     @NamedQuery(name = "User.findByMail", query = "SELECT u FROM User u WHERE u.mail = :mail"),
     @NamedQuery(name = "User.findByPhone", query = "SELECT u FROM User u WHERE u.phone = :phone"),
     @NamedQuery(name = "User.findByAvatar", query = "SELECT u FROM User u WHERE u.avatar = :avatar"),
@@ -43,6 +48,20 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "User.findByExperience", query = "SELECT u FROM User u WHERE u.experience = :experience"),
     @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender")})
 public class User implements Serializable {
+
+    /**
+     * @return the birthDate
+     */
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    /**
+     * @param birthDate the birthDate to set
+     */
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 
     /**
      * @return the file
@@ -106,50 +125,69 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "birth_date")
+    @Temporal(TemporalType.DATE)
+    private Date birthDate;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "mail")
     private String mail;
+    
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "phone")
     private String phone;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "avatar")
     private String avatar;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "majors")
     private String majors;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "experience")
     private String experience;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 3)
     @Column(name = "gender")
     private String gender;
+    
     @OneToMany(mappedBy = "userId")
     private Set<Cv> cvSet;
+    
     @OneToMany(mappedBy = "userId")
     private Set<Rating> ratingSet;
+    
     @OneToMany(mappedBy = "userId")
     private Set<Comment> commentSet;
+    
     @OneToMany(mappedBy = "userId")
     private Set<Follow> followSet;
+    
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
@@ -173,7 +211,7 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String name, String mail, String phone, String avatar, String majors, String experience, String gender) {
+    public User(Integer id, String name, Date birthDate, String mail, String phone, String avatar, String majors, String experience, String gender) {
         this.id = id;
         this.name = name;
         this.mail = mail;

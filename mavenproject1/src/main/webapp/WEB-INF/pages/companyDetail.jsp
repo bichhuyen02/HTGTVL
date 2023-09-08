@@ -53,17 +53,18 @@
                         </ul>                                        
                     </div>
                 </div>
-                <se:authorize access="!hasRole('ROLE_EMP')">
-                    <div class="card">
-                        <div class="header">
-                            <h2>Mời <small>Bạn đánh giá</small></h2>
-                        </div>
+
+                <div class="card">
+                    <div class="header">
+                        <h2>Mời <small>Bạn đánh giá</small></h2>
+                    </div>
+                    <se:authorize access="!hasRole('ROLE_EMP')">
                         <se:authorize access="!isAuthenticated()">
                             <a href="<c:url value="/login" />" class="btn btn-block btn-primary">Đăng nhập để bình luận</a>
                         </se:authorize>
                         <se:authorize access="hasRole('ROLE_USER')">
                             <div class="wrapper">
-                                
+
                                 <div class="container">
                                     <div class="star-container inactive">
                                         <i class="fas fa-star"></i>
@@ -103,12 +104,10 @@
                                             <button type="submit" class="btn btn-block btn-primary">Bình luận</button>
                                         </div>                                
                                 </form:form>
-
                             </div>
-                        </div>
+                        </se:authorize>
                     </se:authorize>
-
-                </se:authorize>
+                </div>
             </div>
 
             <div class="col-lg-4 col-md-12 right-box mt-4">
@@ -152,8 +151,6 @@
                                         <img src="https://www.bootdey.com/image/280x280/87CEFA/000000" alt="Awesome Image">                                            
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>

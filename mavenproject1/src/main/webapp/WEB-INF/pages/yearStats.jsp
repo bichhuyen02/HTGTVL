@@ -30,11 +30,11 @@
                 <th>Ngành nghề</th>
                 <th>Số lượng CV</th>
             </tr>
-            <c:forEach items="${Categories}" var="y">
+            <c:forEach items="${revenues}" var="c">
                 <tr>
-                    <td>${y.id}</td>
-                    <td>${y.name}</td>
-                    <td></td>
+                    <td>${c[0]}</td>
+                    <td>${c[1]}</td>
+                    <td>${c[2]}</td>
                 </tr>
             </c:forEach>
         </table>
@@ -48,7 +48,7 @@
             <b></b>
         </h2>
         <div class="canvasStats">
-            <canvas id="myChart4"></canvas>
+            <canvas id="myRevenueChart"></canvas>
         </div>
 
     </div>
@@ -58,15 +58,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="<c:url value="/js/stats.js" />"></script>
 <script>
-    window.onload = function () {
-        let data = [];
-        let labels = [];
-
-    <c:forEach items="${yearStats}" var="y">
-        data.push(${y.id});
-        labels.push('${y.name}');
+    let data1 = [], label1 = [];
+    <c:forEach items="${revenues}" var="c">
+    label1.push('${c[1]}');
+    data1.push(${c[2]});
     </c:forEach>
 
-        yearStats(labels, data);
+    window.onload = function () {
+        drawChart(data1, label1, "Doanh thu", "bar", "myRevenueChart");
     }
 </script>

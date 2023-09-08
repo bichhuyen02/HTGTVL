@@ -14,7 +14,7 @@
     <form:hidden path="id" />
     <form:hidden path="avatar" />
     <form:hidden path="accountId" />
-    
+
     <div class="card nen">
         <article class="card-body mx-auto" style="width: 45%;">
             <h2 class="card-title  text-center text-white">ĐĂNG KÝ TÀI KHOẢN</h2>
@@ -34,6 +34,13 @@
                     <form:input type="text" class="form-control" path="name" id="name" placeholder="Họ và tên" name="name" />
                 </div>
 
+                
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
+                    </div>
+                    <form:input type="date" class="form-control" path="birthDate" id="birthDate" placeholder="Ngày sinh" name="birthDate" />
+                </div>
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -78,14 +85,14 @@
                     </div>
                     <form:input class="form-control" type="text" path="majors" id="majors" placeholder="Chuyên ngành" name="majors" />
                 </div>
-                
-                 <div class="form-group input-group">
+
+                <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
                     <form:input class="form-control" type="text" path="experience" id="experience" placeholder="Kinh nghiệm" name="experience" />
                 </div>
-                
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
@@ -96,7 +103,7 @@
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="file" class="form-control" path="file" id="file" placeholder="avatar" name="file" />
                     <label for="logo">avatar</label>
-                     <c:if test="${addUsers.avatar != null}">
+                    <c:if test="${addUsers.avatar != null}">
                         <img src="${addUsers.avatar}" width="120" height="100" />
                     </c:if>
                 </div>

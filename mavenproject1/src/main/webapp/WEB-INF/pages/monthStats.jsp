@@ -40,11 +40,11 @@
                 <th>Số lượng CV</th>
             </tr>
 
-            <c:forEach items="${categories}" var="m">
+            <c:forEach items="${monthStats}" var="m">
                 <tr>
                     <td>${m.id}</td>
                     <td>${m.name}</td>
-                    <td></td>
+                    <td>${m.statsCv}</td>
 
                 </tr>
             </c:forEach>
@@ -68,16 +68,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="<c:url value="/js/stats.js" />"></script>
 <script>
-    window.onload = function () {
-        let data = [];
+     let data = [];
         let labels = [];
        
 
-    <c:forEach items="${categories}" var="m">
-        data.push(${m.id});
+    <c:forEach items="${monthStats}" var="m">
         labels.push('${m.name}');
+        data.push(${m.statsCv});
     </c:forEach>
-
+    window.onload = function () {
         monthStats(labels, data);
     }
 </script>

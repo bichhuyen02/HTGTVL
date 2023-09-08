@@ -58,7 +58,6 @@ public class UserRepositoryImpl implements UserRepository{
             Account acc = new Account();
             User u = user;
             if(user.getId() != null){
-                //com = this.getCompanyById(c.getId());
                 
                 int id = u.getAccountId().getId();
                 acc = this.accRepo.getAccountById(id);
@@ -69,7 +68,7 @@ public class UserRepositoryImpl implements UserRepository{
                 s.update(acc);
             }
             
-            if (user.getId() == null) {
+            if (user.getId() == null) {               
                 acc.setUsername(user.getUsername());
                 acc.setPassword(user.getPassword());
                 acc.setUserRole("ROLE_USER");
