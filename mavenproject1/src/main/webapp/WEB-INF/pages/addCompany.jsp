@@ -26,12 +26,12 @@
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
-                    <form:input type="text" class="form-control" path="mail" id="mail" placeholder="Mail" name="mail" />
+                    <form:input type="email" class="form-control" path="mail" id="mail" placeholder="Mail" name="mail" />
                     <label for="mail">Mail</label>
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
-                    <form:input type="text" class="form-control" path="phone" id="phone" placeholder="Số điện thoại" name="phone" />
+                    <form:input type="number" class="form-control" path="phone" id="phone" placeholder="Số điện thoại" name="phone" />
                     <label for="phone">Số điện thoại</label>
                 </div>
 
@@ -46,12 +46,12 @@
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
-                    <form:input type="text" class="form-control" path="description" id="description" placeholder="Mô tả" name="description" />
+                    <form:textarea rows ="3" class="form-control" path="description" id="description" placeholder="Mô tả" name="description" />
                     <label for="description">Mô tả</label>
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
-                    <form:input type="text" class="form-control" path="scale" id="scale" placeholder="Nhân lực" name="scale" />
+                    <form:input type="number" class="form-control" path="scale" id="scale" placeholder="Nhân lực" name="scale" />
                     <label for="scale">Nhân lực</label>
                 </div>
 
@@ -66,9 +66,14 @@
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
-                    <form:input type="text" class="form-control" path="password" id="password" placeholder="Mật khẩu" name="password" />
+                    <form:input type="password" class="form-control" path="password" id="password" placeholder="Mật khẩu" name="password" />
                     <label for="password">Mật khẩu</label>
-                </div>    
+                </div> 
+
+                <div class="form-floating mb-3 mt-3">
+                    <form:input type="password" class="form-control" path="confirmPassword" id="confirmPassword" placeholder=" Xác nhận mật khẩu" name="confirmPassword" />
+                    <label for="password">Xác nhận mật khẩu</label>
+                </div>   
 
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="file" class="form-control" path="file" id="file" placeholder="logo" name="file" />

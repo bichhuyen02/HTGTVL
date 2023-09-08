@@ -30,9 +30,11 @@
     box-shadow: none;
     border: 1px solid #00838f;
 }
-/*tim*/
-/*viec lam TUYEN GAP*/
 
+/*cong viec dang tuyen*/
+.congviec {
+    height:230px;
+}
 .hover-job:hover{
    border: 1px solid #0050d8 !important;
    box-shadow: 0px 0px 4px #0050d8 !important;
@@ -139,8 +141,10 @@ a {
     border-color:#777;
     transition:0.5s;
 }
-/*doanh nghiep tot nhat*/
-
+/*cong ty noi bat*/
+.media{
+    height:150px;
+}
 .p-15px {
     padding: 15px;
 }
@@ -158,14 +162,14 @@ a {
     margin-top: 15px;
     margin-bottom: 15px;
 }
-/*.overlay-link {
+.overlay-link {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     border: 0;
-}*/
+}
 .border-radius-50 {
     border-radius: 50%;
 }
@@ -224,9 +228,6 @@ font-size: 20px;
   color: rgba(113, 128, 150, 0.65);
 }
 
-.body-color {
-  color: #718096;
-}
 
 .white-color-light {
   color: rgba(255, 255, 255, 0.65);
@@ -411,63 +412,3 @@ a, a:active, a:focus {
     -o-transition-duration: .2s;
 }
 
-.pagination {
-    border-radius: 0;
-    padding: 0;
-    margin: 0
-}
-
-.pagination ul {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    margin: 0 auto;
-    padding: 0
-}
-
-.pagination li {
-    display: inline
-}
-
-.pagination a {
-    float: left;
-    padding: 0 18px;
-    line-height: 40px;
-    text-decoration: none;
-    border: 1px solid #dbdbdb;
-    border-left-width: 0;
-    background: #fff
-}
-
-.pagination a:hover {
-    background-color: #1d184a !important;
-    color: #fff !important;
-}
-
-.pagination .active a {
-    background-color: #f7f7f7;
-    color: #999;
-    cursor: default
-}
-
-.pagination .disabled span {
-    color: #999;
-    background-color: transparent;
-    cursor: default
-}
-
-.pagination .disabled a {
-    color: #999;
-    background-color: transparent;
-    cursor: default
-}
-
-.pagination .disabled a:hover {
-    color: #999;
-    background-color: transparent;
-    cursor: default
-}
-
-.pagination li:first-child a {
-    border-left-width: 1px
-}

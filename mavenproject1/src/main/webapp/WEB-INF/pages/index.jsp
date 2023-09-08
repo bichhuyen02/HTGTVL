@@ -87,8 +87,7 @@
                 <div class="col-sm-6 col-lg-4 m-15px-tb">
 
                     <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                        <!--                    <a class="overlay-link" href="#"></a>-->
-
+                                       
                         <div class="  border-radius-50 d-inline-block">
                             <img src="${c.image}" class="photohinh"alt="${c.name}">
 
@@ -100,17 +99,9 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
 
                             </div>
-                            <h6 class="m-5px-tb">${c.name}</h6>
+                              <a href="<c:url value="/companyDetail/${c.id}" />"> <h6 class="m-5px-tb">${c.name}</h6> </a> 
                         </div>
-                        <div class="col-md-4 mt-4 mt-sm-0 d-none d-md-block  ml-4">
-                            <div class="text-center text-md-end">
-                                <a href="<c:url value="/companyDetail/${c.id}" />" class="text-primary">
-                                    Xem chi tiết <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
-                                                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-                                                      class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12">
-                                           </line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
                 <c:set var="cout" value="${cout+1}"/>
@@ -199,7 +190,7 @@
 
                 <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2 ">
 
-                    <div class="card border-0 bg-light rounded shadow hover-job">
+                    <div class="card border-0 bg-light rounded shadow hover-job congviec">
                         <div class="card-body p-4 ">
 
                             <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">${j.jobNature}</span>

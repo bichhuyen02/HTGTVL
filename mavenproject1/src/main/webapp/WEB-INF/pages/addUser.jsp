@@ -83,22 +83,45 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input class="form-control" type="text" path="majors" id="majors" placeholder="Chuyên ngành" name="majors" />
+                    <form:select class="form-control" type="text" path="majors" id="majors" placeholder="Chuyên ngành" name="majors" >                    
+                        <form:option value="IT phần mềm">IT phần mềm</form:option>
+                        <form:option value="Kinh doanh/Bán hàng">Kinh doanh/Bán hàng</form:option>
+                        <form:option value="Hành chính/Văn phòng">Hành chính/Văn phòng</form:option>
+                        <form:option value="Giáo dục/Đào tạo">Giáo dục/Đào tạo</form:option>
+                        <form:option value="Tư vấn">Tư vấn</form:option>
+                        <form:option value="Marketing/Truyền thông/Quảng cáo">Marketing/Truyền thông/Quảng cáo</form:option>
+                        <form:option value="Kế toán/Kiểm toán">Kế toán/Kiểm toán</form:option>
+                        
+                    </form:select>
+                
                 </div>
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input class="form-control" type="text" path="experience" id="experience" placeholder="Kinh nghiệm" name="experience" />
+                    <form:select class="form-control" type="text" path="experience" id="experience" placeholder="Kinh nghiệm" name="experience" >                    
+                        <form:option value="Không yêu cầu kinh nghiệm">Không yêu cầu kinh nghiệm</form:option>
+                        <form:option value="Dưới 1 năm">Dưới 1 năm</form:option>
+                        <form:option value="Từ 2-5 năm">Từ 2-5 năm</form:option>
+                        <form:option value="Trên 5 năm">Trên 5 năm</form:option>
+                    </form:select>
+                   
                 </div>
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input class="form-control" type="text" path="gender" id="gender" placeholder="Giới Tính" name="gender" />
+                    
+                    <form:select class="form-control" path="gender" id="gender" placeholder="Giới Tính" name="gender" >                    
+                        <form:option value="Nam">Nam</form:option>
+                        <form:option value="Nữ">Nữ</form:option>
+                    </form:select>
+                    
                 </div>
+                    
+          
 
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="file" class="form-control" path="file" id="file" placeholder="avatar" name="file" />
