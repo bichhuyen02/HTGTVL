@@ -50,7 +50,7 @@ public class Comment implements Serializable {
     @Column(name = "content")
     private String content;
     @Basic(optional = false)
-    @NotNull
+ 
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;

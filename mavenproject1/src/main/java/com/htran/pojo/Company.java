@@ -157,9 +157,9 @@ public class Company implements Serializable {
     @Column(name = "mail")
     private String mail;
     
+    @Lob
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size( max = 255)
     @Column(name = "image")
     private String image;
     

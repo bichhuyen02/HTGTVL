@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -138,9 +139,10 @@ public class User implements Serializable {
     @Column(name = "phone")
     private String phone;
     
+    @Lob
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+
+    @Size( max = 255)
     @Column(name = "avatar")
     private String avatar;
     

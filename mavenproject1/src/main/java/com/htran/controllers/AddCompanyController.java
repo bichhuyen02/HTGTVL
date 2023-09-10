@@ -52,12 +52,12 @@ public class AddCompanyController {
         if (c.getPassword().equals(c.getConfirmPassword())) {
             if (!rs.hasErrors()) {
                 if (this.companyService.addOrUpdateCompany(c) == true) {
-                    SimpleMailMessage simpleMail = new SimpleMailMessage();
-                    simpleMail.setTo(c.getMail());
-                    simpleMail.setSubject("Thông báo");
-                    simpleMail.setText(c.getName() + " đã đăng kí thông tin của công ty thành công và hãy chờ quản trị duyệt");
-
-                    mailSender.send(simpleMail);
+//                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+//                    simpleMail.setTo(c.getMail());
+//                    simpleMail.setSubject("Thông báo");
+//                    simpleMail.setText(c.getName() + " đã đăng kí thông tin của công ty thành công và hãy chờ quản trị duyệt");
+//
+//                    mailSender.send(simpleMail);
                     return "redirect:/";
                 }
             }

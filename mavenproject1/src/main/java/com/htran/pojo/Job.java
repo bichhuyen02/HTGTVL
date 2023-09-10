@@ -96,7 +96,6 @@ public class Job implements Serializable {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
-    @NotNull
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;

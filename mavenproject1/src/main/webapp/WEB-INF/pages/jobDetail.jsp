@@ -15,8 +15,8 @@
 <div class="container bootstrap snippets bootdey mt-4 bg-white">
     <div class="panel-body inf-content">
         <div class="row">
-            <div class="col-md-4">
-                <img alt="" style="width:400px;" title="" class="rounded-circle img-thumbnail isTooltip mt-5 ml-3" src="${jobDetails.companyId.image}" data-original-title="Usuario"> 
+            <div class="col-md-4 ml-4">
+                <img alt="" style="width:300px; height:300px;" title="" class="rounded-circle img-thumbnail isTooltip mt-5 ml-4" src="${jobDetails.companyId.image}" data-original-title="Usuario"> 
             </div>
 
             <div class="col-md-6 mt-2">
@@ -51,7 +51,7 @@
                                 <td>
                                     <strong>
                                         <i class="fas fa-hourglass-half" style="color: #1459d2;"></i>  
-                                        Thời gian                                           
+                                       Hạn nộp hồ sơ                                          
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -62,8 +62,8 @@
                             <tr>        
                                 <td>
                                     <strong>
-                                        <i class="fas fa-graduation-cap" style="color: #0e5ce1;"></i>
-                                        Username                                                
+                                         <i class="fas fa-users" style="color: #146aff;"></i> 
+                                       Số lượng cần tuyển                                               
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -75,7 +75,7 @@
                                 <td>
                                     <strong>
                                         <i class="fas fa-briefcase" style="color: #125dde;"></i> 
-                                        Role                                                
+                                       Kinh nghiệm                                               
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -85,7 +85,7 @@
                             <tr>        
                                 <td>
                                     <strong>
-                                        <i class="fas fa-users" style="color: #146aff;"></i> 
+                                       <i class="fa fa-envelope" aria-hidden="true"style="color: #146aff;"></i> 
                                         Email                                                
                                     </strong>
                                 </td>

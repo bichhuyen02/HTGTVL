@@ -7,12 +7,14 @@ package com.htran.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.htran.pojo.Cv;
+import com.htran.pojo.Job;
 import com.htran.repository.CvRepository;
 import com.htran.service.CvService;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,6 +55,11 @@ public class CvServiceImpl implements CvService {
             }
         }
         return this.cvRepo.addCv(cv);
+    }
+
+    @Override
+    public List<Cv> getCv(int id) {
+        return this.cvRepo.getCv(id);
     }
 
 }

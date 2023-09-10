@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
-                    <form:input type="number" class="form-control" path="scale" id="scale" placeholder="Nhân lực" name="scale" />
+                    <form:input type="text" class="form-control" path="scale" id="scale" placeholder="Nhân lực" name="scale" />
                     <label for="scale">Nhân lực</label>
                 </div>
 

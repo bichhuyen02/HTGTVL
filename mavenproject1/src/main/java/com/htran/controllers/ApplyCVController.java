@@ -55,9 +55,9 @@ public class ApplyCVController {
     }
 
     @PostMapping("/jobDetail/{id}/applyCv")
-    public String add(@ModelAttribute(value = "addCv") @Valid Cv cv,
-            @PathVariable(value = "id") int id, Principal pricipal, BindingResult rs) {
-        if (!rs.hasErrors()) {
+    public String add(@ModelAttribute(value = "addCv") Cv cv,
+            @PathVariable(value = "id") int id, Principal pricipal) {
+//        if (!rs.hasErrors()) {
             Account acc = this.accService.getAccountByUsername(pricipal.getName());
             User u = new User();
             u = this.userService.getUserByAccId(acc.getId());
@@ -72,7 +72,7 @@ public class ApplyCVController {
                 simpleMail.setText(u.getName() + " đã nộp Cv cho "+ j.getTitle()+" thành công");
                 return "redirect:/jobDetail/{id}";
             }
-        }
+//        }
         return "applyCv";
     }
 }

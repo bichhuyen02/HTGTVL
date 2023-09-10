@@ -10,7 +10,7 @@
 <%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <script src="<c:url value="/js/main.js" />"></script>
 <link rel="stylesheet" href="<c:url value="/css/index1.css" />"/>
-<link rel="stylesheet" href="<c:url value="/css/search.css" />"/>
+<!--<link rel="stylesheet" href="<c:url value="/css/search.css" />"/>-->
 
 
 <se:authorize access="hasRole('ROLE_ADMIN')">
@@ -222,21 +222,6 @@
                 </c:forEach>
             </div>
         </div>
-        <!--phan trang-->
-        <div class="row mt-6 wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
-            <div class="col-12">
-                <div class="pagination text-small text-uppercase text-extra-dark-gray">
-                    <ul>
-                        <li><a href="#!"><i class="fas fa-long-arrow-alt-left me-1 d-none d-sm-inline-block"></i> Prev</a></li>
-                        <li class="active"><a href="#!">1</a></li>
-                        <li><a href="#!">2</a></li>
-                        <li><a href="#!">3</a></li>
-                        <li><a href="#!">Next <i class="fas fa-long-arrow-alt-right ms-1 d-none d-sm-inline-block"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <br>
-        <!--    end phan trang -->
+        
     </section>
 </se:authorize>

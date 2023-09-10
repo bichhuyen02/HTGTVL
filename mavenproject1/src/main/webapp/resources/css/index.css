@@ -1,6 +1,12 @@
+/*avatar*/
+.huyen{
+    text-align: center;
+}
+/*end*/
+
 /*menu*/
 .nav-item a{
-
+   
     font-size: 17px;
     color:#361D9D;
 }
@@ -10,6 +16,16 @@
 .navbar {
     background: linear-gradient(  #5567C9, #C7D7FB);
 }
+.imageavt{
+    width: 22% ;
+        
+}
+.hinhanhavt{
+    width:11% ;
+    font-size: 19px;
+}
+
+
 /*footer*/
 footer{
     

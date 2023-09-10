@@ -14,5 +14,5 @@ import java.util.List;
  */
 public interface CvRepository {
     boolean addCv(Cv cv);
-    List<Cv> getCvByJobId(Job job);
+    List<Cv> getCv(int id);
 }

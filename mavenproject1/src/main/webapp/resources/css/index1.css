@@ -1,7 +1,4 @@
-body{
-    background-color:#f1f7fc;
 
-}
 /*user*/
 
 .account-settings .user-profile {
@@ -108,9 +105,6 @@ body{
 }
 
 
-/*.single_post .body {
-    padding: 50px
-}*/
 
 .single_post .img-post {
     position: relative;
@@ -323,7 +317,7 @@ body{
     border-color: #f2f3fa;
 }
 .border-all-1 {
-    border: 1px solid;
+    border: 2px solid;
 }
 .hover-top {
     position: relative;
@@ -398,10 +392,6 @@ body{
     font-size: 21px;
 }
 
-
-.box-shadow-only-hover:hover {
-    box-shadow: 0 1.5rem 3rem rgba(22, 28, 45, 0.1);
-}
 .border-color-gray {
     border-color: #6C7EE1 !important;
 }

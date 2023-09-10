@@ -17,12 +17,19 @@
                 <se:authorize access="isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link  " href="<c:url value="/jobs"/>"><strong>Công Việc</strong></a>
-                    </li>   
+                    </li>                       
                 </se:authorize>
+                <se:authorize access="hasRole('ROLE_EMP')">
+                    <li class="nav-item text-danger"  >
+                        <a class="nav-link  " href="<c:url value="/cv"/>"><strong>Xem CV</strong></a>
+                    </li>
+                </se:authorize>
+                    
                 <se:authorize access="not hasRole('ROLE_EMP')">
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/companies"/>"><strong>Doanh Nghiệp</strong></a>
                     </li>
+
                 </se:authorize>
 
                 <se:authorize access="hasRole('ROLE_ADMIN')">
@@ -67,16 +74,17 @@
                 <c:choose>
                     <c:when test="${pageContext.request.userPrincipal.name != null}">
                         <se:authorize access="not hasRole('ROLE_ADMIN')">
-                            <li class="nav-item" >
-                                <a class="nav-link text-info" href="<c:url value="/profile" />">Chào
-                                    <img src="${sessionScope.currentUser.avatar}" alt="${sessionScope.currentUser.username}" class="avatar">
+                            <li class="hinhanhavt">
+                                <a class="nav-link text-danger huyen" href="<c:url value="/profile" />">
+                                    Chào
+                                    <img src="${sessionScope.currentUser.avatar}" alt="${sessionScope.currentUser.username}" class="imageavt rounded-circle">  
                                 </a>
                             </li>
                         </se:authorize>
                         <se:authorize access="hasRole('ROLE_ADMIN')">
                             <li class="nav-item" >
-                                <a class="nav-link text-info" href="<c:url value="/profile" />">
-                                    Chào "${sessionScope.currentUser.username}
+                                <a class="nav-link text-danger " href="<c:url value="/profile" />">
+                                    Chào ${sessionScope.currentUser.username}
                                 </a>
                             </li>
                         </se:authorize> 
