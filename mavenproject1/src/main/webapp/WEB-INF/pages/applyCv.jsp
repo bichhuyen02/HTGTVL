@@ -11,7 +11,8 @@
 
 <c:url value="/jobDetail/${jobDetails.id}/applyCv" var="action" />
 <form:form cssClass="container" modelAttribute="addCv" action="${action}" method="post" enctype="multipart/form-data">
-     <div class="card nen frm ">
+    <form:errors path="*" element="div" cssClass="alert alert-danger" /> 
+    <div class="card nen frm ">
         <article class="card-body mx-auto" style="width: 50%;">
             
             <h2 class="card-title  text-center text-white">QUẢN LÝ NGÀNH NGHỀ</h2>

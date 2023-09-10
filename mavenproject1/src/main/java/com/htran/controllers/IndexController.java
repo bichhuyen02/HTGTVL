@@ -61,7 +61,6 @@ public class IndexController {
     public String index(Model model, @RequestParam Map<String, String> params,  HttpSession session) {
         model.addAttribute("jobs", this.jobService.getJobs(params));
         model.addAttribute("currentUser", session.getAttribute("currentUser"));
-
         return "index";
     }
    

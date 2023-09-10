@@ -12,6 +12,7 @@
 <c:url value="/addCate" var="action" />
 
 <form:form cssClass="container " modelAttribute="addCates" action="${action}" method="post" enctype="multipart/form-data">
+    <form:errors path="*" element="div" cssClass="alert alert-danger" />
     <form:hidden path="id" />
 
     <div class="card nen frm ">

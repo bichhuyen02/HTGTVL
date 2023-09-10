@@ -50,10 +50,10 @@ public class JobControllers {
 
     @GetMapping("/jobs")
     public String job(Model model, @RequestParam Map<String, String> params, Principal pricipal) {
-        
+        String role = "ROLE_EMP";
         model.addAttribute("jobs", this.jobService.getJobs(params));
         Account acc = this.accService.getAccountByUsername(pricipal.getName());
-        if(acc.getUserRole()=="ROLE_EMP"){
+        if(acc.getUserRole().equals(role)){
             Company com = this.companyService.getCompanyByAccId(acc.getId());
             model.addAttribute("jobsC", this.jobService.getJobsByComId(com));
         }

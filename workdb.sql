@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: jobdb
+-- Host: localhost    Database: database
 -- ------------------------------------------------------
 -- Server version	8.0.34
 
@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `account`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_role` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_role` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `active` bit(1) DEFAULT b'1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'huyen','$2a$10$zWcnDj4aw6PVvFJK99EB3uRmsrXXyfC9PNzDDoNQIR7/j7XKFSXzC','ROLE_ADMIN',_binary ''),(2,'tran','$2a$10$zWcnDj4aw6PVvFJK99EB3uRmsrXXyfC9PNzDDoNQIR7/j7XKFSXzC','ROLE_ADMIN',_binary '');
+INSERT INTO `account` VALUES (1,'huyen','$2a$10$zWcnDj4aw6PVvFJK99EB3uRmsrXXyfC9PNzDDoNQIR7/j7XKFSXzC','ROLE_ADMIN',_binary ''),(2,'tran','$2a$10$zWcnDj4aw6PVvFJK99EB3uRmsrXXyfC9PNzDDoNQIR7/j7XKFSXzC','ROLE_ADMIN',_binary ''),(3,'admin','$2a$10$nUSp2WAOfSkkaLi8jLRk6OG7vHO.p0Fm0RJlGcfm5N9m1lX90ssxy','ROLE_EMP',_binary '\0'),(5,'user','$2a$10$swStb3WvWnG55mikEK605eJVtmonwoofKMdHYK/JrrRgvYLuqznEK','ROLE_USER',_binary ''),(6,'staff','$2a$10$E0nY0/jkENjT9w9UQHyZhe2/dZV7u6erwikbfN5ccDgpeA7DPBy.i','ROLE_USER',_binary '');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,8 +52,8 @@ DROP TABLE IF EXISTS `category`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -78,8 +78,8 @@ DROP TABLE IF EXISTS `comment`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comment` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `create_time` datetime NOT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `create_date` date NOT NULL,
   `company_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -109,21 +109,21 @@ DROP TABLE IF EXISTS `company`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `company` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_of_incorporation` date NOT NULL,
-  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `scale` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `account_id` int NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link_company` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scale` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mail` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `account_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `a_idx` (`account_id`),
   CONSTRAINT `a` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,6 +132,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
+INSERT INTO `company` VALUES (1,'cdass','272863599','2023-08-29','cdsffs','dcfdsfvsdvs','fvdsvss','cđscvdsvcds','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693639335/iafchk97op4ibuix1qja.jpg','0386858149',3);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +145,10 @@ DROP TABLE IF EXISTS `cv`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cv` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `cv` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cv` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `day_create` date NOT NULL,
+  `active` bit(1) DEFAULT b'1',
   `user_id` int DEFAULT NULL,
   `job_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -174,14 +178,12 @@ DROP TABLE IF EXISTS `follow`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `follow` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `content` bit(1) NOT NULL DEFAULT b'1',
+  `content` int NOT NULL,
+  `active` bit(1) DEFAULT b'1',
   `user_id` int DEFAULT NULL,
-  `company_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `use_i_idx` (`user_id`),
-  KEY `company_i_idx` (`company_id`),
-  CONSTRAINT `company_i` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `use_i` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -204,18 +206,18 @@ DROP TABLE IF EXISTS `job`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `job` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job_nature` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `salary` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `level` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_nature` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `salary` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `level` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_time` date NOT NULL,
   `out_off_time` date NOT NULL,
-  `quantity` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `experience` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `benefits` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `skill` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `experience` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `benefits` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `skill` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `position_id` int DEFAULT NULL,
   `location_id` int DEFAULT NULL,
   `company_id` int DEFAULT NULL,
@@ -230,7 +232,7 @@ CREATE TABLE `job` (
   CONSTRAINT `com` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `loca` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `posi` FOREIGN KEY (`position_id`) REFERENCES `position` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,6 +241,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
+INSERT INTO `job` VALUES (1,'hadhvfhsgvf','fsvdsvds\r\nfdssds','dsfsdfsdf','Full-time','100000-3000000','sfdsdfdsfds','2023-09-02','2023-09-14','fsvdsfdsf','fdsfdsfds','fsdgvsdvsd\r\nfvsdsded','fsđsf\r\ndfdsfdsffdsfdsfdfd',NULL,10,1,1),(2,'đưfdadssa','addcsas','adasd','Part-time','100000-3000000','ádsad','2023-09-02','2023-09-13','áda','áds','sdads','adsada',NULL,10,1,1);
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,8 +254,8 @@ DROP TABLE IF EXISTS `location`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `location` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -277,8 +280,8 @@ DROP TABLE IF EXISTS `position`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `position` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -295,36 +298,6 @@ INSERT INTO `position` VALUES (1,'Thực Tập Sinh',NULL),(2,'Nhân Viên',NULL
 UNLOCK TABLES;
 
 --
--- Table structure for table `rating`
---
-
-DROP TABLE IF EXISTS `rating`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `rating` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `rate` int NOT NULL,
-  `company_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `user_idx` (`user_id`),
-  KEY `cm_idx` (`company_id`),
-  CONSTRAINT `cm` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `rating`
---
-
-LOCK TABLES `rating` WRITE;
-/*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rating` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user`
 --
 
@@ -333,20 +306,19 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `birth_date` date NOT NULL,
-  `mail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `majors` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `experience` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gender` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `account_id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `majors` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `experience` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `account_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `acc_idx` (`account_id`),
   CONSTRAINT `acc` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -355,6 +327,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Tsần Thị Bích Huyền','2051050172huyen@ou.edu.vn','0386858149','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693640530/yndxn0be5gcn4qj3iu0a.jpg','IT','không có','nữ',5),(2,'Nguyễn Ngọc Huyền Trân','2051050172huyen@ou.edu.vn','0386858149','https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693665240/mnhfjykbuef5jokoiwap.jpg','it','không có','nữ',6);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -367,4 +340,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-03 13:25:18
+-- Dump completed on 2023-09-09 23:25:11

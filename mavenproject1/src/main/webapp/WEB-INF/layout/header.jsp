@@ -12,18 +12,13 @@
 <nav class="navbar navbar-expand-sm p-3 " >
     <div class="container-fluid ">
         <a class="navbar-brand text-white" href="${action}">JOB24H-WEBSITE</a>
-        <!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>-->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto"> 
                 <se:authorize access="isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link  " href="<c:url value="/jobs"/>"><strong>Công Việc</strong></a>
-                    </li>
+                    </li>   
                 </se:authorize>
-
-
                 <se:authorize access="not hasRole('ROLE_EMP')">
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/companies"/>"><strong>Doanh Nghiệp</strong></a>
@@ -46,7 +41,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><strong>Thống Kê</strong></a>
                         <ul class="dropdown-menu">
-           
+
                             <li class="dropdown-item">
                                 <a href="<c:url value="/admin/monthStats"/>">
                                     <i class="fas fa-plus mr-2"></i>
@@ -71,13 +66,21 @@
 
                 <c:choose>
                     <c:when test="${pageContext.request.userPrincipal.name != null}">
-                        <li class="nav-item" >
-                            <!--<img src="${sessionScope.currentUser.username}" alt="Avatar" class="avatar">-->
-                            <a class="nav-link text-info" href="<c:url value="/profile" />">Chào ${sessionScope.currentUser.username}</a>
-                        </li>
-                        
+                        <se:authorize access="not hasRole('ROLE_ADMIN')">
+                            <li class="nav-item" >
+                                <a class="nav-link text-info" href="<c:url value="/profile" />">Chào
+                                    <img src="${sessionScope.currentUser.avatar}" alt="${sessionScope.currentUser.username}" class="avatar">
+                                </a>
+                            </li>
+                        </se:authorize>
+                        <se:authorize access="hasRole('ROLE_ADMIN')">
+                            <li class="nav-item" >
+                                <a class="nav-link text-info" href="<c:url value="/profile" />">
+                                    Chào "${sessionScope.currentUser.username}
+                                </a>
+                            </li>
+                        </se:authorize> 
 
-                        
                         <li class="nav-item">
                             <a class="nav-link" href="<c:url value="/logout" />"><strong>Đăng Xuất</strong></a>
                         </li>

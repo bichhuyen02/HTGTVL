@@ -7,9 +7,11 @@ package com.htran.controllers;
 import com.htran.pojo.Category;
 import com.htran.service.CategoryService;
 import java.util.Map;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +41,8 @@ public class AddCateController {
     }
     
     @PostMapping("/addCate")
-    public String add(@ModelAttribute(value = "addCates") Category c) {
+    public String add(@ModelAttribute(value = "addCates") @Valid Category c
+                    ,BindingResult rs) {
         if (this.cateService.addOrUpdateCategory(c) == true)
             return "redirect:/categories";
         

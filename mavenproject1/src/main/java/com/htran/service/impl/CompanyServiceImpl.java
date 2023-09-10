@@ -50,8 +50,10 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     @Transactional
-    public boolean addOrUpdateCompany(Company c) {
-        c.setPassword(this.passwordEncoder.encode(c.getPassword()));
+    public boolean addOrUpdateCompany(Company c) {       
+        if(c.getId()== null){
+            c.setPassword(this.passwordEncoder.encode(c.getPassword()));
+        }
         {
             if (!c.getFile().isEmpty()) {
                 try {

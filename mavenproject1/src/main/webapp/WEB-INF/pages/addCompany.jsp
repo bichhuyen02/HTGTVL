@@ -12,6 +12,7 @@
 <c:url value="/addCompany" var="action" />
 
 <form:form cssClass="container" modelAttribute="addCompanies" action="${action}" method="post" enctype="multipart/form-data">
+    <form:errors path="*" element="div" cssClass="alert alert-danger" />
     <form:hidden path="id" />
     <form:hidden path="image" />
     <form:hidden path="accountId" />

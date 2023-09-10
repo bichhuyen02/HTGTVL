@@ -11,6 +11,7 @@
 
 <c:url value="/addUser" var="action" />
 <form:form cssClass="container " modelAttribute="addUsers" action="${action}" method="post" enctype="multipart/form-data">
+    <form:errors path="*" element="div" cssClass="alert alert-danger" />
     <form:hidden path="id" />
     <form:hidden path="avatar" />
     <form:hidden path="accountId" />

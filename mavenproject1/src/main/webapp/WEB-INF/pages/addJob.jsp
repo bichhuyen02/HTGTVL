@@ -11,6 +11,7 @@
 
 <c:url value="/addJob" var="action" />
 <form:form cssClass="container " modelAttribute="addjobs" action="${action}" method="post" enctype="multipart/form-data">
+    <form:errors path="*" element="div" cssClass="alert alert-danger" />
     <form:hidden path="id" />
 
     <div class="card nen ">
@@ -76,6 +77,7 @@
                     <label for="jobNature" class="form-label">Loại</label>
                 </div>
 
+
                 <div class="form-group input-group">
                     <form:select class="form-select" id="categoryId" name="categoryId" path="categoryId">                      
                         <c:forEach items="${categories}" var="c">
@@ -93,7 +95,10 @@
                         </c:forEach>
                     </form:select>
                 </div>
-                
+
+
+
+
                 <div class="form-group input-group">
                     <form:select class="form-select" id="positionId" name="positionId" path="positionId">                      
                         <c:forEach items="${positions}" var="p">
@@ -130,25 +135,32 @@
                     </form:select>
                 </div>
 
-                <div class="form-group input-group">
-                    <form:select class="form-select" id="companyId" name="companyId" path="companyId">
-                        <c:forEach items="${companies}" var="c">
-                            <c:choose>
+                <se:authorize access="not hasRole('ROLE_EMP')">
+                    <div class="form-group input-group">
+                        <form:select class="form-select" id="companyId" name="companyId" path="companyId">
+                            <c:forEach items="${companies}" var="c">
+                                <c:choose>
 
-                                <c:when test="${c.id == addjobs.companyId.id}">
-                                    <option value="${c.id}" selected>${c.name}</option>
-                                </c:when>
+                                    <c:when test="${c.id == addjobs.companyId.id}">
+                                        <option value="${c.id}" selected>${c.name}</option>
+                                    </c:when>
 
-                                <c:otherwise>
-                                    <option value="${c.id}">${c.name}</option>
-                                </c:otherwise>
+                                    <c:otherwise>
+                                        <option value="${c.id}">${c.name}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </form:select>
+                    </div>
+                </se:authorize> 
 
-                            </c:choose>
-                        </c:forEach>
-                    </form:select>
-                </div>
-
-
+                <se:authorize access="hasRole('ROLE_EMP')">   
+                    <div class="form-group input-group">
+                        <form:select class="form-select" id="companyId" name="companyId" path="companyId" disabled="true">                      
+                            <option value="${jobsC.id}">${jobsC.name}</option>
+                        </form:select>
+                    </div> 
+                </se:authorize>
 
                 <div class="form-floating mb-3 mt-3 ">
                     <button type="submit" class="btn btn-info">

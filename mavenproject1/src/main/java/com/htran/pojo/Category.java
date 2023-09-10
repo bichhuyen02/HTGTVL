@@ -17,7 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,20 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
     @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name")})
 public class Category implements Serializable {
-
-    /**
-     * @return the statsCv
-     */
-    public int getStatsCv() {
-        return statsCv;
-    }
-
-    /**
-     * @param statsCv the statsCv to set
-     */
-    public void setStatsCv(int statsCv) {
-        this.statsCv = statsCv;
-    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,9 +53,6 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "categoryId")
     private Set<Job> jobSet;
 
-    @Transient
-    private int statsCv;
-    
     public Category() {
     }
 

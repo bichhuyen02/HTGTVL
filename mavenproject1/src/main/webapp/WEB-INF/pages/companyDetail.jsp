@@ -59,43 +59,15 @@
                         <h2>Mời <small>Bạn đánh giá</small></h2>
                     </div>
                     <se:authorize access="!hasRole('ROLE_EMP')">
+
                         <se:authorize access="!isAuthenticated()">
                             <a href="<c:url value="/login" />" class="btn btn-block btn-primary">Đăng nhập để bình luận</a>
                         </se:authorize>
-                        <se:authorize access="hasRole('ROLE_USER')">
-                            <div class="wrapper">
 
-                                <div class="container">
-                                    <div class="star-container inactive">
-                                        <i class="fas fa-star"></i>
-                                        <span class="number">1</span>
-                                    </div>
-                                    <div class="star-container inactive">
-                                        <i class="fas fa-star"></i>
-                                        <span class="number">2</span>
-                                    </div>
-                                    <div class="star-container inactive">
-                                        <i class="fas fa-star"></i>
-                                        <span class="number">3</span>
-                                    </div>
-                                    <div class="star-container inactive">
-                                        <i class="fas fa-star"></i>
-                                        <span class="number">4</span>
-                                    </div>
-                                    <div class="star-container inactive">
-                                        <i class="fas fa-star"></i>
-                                        <span class="number">5</span>
-                                    </div>
-                                </div>
-                                <button id="submit" disabled>Đánh giá</button>
-                                <div id="submit-section" class="hide">
-                                    <p id="submit-message">Cảm ơn bạn đã đánh giá !</p>
-                                </div>
-                            </div>
+                        <se:authorize access="hasRole('ROLE_USER')">                            
                             <br>
                             <div class="comment-form ">
                                 <form:form cssclass="row clearfix" modelAttribute="cmt" action="${action}" method="post" enctype="multipart/form-data">
-
                                     <div class="col-sm-12 ">
                                         <div class="form-group">
                                             <form:textarea rows="4" class="form-control no-resize" id="content" name="content"
@@ -160,4 +132,3 @@
 
     </div>
 </div>
-<script src="<c:url value="/js/comment.js" />"></script>

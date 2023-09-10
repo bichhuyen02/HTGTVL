@@ -5,7 +5,11 @@
 package com.htran.repository.impl;
 
 import com.htran.pojo.Account;
+import com.htran.pojo.Company;
+import com.htran.pojo.User;
 import com.htran.repository.AccountRepository;
+import com.htran.repository.CompanyRepository;
+import com.htran.repository.UserRepository;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -24,18 +28,44 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class AccountRepositoryImpl implements AccountRepository{
+public class AccountRepositoryImpl implements AccountRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
-    
+
+    @Autowired
+    private UserRepository userRepo;
+
+    @Autowired
+    private CompanyRepository compaRepo;
+
     @Override
     public Account getAccountByUsername(String username) {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("From Account Where username=:un");
         q.setParameter("un", username);
-        
-        return (Account) q.getSingleResult();
+
+        String role1 = "ROLE_EMP";
+        String role2 = "ROLE_USER";
+
+        Account acc = (Account) q.getSingleResult();
+        if (acc.getUserRole().equals(role1)) {
+            Company c = this.compaRepo.getCompanyByAccId(acc.getId());
+            acc.setName(c.getName());
+            acc.setMail(c.getMail());
+            acc.setPhone(c.getPhone());
+            acc.setDate(c.getDateOfIncorporation());
+            acc.setAvatar(c.getImage());
+        }
+        if (acc.getUserRole().equals(role2)) {
+            User u = this.userRepo.getUserByAccId(acc.getId());
+            acc.setName(u.getName());
+            acc.setMail(u.getMail());
+            acc.setPhone(u.getPhone());
+            acc.setDate(u.getBirthDate());
+            acc.setAvatar(u.getAvatar());
+        }
+        return acc;
     }
 
     @Override
@@ -46,7 +76,7 @@ public class AccountRepositoryImpl implements AccountRepository{
         Root root = q.from(Account.class);
         q.select(root);
         Predicate predicates = b.equal(root.get("active"), true);
-        
+
         q.where(predicates);
 
         Query query = s.createQuery(q);
@@ -61,7 +91,7 @@ public class AccountRepositoryImpl implements AccountRepository{
         Root root = q.from(Account.class);
         q.select(root);
         Predicate predicates = b.equal(root.get("active"), false);
-        
+
         q.where(predicates);
 
         Query query = s.createQuery(q);
@@ -73,5 +103,4 @@ public class AccountRepositoryImpl implements AccountRepository{
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(Account.class, id);
     }
-    
 }

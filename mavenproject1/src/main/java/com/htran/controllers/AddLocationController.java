@@ -29,7 +29,7 @@ public class AddLocationController {
      @Autowired
     private LocationService locationService;
      
-     @Autowired
+    @Autowired
     private JavaMailSender mailSender;
     
     @GetMapping("/addLocation")
@@ -48,9 +48,9 @@ public class AddLocationController {
     @PostMapping("/addLocation")
     public String add(@ModelAttribute(value = "addLocations") @Valid Location lctn,  
             BindingResult rs) {
-       //        if (!rs.hasErrors()) {
+               if (!rs.hasErrors()) {
             if (this.locationService.addOrUpdateLocation(lctn) == true) {
-                  SimpleMailMessage simpleMail = new SimpleMailMessage();
+                SimpleMailMessage simpleMail = new SimpleMailMessage();
                 simpleMail.setTo("2051050017anh@ou.edu.vn");
                 simpleMail.setSubject("Thông báo");
                 simpleMail.setText(lctn.getName());
@@ -58,7 +58,7 @@ public class AddLocationController {
                 mailSender.send(simpleMail);
                 return "redirect:/admin/location";
             }
-//        }
+        }
         return "addLocation";
     }
 }

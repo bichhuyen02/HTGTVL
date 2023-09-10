@@ -24,6 +24,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -37,8 +38,23 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Cv.findAll", query = "SELECT c FROM Cv c"),
     @NamedQuery(name = "Cv.findById", query = "SELECT c FROM Cv c WHERE c.id = :id"),
     @NamedQuery(name = "Cv.findByCv", query = "SELECT c FROM Cv c WHERE c.cv = :cv"),
-    @NamedQuery(name = "Cv.findByDayCreate", query = "SELECT c FROM Cv c WHERE c.dayCreate = :dayCreate")})
+    @NamedQuery(name = "Cv.findByDayCreate", query = "SELECT c FROM Cv c WHERE c.dayCreate = :dayCreate"),
+    @NamedQuery(name = "Cv.findByActive", query = "SELECT c FROM Cv c WHERE c.active = :active")})
 public class Cv implements Serializable {
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,28 +62,37 @@ public class Cv implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "cv")
     private String cv;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Lob
     @Size(max = 2147483647)
     @Column(name = "content")
     private String content;
+    
     @Column(name = "day_create")
     @Temporal(TemporalType.DATE)
     private Date dayCreate;
+    
+    @Column(name = "active")
+    private Boolean active;
+    
     @JoinColumn(name = "job_id", referencedColumnName = "id")
     @ManyToOne
     private Job jobId;
+    
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
-    
+
     @Transient
     private MultipartFile file;
-
+    
     public Cv() {
     }
 
@@ -112,6 +137,14 @@ public class Cv implements Serializable {
         this.dayCreate = dayCreate;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public Job getJobId() {
         return jobId;
     }
@@ -151,20 +184,6 @@ public class Cv implements Serializable {
     @Override
     public String toString() {
         return "com.htran.pojo.Cv[ id=" + id + " ]";
-    }
-
-    /**
-     * @return the file
-     */
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    /**
-     * @param file the file to set
-     */
-    public void setFile(MultipartFile file) {
-        this.file = file;
     }
     
 }

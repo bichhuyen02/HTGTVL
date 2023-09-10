@@ -87,7 +87,6 @@ public class JobRepositoryImpl implements JobRepository {
             query.setMaxResults(pageSize);
         }
         return query.getResultList();
-
     }
 
     @Override

@@ -5,6 +5,7 @@
 package com.htran.controllers;
 
 import com.htran.pojo.Account;
+import com.htran.pojo.Company;
 import com.htran.pojo.Cv;
 import com.htran.pojo.Job;
 import com.htran.pojo.User;
@@ -15,6 +16,7 @@ import com.htran.service.UserService;
 import java.security.Principal;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,46 +33,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ApplyCVController {
+
     @Autowired
     private CvService cvService;
-    
+
     @Autowired
     private AccountService accService;
-    
+
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private JobService jobService;
-    
+
     @GetMapping("/jobDetail/{id}/applyCv")
     public String addCv(Model model, @PathVariable(value = "id") int id) {
         model.addAttribute("addCv", new Cv());
-        model.addAttribute("jobDetails", this.jobService.getJobById(id));  
+        model.addAttribute("jobDetails", this.jobService.getJobById(id));
 
-        return "applyCv";
-    }           
-    
-    @PostMapping("/jobDetail/{id}/applyCv")
-    public String add(@ModelAttribute(value = "addCv") Cv cv,
-            @PathVariable(value = "id") int id, Principal pricipal) {
-//        if (!rs.hasErrors()) {
-        Account acc = this.accService.getAccountByUsername(pricipal.getName());
-        User u = new User();
-        u = this.userService.getUserByAccId(acc.getId());
-        cv.setUserId(u);
-        Job j = this.jobService.getJobById(id);
-        cv.setJobId(j);
-
-        if (this.cvService.addCv(cv) == true) {
-            return "redirect:/";
-        }
-        //}
         return "applyCv";
     }
-    
-//    @RequestMapping(value = "/applyCv", method = RequestMethod.GET)
-//    public String handleNext(@RequestMapping("next") String next){ 
-//        return "redirect:"+next;
-//    }
+
+    @PostMapping("/jobDetail/{id}/applyCv")
+    public String add(@ModelAttribute(value = "addCv") @Valid Cv cv,
+            @PathVariable(value = "id") int id, Principal pricipal, BindingResult rs) {
+        if (!rs.hasErrors()) {
+            Account acc = this.accService.getAccountByUsername(pricipal.getName());
+            User u = new User();
+            u = this.userService.getUserByAccId(acc.getId());
+            cv.setUserId(u);
+            Job j = this.jobService.getJobById(id);
+            cv.setJobId(j);
+
+            if (this.cvService.addCv(cv) == true) {
+                SimpleMailMessage simpleMail = new SimpleMailMessage();
+                simpleMail.setTo(u.getMail());
+                simpleMail.setSubject("Thông báo");
+                simpleMail.setText(u.getName() + " đã nộp Cv cho "+ j.getTitle()+" thành công");
+                return "redirect:/jobDetail/{id}";
+            }
+        }
+        return "applyCv";
+    }
 }

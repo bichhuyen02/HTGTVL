@@ -50,24 +50,26 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
-
             String kw = params.get("kw");
             if (kw != null && !kw.isEmpty()) {
                 predicates.add(b.like(root.get("name"), String.format("%%%s%%", kw)));
             }
-
             String accId = params.get("accId");
             if (accId != null && !accId.isEmpty()) {
                 predicates.add(b.equal(root.get("accountId"), Integer.parseInt(accId)));
             }
-
             q.where(predicates.toArray(Predicate[]::new));
         }
-
         q.orderBy(b.desc(root.get("id")));
-
         Query query = s.createQuery(q);
-        return query.getResultList();
+
+        List<Company> companies = query.getResultList();
+        for (Company c : companies) {
+            c.setUsername(c.getAccountId().getUsername());
+            c.setPassword(c.getAccountId().getPassword());
+            c.setConfirmPassword(c.getAccountId().getPassword());
+        }
+        return companies;
     }
 
     @Override
@@ -76,9 +78,9 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         try {
             Account acc = new Account();
             Company com = c;
-            if(c.getId() != null){
+            if (c.getId() != null) {
                 //com = this.getCompanyById(c.getId());
-                
+
                 int id = com.getAccountId().getId();
                 acc = this.accRepo.getAccountById(id);
 
@@ -87,7 +89,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
                 acc.setUserRole("ROLE_EMP");
                 s.update(acc);
             }
-            
+
             if (c.getId() == null) {
                 acc.setUsername(c.getUsername());
                 acc.setPassword(c.getPassword());
@@ -162,9 +164,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         for (Account a : acc) {
             Predicate predicates = b.equal(root.get("accountId"), a.getId());
             q.where(predicates);
-
             q.orderBy(b.desc(root.get("id")));
-
             Query query = s.createQuery(q);
             c.addAll(query.getResultList());
         }
@@ -185,9 +185,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         for (Account a : acc) {
             Predicate predicates = b.equal(root.get("accountId"), a.getId());
             q.where(predicates);
-
             q.orderBy(b.desc(root.get("id")));
-
             Query query = s.createQuery(q);
             c.addAll(query.getResultList());
         }
@@ -199,7 +197,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("From Company Where account_id=:un");
         q.setParameter("un", id);
-        
+
         return (Company) q.getSingleResult();
     }
 

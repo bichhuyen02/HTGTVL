@@ -50,20 +50,6 @@ import org.springframework.format.annotation.DateTimeFormat;
     @NamedQuery(name = "Job.findByExperience", query = "SELECT j FROM Job j WHERE j.experience = :experience")})
 public class Job implements Serializable {
 
-    /**
-     * @return the statsCv
-     */
-    public int getStatsCv() {
-        return statsCv;
-    }
-
-    /**
-     * @param statsCv the statsCv to set
-     */
-    public void setStatsCv(int statsCv) {
-        this.statsCv = statsCv;
-    }
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -166,9 +152,9 @@ public class Job implements Serializable {
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     @ManyToOne
     private Position positionId;
-
+    
     @Transient
-    private int statsCv;
+    private String image;
     
     public Job() {
     }
@@ -361,6 +347,20 @@ public class Job implements Serializable {
     @Override
     public String toString() {
         return "com.htran.pojo.Job[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
     }
     
 }

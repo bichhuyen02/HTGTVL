@@ -31,14 +31,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 @PropertySource("classpath:configs.properties")
-public class UserRepositoryImpl implements UserRepository{
-    
+public class UserRepositoryImpl implements UserRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
-    
+
     @Autowired
     private AccountRepository accRepo;
-    
+
     @Override
     public List<User> getUsers(Map<String, String> map) {
         Session s = this.factory.getObject().getCurrentSession();
@@ -48,17 +48,24 @@ public class UserRepositoryImpl implements UserRepository{
         q.select(root);
 
         Query query = s.createQuery(q);
-        return query.getResultList();
+
+        List<User> users = query.getResultList();
+        for (User u : users) {
+            u.setUsername(u.getAccountId().getUsername());
+            u.setPassword(u.getAccountId().getPassword());
+            u.setConfirmPassword(u.getAccountId().getPassword());
+        }
+        return users;
     }
-    
+
     @Override
     public boolean addOrUpdateUser(User user) {
-       Session s = this.factory.getObject().getCurrentSession();
+        Session s = this.factory.getObject().getCurrentSession();
         try {
             Account acc = new Account();
             User u = user;
-            if(user.getId() != null){
-                
+            if (user.getId() != null) {
+
                 int id = u.getAccountId().getId();
                 acc = this.accRepo.getAccountById(id);
 
@@ -67,14 +74,14 @@ public class UserRepositoryImpl implements UserRepository{
                 acc.setUserRole("ROLE_USER");
                 s.update(acc);
             }
-            
-            if (user.getId() == null) {               
+
+            if (user.getId() == null) {
                 acc.setUsername(user.getUsername());
                 acc.setPassword(user.getPassword());
                 acc.setUserRole("ROLE_USER");
                 acc.setActive(Boolean.TRUE);
                 s.save(acc);
-                
+
                 user.setAccountId(acc);
                 s.save(user);
             } else {
@@ -89,18 +96,18 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public User getUserById(int id) {
-         Session s = this.factory.getObject().getCurrentSession();
-         User u = s.get(User.class, id);
-         u.setUsername(u.getAccountId().getUsername());
-         u.setPassword(u.getAccountId().getPassword());
-         u.setConfirmPassword(u.getAccountId().getPassword());
-         return u;
+        Session s = this.factory.getObject().getCurrentSession();
+        User u = s.get(User.class, id);
+        u.setUsername(u.getAccountId().getUsername());
+        u.setPassword(u.getAccountId().getPassword());
+        u.setConfirmPassword(u.getAccountId().getPassword());
+        return u;
     }
 
     @Override
     public boolean deleteUser(int id) {
-      Session s = this.factory.getObject().getCurrentSession();
-      try {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
             User u = this.getUserById(id);
             Account a = this.accRepo.getAccountById(u.getAccountId().getId());
             s.delete(u);
@@ -117,8 +124,8 @@ public class UserRepositoryImpl implements UserRepository{
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("From User Where account_id=:un");
         q.setParameter("un", id);
-        
+
         return (User) q.getSingleResult();
     }
-    
+
 }

@@ -49,7 +49,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean addOrUpdateUser(User user) {
-        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        if(user.getId()== null){
+            user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        }
         if (!user.getFile().isEmpty()) {
             try {
                 Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));

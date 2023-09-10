@@ -40,28 +40,14 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
-    @NamedQuery(name = "User.findByBirthDate", query = "SELECT u FROM User u WHERE u.birthDate = :birthDate"),
     @NamedQuery(name = "User.findByMail", query = "SELECT u FROM User u WHERE u.mail = :mail"),
+    @NamedQuery(name = "User.findByBirthDate", query = "SELECT u FROM User u WHERE u.birthDate = :birthDate"),
     @NamedQuery(name = "User.findByPhone", query = "SELECT u FROM User u WHERE u.phone = :phone"),
     @NamedQuery(name = "User.findByAvatar", query = "SELECT u FROM User u WHERE u.avatar = :avatar"),
     @NamedQuery(name = "User.findByMajors", query = "SELECT u FROM User u WHERE u.majors = :majors"),
     @NamedQuery(name = "User.findByExperience", query = "SELECT u FROM User u WHERE u.experience = :experience"),
     @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender")})
 public class User implements Serializable {
-
-    /**
-     * @return the birthDate
-     */
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    /**
-     * @param birthDate the birthDate to set
-     */
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
 
     /**
      * @return the file
@@ -132,18 +118,18 @@ public class User implements Serializable {
     @Column(name = "name")
     private String name;
     
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "mail")
+    private String mail;
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
     @NotNull
     @Column(name = "birth_date")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "mail")
-    private String mail;
     
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
@@ -164,12 +150,9 @@ public class User implements Serializable {
     @Column(name = "majors")
     private String majors;
     
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "experience")
     private String experience;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 3)
@@ -180,9 +163,6 @@ public class User implements Serializable {
     private Set<Cv> cvSet;
     
     @OneToMany(mappedBy = "userId")
-    private Set<Rating> ratingSet;
-    
-    @OneToMany(mappedBy = "userId")
     private Set<Comment> commentSet;
     
     @OneToMany(mappedBy = "userId")
@@ -191,7 +171,7 @@ public class User implements Serializable {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
-    
+
     @Transient
     private MultipartFile file;
     
@@ -211,10 +191,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String name, Date birthDate, String mail, String phone, String avatar, String majors, String experience, String gender) {
+    public User(Integer id, String name, String mail, Date birthDate, String phone, String avatar, String majors, String experience, String gender) {
         this.id = id;
         this.name = name;
         this.mail = mail;
+        this.birthDate = birthDate;
         this.phone = phone;
         this.avatar = avatar;
         this.majors = majors;
@@ -244,6 +225,14 @@ public class User implements Serializable {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getPhone() {
@@ -293,15 +282,6 @@ public class User implements Serializable {
 
     public void setCvSet(Set<Cv> cvSet) {
         this.cvSet = cvSet;
-    }
-
-    @XmlTransient
-    public Set<Rating> getRatingSet() {
-        return ratingSet;
-    }
-
-    public void setRatingSet(Set<Rating> ratingSet) {
-        this.ratingSet = ratingSet;
     }
 
     @XmlTransient

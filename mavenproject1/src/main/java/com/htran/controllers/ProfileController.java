@@ -5,6 +5,7 @@
 package com.htran.controllers;
 
 import com.htran.service.UserService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +22,8 @@ public class ProfileController {
     private UserService userService;
      
     @GetMapping("/profile")
-    public String profile (Model model ) {
-        model.addAttribute("profiles", this.userService.getUserById(1));  
+    public String profile (Model model, HttpSession session ) {
+        model.addAttribute("currentUser", session.getAttribute("currentUser"));
         return "profiles";
     }
 }

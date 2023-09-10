@@ -63,5 +63,4 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> getAccountByActiveFalse() {
         return this.accRepo.getAccountByActiveFalse();
     }
-
 }

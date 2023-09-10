@@ -5,6 +5,7 @@
 package com.htran.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -17,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,35 +40,124 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Account.findByActive", query = "SELECT a FROM Account a WHERE a.active = :active")})
 public class Account implements Serializable {
 
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * @return the mail
+     */
+    public String getMail() {
+        return mail;
+    }
+
+    /**
+     * @param mail the mail to set
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    /**
+     * @return the avatar
+     */
+    public String getAvatar() {
+        return avatar;
+    }
+
+    /**
+     * @param avatar the avatar to set
+     */
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "username")
     private String username;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "user_role")
     private String userRole;
+    
     @Column(name = "active")
     private Boolean active;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<Company> companySet;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<User> userSet;
 
+    @Transient
+    private String name;
+    
+    @Transient
+    private Date date;
+    
+    @Transient
+    private String phone;
+    
+    @Transient
+    private String mail;
+    
+    @Transient
+    private String avatar;
+    
     public Account() {
     }
 

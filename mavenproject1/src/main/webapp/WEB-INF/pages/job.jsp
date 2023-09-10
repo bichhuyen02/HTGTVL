@@ -184,62 +184,59 @@
                     <c:forEach items="${positions}" var="c">
                         <option value="${c.id}">${c.name}</option>
                     </c:forEach>
-                    <select>
+                </select>
+            </div>
+
+            <div class="col">
+                <select class="form-select mb-2" name="categoryId" id="categoryId">
+                    <c:forEach items="${categories}" var="c">
+                        <option value="${c.id}">${c.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="col">
+                <button class="btn btn-primary mb-2" type="submit">Search</button>
+            </div>
+        </form>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <c:forEach items="${jobs}" var="j">
+                    <div class="col-sm-6 col-lg-4 m-15px-tb">
+                        <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
+
+                            <div class=" icon-50 border-radius-50 d-inline-block">
+                                <img src="${j.companyId.image}" class="rounded-circle photohinh"alt="${j.title}">
+                            </div>
+
+                            <div class="p-20px-l media-body">
+                                <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">${j.jobNature}</span>
+                                <a href="<c:url value="/jobDetail/${j.id}"/>"><h6 class="m-5px-tb">${j.title}</h6></a>
+
+                                <p class="m-0px font-small">${j.experience}</p>
+                            </div>
                         </div>
-
-                        <div class="col">
-                            <select class="form-select mb-2" name="categoryId" id="categoryId">
-                                <c:forEach items="${categories}" var="c">
-                                    <option value="${c.id}">${c.name}</option>
-                                </c:forEach>
-                                <select>
-                                    </div>
-
-
-                                    <div class="col">
-                                        <button class="btn btn-primary mb-2" type="submit">Search</button>
-                                    </div>
-                                    </form>
-                                    </section>
-                                    <section class="section">
-                                        <div class="container">
-                                            <div class="row">
-                                                <c:forEach items="${jobs}" var="j">
-                                                    <div class="col-sm-6 col-lg-4 m-15px-tb">
-                                                        <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-
-                                                            <div class=" icon-50 border-radius-50 d-inline-block">
-                                                                <img src="${j.companyId.image}" class="rounded-circle photohinh"alt="${j.title}">
-                                                            </div>
-
-                                                            <div class="p-20px-l media-body">
-                                                                <span class="theme2nd-bg white-color p-0px-tb p-10px-lr font-small border-radius-15">${j.jobNature}</span>
-                                                                <a href="<c:url value="/jobDetail/${j.id}"/>"><h6 class="m-5px-tb">${j.title}</h6></a>
-
-                                                                <p class="m-0px font-small">${j.experience}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                            
-                                                </c:forEach>
-                                            </div>
-                                        </div>
-                                        <!--phan trang-->
-                                        <div class="row mt-6 wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
-                                            <div class="col-12">
-                                                <div class="pagination text-small text-uppercase text-extra-dark-gray">
-                                                    <ul>
-                                                        <li><a href="#!"><i class="fas fa-long-arrow-alt-left me-1 d-none d-sm-inline-block"></i> Prev</a></li>
-                                                        <li class="active"><a href="#!">1</a></li>
-                                                        <li><a href="#!">2</a></li>
-                                                        <li><a href="#!">3</a></li>
-                                                        <li><a href="#!">Next <i class="fas fa-long-arrow-alt-right ms-1 d-none d-sm-inline-block"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <!--    end phan trang -->
-                                    </section>
-                                </se:authorize>
+                    </div>                                            
+                </c:forEach>
+            </div>
+        </div>
+        <!--phan trang-->
+        <div class="row mt-6 wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
+            <div class="col-12">
+                <div class="pagination text-small text-uppercase text-extra-dark-gray">
+                    <ul>
+                        <li><a href="#!"><i class="fas fa-long-arrow-alt-left me-1 d-none d-sm-inline-block"></i> Prev</a></li>
+                        <li class="active"><a href="#!">1</a></li>
+                        <li><a href="#!">2</a></li>
+                        <li><a href="#!">3</a></li>
+                        <li><a href="#!">Next <i class="fas fa-long-arrow-alt-right ms-1 d-none d-sm-inline-block"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!--    end phan trang -->
+    </section>
+</se:authorize>

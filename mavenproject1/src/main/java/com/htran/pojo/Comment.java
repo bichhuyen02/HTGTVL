@@ -23,7 +23,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -50,18 +49,14 @@ public class Comment implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "content")
     private String content;
-    
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;
-    
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
-    
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
