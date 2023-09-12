@@ -128,4 +128,12 @@ public class UserRepositoryImpl implements UserRepository {
         return (User) q.getSingleResult();
     }
 
+    @Override
+    public User addUser(User u, Account acc) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(acc);
+        u.setAccountId(acc);
+        s.save(u);
+        return u;
+    }
 }

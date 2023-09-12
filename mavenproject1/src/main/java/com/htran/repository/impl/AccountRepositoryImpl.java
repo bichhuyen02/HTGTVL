@@ -19,6 +19,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +39,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Autowired
     private CompanyRepository compaRepo;
+    
+    @Autowired
+    private BCryptPasswordEncoder passEncoder;
 
     @Override
     public Account getAccountByUsername(String username) {
@@ -51,6 +55,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         Account acc = (Account) q.getSingleResult();
         if (acc.getUserRole().equals(role1)) {
             Company c = this.compaRepo.getCompanyByAccId(acc.getId());
+            acc.setuId(c.getId());
             acc.setName(c.getName());
             acc.setMail(c.getMail());
             acc.setPhone(c.getPhone());
@@ -59,11 +64,15 @@ public class AccountRepositoryImpl implements AccountRepository {
         }
         if (acc.getUserRole().equals(role2)) {
             User u = this.userRepo.getUserByAccId(acc.getId());
+            acc.setuId(u.getId());
             acc.setName(u.getName());
             acc.setMail(u.getMail());
             acc.setPhone(u.getPhone());
             acc.setDate(u.getBirthDate());
             acc.setAvatar(u.getAvatar());
+            acc.setGender(u.getGender());
+            acc.setExperience(u.getExperience());
+            acc.setMajors(u.getMajors());
         }
         return acc;
     }
@@ -102,5 +111,11 @@ public class AccountRepositoryImpl implements AccountRepository {
     public Account getAccountById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(Account.class, id);
+    }
+    
+    @Override
+    public boolean authAccount(String username, String password) {
+        Account acc = this.getAccountByUsername(username);
+        return this.passEncoder.matches(password, acc.getPassword());
     }
 }

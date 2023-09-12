@@ -47,6 +47,7 @@ public class CvRepositoryImpl implements CvRepository{
     public boolean addCv(Cv cv) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
+            cv.setActive(Boolean.FALSE);
             s.save(cv);
             return true;
         } catch (HibernateException ex) {
@@ -54,8 +55,6 @@ public class CvRepositoryImpl implements CvRepository{
             return false;
         }
     }
-
-
 
     @Override
     public List<Cv> getCv(int id) {
@@ -69,14 +68,52 @@ public class CvRepositoryImpl implements CvRepository{
         q.select(root);
         
         for (Job j : jobs) {
-            Predicate predicates = b.equal(root.get("jobId"), j.getId());
-            q.where(predicates);
+            List<Predicate> predicates = new ArrayList<>();
+            predicates.add(b.equal(root.get("jobId"), j.getId()));
+            predicates.add(b.equal(root.get("active"), false));
+            q.where(predicates.toArray(Predicate[]::new));
             q.orderBy(b.desc(root.get("id")));
             Query query = s.createQuery(q);
             cv.addAll(query.getResultList());
         }
-        
         return cv; 
+    }
+
+    @Override
+    public boolean deleteCv(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+      try {
+            Cv c = this.getCvById(id);
+            s.delete(c);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Cv getCvById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+         return s.get(Cv.class, id);
+    }
+
+    @Override
+    public boolean UpdateActive(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Cv c = this.getCvById(id);
+        Job j = this.jobRepo.getJobById(c.getJobId().getId());
+        
+        try {
+            c.setActive(Boolean.TRUE);
+            s.update(c);
+            j.setQuantity(j.getQuantity()-1);
+            s.update(j);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
     
 }

@@ -46,7 +46,6 @@ public class CvServiceImpl implements CvService {
                         .parse(this.simpleDateFormat.format(currentDate)));
                 Map res = this.cloudinary.uploader().upload(cv.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
                 cv.setCv(res.get("secure_url").toString());
-                cv.setActive(Boolean.FALSE);
             } catch (IOException ex) {
                 Logger.getLogger(CvServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -60,6 +59,21 @@ public class CvServiceImpl implements CvService {
     @Override
     public List<Cv> getCv(int id) {
         return this.cvRepo.getCv(id);
+    }
+
+    @Override
+    public Cv getCvById(int id) {
+        return this.cvRepo.getCvById(id);
+    }
+
+    @Override
+    public boolean deleteCv(int id) {
+        return this.cvRepo.deleteCv(id);
+    }
+
+    @Override
+    public boolean UpdateActive(int id) {
+        return this.cvRepo.UpdateActive(id);
     }
 
 }

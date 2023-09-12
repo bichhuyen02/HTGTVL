@@ -4,6 +4,7 @@
  */
 package com.htran.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -49,6 +50,20 @@ import org.springframework.format.annotation.DateTimeFormat;
     @NamedQuery(name = "Job.findByQuantity", query = "SELECT j FROM Job j WHERE j.quantity = :quantity"),
     @NamedQuery(name = "Job.findByExperience", query = "SELECT j FROM Job j WHERE j.experience = :experience")})
 public class Job implements Serializable {
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -96,6 +111,7 @@ public class Job implements Serializable {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
+    @NotNull
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;
@@ -109,9 +125,8 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "quantity")
-    private String quantity;
+    private int quantity;
     
     @Basic(optional = false)
     @NotNull
@@ -133,25 +148,30 @@ public class Job implements Serializable {
     @Column(name = "skill")
     private String skill;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "jobId")
     private Set<Cv> cvSet;
     
+    @JsonIgnore
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
     private Category categoryId;
     
+    @JsonIgnore
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
     
+    @JsonIgnore
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     @ManyToOne
     private Location locationId;
     
+    @JsonIgnore
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     @ManyToOne
     private Position positionId;
-    
+
     @Transient
     private String image;
     
@@ -162,7 +182,7 @@ public class Job implements Serializable {
         this.id = id;
     }
 
-    public Job(Integer id, String title, String description, String address, String jobNature, String salary, String level, Date createTime, Date outOffTime, String quantity, String experience, String benefits, String skill) {
+    public Job(Integer id, String title, String description, String address, String jobNature, String salary, String level, Date createTime, Date outOffTime, int quantity, String experience, String benefits, String skill) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -250,11 +270,11 @@ public class Job implements Serializable {
         this.outOffTime = outOffTime;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -346,20 +366,6 @@ public class Job implements Serializable {
     @Override
     public String toString() {
         return "com.htran.pojo.Job[ id=" + id + " ]";
-    }
-
-    /**
-     * @return the image
-     */
-    public String getImage() {
-        return image;
-    }
-
-    /**
-     * @param image the image to set
-     */
-    public void setImage(String image) {
-        this.image = image;
     }
     
 }

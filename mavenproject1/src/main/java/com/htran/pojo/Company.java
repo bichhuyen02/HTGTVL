@@ -4,6 +4,7 @@
  */
 package com.htran.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -157,9 +158,7 @@ public class Company implements Serializable {
     @Column(name = "mail")
     private String mail;
     
-    @Lob
-    @Basic(optional = false)
-    @Size( max = 255)
+    @Size(max = 255)
     @Column(name = "image")
     private String image;
     
@@ -170,16 +169,20 @@ public class Company implements Serializable {
     @Column(name = "phone")
     private String phone;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "companyId")
     private Set<Comment> commentSet;
     
+    @JsonIgnore
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "companyId")
     private Set<Follow> followSet;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "companyId")
     private Set<Job> jobSet;
 
@@ -202,7 +205,7 @@ public class Company implements Serializable {
         this.id = id;
     }
 
-    public Company(Integer id, String name, String address, Date dateOfIncorporation, String description, String linkCompany, String scale, String mail, String image, String phone) {
+    public Company(Integer id, String name, String address, Date dateOfIncorporation, String description, String linkCompany, String scale, String mail, String phone) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -211,7 +214,6 @@ public class Company implements Serializable {
         this.linkCompany = linkCompany;
         this.scale = scale;
         this.mail = mail;
-        this.image = image;
         this.phone = phone;
     }
 

@@ -4,6 +4,7 @@
  */
 package com.htran.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -69,12 +70,12 @@ public class Cv implements Serializable {
     @Column(name = "cv")
     private String cv;
     
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Lob
     @Size(max = 2147483647)
     @Column(name = "content")
     private String content;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "day_create")
     @Temporal(TemporalType.DATE)
     private Date dayCreate;
@@ -82,10 +83,12 @@ public class Cv implements Serializable {
     @Column(name = "active")
     private Boolean active;
     
+    @JsonIgnore
     @JoinColumn(name = "job_id", referencedColumnName = "id")
     @ManyToOne
     private Job jobId;
     
+    @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;

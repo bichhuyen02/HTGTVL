@@ -4,6 +4,7 @@
  */
 package com.htran.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -23,6 +24,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -43,20 +45,25 @@ public class Comment implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "content")
     private String content;
-    @Basic(optional = false)
- 
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;
+    
+    @JsonIgnore
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
+    
+    @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
@@ -68,10 +75,9 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public Comment(Integer id, String content, Date createTime) {
+    public Comment(Integer id, String content) {
         this.id = id;
         this.content = content;
-        this.createTime = createTime;
     }
 
     public Integer getId() {

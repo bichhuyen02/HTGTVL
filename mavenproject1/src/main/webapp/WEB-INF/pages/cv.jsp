@@ -19,12 +19,12 @@
 
                 <ul class="list-group">
                     <li class="list-group-item text-muted">Thông tin công việc</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>${j.title}</strong></span> 2.13.2014</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>${j.address}</strong></span> Yesterday</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>${j.jobNature}</strong></span> Joseph Doe</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>${j.salary}</strong></span> 125</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>${j.skill}</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>${j.quantity}</strong></span> 37</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Tên công việc</strong></span> ${j.title}</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Kinh nghiệm</strong></span> ${j.level}</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Thời gian</strong></span> ${j.jobNature}</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Lương</strong></span> ${j.salary}</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Kỹ năng</strong></span> ${j.skill}</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Số lượng tuyển</strong></span> ${j.quantity}</li>
                 </ul>
             </div>
 
@@ -44,7 +44,7 @@
                                     </tr>
                                 </thead>
                                 <c:forEach items="${cvs}" var="c">
-                                   <c:if test="${c.jobId.id} == ${j.id}">
+                                   <c:if test="${c.jobId.id == j.id}">
                                         <tbody id="items">
                                             <tr>
                                                 <td>${c.userId.name}</td>
@@ -55,7 +55,7 @@
                                                 </td>
                                                 <td>${c.content}</td>
                                                 <td>
-                                                    <c:url value="/addCompany/${c.id}" var="api" />
+                                                    <c:url value="/cv/${c.id}" var="api" />
                                                     <button class="btn btn-danger " onclick="updateActive('${api}')">Duyệt</button>
                                                     <button class="btn btn-danger " onclick="deleteCompany('${api}')">Xóa</button>
                                                 </td>
@@ -69,5 +69,6 @@
                 </div>
             </div>
         </div>
+       <br>
     </c:forEach>
 </div>

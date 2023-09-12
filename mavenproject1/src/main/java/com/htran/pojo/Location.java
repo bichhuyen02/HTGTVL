@@ -4,6 +4,7 @@
  */
 package com.htran.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -41,15 +42,19 @@ public class Location implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "name")
     private String name;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "description")
     private String description;
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "locationId")
     private Set<Job> jobSet;
 

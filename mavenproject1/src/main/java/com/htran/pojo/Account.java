@@ -4,6 +4,7 @@
  */
 package com.htran.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -39,6 +40,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Account.findByUserRole", query = "SELECT a FROM Account a WHERE a.userRole = :userRole"),
     @NamedQuery(name = "Account.findByActive", query = "SELECT a FROM Account a WHERE a.active = :active")})
 public class Account implements Serializable {
+
+    /**
+     * @return the uId
+     */
+    public int getuId() {
+        return uId;
+    }
+
+    /**
+     * @param uId the uId to set
+     */
+    public void setuId(int uId) {
+        this.uId = uId;
+    }
 
     /**
      * @return the name
@@ -110,12 +125,55 @@ public class Account implements Serializable {
         this.avatar = avatar;
     }
 
+    /**
+     * @return the majors
+     */
+    public String getMajors() {
+        return majors;
+    }
+
+    /**
+     * @param majors the majors to set
+     */
+    public void setMajors(String majors) {
+        this.majors = majors;
+    }
+
+    /**
+     * @return the experience
+     */
+    public String getExperience() {
+        return experience;
+    }
+
+    /**
+     * @param experience the experience to set
+     */
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -137,12 +195,17 @@ public class Account implements Serializable {
     @Column(name = "active")
     private Boolean active;
     
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<Company> companySet;
     
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<User> userSet;
-
+    
+    @Transient
+    private int uId;
+    
     @Transient
     private String name;
     
@@ -157,6 +220,15 @@ public class Account implements Serializable {
     
     @Transient
     private String avatar;
+    
+    @Transient
+    private String majors;
+    
+    @Transient
+    private String experience;
+    
+    @Transient
+    private String gender;
     
     public Account() {
     }

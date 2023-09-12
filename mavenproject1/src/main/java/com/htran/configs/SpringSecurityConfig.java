@@ -41,7 +41,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
     "com.htran.service",
     "com.htran.formatters",
     "com.htran.handlers",
-    "com.htran.validator"
+    "com.htran.components",
+    "com.htran.filters"
 })
 //@PropertySource("classpath:configs.properties")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {

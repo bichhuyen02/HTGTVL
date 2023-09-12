@@ -63,4 +63,9 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> getAccountByActiveFalse() {
         return this.accRepo.getAccountByActiveFalse();
     }
+    
+    @Override
+    public boolean authAccount(String username, String password) {
+       return this.accRepo.authAccount(username, password);
+    }
 }

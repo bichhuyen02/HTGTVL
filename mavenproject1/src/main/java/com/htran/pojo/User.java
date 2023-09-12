@@ -4,6 +4,7 @@
  */
 package com.htran.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -14,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -139,10 +139,7 @@ public class User implements Serializable {
     @Column(name = "phone")
     private String phone;
     
-    @Lob
-    @Basic(optional = false)
-
-    @Size( max = 255)
+    @Size(max = 255)
     @Column(name = "avatar")
     private String avatar;
     
@@ -152,24 +149,31 @@ public class User implements Serializable {
     @Column(name = "majors")
     private String majors;
     
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "experience")
     private String experience;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 3)
     @Column(name = "gender")
     private String gender;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private Set<Cv> cvSet;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private Set<Comment> commentSet;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private Set<Follow> followSet;
     
+    @JsonIgnore
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
@@ -193,13 +197,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String name, String mail, Date birthDate, String phone, String avatar, String majors, String experience, String gender) {
+    public User(Integer id, String name, String mail, Date birthDate, String phone, String majors, String experience, String gender) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.birthDate = birthDate;
         this.phone = phone;
-        this.avatar = avatar;
         this.majors = majors;
         this.experience = experience;
         this.gender = gender;
