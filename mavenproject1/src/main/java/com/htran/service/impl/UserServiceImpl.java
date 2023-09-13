@@ -13,6 +13,7 @@ import com.htran.service.UserService;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public BCryptPasswordEncoder passwordEncoder;
-    
+
     @Autowired
     private SimpleDateFormat simpleDateFormat;
 
@@ -56,15 +57,25 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean addOrUpdateUser(User user) {
-        if(user.getId()== null){
+        Date currentDate = new Date();
+        if (user.getId() == null) {
             user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         }
         if (!user.getFile().isEmpty()) {
-            try {
-                Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                user.setAvatar(res.get("secure_url").toString());
-            } catch (IOException ex) {
-                Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            if (currentDate.compareTo(user.getBirthDate()) > 0) {
+                if (user.getPhone().length() == 10) {
+                    try {
+                        Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                        user.setAvatar(res.get("secure_url").toString());
+                        user.setBirthDate(this.simpleDateFormat
+                                .parse(this.simpleDateFormat.format(user.getBirthDate())));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
         return this.userRepo.addOrUpdateUser(user);
@@ -84,7 +95,7 @@ public class UserServiceImpl implements UserService {
     public User getUserByAccId(int id) {
         return this.userRepo.getUserByAccId(id);
     }
-    
+
     @Override
     public User addUser(Map<String, String> params, MultipartFile avatar) {
         User u = new User();
@@ -100,22 +111,22 @@ public class UserServiceImpl implements UserService {
         u.setExperience(params.get("experience"));
         u.setPhone(params.get("phone"));
         u.setMail(params.get("mail"));
-        
+
         acc.setUsername(params.get("username"));
         acc.setPassword(this.passwordEncoder.encode(params.get("password")));
         acc.setUserRole("ROLE_USER");
         acc.setActive(Boolean.TRUE);
         if (!avatar.isEmpty()) {
             try {
-                Map res = this.cloudinary.uploader().upload(avatar.getBytes(), 
+                Map res = this.cloudinary.uploader().upload(avatar.getBytes(),
                         ObjectUtils.asMap("resource_type", "auto"));
                 u.setAvatar(res.get("secure_url").toString());
             } catch (IOException ex) {
                 Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        this.userRepo.addUser(u,acc);
+
+        this.userRepo.addUser(u, acc);
         return u;
     }
 }

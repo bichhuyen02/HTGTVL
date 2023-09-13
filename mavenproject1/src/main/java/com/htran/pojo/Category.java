@@ -45,7 +45,7 @@ public class Category implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "category.name.lenErr")
     @Column(name = "name")
     private String name;
     

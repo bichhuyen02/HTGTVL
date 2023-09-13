@@ -12,9 +12,12 @@ import com.htran.repository.AccountRepository;
 import com.htran.repository.CompanyRepository;
 import com.htran.service.CompanyService;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import static java.util.Collections.list;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -36,12 +39,15 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private AccountRepository accRepo;
-    
+
     @Autowired
     public BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private Cloudinary cloudinary;
+
+    @Autowired
+    private SimpleDateFormat simpleDateFormat;
 
     @Override
     public List<Company> getCompanies(Map<String, String> params) {
@@ -50,17 +56,27 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     @Transactional
-    public boolean addOrUpdateCompany(Company c) {       
-        if(c.getId()== null){
+    public boolean addOrUpdateCompany(Company c) {
+        Date currentDate = new Date();
+        if (c.getId() == null) {
             c.setPassword(this.passwordEncoder.encode(c.getPassword()));
         }
         {
             if (!c.getFile().isEmpty()) {
-                try {
-                    Map res = this.cloudinary.uploader().upload(c.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                    c.setImage(res.get("secure_url").toString());
-                } catch (IOException ex) {
-                    Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+                if (currentDate.compareTo(c.getDateOfIncorporation()) > 0) {
+                    if (c.getPhone().length() == 10) {
+                        try {
+                            Map res = this.cloudinary.uploader().upload(c.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                            c.setImage(res.get("secure_url").toString());
+                            c.setDateOfIncorporation(this.simpleDateFormat
+                                    .parse(this.simpleDateFormat.format(c.getDateOfIncorporation())));
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 }
             }
             return this.companyRepo.addOrUpdateCompany(c);

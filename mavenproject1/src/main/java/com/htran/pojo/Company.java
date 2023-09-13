@@ -116,19 +116,19 @@ public class Company implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "company.name.lenErr")
     @Column(name = "name")
     private String name;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "company.address.lenErr")
     @Column(name = "address")
     private String address;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "company.name.notNullMsg")
     @Column(name = "date_of_incorporation")
     @Temporal(TemporalType.DATE)
     private Date dateOfIncorporation;
@@ -136,25 +136,25 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 2147483647, message = "company.description.lenErr")
     @Column(name = "description")
     private String description;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "company.linkCompany.lenErr")
     @Column(name = "link_company")
     private String linkCompany;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 45, message = "company.scale.lenErr")
     @Column(name = "scale")
     private String scale;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "company.mail.lenErr")
     @Column(name = "mail")
     private String mail;
     
@@ -165,7 +165,7 @@ public class Company implements Serializable {
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 10, message = "company.phone.lenErr")
     @Column(name = "phone")
     private String phone;
     

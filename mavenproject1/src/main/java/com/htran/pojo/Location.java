@@ -45,7 +45,7 @@ public class Location implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "location.name.lenErr")
     @Column(name = "name")
     private String name;
     

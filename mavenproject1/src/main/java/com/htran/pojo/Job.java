@@ -74,20 +74,20 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "job.tile.lenErr")
     @Column(name = "title")
     private String title;
     
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 2147483647, message = "job.description.lenErr")
     @Column(name = "description")
     private String description;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "job.address.lenErr")
     @Column(name = "address")
     private String address;
     
@@ -111,20 +111,19 @@ public class Job implements Serializable {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
-    @NotNull
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "job.outOffTime.notNullMsg")
     @Column(name = "out_off_time")
     @Temporal(TemporalType.DATE)
     private Date outOffTime;
     
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "job.quantity.notNullMsg")
     @Column(name = "quantity")
     private int quantity;
     
@@ -137,14 +136,14 @@ public class Job implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 2147483647, message = "job.Benefits.lenErr")
     @Column(name = "benefits")
     private String benefits;
     
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 2147483647, message = "job.Skill.lenErr")
     @Column(name = "skill")
     private String skill;
     

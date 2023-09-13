@@ -66,7 +66,7 @@ public class Cv implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "cv.ima.lenErr")
     @Column(name = "cv")
     private String cv;
     

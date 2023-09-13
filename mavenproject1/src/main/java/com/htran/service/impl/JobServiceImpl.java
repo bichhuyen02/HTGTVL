@@ -28,7 +28,7 @@ public class JobServiceImpl implements JobService {
 
     @Autowired
     private JobRepository jobRepo;
-    
+
     @Autowired
     private SimpleDateFormat simpleDateFormat;
 
@@ -39,9 +39,9 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public int countJob() {
-       return this.jobRepo.countJob();
+        return this.jobRepo.countJob();
     }
-    
+
     @Override
     public Job getJobById(int id) {
         return this.jobRepo.getJobById(id);
@@ -50,12 +50,13 @@ public class JobServiceImpl implements JobService {
     @Override
     public boolean addOrUpdateJob(Job job) {
         Date currentDate = new Date();
-        try {
-            
-            job.setCreateTime(this.simpleDateFormat
-                    .parse(this.simpleDateFormat.format(currentDate)));
-        } catch (ParseException ex) {
-            Logger.getLogger(JobServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        if (currentDate.compareTo(job.getOutOffTime()) < 0) {
+            try {
+                job.setCreateTime(this.simpleDateFormat
+                        .parse(this.simpleDateFormat.format(currentDate)));
+            } catch (ParseException ex) {
+                Logger.getLogger(JobServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return this.jobRepo.addOrUpdateJob(job);
     }
@@ -72,8 +73,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<Job> getJobsByCateId(Category cate) {
-       return this.jobRepo.getJobsByCateId(cate);
+        return this.jobRepo.getJobsByCateId(cate);
     }
-
 
 }

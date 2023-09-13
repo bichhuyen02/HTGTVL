@@ -168,7 +168,7 @@ CREATE TABLE `cv` (
 
 LOCK TABLES `cv` WRITE;
 /*!40000 ALTER TABLE `cv` DISABLE KEYS */;
-INSERT INTO `cv` VALUES (8,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693935540/eonedzpttbkwpehhjhl2.jpg','','2022-03-23',1,1,_binary ''),(9,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693935891/jv3kky7iafvlxkjhuhkt.jpg','','2023-06-23',1,1,_binary ''),(10,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693935983/ktlwvmvaixj8ufrppykl.jpg','','2023-06-23',3,1,_binary ''),(11,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1694154891/b5drfvwkt6mn9kcju30n.jpg','ứdws','2023-06-23',1,3,_binary ''),(12,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1694402221/yrrit9wycwx94szwj4nj.jpg','tttttt','2023-09-11',1,5,_binary '\0');
+INSERT INTO `cv` VALUES (8,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693935540/eonedzpttbkwpehhjhl2.jpg','','2022-03-23',1,1,_binary ''),(9,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693935891/jv3kky7iafvlxkjhuhkt.jpg','','2023-06-23',1,1,_binary ''),(10,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1693935983/ktlwvmvaixj8ufrppykl.jpg','','2023-06-23',3,1,_binary ''),(11,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1694154891/b5drfvwkt6mn9kcju30n.jpg','ứdws','2023-06-23',1,3,_binary ''),(12,'https://res.cloudinary.com/dtoc5lqfe/image/upload/v1694402221/yrrit9wycwx94szwj4nj.jpg','tttttt','2023-09-11',1,5,_binary '');
 /*!40000 ALTER TABLE `cv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ CREATE TABLE `job` (
   `job_nature` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `salary` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `create_time` date NOT NULL,
+  `create_time` date DEFAULT NULL,
   `out_off_time` date NOT NULL,
   `quantity` int NOT NULL,
   `experience` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -246,7 +246,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
-INSERT INTO `job` VALUES (1,'fdgfdgfd','fgfsdsf','fsdfdsfvds','Full-time','100000-3000000','fsvsdfsdf','2023-09-04','2023-09-07',10,'không có','fvdsdsf\r\nfdsfsdf','fsdfdsfds\r\ndsfvdsfds',1,7,1,1),(2,'123','253.51243','123123312','Full-time','1221','1232231','2023-09-08','2023-09-20',1,'212321','213123','1312312',2,3,1,2),(3,'152412','2122','12121','Part-time','4','775','2023-09-08','2023-09-20',2,'122','12','21212',2,4,2,4),(4,'445646','65464564','54564','Part-time','56546','54546654','2023-09-08','2023-04-12',2,'56546546','4564565465','54656564',1,10,1,1),(5,'gfgsfg','fgvfdsgfdg','huyền huyền huyền','Full-time','fgfsgfdgf','dfgfdgvfdgvfd','2023-09-08','2023-09-13',10,'fdgfdgfdgfd','fdgdfgdf','gdfgdgdfg',1,12,1,1);
+INSERT INTO `job` VALUES (1,'fdgfdgfd','fgfsdsf','fsdfdsfvds','Full-time','100000-3000000','fsvsdfsdf','2023-09-04','2023-09-07',10,'không có','fvdsdsf\r\nfdsfsdf','fsdfdsfds\r\ndsfvdsfds',1,7,1,1),(2,'123','253.51243','123123312','Full-time','1221','1232231','2023-09-08','2023-09-20',1,'212321','213123','1312312',2,3,1,2),(3,'152412','2122','12121','Part-time','4','775','2023-09-08','2023-09-20',2,'122','12','21212',2,4,2,4),(4,'445646','65464564','54564','Part-time','56546','54546654','2023-09-08','2023-04-12',2,'56546546','4564565465','54656564',1,10,1,1),(5,'gfgsfg','fgvfdsgfdg','huyền huyền huyền','Full-time','fgfsgfdgf','dfgfdgvfdgvfd','2023-09-08','2023-09-13',9,'fdgfdgfdgfd','fdgdfgdf','gdfgdgdfg',1,12,1,1);
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-12 12:54:50
+-- Dump completed on 2023-09-13 23:36:22

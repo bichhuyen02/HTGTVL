@@ -72,3 +72,5 @@
        <br>
     </c:forEach>
 </div>
+
+<script src="<c:url value="/js/main.js" />"></script>
