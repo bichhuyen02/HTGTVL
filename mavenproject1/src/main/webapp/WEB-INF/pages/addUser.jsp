@@ -11,7 +11,7 @@
 
 <c:url value="/addUser" var="action" />
 <form:form cssClass="container " modelAttribute="addUsers" action="${action}" method="post" enctype="multipart/form-data">
-    <form:errors path="*" element="div" cssClass="alert alert-danger" />
+    <%--<form:errors path="*" element="div" cssClass="alert alert-danger" />--%>
     <form:hidden path="id" />
     <form:hidden path="avatar" />
     <form:hidden path="accountId" />
@@ -32,7 +32,9 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input type="text" class="form-control" path="name" id="name" placeholder="Họ và tên" name="name" />
+                    <form:input type="text" class="form-control" path="name" id="name" 
+                                placeholder="Họ và tên" name="name" />
+                    <form:errors path="name" element="div" cssClass="text-danger" />
                 </div>
 
                 
@@ -40,7 +42,9 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input type="date" class="form-control" path="birthDate" id="birthDate" placeholder="Ngày sinh" name="birthDate" />
+                    <form:input type="date" class="form-control" path="birthDate" id="birthDate" 
+                                placeholder="Ngày sinh" name="birthDate" />
+                    <form:errors path="birthDate" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-group input-group">
@@ -49,35 +53,45 @@
                             <i class="fa fa-envelope" style="color:#3376BC"></i> 
                         </span>
                     </div>
-                    <form:input type="email" name="mail" class="form-control" id="mail" path="mail" placeholder="Mail" />
+                    <form:input type="email" name="mail" class="form-control" id="mail" path="mail"
+                                placeholder="Mail" />
+                     <form:errors path="mail" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-group input-group">
                     <span class="input-group-text"> 
                         <i class="fa fa-phone"style="color:#3376BC"></i>
                     </span>
-                    <form:input type="number" class="form-control" path="phone" id="phone" placeholder="Số điện thoại" name="phone" />
+                    <form:input type="number" class="form-control" path="phone" id="phone" 
+                                placeholder="Số điện thoại" name="phone" />
+                    <form:errors path="phone" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input type="text" class="form-control" path="username" id="username" placeholder="Tên đăng nhập" name="username" />
+                    <form:input type="text" class="form-control" path="username" id="username" 
+                                placeholder="Tên đăng nhập" name="username" />
+                    <form:errors path="username" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input class="form-control" type="password" path="password" id="password" placeholder="Tạo mật khẩu" name="password" />
-                </div> <!-- form-group// --> 
+                    <form:input class="form-control" type="password" path="password" id="password" 
+                                placeholder="Tạo mật khẩu" name="password" />
+                    <form:errors path="password" element="div" cssClass="text-danger" />
+                </div>  
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    <form:input class="form-control" type="password" path="confirmPassword" id="confirmPassword" placeholder="Xác nhận mật khẩu" name="confirmPassword" />
+                    <form:input class="form-control" type="password" path="confirmPassword" id="confirmPassword" 
+                                placeholder="Xác nhận mật khẩu" name="confirmPassword" />
+                    <form:errors path="confirmPassword" element="div" cssClass="text-danger" />
                 </div> 
 
                 <div class="form-group input-group">
@@ -92,7 +106,6 @@
                         <form:option value="Tư vấn">Tư vấn</form:option>
                         <form:option value="Marketing/Truyền thông/Quảng cáo">Marketing/Truyền thông/Quảng cáo</form:option>
                         <form:option value="Kế toán/Kiểm toán">Kế toán/Kiểm toán</form:option>
-                        
                     </form:select>
                 
                 </div>

@@ -61,26 +61,23 @@ public class CompanyServiceImpl implements CompanyService {
         if (c.getId() == null) {
             c.setPassword(this.passwordEncoder.encode(c.getPassword()));
         }
-        {
-            if (!c.getFile().isEmpty()) {
-                if (currentDate.compareTo(c.getDateOfIncorporation()) > 0) {
-                    if (c.getPhone().length() == 10) {
-                        try {
-                            Map res = this.cloudinary.uploader().upload(c.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                            c.setImage(res.get("secure_url").toString());
-                            c.setDateOfIncorporation(this.simpleDateFormat
-                                    .parse(this.simpleDateFormat.format(c.getDateOfIncorporation())));
 
-                        } catch (IOException ex) {
-                            Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }
+        if (!c.getFile().isEmpty()) {
+
+            try {
+                Map res = this.cloudinary.uploader().upload(c.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                c.setImage(res.get("secure_url").toString());
+                c.setDateOfIncorporation(this.simpleDateFormat
+                        .parse(this.simpleDateFormat.format(c.getDateOfIncorporation())));
+
+            } catch (IOException ex) {
+                Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
-            return this.companyRepo.addOrUpdateCompany(c);
+
         }
+        return this.companyRepo.addOrUpdateCompany(c);
     }
 
     @Override

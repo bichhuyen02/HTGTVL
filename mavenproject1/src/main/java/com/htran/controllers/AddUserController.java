@@ -5,7 +5,9 @@
 package com.htran.controllers;
 
 import com.htran.pojo.User;
+import com.htran.service.AccountService;
 import com.htran.service.UserService;
+import java.util.Date;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,9 @@ public class AddUserController {
     private UserService userService;
 
     @Autowired
+    private AccountService accService;
+
+    @Autowired
     private JavaMailSender mailSender;
 
     @GetMapping("/addUser")
@@ -46,22 +51,47 @@ public class AddUserController {
     }
 
     @PostMapping("/addUser")
-    public String add(@ModelAttribute(value = "addUsers") @Valid User u,
+    public String add(Model model, @ModelAttribute(value = "addUsers") @Valid User u,
             BindingResult rs) {
         String errMsg = "";
-        if (u.getPassword().equals(u.getConfirmPassword())) {
-            if (!rs.hasErrors()) {
-                if (this.userService.addOrUpdateUser(u) == true) {
-                    SimpleMailMessage simpleMail = new SimpleMailMessage();
-                    simpleMail.setTo(u.getMail());
-                    simpleMail.setSubject("Thông báo");
-                    simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
+        Date currentDate = new Date();
+        if (currentDate.compareTo(u.getBirthDate()) > 0) {
+            if (u.getPhone().length() == 10 && u.getPhone().codePointAt(0) == 48) {
+                if (u.getPassword() != null && u.getUsername() != null) {
+                    if (u.getPassword().equals(u.getConfirmPassword())) {
+                        if (this.accService.getAccountByUsername(u.getUsername()) == null) {
+                            if (!rs.hasErrors()) {
+                                if (this.userService.addOrUpdateUser(u) == true) {
+                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                    simpleMail.setTo(u.getMail());
+                                    simpleMail.setSubject("Thông báo");
+                                    simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
 
-                    mailSender.send(simpleMail);
-                    return "redirect:/";
+                                    mailSender.send(simpleMail);
+                                    return "redirect:/";
+                                }
+                            }
+                        } else {
+                            errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
+                        }
+                    } else {
+                        errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                    }
+                } else {
+                    if (u.getPassword() == null) {
+                        errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
+                    } else {
+                        errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
+                    }
                 }
+            } else {
+                errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
             }
+        } else {
+            errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";
         }
+        model.addAttribute(
+                "errMsg", errMsg);
         return "addUser";
     }
 }

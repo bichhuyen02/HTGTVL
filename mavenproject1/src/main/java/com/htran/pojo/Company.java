@@ -128,7 +128,7 @@ public class Company implements Serializable {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
-    @NotNull(message = "company.name.notNullMsg")
+    @NotNull
     @Column(name = "date_of_incorporation")
     @Temporal(TemporalType.DATE)
     private Date dateOfIncorporation;
@@ -165,7 +165,7 @@ public class Company implements Serializable {
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10, message = "company.phone.lenErr")
+    @Size(min = 1, max = 10)
     @Column(name = "phone")
     private String phone;
     

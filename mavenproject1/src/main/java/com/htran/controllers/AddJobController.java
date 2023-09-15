@@ -13,6 +13,7 @@ import com.htran.service.JobService;
 import com.htran.service.LocationService;
 import com.htran.service.PositionService;
 import java.security.Principal;
+import java.util.Date;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,16 @@ public class AddJobController {
 
     @Autowired
     private JobService jobService;
-    
+
     @Autowired
     private CompanyService companyService;
-    
+
     @Autowired
     private LocationService locationService;
-    
+
     @Autowired
     private PositionService posiService;
-    
+
     @Autowired
     private AccountService accService;
 
@@ -54,31 +55,34 @@ public class AddJobController {
         String role = "ROLE_EMP";
         model.addAttribute("addjobs", new Job());
         Account acc = this.accService.getAccountByUsername(pricipal.getName());
-        if(acc.getUserRole().equals(role))
-        {
-             Company com = this.companyService.getCompanyByAccId(acc.getId());
-             model.addAttribute("jobsC", this.jobService.getJobsByComId(com));
+        if (acc.getUserRole().equals(role)) {
+            Company com = this.companyService.getCompanyByAccId(acc.getId());
+            model.addAttribute("jobsC", this.jobService.getJobsByComId(com));
         }
-//        model.addAttribute("locations", this.locationService.getLocations(params));
-//        model.addAttribute("companies", this.companyService.getCompanies(params));
         model.addAttribute("positions", this.posiService.getPositions(params));
-        
+
         return "addJob";
     }
-    
+
     @GetMapping("/addJob/{id}")
     public String update(Model model, @PathVariable(value = "id") int id) {
         model.addAttribute("addjobs", this.jobService.getJobById(id));
         return "addJob";
     }
-    
+
     @PostMapping("/addJob")
-    public String add(@ModelAttribute(value = "addjobs") @Valid Job j,
+    public String add(Model model, @ModelAttribute(value = "addjobs") @Valid Job j,
             BindingResult rs) {
-        if (!rs.hasErrors()) {
-            if (this.jobService.addOrUpdateJob(j) == true) {
-                return "redirect:/jobs";
+        String errMsg = "";
+        Date currentDate = new Date();
+        if (currentDate.compareTo(j.getOutOffTime()) < 0) {
+            if (!rs.hasErrors()) {
+                if (this.jobService.addOrUpdateJob(j) == true) {
+                    return "redirect:/jobs";
+                }
             }
+        } else {
+            errMsg = errMsg + "Ngày hết hạn không được nhỏ hơn ngày hiện tại(^-^) !!!";
         }
         return "addJob";
     }

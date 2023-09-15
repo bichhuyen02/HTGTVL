@@ -11,7 +11,7 @@
 
 <c:url value="/jobDetail/${jobDetails.id}/applyCv" var="action" />
 <form:form cssClass="container" modelAttribute="addCv" action="${action}" method="post" enctype="multipart/form-data">
-    <form:errors path="*" element="div" cssClass="alert alert-danger" /> 
+    <%--<form:errors path="*" element="div" cssClass="alert alert-danger" />--%>
     <div class="card nen frm ">
         <article class="card-body mx-auto" style="width: 50%;">
             
@@ -20,6 +20,7 @@
                 <form:input type="file" class="form-control" path="file" id="file"
                             placeholder="CV" name="file" />
                     <label for="avatar">CV </label>
+                <form:errors path="file" element="div" cssClass="text-danger" />
             </div>
 
             <div class="form-floating mb-3 mt-3">

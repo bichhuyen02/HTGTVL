@@ -12,7 +12,7 @@
 <c:url value="/addLocation" var="action" />
 
 <form:form cssClass="container " modelAttribute="addLocations" action="${action}" method="post" enctype="multipart/form-data">
-    <form:errors path="*" element="div" cssClass="alert alert-danger" />
+    <%--<form:errors path="*" element="div" cssClass="alert alert-danger" />--%>
     <form:hidden path="id" />
 
     <div class="card nen frm ">
@@ -21,6 +21,7 @@
             <div class="form-floating mb-3 mt-3">
                 <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên Khu Vực" name="name" />
                 <label for="name">Tên Khu Vực </label>
+                <form:errors path="name" element="div" cssClass="text-danger" />
             </div>
 
             <div class="form-floating mb-3 mt-3">

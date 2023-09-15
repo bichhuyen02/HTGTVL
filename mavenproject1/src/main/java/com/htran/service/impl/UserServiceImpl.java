@@ -8,6 +8,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.htran.pojo.Account;
 import com.htran.pojo.User;
+import com.htran.repository.AccountRepository;
 import com.htran.repository.UserRepository;
 import com.htran.service.UserService;
 import java.io.IOException;
@@ -49,6 +50,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private SimpleDateFormat simpleDateFormat;
 
+    @Autowired
+    private AccountRepository accRepo;
+
     @Override
     public List<User> getUsers(Map<String, String> params) {
         return this.userRepo.getUsers(params);
@@ -62,21 +66,17 @@ public class UserServiceImpl implements UserService {
             user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         }
         if (!user.getFile().isEmpty()) {
-            if (currentDate.compareTo(user.getBirthDate()) > 0) {
-                if (user.getPhone().length() == 10) {
-                    try {
-                        Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                        user.setAvatar(res.get("secure_url").toString());
-                        user.setBirthDate(this.simpleDateFormat
-                                .parse(this.simpleDateFormat.format(user.getBirthDate())));
+            try {
+                Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                user.setAvatar(res.get("secure_url").toString());
+                user.setBirthDate(this.simpleDateFormat
+                        .parse(this.simpleDateFormat.format(user.getBirthDate())));
 
-                    } catch (IOException ex) {
-                        Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
+            } catch (IOException ex) {
+                Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }  
         }
         return this.userRepo.addOrUpdateUser(user);
     }

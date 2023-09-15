@@ -12,7 +12,7 @@
 <c:url value="/addCompany" var="action" />
 
 <form:form cssClass="container" modelAttribute="addCompanies" action="${action}" method="post" enctype="multipart/form-data">
-    <form:errors path="*" element="div" cssClass="alert alert-danger" />
+    <%--<form:errors path="*" element="div" cssClass="alert alert-danger" />--%>
     <form:hidden path="id" />
     <form:hidden path="image" />
     <form:hidden path="accountId" />
@@ -20,15 +20,23 @@
     <div class="card nen">
         <article class="card-body mx-auto" style="width: 50%;">
             <h2 class="card-title  text-center text-white">QUẢN LÝ DOANH NGHIỆP</h2>
-            <form>
+            <form> 
+                <c:if test="${errMsg != null}">
+                    <div class="alert alert-danger msg">
+                        ${errMsg}
+                    </div>    
+                </c:if>
+
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên doanh nghiệp" name="name" />
                     <label for="name">Tên doanh nghiệp</label>
+                    <form:errors path="name" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="email" class="form-control" path="mail" id="mail" placeholder="Mail" name="mail" />
                     <label for="mail">Mail</label>
+                    <form:errors path="mail" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
@@ -49,6 +57,7 @@
                 <div class="form-floating mb-3 mt-3">
                     <form:textarea rows ="3" class="form-control" path="description" id="description" placeholder="Mô tả" name="description" />
                     <label for="description">Mô tả</label>
+                    <form:errors path="description" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-floating mb-3 mt-3">
@@ -59,6 +68,7 @@
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="text" class="form-control" path="linkCompany" id="linkCompany" placeholder="Link giới thiệu " name="linkCompany" />
                     <label for="name">Trang doanh nghiệp </label>
+                    <form:errors path="linkCompany" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-floating mb-3 mt-3">

@@ -5,7 +5,9 @@
 package com.htran.controllers;
 
 import com.htran.pojo.Company;
+import com.htran.service.AccountService;
 import com.htran.service.CompanyService;
+import java.util.Date;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class AddCompanyController {
     private CompanyService companyService;
 
     @Autowired
+    private AccountService accService;
+
+    @Autowired
     private JavaMailSender mailSender;
 
     @GetMapping("/addCompany")
@@ -47,21 +52,46 @@ public class AddCompanyController {
     }
 
     @PostMapping("/addCompany")
-    public String add(@ModelAttribute(value = "addCompanies") @Valid Company c,
+    public String add(Model model, @ModelAttribute(value = "addCompanies") @Valid Company c,
             BindingResult rs) {
-        if (c.getPassword().equals(c.getConfirmPassword())) {
-            if (!rs.hasErrors()) {
-                if (this.companyService.addOrUpdateCompany(c) == true) {
-//                    SimpleMailMessage simpleMail = new SimpleMailMessage();
-//                    simpleMail.setTo(c.getMail());
-//                    simpleMail.setSubject("Thông báo");
-//                    simpleMail.setText(c.getName() + " đã đăng kí thông tin của công ty thành công và hãy chờ quản trị duyệt");
-//
-//                    mailSender.send(simpleMail);
-                    return "redirect:/";
+        String errMsg = "";
+        Date currentDate = new Date();
+        if (currentDate.compareTo(c.getDateOfIncorporation()) > 0) {
+            if (c.getPhone().length() == 10 && c.getPhone().codePointAt(0) == 48) {
+                if (this.accService.getAccountByUsername(c.getUsername()) == null) {
+                    if (c.getPassword() != null && c.getUsername() != null) {
+                        if (c.getPassword().equals(c.getConfirmPassword())) {
+                            if (!rs.hasErrors()) {
+                                if (this.companyService.addOrUpdateCompany(c) == true) {
+                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                    simpleMail.setTo(c.getMail());
+                                    simpleMail.setSubject("Thông báo");
+                                    simpleMail.setText(c.getName() + " đã đăng kí thông tin của công ty thành công và hãy chờ quản trị duyệt");
+
+                                    mailSender.send(simpleMail);
+                                    return "redirect:/";
+                                }
+                            }
+                        } else {
+                            errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                        }
+                    } else {
+                        if (c.getPassword() == null) {
+                            errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
+                        } else {
+                            errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
+                        }
+                    }
+                } else {
+                    errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
                 }
+            } else {
+                errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
             }
+        } else {
+            errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";
         }
+        model.addAttribute("errMsg", errMsg);
         return "addCompany";
     }
 }
