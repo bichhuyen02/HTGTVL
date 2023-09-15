@@ -58,7 +58,7 @@ public class AddCompanyController {
         Date currentDate = new Date();
         if (currentDate.compareTo(c.getDateOfIncorporation()) > 0) {
             if (c.getPhone().length() == 10 && c.getPhone().codePointAt(0) == 48) {
-                if (this.accService.getAccountByUsername(c.getUsername()) == null) {
+                if (this.accService.getAccountByUsern(c.getUsername()) == false) {
                     if (c.getPassword() != null && c.getUsername() != null) {
                         if (c.getPassword().equals(c.getConfirmPassword())) {
                             if (!rs.hasErrors()) {

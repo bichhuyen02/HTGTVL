@@ -27,6 +27,11 @@
             <p class="divider-text">
                 <span ></span>
             </p>
+            <c:if test="${errMsg != null}">
+                <div class="alert alert-danger msg">
+                    ${errMsg}
+                </div>    
+            </c:if>
             <form>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -37,7 +42,7 @@
                     <form:errors path="name" element="div" cssClass="text-danger" />
                 </div>
 
-                
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
@@ -55,7 +60,7 @@
                     </div>
                     <form:input type="email" name="mail" class="form-control" id="mail" path="mail"
                                 placeholder="Mail" />
-                     <form:errors path="mail" element="div" cssClass="text-danger" />
+                    <form:errors path="mail" element="div" cssClass="text-danger" />
                 </div>
 
                 <div class="form-group input-group">
@@ -107,7 +112,7 @@
                         <form:option value="Marketing/Truyền thông/Quảng cáo">Marketing/Truyền thông/Quảng cáo</form:option>
                         <form:option value="Kế toán/Kiểm toán">Kế toán/Kiểm toán</form:option>
                     </form:select>
-                
+
                 </div>
 
                 <div class="form-group input-group">
@@ -120,22 +125,22 @@
                         <form:option value="Từ 2-5 năm">Từ 2-5 năm</form:option>
                         <form:option value="Trên 5 năm">Trên 5 năm</form:option>
                     </form:select>
-                   
+
                 </div>
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
                     </div>
-                    
+
                     <form:select class="form-control" path="gender" id="gender" placeholder="Giới Tính" name="gender" >                    
                         <form:option value="Nam">Nam</form:option>
                         <form:option value="Nữ">Nữ</form:option>
                     </form:select>
-                    
+
                 </div>
-                    
-          
+
+
 
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="file" class="form-control" path="file" id="file" placeholder="avatar" name="file" />

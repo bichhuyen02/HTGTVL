@@ -59,7 +59,7 @@ public class AddUserController {
             if (u.getPhone().length() == 10 && u.getPhone().codePointAt(0) == 48) {
                 if (u.getPassword() != null && u.getUsername() != null) {
                     if (u.getPassword().equals(u.getConfirmPassword())) {
-                        if (this.accService.getAccountByUsername(u.getUsername()) == null) {
+                        if (this.accService.getAccountByUsern(u.getUsername()) == false) {
                             if (!rs.hasErrors()) {
                                 if (this.userService.addOrUpdateUser(u) == true) {
                                     SimpleMailMessage simpleMail = new SimpleMailMessage();

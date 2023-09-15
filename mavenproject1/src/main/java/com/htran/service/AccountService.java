@@ -5,6 +5,7 @@
 package com.htran.service;
 
 import com.htran.pojo.Account;
+import com.htran.pojo.User;
 import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface AccountService extends UserDetailsService{
     Account getAccountByUsername(String username);
+    boolean getAccountByUsern(String username);
     Account getAccountById(int id);
     boolean authAccount(String username, String password);
     List<Account> getAccountByActiveTrue();

@@ -5,6 +5,7 @@
 package com.htran.service.impl;
 
 import com.htran.pojo.Account;
+import com.htran.pojo.User;
 import com.htran.repository.AccountRepository;
 import com.htran.service.AccountService;
 import java.util.HashSet;
@@ -67,5 +68,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean authAccount(String username, String password) {
        return this.accRepo.authAccount(username, password);
+    }
+
+    @Override
+    public boolean getAccountByUsern(String username) {
+       return this.accRepo.getAccountByUsern(username);
     }
 }

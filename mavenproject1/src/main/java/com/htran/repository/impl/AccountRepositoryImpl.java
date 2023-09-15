@@ -11,10 +11,12 @@ import com.htran.repository.AccountRepository;
 import com.htran.repository.CompanyRepository;
 import com.htran.repository.UserRepository;
 import java.util.List;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Autowired
     private CompanyRepository compaRepo;
-    
+
     @Autowired
     private BCryptPasswordEncoder passEncoder;
 
@@ -112,10 +114,26 @@ public class AccountRepositoryImpl implements AccountRepository {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(Account.class, id);
     }
-    
+
     @Override
     public boolean authAccount(String username, String password) {
         Account acc = this.getAccountByUsername(username);
         return this.passEncoder.matches(password, acc.getPassword());
+    }
+
+    @Override
+    public boolean getAccountByUsern(String username) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Account Where username=:un");
+        try {
+            q.setParameter("un", username);
+            q.getSingleResult();
+            return true;
+        } catch (NoResultException ex) {
+            return false;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 }
