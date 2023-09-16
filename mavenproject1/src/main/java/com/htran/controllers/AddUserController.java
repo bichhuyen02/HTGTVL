@@ -55,20 +55,20 @@ public class AddUserController {
             BindingResult rs) {
         String errMsg = "";
         Date currentDate = new Date();
-        if (currentDate.compareTo(u.getBirthDate()) > 0) {
+        if (u.getBirthDate()!= null && currentDate.compareTo(u.getBirthDate()) > 0) {
             if (u.getPhone().length() == 10 && u.getPhone().codePointAt(0) == 48) {
                 if (u.getPassword() != null && u.getUsername() != null) {
                     if (u.getPassword().equals(u.getConfirmPassword())) {
                         if (this.accService.getAccountByUsern(u.getUsername()) == false) {
                             if (!rs.hasErrors()) {
                                 if (this.userService.addOrUpdateUser(u) == true) {
-                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
-                                    simpleMail.setTo(u.getMail());
-                                    simpleMail.setSubject("Thông báo");
-                                    simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
-
-                                    mailSender.send(simpleMail);
-                                    return "redirect:/";
+//                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+//                                    simpleMail.setTo(u.getMail());
+//                                    simpleMail.setSubject("Thông báo");
+//                                    simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
+//
+//                                    mailSender.send(simpleMail);
+//                                    return "redirect:/";
                                 }
                             }
                         } else {

@@ -34,12 +34,7 @@ public class StatsController {
 //          model.addAttribute("stats", this.cateService.getCategories(params));
 //        return "stats";
 //    }
-//    @RequestMapping("/monthStats")
-//    public String monthStats(Model model, @RequestParam Map<String, String> params) {
-////        model.addAttribute("monthStats", this.statsService.statsJob());
-//        return "monthStats";
-//    }
-
+//   
 //    @RequestMapping("/quarterStats")
 //    public String quarterStats(Model model, @RequestParam Map<String, String> params) {
 //        model.addAttribute("quarterStats", this.statsService.statsJob());

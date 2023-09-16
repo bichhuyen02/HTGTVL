@@ -196,7 +196,7 @@
                             <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">${j.jobNature}</span>
                             <h5>${j.title}</h5>
                             <div class="mt-3">
-                                <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">${j.companyId.name}</a></span>
+                                <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="<c:url value="/jobDetail/${j.id}" />" class="text-muted">${j.companyId.name}</a></span>
                                 <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> ${j.locationId.name}</span>
                             </div>
 

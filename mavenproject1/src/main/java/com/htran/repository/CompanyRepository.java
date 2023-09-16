@@ -18,6 +18,7 @@ public interface CompanyRepository {
      List<Company> getCompaniesByAccIdT();
      List<Company> getCompaniesByAccIdF();
      Company getCompanyByAccId(int id);
+     int countCompany();
      boolean addOrUpdateCompany(Company c);
      boolean UpdateActive(int id);
      boolean deleteCompany(int id);

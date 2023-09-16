@@ -119,12 +119,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/stats.jsp" />
     </definition>
     
-    
-    <definition name="monthStats" extends="baseLayout3">
-        <put-attribute name="title" value="Thống kê theo tháng" />
-        <put-attribute name="content" value="/WEB-INF/pages/monthStats.jsp" />
-    </definition>
-    
     <definition name="quarterStats" extends="baseLayout3">
         <put-attribute name="title" value="Thống kê theo quý" />
         <put-attribute name="content" value="/WEB-INF/pages/quarterStats.jsp" />

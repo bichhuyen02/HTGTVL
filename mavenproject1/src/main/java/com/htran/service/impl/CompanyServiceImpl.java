@@ -109,4 +109,9 @@ public class CompanyServiceImpl implements CompanyService {
     public Company getCompanyByAccId(int id) {
         return this.companyRepo.getCompanyByAccId(id);
     }
+
+    @Override
+    public int countCompany() {
+          return this.companyRepo.countCompany();
+    }
 }

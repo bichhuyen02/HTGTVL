@@ -9,19 +9,37 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <link rel="stylesheet" href="<c:url value="/css/search.css" />"/>
+<link rel="stylesheet" href="<c:url value="/css/index1.css" />"/>
 <se:authorize access="hasRole('ROLE_ADMIN')">
     <div class="text-primary mt-4 mb-5 text-center"><h2>QUẢN LÝ DOANH NGHIỆP</h2></div>
     <hr></hr>
+
     <section>
         <div class="c">                
             <a href="<c:url value="/addCompany" />" class="btn btn-success mt-5 ">Thêm doanh nghiệp </a>
         </div>
+        <nav class="Page container">
+            <ul class="pagination ">
+                <c:if test="${counter > 1}">
+                    <ul class="pagination mt-1">
+                        <li class="page-item"><a class="page-link" href="<c:url value="/companies"/>">Tất cả</a></li>
+                            <c:forEach begin="1" end="${counter}" var="i">
+                                <c:url value="/companies" var="pageUrl">
+                                    <c:param name="page" value="${i}" />
+                                </c:url>
+                                <li class="page-item"><a class="page-link" href="${pageUrl}">${i}</a></li>
+                            </c:forEach>
+                    </ul>
+                </c:if>
+            </ul>
+        </nav>
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="">
                         <div class="table-responsive">
-                            <table class="table project-list-table table-nowrap align-middle table-borderless">
+                            <table class="table table-hover project-list-table table-nowrap align-middle table-borderless">
                                 <thead>
                                     <tr class="table-primary">
                                         <th></th>
@@ -35,7 +53,7 @@
                                     <c:forEach items="${companiesF}" var="c">
                                         <tr>
                                             <td>
-                                                <img style="width: 100px; height: 100px" src="${c.image}" alt="${c.name}"/>
+                                                <img style="width: 70px; height: 70px" src="${c.image}" alt="${c.name}"class="avatar-sm rounded-circle me-2"/>
                                             </td>  
                                             <td>${c.name}</td>
                                             <td>${c.dateOfIncorporation}</td>
@@ -50,11 +68,17 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <br>
-
-                        <div>
-                            <table class="table table-hover container  ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="">
+                        <div class="table-responsive">
+                            <table class="table table-hover project-list-table table-nowrap align-middle table-borderless">
                                 <thead>
                                     <tr class="table-primary">
                                         <th></th>
@@ -68,7 +92,7 @@
                                     <c:forEach items="${companiesT}" var="c">
                                         <tr>
                                             <td>
-                                                <img style="width: 100px; height: 100px" src="${c.image}" alt="${c.name}"/>
+                                                <img style="width: 70px; height: 70px" src="${c.image}" alt="${c.name}"class="avatar-sm rounded-circle me-2" />
                                             </td>  
                                             <td>${c.name}</td>
                                             <td>${c.dateOfIncorporation}</td>
@@ -87,16 +111,12 @@
                 </div>
             </div>
         </div>
-    </section>>
+    </section>
 </se:authorize>  
 
 <se:authorize access="not hasRole('ROLE_ADMIN')">
     <div class="text-primary mt-4 mb-5 text-center"><h2>DANH SÁCH DOANH NGHIỆP</h2></div> 
-  
- 
-
     <div class="container">
-
         <div class="row mt-n5">
             <c:forEach items="${companiesT}" var="c">
                 <div class="col-md-6 col-lg-4 mt-5 wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
@@ -111,7 +131,7 @@
                                 <a href="<c:url value="/companyDetail/${c.id}"/>">${c.name}</a>
                             </h3>
 
-                            <p class="display-30">${c.description}</p>
+<!--                            <p class="display-30">${c.description}</p>-->
 
                             <div class="meta meta-style2">
                                 <ul>

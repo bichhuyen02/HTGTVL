@@ -46,12 +46,12 @@ public class ApiCompanyController {
     public void updateActive(@PathVariable(value = "id") int id) {
         this.companyService.UpdateActive(id);
         Company com = this.companyService.getCompanyById(id);
-        SimpleMailMessage simpleMail = new SimpleMailMessage();
-        simpleMail.setTo(com.getMail());
-        simpleMail.setSubject("Thông báo");
-        simpleMail.setText(com.getName()+" đã được phép hoạt động");
-
-        mailSender.send(simpleMail);
+//        SimpleMailMessage simpleMail = new SimpleMailMessage();
+//        simpleMail.setTo(com.getMail());
+//        simpleMail.setSubject("Thông báo");
+//        simpleMail.setText(com.getName()+" đã được phép hoạt động");
+//
+//        mailSender.send(simpleMail);
     }
     
     @GetMapping("/api/companies/")

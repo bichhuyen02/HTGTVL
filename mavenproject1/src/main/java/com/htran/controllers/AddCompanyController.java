@@ -56,19 +56,19 @@ public class AddCompanyController {
             BindingResult rs) {
         String errMsg = "";
         Date currentDate = new Date();
-        if (currentDate.compareTo(c.getDateOfIncorporation()) > 0) {
+        if (c.getDateOfIncorporation() != null && currentDate.compareTo(c.getDateOfIncorporation()) > 0) {
             if (c.getPhone().length() == 10 && c.getPhone().codePointAt(0) == 48) {
                 if (this.accService.getAccountByUsern(c.getUsername()) == false) {
                     if (c.getPassword() != null && c.getUsername() != null) {
                         if (c.getPassword().equals(c.getConfirmPassword())) {
                             if (!rs.hasErrors()) {
                                 if (this.companyService.addOrUpdateCompany(c) == true) {
-                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
-                                    simpleMail.setTo(c.getMail());
-                                    simpleMail.setSubject("Thông báo");
-                                    simpleMail.setText(c.getName() + " đã đăng kí thông tin của công ty thành công và hãy chờ quản trị duyệt");
-
-                                    mailSender.send(simpleMail);
+//                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+//                                    simpleMail.setTo(c.getMail());
+//                                    simpleMail.setSubject("Thông báo");
+//                                    simpleMail.setText(c.getName() + " đã đăng kí thông tin của công ty thành công và hãy chờ quản trị duyệt");
+//
+//                                    mailSender.send(simpleMail);
                                     return "redirect:/";
                                 }
                             }
@@ -89,7 +89,10 @@ public class AddCompanyController {
                 errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
             }
         } else {
-            errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";
+            if(c.getDateOfIncorporation()==null){
+                errMsg = errMsg + "Ngày thành lập không được để trống (^-^) !!!";
+            }else{
+            errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";}
         }
         model.addAttribute("errMsg", errMsg);
         return "addCompany";

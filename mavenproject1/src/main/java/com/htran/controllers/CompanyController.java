@@ -36,6 +36,12 @@ public class CompanyController {
     public String major(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("companiesT", this.companyService.getCompaniesByAccIdT());
         model.addAttribute("companiesF", this.companyService.getCompaniesByAccIdF());
+        
+        int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
+        int count = this.companyService.countCompany();
+        model.addAttribute("counter1", Math.ceil(count*1.0/pageSize));
+        
         return "companies";
+        
     }
 }

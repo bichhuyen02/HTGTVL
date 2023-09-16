@@ -45,7 +45,7 @@
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user" style="color:#3376BC"></i> </span>
+                        <span class="input-group-text"> <i class="fa fa-calendar-o" aria-hidden="true" style="color:#3376BC"></i> </span>
                     </div>
                     <form:input type="date" class="form-control" path="birthDate" id="birthDate" 
                                 placeholder="Ngày sinh" name="birthDate" />
@@ -55,7 +55,7 @@
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> 
-                            <i class="fa fa-envelope" style="color:#3376BC"></i> 
+                            <i class="fa fa-envelope-open" aria-hidden="true" style="color:#3376BC"></i> 
                         </span>
                     </div>
                     <form:input type="email" name="mail" class="form-control" id="mail" path="mail"
@@ -101,7 +101,7 @@
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
+                        <span class="input-group-text"> <i class="fa fa-briefcase" aria-hidden="true"style="color:#3376BC"></i> </span>
                     </div>
                     <form:select class="form-control" type="text" path="majors" id="majors" placeholder="Chuyên ngành" name="majors" >                    
                         <form:option value="IT phần mềm">IT phần mềm</form:option>
@@ -117,7 +117,7 @@
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
+                        <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"style="color:#3376BC"></i> </span>
                     </div>
                     <form:select class="form-control" type="text" path="experience" id="experience" placeholder="Kinh nghiệm" name="experience" >                    
                         <form:option value="Không yêu cầu kinh nghiệm">Không yêu cầu kinh nghiệm</form:option>
@@ -130,7 +130,7 @@
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"style="color:#3376BC"></i> </span>
+                        <span class="input-group-text"> <i class="fa fa-mercury" aria-hidden="true" style="color:#3376BC"></i> </span>
                     </div>
 
                     <form:select class="form-control" path="gender" id="gender" placeholder="Giới Tính" name="gender" >                    

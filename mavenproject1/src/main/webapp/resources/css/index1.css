@@ -1,4 +1,4 @@
-
+body {background-color: #f2f3fa ;}
 /*user*/
 
 .account-settings .user-profile {
@@ -398,6 +398,5 @@
 .border-all-1 {
     border: 1px solid;
 }
-
 
 

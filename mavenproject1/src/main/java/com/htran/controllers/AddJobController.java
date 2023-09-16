@@ -75,14 +75,17 @@ public class AddJobController {
             BindingResult rs) {
         String errMsg = "";
         Date currentDate = new Date();
-        if (currentDate.compareTo(j.getOutOffTime()) < 0) {
+        if (j.getOutOffTime()!=null && currentDate.compareTo(j.getOutOffTime()) < 0) {
             if (!rs.hasErrors()) {
                 if (this.jobService.addOrUpdateJob(j) == true) {
                     return "redirect:/jobs";
                 }
             }
         } else {
-            errMsg = errMsg + "Ngày hết hạn không được nhỏ hơn ngày hiện tại(^-^) !!!";
+            if(j.getOutOffTime()==null){
+                errMsg = errMsg + "Ngày hết hạn không được để trống(^-^) !!!";
+            }else{
+            errMsg = errMsg + "Ngày hết hạn không được nhỏ hơn ngày hiện tại(^-^) !!!";}
         }
         return "addJob";
     }

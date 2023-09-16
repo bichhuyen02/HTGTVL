@@ -48,13 +48,6 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><strong>Thống Kê</strong></a>
                         <ul class="dropdown-menu">
-
-                            <li class="dropdown-item">
-                                <a href="<c:url value="/admin/monthStats"/>">
-                                    <i class="fas fa-plus mr-2"></i>
-                                    <strong class="hide-nav">Doanh thu theo tháng</strong>
-                                </a> 
-                            </li>
                             <li class="dropdown-item">
                                 <a href="<c:url value="/admin/quarterStats"/>">
                                     <i class="fas fa-plus mr-2"></i>
@@ -113,10 +106,10 @@
 
             </ul>
 
-            <form class="d-flex" action="${action}">
+<!--            <form class="d-flex" action="${action}">
                 <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
                 <button class="btn btn-primary" type="submit">Tìm</button>
-            </form>
+            </form>-->
 
         </div>
     </div>

@@ -143,7 +143,7 @@ a {
 }
 /*cong ty noi bat*/
 .media{
-    height:150px;
+    height:110px;
 }
 .p-15px {
     padding: 15px;
@@ -152,7 +152,7 @@ a {
     border-color:#0050d8;
 }
 .border-all-1 {
-    border: 1px solid;
+    border: 1px solid ;
 }
 .hover-top {
     position: relative;
@@ -170,18 +170,18 @@ a {
     right: 0;
     border: 0;
 }
-.border-radius-50 {
+/*.border-radius-50 {
     border-radius: 50%;
-}
+}*/
 .photohinh{
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     text-align: center;
     font-size: 21px;
 }
 
 .sao{
-font-size: 20px;
+font-size: 25px;
     color:#ffff00 ;
 }
 .p-20px-l {
@@ -244,12 +244,13 @@ font-size: 20px;
 
 }
 .border-color-gray {
-    border-color: #dfe7f1 !important;
+    border-color: #65b5f2 !important;
 }
 .border-all-1 {
     border: 1px solid;
 }
-/*company*/
+/*end congty*/
+/*company detail*/
 
 .blog-grid {
     position: relative;

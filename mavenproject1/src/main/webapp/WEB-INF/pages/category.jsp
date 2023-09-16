@@ -22,7 +22,7 @@
             <div class="col-lg-12">
                 <div class="">
                     <div class="table-responsive">
-                        <table class="table project-list-table table-nowrap align-middle table-borderless">
+                        <table class="table table-hover project-list-table table-nowrap align-middle table-borderless">
                             <thead>
                                 <tr class="table-primary">
 

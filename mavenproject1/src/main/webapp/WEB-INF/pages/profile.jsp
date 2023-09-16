@@ -36,30 +36,30 @@ s<%--
                 <div class="card-body">
                     <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <h6 class="mb-2 text-primary">Thông tin chung</h6>
+                            <h5 class="mb-2 text-primary">Thông tin chung</h5>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label for="fullName">${sessionScope.currentUser.name}</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                                <label for="fullName">  <h6 class=" text-warning">Tên đầy đủ</h6></label>
+                                <input type="text" class="form-control" id="fullName" placeholder="${sessionScope.currentUser.name}">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label for="eMail">${sessionScope.currentUser.mail}</label>
-                                <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+                                <label for="eMail"><h6 class=" text-warning">Email</h6></label>
+                                <input type="email" class="form-control" id="eMail" placeholder="${sessionScope.currentUser.mail}">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label for="phone">${sessionScope.currentUser.phone}</label>
-                                <input type="number" class="form-control" id="phone" placeholder="Enter phone number">
+                                <label for="phone"><h6 class=" text-warning">Số điện thoại</h6></label>
+                                <input type="number" class="form-control" id="phone" placeholder="${sessionScope.currentUser.phone}">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label for="major">Chuyên ngành</label>
-                                <input type="text" class="form-control" id="website" placeholder="Website url">
+                                <label for="major"><h6 class=" text-warning">Ngành nghề</h6></label>
+                                <input type="text" class="form-control" id="major" placeholder="${sessionScope.currentUser.majors}">
                             </div>
                         </div>
                     </div>
@@ -67,14 +67,14 @@ s<%--
                        
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label for="Street">${sessionScope.currentUser.date}</label>
-                                <input type="date" class="form-control" id="Street" placeholder="Enter Street">
+                                <label for="date"><h6 class=" text-warning">Ngày sinh</h6></label>
+                                <input type="date"  class="form-control" id="date" placeholder="${sessionScope.currentUser.date}"/>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label for="text">Kinh nghiệm</label>
-                                <input type="text" class="form-control" id="ciTy" placeholder="Enter City">
+                                <label for="text"><h6 class=" text-warning">Kinh nghiệm</h6></label>
+                                <input type="text" class="form-control" id="experience" placeholder="${sessionScope.currentUser.experience}">
                             </div>
                         </div>
                         

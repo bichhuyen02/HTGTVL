@@ -73,6 +73,14 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     @Override
+    public int countCompany() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("SELECT COUNT(*) From Company");
+
+        return Integer.parseInt(q.getSingleResult().toString());
+    }
+
+    @Override
     public boolean addOrUpdateCompany(Company c) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
