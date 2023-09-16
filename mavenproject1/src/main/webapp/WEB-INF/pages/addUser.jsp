@@ -120,7 +120,7 @@
                         <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"style="color:#3376BC"></i> </span>
                     </div>
                     <form:select class="form-control" type="text" path="experience" id="experience" placeholder="Kinh nghiệm" name="experience" >                    
-                        <form:option value="Không yêu cầu kinh nghiệm">Không yêu cầu kinh nghiệm</form:option>
+                        <form:option value="Không có">Không có</form:option>
                         <form:option value="Dưới 1 năm">Dưới 1 năm</form:option>
                         <form:option value="Từ 2-5 năm">Từ 2-5 năm</form:option>
                         <form:option value="Trên 5 năm">Trên 5 năm</form:option>
