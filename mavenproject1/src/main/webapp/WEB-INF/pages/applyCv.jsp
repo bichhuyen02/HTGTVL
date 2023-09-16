@@ -20,8 +20,8 @@
                 <form:input type="file" class="form-control" path="file" id="file"
                             placeholder="CV" name="file" />
                     <label for="avatar">CV </label>
-                <form:errors path="file" element="div" cssClass="text-danger" />
             </div>
+                <form:errors path="file" element="div" cssClass="text-danger" />
 
             <div class="form-floating mb-3 mt-3">
                 <form:textarea class="form-control" path="content" id="content" 

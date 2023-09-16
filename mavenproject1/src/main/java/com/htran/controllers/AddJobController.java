@@ -15,6 +15,7 @@ import com.htran.service.PositionService;
 import java.security.Principal;
 import java.util.Date;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -51,7 +52,8 @@ public class AddJobController {
 
     @GetMapping("/addJob")
     public String addjob(Model model, @RequestParam Map<String, String> params,
-            Principal pricipal) {
+            Principal pricipal, HttpSession session) {
+         model.addAttribute("currentUser", session.getAttribute("currentUser"));
         String role = "ROLE_EMP";
         model.addAttribute("addjobs", new Job());
         Account acc = this.accService.getAccountByUsername(pricipal.getName());

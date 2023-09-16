@@ -55,27 +55,31 @@ public class AddUserController {
             BindingResult rs) {
         String errMsg = "";
         Date currentDate = new Date();
-        if (u.getBirthDate()!= null && currentDate.compareTo(u.getBirthDate()) > 0) {
+        if (u.getBirthDate() != null && currentDate.compareTo(u.getBirthDate()) > 0) {
             if (u.getPhone().length() == 10 && u.getPhone().codePointAt(0) == 48) {
                 if (u.getPassword() != null && u.getUsername() != null) {
-                    if (u.getPassword().equals(u.getConfirmPassword())) {
-                        if (this.accService.getAccountByUsern(u.getUsername()) == false) {
-                            if (!rs.hasErrors()) {
-                                if (this.userService.addOrUpdateUser(u) == true) {
-//                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
-//                                    simpleMail.setTo(u.getMail());
-//                                    simpleMail.setSubject("Thông báo");
-//                                    simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
-//
-//                                    mailSender.send(simpleMail);
-//                                    return "redirect:/";
+                    if (u.getPassword().length() >= 6 && u.getPassword().length() <= 10) {
+                        if (u.getPassword().equals(u.getConfirmPassword())) {
+                            if (this.accService.getAccountByUsern(u.getUsername()) == false) {
+                                if (!rs.hasErrors()) {
+                                    if (this.userService.addOrUpdateUser(u) == true) {
+                                        SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                        simpleMail.setTo(u.getMail());
+                                        simpleMail.setSubject("Thông báo");
+                                        simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
+
+                                        mailSender.send(simpleMail);
+                                        return "redirect:/";
+                                    }
                                 }
+                            } else {
+                                errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
                             }
                         } else {
-                            errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
+                            errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
                         }
                     } else {
-                        errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                        errMsg = errMsg + " Kí tự mật khẩu không được <6 và >10 (^-^) !!!";
                     }
                 } else {
                     if (u.getPassword() == null) {
@@ -88,7 +92,11 @@ public class AddUserController {
                 errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
             }
         } else {
-            errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";
+            if (u.getBirthDate() == null) {
+                errMsg = errMsg + "Ngày thành lập không được để trống (^-^) !!!";
+            } else {
+                errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";
+            }
         }
         model.addAttribute(
                 "errMsg", errMsg);

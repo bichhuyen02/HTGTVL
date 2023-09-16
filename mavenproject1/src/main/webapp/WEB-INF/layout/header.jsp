@@ -68,7 +68,7 @@
                     <c:when test="${pageContext.request.userPrincipal.name != null}">
                         <se:authorize access="hasRole('ROLE_USER')">
                             <li class="hinhanhavt">
-                                <a class="nav-link text-danger huyen" href="<c:url value="/profile" />">
+                                <a class="nav-link text-danger huyen" href="<c:url value="/profile/${sessionScope.currentUser.uId}" />">
                                     Chào
                                     <img src="${sessionScope.currentUser.avatar}" alt="${sessionScope.currentUser.username}" class="imageavt rounded-circle">  
                                 </a>
@@ -84,8 +84,8 @@
                         </se:authorize>
                         <se:authorize access="hasRole('ROLE_ADMIN')">
                             <li class="nav-item" >
-                                <a class="nav-link text-danger " href="<c:url value="/profile" />">
-                                    Chào ${sessionScope.currentUser.username}
+                                <a class="nav-link text-danger " href="<c:url value="/" />">
+                                    Chào Admin
                                 </a>
                             </li>
                         </se:authorize> 

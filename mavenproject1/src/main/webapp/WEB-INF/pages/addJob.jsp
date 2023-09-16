@@ -28,32 +28,32 @@
                 <div class="form-group input-group">
                     <form:input type="text" class="form-control" path="title" id="title" 
                                 placeholder="Tên công việc" name="title" />
+                </div>
                     <form:errors path="title" element="div" cssClass="text-danger" />
-                </div>
 
                 <div class="form-group input-group">
-                    <form:textarea class="form-control" path="description" id="description" 
+                    <form:textarea rows="3" class="form-control" path="description" id="description" 
                                    placeholder="Mô Tả" name="description" />
+                </div>
                     <form:errors path="description" element="div" cssClass="text-danger" />
-                </div>
 
                 <div class="form-group input-group">
-                    <form:textarea class="form-control" path="benefits" id="benefits" 
+                    <form:textarea rows="3" class="form-control" path="benefits" id="benefits" 
                                    placeholder="Quyền lợi" name="benefits" />
-                    <form:errors path="benefits" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="benefits" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
-                    <form:textarea class="form-control" path="skill" id="skill" 
+                    <form:textarea rows="3" class="form-control" path="skill" id="skill" 
                                    placeholder="Kỹ năng" name="skill" />
-                    <form:errors path="skill" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="skill" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:input type="text" class="form-control" path="quantity" id="quantity" 
                                 placeholder="Số lượng cần tuyển" name="quantity" />
-                    <form:errors path="quantity" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="quantity" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:select class="form-control" type="text" path="experience" id="experience" placeholder="Kinh nghiệm" name="experience" >                    
@@ -67,8 +67,8 @@
                 <div class="form-group input-group">
                     <form:input type="text" class="form-control" path="address" id="address" 
                                 placeholder="Địa Chỉ" name="address" />
-                    <form:errors path="address" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="address" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:select type="text" class="form-control" path="level" id="level" placeholder="Trình độ học vấn" name="level" >
@@ -81,8 +81,8 @@
                 <div class="form-group input-group">
                     <form:input type="text" class="form-control" path="salary" id="salary" 
                                 placeholder="Lương" name="salary" />
-                    <form:errors path="salary" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="salary" element="div" cssClass="text-danger" />
 
                 <div class="form-floating mt-3 mb-3">
                     <form:input type="date" class="form-control" path="outOffTime" id="outOffTime"
@@ -155,11 +155,9 @@
                         <form:select class="form-select" id="companyId" name="companyId" path="companyId">
                             <c:forEach items="${companies}" var="c">
                                 <c:choose>
-
                                     <c:when test="${c.id == addjobs.companyId.id}">
                                         <option value="${c.id}" selected>${c.name}</option>
                                     </c:when>
-
                                     <c:otherwise>
                                         <option value="${c.id}">${c.name}</option>
                                     </c:otherwise>
@@ -172,7 +170,7 @@
                 <se:authorize access="hasRole('ROLE_EMP')">   
                     <div class="form-group input-group">
                         <form:select class="form-select" id="companyId" name="companyId" path="companyId" disabled="true">                      
-                            <option value="${jobsC.id}">${jobsC.name}</option>
+                            <option value="${sessionScope.currentUser.uId}" selected>${sessionScope.currentUser.name}</option>
                         </form:select>
                     </div> 
                 </se:authorize>
@@ -180,20 +178,15 @@
                 <div class="form-floating mb-3 mt-3 ">
                     <button type="submit" class="btn btn-info">
                         <c:choose>
-                            <c:when test="${addjobs.id != null}">Cập nhật Doanh Nghiệp</c:when>
-                            <c:otherwise>Thêm </c:otherwise>
+                            <c:when test="${addjobs.id != null}">Cập nhật công việc</c:when>
+                            <c:otherwise>Thêm</c:otherwise>
                         </c:choose>
                     </button>
-
-                    <button type="submit" class="btn btn-danger">Hủy</button>
-
-
+                    <button type="button" onclick="deJob()" class="btn btn-danger">Hủy</button>
                 </div>
-                <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a> 
-                </p>
-
-            </form:form>
-    </article>
-
-</div>
+                <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a></p>
+        </article>
+    </div>
+</form:form>
+<script src="<c:url value="/js/main.js" />"></script>
 

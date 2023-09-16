@@ -99,7 +99,7 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 45, message = "job.salary.lenErr")
     @Column(name = "salary")
     private String salary;
     

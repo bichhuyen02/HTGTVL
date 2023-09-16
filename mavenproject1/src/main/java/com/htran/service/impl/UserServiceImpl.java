@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
                 Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
                 Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }  
+            }
         }
         return this.userRepo.addOrUpdateUser(user);
     }
@@ -128,5 +128,28 @@ public class UserServiceImpl implements UserService {
 
         this.userRepo.addUser(u, acc);
         return u;
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        if (!user.getFile().isEmpty()) {
+            Map res;
+            try {
+                res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                user.setAvatar(res.get("secure_url").toString());
+            } catch (IOException ex) {
+                Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            User u = this.userRepo.getUserById(user.getId());
+            user.setAvatar(u.getAvatar());
+        }
+        try {
+            user.setBirthDate(this.simpleDateFormat
+                    .parse(this.simpleDateFormat.format(user.getBirthDate())));
+        } catch (ParseException ex) {
+            Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this.userRepo.updateUser(user);
     }
 }

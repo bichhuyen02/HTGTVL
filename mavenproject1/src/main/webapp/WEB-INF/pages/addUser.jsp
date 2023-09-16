@@ -39,8 +39,8 @@
                     </div>
                     <form:input type="text" class="form-control" path="name" id="name" 
                                 placeholder="Họ và tên" name="name" />
-                    <form:errors path="name" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="name" element="div" cssClass="text-danger" />
 
 
                 <div class="form-group input-group">
@@ -49,8 +49,8 @@
                     </div>
                     <form:input type="date" class="form-control" path="birthDate" id="birthDate" 
                                 placeholder="Ngày sinh" name="birthDate" />
-                    <form:errors path="birthDate" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="birthDate" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -60,8 +60,8 @@
                     </div>
                     <form:input type="email" name="mail" class="form-control" id="mail" path="mail"
                                 placeholder="Mail" />
-                    <form:errors path="mail" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="mail" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <span class="input-group-text"> 
@@ -69,8 +69,8 @@
                     </span>
                     <form:input type="number" class="form-control" path="phone" id="phone" 
                                 placeholder="Số điện thoại" name="phone" />
-                    <form:errors path="phone" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="phone" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -78,8 +78,8 @@
                     </div>
                     <form:input type="text" class="form-control" path="username" id="username" 
                                 placeholder="Tên đăng nhập" name="username" />
-                    <form:errors path="username" element="div" cssClass="text-danger" />
                 </div>
+                    <form:errors path="username" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -87,8 +87,8 @@
                     </div>
                     <form:input class="form-control" type="password" path="password" id="password" 
                                 placeholder="Tạo mật khẩu" name="password" />
-                    <form:errors path="password" element="div" cssClass="text-danger" />
-                </div>  
+                </div> 
+                    <form:errors path="password" element="div" cssClass="text-danger" /> 
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -96,8 +96,8 @@
                     </div>
                     <form:input class="form-control" type="password" path="confirmPassword" id="confirmPassword" 
                                 placeholder="Xác nhận mật khẩu" name="confirmPassword" />
-                    <form:errors path="confirmPassword" element="div" cssClass="text-danger" />
                 </div> 
+                    <form:errors path="confirmPassword" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -125,19 +125,16 @@
                         <form:option value="Từ 2-5 năm">Từ 2-5 năm</form:option>
                         <form:option value="Trên 5 năm">Trên 5 năm</form:option>
                     </form:select>
-
                 </div>
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-mercury" aria-hidden="true" style="color:#3376BC"></i> </span>
                     </div>
-
                     <form:select class="form-control" path="gender" id="gender" placeholder="Giới Tính" name="gender" >                    
                         <form:option value="Nam">Nam</form:option>
                         <form:option value="Nữ">Nữ</form:option>
                     </form:select>
-
                 </div>
 
 
@@ -150,22 +147,37 @@
                     </c:if>
                 </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> 
-                        <c:choose>
-                            <c:when test="${addUsers.id != null}">Cập nhật tài khoản</c:when>
-                            <c:otherwise>Tạo tài khoản</c:otherwise>
-                        </c:choose>
-                    </button>
-                </div> <!-- form-group// -->      
-                <p class="text-center">Bạn đã có tài khoản? <a href="<c:url value="/login" />">Đăng nhập</a> 
-                </p> 
-                <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a> 
-                </p>  
+                <se:authorize access="hasRole('ROLE_ADMIN')">   
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"> 
+                            <c:choose>
+                                <c:when test="${addUsers.id != null}">Cập nhật</c:when>
+                                <c:otherwise>Thêm</c:otherwise>
+                            </c:choose>
+                        </button>
+                        <button type="button" onclick="deUser()" class="btn btn-danger">Hủy</button>
+                    </div> 
+                </se:authorize>
+
+                <se:authorize access="!isAuthenticated()">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> 
+                            <c:choose>
+                                <c:when test="${addUsers.id != null}">Cập nhật tài khoản</c:when>
+                                <c:otherwise>Tạo tài khoản</c:otherwise>
+                            </c:choose>
+                        </button>
+                    </div>    
+                    <p class="text-center">Bạn đã có tài khoản? <a href="<c:url value="/login" />">Đăng nhập</a> 
+                    </p> 
+                    <p class="text-center"><a href="<c:url value="/" />">Trang chủ</a> 
+                    </p>
+                </se:authorize>
             </form>
         </article>
-    </div> <!-- card.// -->
+    </div>
 </form:form>
+<script src="<c:url value="/js/main.js" />"></script>
 
 
 
