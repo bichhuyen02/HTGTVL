@@ -9,6 +9,7 @@ import com.htran.service.AccountService;
 import com.htran.service.CompanyService;
 import java.util.Date;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -39,9 +40,9 @@ public class AddCompanyController {
     private JavaMailSender mailSender;
 
     @GetMapping("/addCompany")
-    public String addCompany(Model model) {
+    public String addCompany(Model model, HttpSession session) {
         model.addAttribute("addCompanies", new Company());
-
+        model.addAttribute("currentUser", session.getAttribute("currentUser"));
         return "addCompany";
     }
 

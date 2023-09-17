@@ -51,20 +51,6 @@ import org.springframework.format.annotation.DateTimeFormat;
     @NamedQuery(name = "Job.findByExperience", query = "SELECT j FROM Job j WHERE j.experience = :experience")})
 public class Job implements Serializable {
 
-    /**
-     * @return the image
-     */
-    public String getImage() {
-        return image;
-    }
-
-    /**
-     * @param image the image to set
-     */
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,20 +60,20 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "job.tile.lenErr")
+    @Size(min = 1, max = 255, message = "{job.tile.lenErr}")
     @Column(name = "title")
     private String title;
     
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647, message = "job.description.lenErr")
+    @Size(min = 1, max = 2147483647, message = "{job.description.lenErr}")
     @Column(name = "description")
     private String description;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "job.address.lenErr")
+    @Size(min = 1, max = 255, message = "{job.address.lenErr}")
     @Column(name = "address")
     private String address;
     
@@ -99,7 +85,7 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45, message = "job.salary.lenErr")
+    @Size(min = 1, max = 45, message = "{job.salary.lenErr}")
     @Column(name = "salary")
     private String salary;
     
@@ -123,7 +109,7 @@ public class Job implements Serializable {
     private Date outOffTime;
     
     @Basic(optional = false)
-    @NotNull(message = "job.quantity.notNullMsg")
+    @NotNull(message = "{job.quantity.notNullMsg}")
     @Column(name = "quantity")
     private int quantity;
     
@@ -136,14 +122,14 @@ public class Job implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647, message = "job.Benefits.lenErr")
+    @Size(min = 1, max = 2147483647, message = "{job.Benefits.lenErr}")
     @Column(name = "benefits")
     private String benefits;
     
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647, message = "job.Skill.lenErr")
+    @Size(min = 1, max = 2147483647, message = "{job.Skill.lenErr}")
     @Column(name = "skill")
     private String skill;
     
@@ -170,9 +156,6 @@ public class Job implements Serializable {
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     @ManyToOne
     private Position positionId;
-
-    @Transient
-    private String image;
     
     public Job() {
     }

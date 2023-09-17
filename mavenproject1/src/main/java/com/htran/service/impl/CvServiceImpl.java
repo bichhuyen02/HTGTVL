@@ -76,4 +76,9 @@ public class CvServiceImpl implements CvService {
         return this.cvRepo.UpdateActive(id);
     }
 
+    @Override
+    public List<Cv> getCvT(int id) {
+        return this.cvRepo.getCvT(id);
+    }
+
 }

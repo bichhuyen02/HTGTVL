@@ -47,6 +47,7 @@ public class CvController {
         Company com = this.companyService.getCompanyByAccId(acc.getId());
         model.addAttribute("jobC", this.jobService.getJobsByComId(com));
         model.addAttribute("cvs", this.cvService.getCv(com.getId()));
+        model.addAttribute("cvT", this.cvService.getCvT(com.getId()));
         return "CV";
     }
     

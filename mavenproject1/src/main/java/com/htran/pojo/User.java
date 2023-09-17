@@ -115,19 +115,19 @@ public class User implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "user.name.lenErr")
+    @Size(min = 1, max = 255, message = "{user.name.lenErr}")
     @Column(name = "name")
     private String name;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "user.mail.lenErr")
+    @Size(min = 1, max = 255, message = "{user.mail.lenErr}")
     @Column(name = "mail")
     private String mail;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
-    @NotNull(message = "user.birthDate.notNullMsg")
+    @NotNull(message = "{user.birthDate.notNullMsg}")
     @Column(name = "birth_date")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
@@ -135,7 +135,7 @@ public class User implements Serializable {
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10, message = "user.phone.lenErr")
+    @Size(min = 1, max = 10, message = "{user.phone.lenErr}")
     @Column(name = "phone")
     private String phone;
     

@@ -115,5 +115,28 @@ public class CvRepositoryImpl implements CvRepository{
             return false;
         }
     }
+
+    @Override
+    public List<Cv> getCvT(int id) {
+        Company c = this.compaRepo.getCompanyById(id);
+        List<Job> jobs = this.jobRepo.getJobsByComId(c);
+        List<Cv> cv = new ArrayList<>();
+        Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<Cv> q = b.createQuery(Cv.class);
+        Root root = q.from(Cv.class);
+        q.select(root);
+        
+        for (Job j : jobs) {
+            List<Predicate> predicates = new ArrayList<>();
+            predicates.add(b.equal(root.get("jobId"), j.getId()));
+            predicates.add(b.equal(root.get("active"), true));
+            q.where(predicates.toArray(Predicate[]::new));
+            q.orderBy(b.desc(root.get("id")));
+            Query query = s.createQuery(q);
+            cv.addAll(query.getResultList());
+        }
+        return cv; 
+    }
     
 }

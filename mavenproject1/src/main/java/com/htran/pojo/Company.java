@@ -116,13 +116,13 @@ public class Company implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "company.name.lenErr")
+    @Size(min = 1, max = 255, message = "{company.name.lenErr}")
     @Column(name = "name")
     private String name;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "company.address.lenErr")
+    @Size(min = 1, max = 255, message = "{company.address.lenErr}")
     @Column(name = "address")
     private String address;
     
@@ -136,25 +136,25 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647, message = "company.description.lenErr")
+    @Size(min = 1, max = 2147483647, message = "{company.description.lenErr}")
     @Column(name = "description")
     private String description;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "company.linkCompany.lenErr")
+    @Size(min = 1, max = 255, message = "{company.linkCompany.lenErr}")
     @Column(name = "link_company")
     private String linkCompany;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45, message = "company.scale.lenErr")
+    @Size(min = 1, max = 45, message = "{company.scale.lenErr}")
     @Column(name = "scale")
     private String scale;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100, message = "company.mail.lenErr")
+    @Size(min = 1, max = 100, message = "{company.mail.lenErr}")
     @Column(name = "mail")
     private String mail;
     

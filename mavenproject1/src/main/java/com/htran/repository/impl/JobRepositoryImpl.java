@@ -87,9 +87,6 @@ public class JobRepositoryImpl implements JobRepository {
             query.setMaxResults(pageSize);
         }
         List<Job> jobs = query.getResultList(); 
-        for(Job j:jobs){
-            j.setImage(j.getCompanyId().getImage());
-        }
         return jobs;
     }
 

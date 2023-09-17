@@ -29,31 +29,31 @@
                     <form:input type="text" class="form-control" path="title" id="title" 
                                 placeholder="Tên công việc" name="title" />
                 </div>
-                    <form:errors path="title" element="div" cssClass="text-danger" />
+                <form:errors path="title" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:textarea rows="3" class="form-control" path="description" id="description" 
                                    placeholder="Mô Tả" name="description" />
                 </div>
-                    <form:errors path="description" element="div" cssClass="text-danger" />
+                <form:errors path="description" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:textarea rows="3" class="form-control" path="benefits" id="benefits" 
                                    placeholder="Quyền lợi" name="benefits" />
                 </div>
-                    <form:errors path="benefits" element="div" cssClass="text-danger" />
+                <form:errors path="benefits" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:textarea rows="3" class="form-control" path="skill" id="skill" 
                                    placeholder="Kỹ năng" name="skill" />
                 </div>
-                    <form:errors path="skill" element="div" cssClass="text-danger" />
+                <form:errors path="skill" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:input type="text" class="form-control" path="quantity" id="quantity" 
                                 placeholder="Số lượng cần tuyển" name="quantity" />
                 </div>
-                    <form:errors path="quantity" element="div" cssClass="text-danger" />
+                <form:errors path="quantity" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:select class="form-control" type="text" path="experience" id="experience" placeholder="Kinh nghiệm" name="experience" >                    
@@ -68,7 +68,7 @@
                     <form:input type="text" class="form-control" path="address" id="address" 
                                 placeholder="Địa Chỉ" name="address" />
                 </div>
-                    <form:errors path="address" element="div" cssClass="text-danger" />
+                <form:errors path="address" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <form:select type="text" class="form-control" path="level" id="level" placeholder="Trình độ học vấn" name="level" >
@@ -82,7 +82,7 @@
                     <form:input type="text" class="form-control" path="salary" id="salary" 
                                 placeholder="Lương" name="salary" />
                 </div>
-                    <form:errors path="salary" element="div" cssClass="text-danger" />
+                <form:errors path="salary" element="div" cssClass="text-danger" />
 
                 <div class="form-floating mt-3 mb-3">
                     <form:input type="date" class="form-control" path="outOffTime" id="outOffTime"
@@ -169,8 +169,8 @@
 
                 <se:authorize access="hasRole('ROLE_EMP')">   
                     <div class="form-group input-group">
-                        <form:select class="form-select" id="companyId" name="companyId" path="companyId" disabled="true">                      
-                            <option value="${sessionScope.currentUser.uId}" selected>${sessionScope.currentUser.name}</option>
+                        <form:select class="form-select" id="companyId" name="companyId" path="companyId">                      
+                           <form:option value="${sessionScope.currentUser.uId}">${sessionScope.currentUser.name}</form:option>
                         </form:select>
                     </div> 
                 </se:authorize>

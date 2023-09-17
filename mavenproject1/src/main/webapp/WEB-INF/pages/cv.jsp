@@ -63,6 +63,24 @@
                                         </tbody>
                                     </c:if>
                                 </c:forEach> 
+                                        <c:forEach items="${cvT}" var="c">
+                                   <c:if test="${c.jobId.id == j.id}">
+                                        <tbody id="items">
+                                            <tr>
+                                                <td>${c.userId.name}</td>
+                                                <td>${c.userId.mail}</td>
+                                                <td>${c.userId.phone}</td>
+                                                <td>
+                                                    <img style="width: 50px; height: 50px; " src="${c.cv}" alt="${c.userId.name}" class="avatar-sm rounded-circle me-2"/>
+                                                </td>
+                                                <td>${c.content}</td>
+                                                <td>
+                                                    Đã duyệt
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </c:if>
+                                </c:forEach>
                             </table>
                         </div>
                     </div>
