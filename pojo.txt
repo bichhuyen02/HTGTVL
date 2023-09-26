@@ -1,0 +1,50 @@
+User and company
+@Transient
+    private MultipartFile file;
+    
+    @Transient
+    private String username;
+    
+    @Transient
+    private String password;
+    
+    @Transient
+    private String confirmPassword;
+
+
+account
+  @Transient
+    private int uId;
+    
+    @Transient
+    private String name;
+    
+    @Transient
+    private Date date;
+    
+    @Transient
+    private String phone;
+    
+    @Transient
+    private String mail;
+    
+    @Transient
+    private String avatar;
+    
+    @Transient
+    private String majors;
+    
+    @Transient
+    private String experience;
+    
+    @Transient
+    private String gender;
+
+
+Cv
+@Transient
+    private MultipartFile file;
+
+
+Kiểu date
+@DateTimeFormat(pattern = "yyyy-MM-dd")

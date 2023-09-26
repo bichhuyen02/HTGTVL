@@ -4,7 +4,6 @@
  */
 package com.htran.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -45,7 +44,7 @@ public class Category implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100, message = "{category.name.lenErr}")
+    @Size(min = 1, max = 100)
     @Column(name = "name")
     private String name;
     
@@ -54,7 +53,6 @@ public class Category implements Serializable {
     @Column(name = "description")
     private String description;
     
-    @JsonIgnore
     @OneToMany(mappedBy = "categoryId")
     private Set<Job> jobSet;
 

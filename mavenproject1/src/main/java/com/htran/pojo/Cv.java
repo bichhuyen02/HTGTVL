@@ -4,7 +4,6 @@
  */
 package com.htran.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -66,7 +65,7 @@ public class Cv implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{cv.ima.lenErr}")
+    @Size(min = 1, max = 255)
     @Column(name = "cv")
     private String cv;
     
@@ -83,12 +82,10 @@ public class Cv implements Serializable {
     @Column(name = "active")
     private Boolean active;
     
-    @JsonIgnore
     @JoinColumn(name = "job_id", referencedColumnName = "id")
     @ManyToOne
     private Job jobId;
     
-    @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;

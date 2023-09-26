@@ -4,7 +4,6 @@
  */
 package com.htran.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -195,14 +194,12 @@ public class Account implements Serializable {
     @Column(name = "active")
     private Boolean active;
     
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<Company> companySet;
     
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<User> userSet;
-    
+
     @Transient
     private int uId;
     

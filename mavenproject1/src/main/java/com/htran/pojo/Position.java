@@ -4,7 +4,6 @@
  */
 package com.htran.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -54,7 +53,6 @@ public class Position implements Serializable {
     @Column(name = "description")
     private String description;
     
-    @JsonIgnore
     @OneToMany(mappedBy = "positionId")
     private Set<Job> jobSet;
 

@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -24,13 +23,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Admin
  */
 @Entity
-@Table(name = "follow")
+@Table(name = "save")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Follow.findAll", query = "SELECT f FROM Follow f"),
-    @NamedQuery(name = "Follow.findById", query = "SELECT f FROM Follow f WHERE f.id = :id"),
-    @NamedQuery(name = "Follow.findByContent", query = "SELECT f FROM Follow f WHERE f.content = :content")})
-public class Follow implements Serializable {
+    @NamedQuery(name = "Save.findAll", query = "SELECT s FROM Save s"),
+    @NamedQuery(name = "Save.findById", query = "SELECT s FROM Save s WHERE s.id = :id"),
+    @NamedQuery(name = "Save.findByActive", query = "SELECT s FROM Save s WHERE s.active = :active")})
+public class Save implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,29 +38,22 @@ public class Follow implements Serializable {
     @Column(name = "id")
     private Integer id;
     
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "content")
-    private boolean content;
+    @Column(name = "active")
+    private Boolean active;
     
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    @JoinColumn(name = "job_id", referencedColumnName = "id")
     @ManyToOne
-    private Company companyId;
+    private Job jobId;
     
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
 
-    public Follow() {
+    public Save() {
     }
 
-    public Follow(Integer id) {
+    public Save(Integer id) {
         this.id = id;
-    }
-
-    public Follow(Integer id, boolean content) {
-        this.id = id;
-        this.content = content;
     }
 
     public Integer getId() {
@@ -72,20 +64,20 @@ public class Follow implements Serializable {
         this.id = id;
     }
 
-    public boolean getContent() {
-        return content;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setContent(boolean content) {
-        this.content = content;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
-    public Company getCompanyId() {
-        return companyId;
+    public Job getJobId() {
+        return jobId;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setJobId(Job jobId) {
+        this.jobId = jobId;
     }
 
     public User getUserId() {
@@ -106,10 +98,10 @@ public class Follow implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Follow)) {
+        if (!(object instanceof Save)) {
             return false;
         }
-        Follow other = (Follow) object;
+        Save other = (Save) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -118,7 +110,7 @@ public class Follow implements Serializable {
 
     @Override
     public String toString() {
-        return "com.htran.pojo.Follow[ id=" + id + " ]";
+        return "com.htran.pojo.Save[ id=" + id + " ]";
     }
     
 }

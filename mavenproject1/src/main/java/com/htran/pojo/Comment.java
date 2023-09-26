@@ -4,7 +4,6 @@
  */
 package com.htran.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -58,12 +57,10 @@ public class Comment implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date createTime;
     
-    @JsonIgnore
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
     
-    @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;

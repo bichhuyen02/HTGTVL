@@ -4,7 +4,6 @@
  */
 package com.htran.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -23,7 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -60,20 +58,20 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{job.tile.lenErr}")
+    @Size(min = 1, max = 255)
     @Column(name = "title")
     private String title;
     
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647, message = "{job.description.lenErr}")
+    @Size(min = 1, max = 2147483647)
     @Column(name = "description")
     private String description;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{job.address.lenErr}")
+    @Size(min = 1, max = 255)
     @Column(name = "address")
     private String address;
     
@@ -85,7 +83,7 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45, message = "{job.salary.lenErr}")
+    @Size(min = 1, max = 45)
     @Column(name = "salary")
     private String salary;
     
@@ -96,20 +94,19 @@ public class Job implements Serializable {
     private String level;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Basic(optional = false)
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
-    @NotNull(message = "job.outOffTime.notNullMsg")
+    @NotNull
     @Column(name = "out_off_time")
     @Temporal(TemporalType.DATE)
     private Date outOffTime;
     
     @Basic(optional = false)
-    @NotNull(message = "{job.quantity.notNullMsg}")
+    @NotNull
     @Column(name = "quantity")
     private int quantity;
     
@@ -122,41 +119,39 @@ public class Job implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647, message = "{job.Benefits.lenErr}")
+    @Size(min = 1, max = 2147483647)
     @Column(name = "benefits")
     private String benefits;
     
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647, message = "{job.Skill.lenErr}")
+    @Size(min = 1, max = 2147483647)
     @Column(name = "skill")
     private String skill;
     
-    @JsonIgnore
     @OneToMany(mappedBy = "jobId")
     private Set<Cv> cvSet;
     
-    @JsonIgnore
+    @OneToMany(mappedBy = "jobId")
+    private Set<Save> saveSet;
+    
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
     private Category categoryId;
     
-    @JsonIgnore
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
     
-    @JsonIgnore
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     @ManyToOne
     private Location locationId;
     
-    @JsonIgnore
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     @ManyToOne
     private Position positionId;
-    
+
     public Job() {
     }
 
@@ -164,7 +159,7 @@ public class Job implements Serializable {
         this.id = id;
     }
 
-    public Job(Integer id, String title, String description, String address, String jobNature, String salary, String level, Date createTime, Date outOffTime, int quantity, String experience, String benefits, String skill) {
+    public Job(Integer id, String title, String description, String address, String jobNature, String salary, String level, Date outOffTime, int quantity, String experience, String benefits, String skill) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -172,7 +167,6 @@ public class Job implements Serializable {
         this.jobNature = jobNature;
         this.salary = salary;
         this.level = level;
-        this.createTime = createTime;
         this.outOffTime = outOffTime;
         this.quantity = quantity;
         this.experience = experience;
@@ -291,6 +285,15 @@ public class Job implements Serializable {
 
     public void setCvSet(Set<Cv> cvSet) {
         this.cvSet = cvSet;
+    }
+
+    @XmlTransient
+    public Set<Save> getSaveSet() {
+        return saveSet;
+    }
+
+    public void setSaveSet(Set<Save> saveSet) {
+        this.saveSet = saveSet;
     }
 
     public Category getCategoryId() {

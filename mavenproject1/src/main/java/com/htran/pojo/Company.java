@@ -4,7 +4,6 @@
  */
 package com.htran.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -116,13 +115,13 @@ public class Company implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{company.name.lenErr}")
+    @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{company.address.lenErr}")
+    @Size(min = 1, max = 255)
     @Column(name = "address")
     private String address;
     
@@ -136,25 +135,25 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647, message = "{company.description.lenErr}")
+    @Size(min = 1, max = 2147483647)
     @Column(name = "description")
     private String description;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{company.linkCompany.lenErr}")
+    @Size(min = 1, max = 255)
     @Column(name = "link_company")
     private String linkCompany;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45, message = "{company.scale.lenErr}")
+    @Size(min = 1, max = 45)
     @Column(name = "scale")
     private String scale;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100, message = "{company.mail.lenErr}")
+    @Size(min = 1, max = 100)
     @Column(name = "mail")
     private String mail;
     
@@ -169,20 +168,19 @@ public class Company implements Serializable {
     @Column(name = "phone")
     private String phone;
     
-    @JsonIgnore
+    @OneToMany(mappedBy = "companyId")
+    private Set<Rating> ratingSet;
+    
     @OneToMany(mappedBy = "companyId")
     private Set<Comment> commentSet;
     
-    @JsonIgnore
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
     
-    @JsonIgnore
     @OneToMany(mappedBy = "companyId")
     private Set<Follow> followSet;
     
-    @JsonIgnore
     @OneToMany(mappedBy = "companyId")
     private Set<Job> jobSet;
 
@@ -295,6 +293,15 @@ public class Company implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @XmlTransient
+    public Set<Rating> getRatingSet() {
+        return ratingSet;
+    }
+
+    public void setRatingSet(Set<Rating> ratingSet) {
+        this.ratingSet = ratingSet;
     }
 
     @XmlTransient

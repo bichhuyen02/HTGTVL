@@ -19,6 +19,7 @@
     <class>com.htran.pojo.Follow</class>
     <class>com.htran.pojo.Position</class>
     <class>com.htran.pojo.Account_1</class>
+    <class>com.htran.pojo.Save</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/csdl_tuyendung?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

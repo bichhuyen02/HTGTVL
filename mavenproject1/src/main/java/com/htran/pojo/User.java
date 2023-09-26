@@ -4,7 +4,6 @@
  */
 package com.htran.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -115,19 +114,19 @@ public class User implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{user.name.lenErr}")
+    @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{user.mail.lenErr}")
+    @Size(min = 1, max = 255)
     @Column(name = "mail")
     private String mail;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
-    @NotNull(message = "{user.birthDate.notNullMsg}")
+    @NotNull
     @Column(name = "birth_date")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
@@ -135,7 +134,7 @@ public class User implements Serializable {
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10, message = "{user.phone.lenErr}")
+    @Size(min = 1, max = 10)
     @Column(name = "phone")
     private String phone;
     
@@ -161,19 +160,21 @@ public class User implements Serializable {
     @Column(name = "gender")
     private String gender;
     
-    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private Set<Cv> cvSet;
     
-    @JsonIgnore
+    @OneToMany(mappedBy = "userId")
+    private Set<Rating> ratingSet;
+    
+    @OneToMany(mappedBy = "userId")
+    private Set<Save> saveSet;
+    
     @OneToMany(mappedBy = "userId")
     private Set<Comment> commentSet;
     
-    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private Set<Follow> followSet;
     
-    @JsonIgnore
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
@@ -287,6 +288,24 @@ public class User implements Serializable {
 
     public void setCvSet(Set<Cv> cvSet) {
         this.cvSet = cvSet;
+    }
+
+    @XmlTransient
+    public Set<Rating> getRatingSet() {
+        return ratingSet;
+    }
+
+    public void setRatingSet(Set<Rating> ratingSet) {
+        this.ratingSet = ratingSet;
+    }
+
+    @XmlTransient
+    public Set<Save> getSaveSet() {
+        return saveSet;
+    }
+
+    public void setSaveSet(Set<Save> saveSet) {
+        this.saveSet = saveSet;
     }
 
     @XmlTransient
