@@ -15,7 +15,6 @@ import com.htran.service.CommentService;
 import com.htran.service.CompanyService;
 import com.htran.service.CvService;
 import com.htran.service.JobService;
-//import com.htran.service.SaveService;
 import com.htran.service.UserService;
 import java.security.Principal;
 import java.util.Map;
@@ -167,10 +166,9 @@ public class Controllers {
     //------------------------------------end JobDetail---------------------------------
     
     //--------------------------------------Search-----------------------------------
-    @RequestMapping("/search")
+    @GetMapping("/search")
     public String search(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("u", this.userService.getUsers(params));
-        model.addAttribute("cate", this.cateService.getCategories(params));
         return "search";
     }
     //------------------------------------end Search---------------------------------

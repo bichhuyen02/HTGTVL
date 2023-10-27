@@ -100,8 +100,12 @@ s<%--
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="text">Avatar</label>
-                                    <form:input type="file" class="form-control" path="file" id="file" placeholder="avatar" name="file" />
+                                    <label for="text">Trình độ văn hóa</label>
+                                    <form:select type="text" class="form-control" path="level" id="level" placeholder="Trình độ học vấn" name="level" >
+                                        <form:option value="Trung cấp nghề">Trung cấp nghề</form:option>
+                                        <form:option value="Cao đẳng">Cao đẳng</form:option>
+                                        <form:option value="Đại học">Đại học</form:option>
+                                    </form:select>
                                 </div>
                             </div>
 

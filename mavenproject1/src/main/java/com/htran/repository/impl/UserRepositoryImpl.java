@@ -70,6 +70,11 @@ public class UserRepositoryImpl implements UserRepository {
             if (gender != null && !gender.isEmpty()) {
                 predicates.add(b.equal(root.get("gender"), String.format("%%%s%%",gender)));
             }
+            
+            String level = params.get("level");
+            if (level != null && !level.isEmpty()) {
+                predicates.add(b.equal(root.get("level"), String.format("%%%s%%",level)));
+            }
 //
 //            String cateId = params.get("categoryId");
 //            if (cateId != null && !cateId.isEmpty()) {

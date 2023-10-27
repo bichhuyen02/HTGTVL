@@ -8,17 +8,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+<script src="<c:url value="/js/main.js" />"></script>
+<link rel="stylesheet" href="<c:url value="/css/index1.css" />"/>
+<link rel="stylesheet" href="<c:url value="/css/search.css" />"/>
 <h1>Ứng viên thích hợp</h1>
 <c:url value="/search" var="action" />
         <form class="row" action="${action}">
             <div class="col">
-<%--                <select class="form-select mb-2" name="majors" id="majors">
-                    <c:forEach items="cate" var="c">
-                            <form:option value="${c.name}">${c.name}</form:option>
+               <select class="form-select mb-2" name="majors" id="majors">
+                    <c:forEach items="${categories}" var="c">
+                            <option value="${c.name}">${c.name}</option>
                     </c:forEach>
-                </select>--%>
+                </select>
             </div>
 
+            <div class="col">
+                <select class="form-select mb-2"" placeholder="Trình độ học vấn" name="level" id="level">
+                        <option value="Trung cấp nghề">Trung cấp nghề</option>
+                        <option value="Cao đẳng">Cao đẳng</option>
+                        <option value="Đại học">Đại học</option>
+                    </select>
+            </div>
+            
             <div class="col">
                 <select class="form-select mb-2" name="experience" id="experience">
                     <option>Không có</option>
@@ -30,7 +41,6 @@
             
             <div class="col">
                 <select class="form-select mb-2" name="gender" id="gender">
-                    <option>Không</option>
                     <option>Nữ</option>
                     <option>Nam</option>
                 </select>

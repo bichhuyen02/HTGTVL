@@ -40,7 +40,7 @@
                     <form:input type="text" class="form-control" path="name" id="name" 
                                 placeholder="Họ và tên" name="name" />
                 </div>
-                    <form:errors path="name" element="div" cssClass="text-danger" />
+                <form:errors path="name" element="div" cssClass="text-danger" />
 
 
                 <div class="form-group input-group">
@@ -50,7 +50,7 @@
                     <form:input type="date" class="form-control" path="birthDate" id="birthDate" 
                                 placeholder="Ngày sinh" name="birthDate" />
                 </div>
-                    <form:errors path="birthDate" element="div" cssClass="text-danger" />
+                <form:errors path="birthDate" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -61,7 +61,7 @@
                     <form:input type="email" name="mail" class="form-control" id="mail" path="mail"
                                 placeholder="Mail" />
                 </div>
-                    <form:errors path="mail" element="div" cssClass="text-danger" />
+                <form:errors path="mail" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <span class="input-group-text"> 
@@ -70,7 +70,7 @@
                     <form:input type="number" class="form-control" path="phone" id="phone" 
                                 placeholder="Số điện thoại" name="phone" />
                 </div>
-                    <form:errors path="phone" element="div" cssClass="text-danger" />
+                <form:errors path="phone" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -79,7 +79,7 @@
                     <form:input type="text" class="form-control" path="username" id="username" 
                                 placeholder="Tên đăng nhập" name="username" />
                 </div>
-                    <form:errors path="username" element="div" cssClass="text-danger" />
+                <form:errors path="username" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -88,7 +88,7 @@
                     <form:input class="form-control" type="password" path="password" id="password" 
                                 placeholder="Tạo mật khẩu" name="password" />
                 </div> 
-                    <form:errors path="password" element="div" cssClass="text-danger" /> 
+                <form:errors path="password" element="div" cssClass="text-danger" /> 
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -97,14 +97,14 @@
                     <form:input class="form-control" type="password" path="confirmPassword" id="confirmPassword" 
                                 placeholder="Xác nhận mật khẩu" name="confirmPassword" />
                 </div> 
-                    <form:errors path="confirmPassword" element="div" cssClass="text-danger" />
+                <form:errors path="confirmPassword" element="div" cssClass="text-danger" />
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-briefcase" aria-hidden="true"style="color:#3376BC"></i> </span>
                     </div>
                     <form:select class="form-control" type="text" path="majors" id="majors" placeholder="Chuyên ngành" name="majors" >                    
-                        <c:forEach items="categories" var="c">
+                        <c:forEach items="${categories}" var="c">
                             <form:option value="${c.name}">${c.name}</form:option>
                         </c:forEach>
                     </form:select>
@@ -120,6 +120,17 @@
                         <form:option value="Dưới 1 năm">Dưới 1 năm</form:option>
                         <form:option value="Từ 2-5 năm">Từ 2-5 năm</form:option>
                         <form:option value="Trên 5 năm">Trên 5 năm</form:option>
+                    </form:select>
+                </div>
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"style="color:#3376BC"></i> </span>
+                    </div>
+                    <form:select type="text" class="form-control" path="level" id="level" placeholder="Trình độ học vấn" name="level" >
+                        <form:option value="Trung cấp nghề">Trung cấp nghề</form:option>
+                        <form:option value="Cao đẳng">Cao đẳng</form:option>
+                        <form:option value="Đại học">Đại học</form:option>
                     </form:select>
                 </div>
 

@@ -75,6 +75,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             acc.setGender(u.getGender());
             acc.setExperience(u.getExperience());
             acc.setMajors(u.getMajors());
+            acc.setLevel(u.getLevel());
         }
         return acc;
     }
