@@ -133,9 +133,6 @@ public class Job implements Serializable {
     @OneToMany(mappedBy = "jobId")
     private Set<Cv> cvSet;
     
-    @OneToMany(mappedBy = "jobId")
-    private Set<Save> saveSet;
-    
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
     private Category categoryId;
@@ -285,15 +282,6 @@ public class Job implements Serializable {
 
     public void setCvSet(Set<Cv> cvSet) {
         this.cvSet = cvSet;
-    }
-
-    @XmlTransient
-    public Set<Save> getSaveSet() {
-        return saveSet;
-    }
-
-    public void setSaveSet(Set<Save> saveSet) {
-        this.saveSet = saveSet;
     }
 
     public Category getCategoryId() {

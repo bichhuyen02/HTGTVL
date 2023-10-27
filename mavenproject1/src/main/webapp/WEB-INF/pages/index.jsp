@@ -11,10 +11,6 @@
 <link rel="stylesheet" href="<c:url value="/css/search.css" />"/>
 <script src="<c:url value="/js/home.js" />"></script>
 
-<script>$('#myCarousel').carousel({
-        interval: 3000
-    })
-</script>
 <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -26,8 +22,13 @@
                                 việc làm hấp dẫn</h4>
                             <p>Tiếp cận 10,000+ doanh nghiệp tuyển dụng uy tín.  <br>
                                 Việc làm mới mỗi ngày với mức lương cao, hấp dẫn, chế độ đãi ngộ cực tốt!</p>
-                            <a href="<c:url value="/addCompany" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> </div>
-
+                                <se:authorize access="!isAuthenticated()">
+                                <a href="<c:url value="/addCompany" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> 
+                                </se:authorize>  
+                                <se:authorize access="hasRole('ROLE_EMP')">
+                                <a href="<c:url value="/addJob" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                </se:authorize> 
+                        </div>
                         <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://myxteam.vn/wp-content/uploads/2020/08/9.5-Gia%CC%89i-pha%CC%81p-de%CC%82%CC%89-xu%CC%9B%CC%89-ly%CC%81-khi-co%CC%81-xung-do%CC%A3%CC%82t-xa%CC%89y-ra-khi-la%CC%80m-vie%CC%A3%CC%82c-nho%CC%81m.png" class="mx-auto" alt="slide"></div>
                     </div>
                 </div>
@@ -87,7 +88,7 @@
                 <div class="col-sm-6 col-lg-4 m-15px-tb">
 
                     <div class="media box-shadow-only-hover hover-top border-all-1 border-color-gray p-15px">
-                                       
+
                         <div class="  border-radius-50 d-inline-block">
                             <img src="${c.image}" class="photohinh"alt="${c.name}">
 
@@ -99,9 +100,9 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
 
                             </div>
-                              <a href="<c:url value="/companyDetail/${c.id}" />"> <h6 class="m-5px-tb">${c.name}</h6> </a> 
+                            <a href="<c:url value="/companyDetail/${c.id}" />"> <h6 class="m-5px-tb">${c.name}</h6> </a> 
                         </div>
-                       
+
                     </div>
                 </div>
                 <c:set var="cout" value="${cout+1}"/>
@@ -214,12 +215,14 @@
         </c:forEach>
     </div>
 </div>
-<!--end cong viec-->
+<script>$('#myCarousel').carousel({
+        interval: 3000
+    })
+</script>
 
 
 
 
 
-
-
+s
 

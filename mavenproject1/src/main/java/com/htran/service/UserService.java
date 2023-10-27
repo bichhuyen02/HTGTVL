@@ -16,7 +16,6 @@ public interface UserService{
     List<User> getUsers(Map<String, String> params);
     boolean addOrUpdateUser(User user);
     boolean updateUser(User user);
-    User addUser(Map<String, String> params, MultipartFile avatar);
     User getUserById(int id);
     User getUserByAccId(int id);
     boolean deleteUser(int id);

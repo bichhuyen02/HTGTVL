@@ -33,7 +33,7 @@ public class ProfileController {
     @GetMapping("/profile/{id}")
     public String profile(Model model, @PathVariable(value = "id") int id, HttpSession session) {
         model.addAttribute("currentUser", session.getAttribute("currentUser"));
-        model.addAttribute("u", userService.getUserByAccId(id));
+        model.addAttribute("u", userService.getUserById(id));
         return "profiles";
     }
 

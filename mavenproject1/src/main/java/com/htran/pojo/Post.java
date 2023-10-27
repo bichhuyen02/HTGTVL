@@ -5,6 +5,7 @@
 package com.htran.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,21 +17,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
  * @author Admin
  */
 @Entity
-@Table(name = "follow")
+@Table(name = "post")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Follow.findAll", query = "SELECT f FROM Follow f"),
-    @NamedQuery(name = "Follow.findById", query = "SELECT f FROM Follow f WHERE f.id = :id"),
-    @NamedQuery(name = "Follow.findByContent", query = "SELECT f FROM Follow f WHERE f.content = :content")})
-public class Follow implements Serializable {
+    @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p"),
+    @NamedQuery(name = "Post.findById", query = "SELECT p FROM Post p WHERE p.id = :id"),
+    @NamedQuery(name = "Post.findByContent", query = "SELECT p FROM Post p WHERE p.content = :content"),
+    @NamedQuery(name = "Post.findByCreateTime", query = "SELECT p FROM Post p WHERE p.createTime = :createTime")})
+public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,29 +44,24 @@ public class Follow implements Serializable {
     @Column(name = "id")
     private Integer id;
     
-    @Basic(optional = false)
-    @NotNull
+    @Size(max = 255)
     @Column(name = "content")
-    private boolean content;
+    private String content;
     
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    @ManyToOne
-    private Company companyId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "create_time")
+    @Temporal(TemporalType.DATE)
+    private Date createTime;
     
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User userId;
 
-    public Follow() {
+    public Post() {
     }
 
-    public Follow(Integer id) {
+    public Post(Integer id) {
         this.id = id;
-    }
-
-    public Follow(Integer id, boolean content) {
-        this.id = id;
-        this.content = content;
     }
 
     public Integer getId() {
@@ -72,20 +72,20 @@ public class Follow implements Serializable {
         this.id = id;
     }
 
-    public boolean getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(boolean content) {
+    public void setContent(String content) {
         this.content = content;
     }
 
-    public Company getCompanyId() {
-        return companyId;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public User getUserId() {
@@ -106,10 +106,10 @@ public class Follow implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Follow)) {
+        if (!(object instanceof Post)) {
             return false;
         }
-        Follow other = (Follow) object;
+        Post other = (Post) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -118,7 +118,7 @@ public class Follow implements Serializable {
 
     @Override
     public String toString() {
-        return "com.htran.pojo.Follow[ id=" + id + " ]";
+        return "com.htran.pojo.Post[ id=" + id + " ]";
     }
     
 }

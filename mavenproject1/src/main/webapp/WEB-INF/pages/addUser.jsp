@@ -104,13 +104,9 @@
                         <span class="input-group-text"> <i class="fa fa-briefcase" aria-hidden="true"style="color:#3376BC"></i> </span>
                     </div>
                     <form:select class="form-control" type="text" path="majors" id="majors" placeholder="Chuyên ngành" name="majors" >                    
-                        <form:option value="IT phần mềm">IT phần mềm</form:option>
-                        <form:option value="Kinh doanh/Bán hàng">Kinh doanh/Bán hàng</form:option>
-                        <form:option value="Hành chính/Văn phòng">Hành chính/Văn phòng</form:option>
-                        <form:option value="Giáo dục/Đào tạo">Giáo dục/Đào tạo</form:option>
-                        <form:option value="Tư vấn">Tư vấn</form:option>
-                        <form:option value="Marketing/Truyền thông/Quảng cáo">Marketing/Truyền thông/Quảng cáo</form:option>
-                        <form:option value="Kế toán/Kiểm toán">Kế toán/Kiểm toán</form:option>
+                        <c:forEach items="categories" var="c">
+                            <form:option value="${c.name}">${c.name}</form:option>
+                        </c:forEach>
                     </form:select>
 
                 </div>

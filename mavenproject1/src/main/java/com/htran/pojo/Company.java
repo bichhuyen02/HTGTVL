@@ -169,17 +169,11 @@ public class Company implements Serializable {
     private String phone;
     
     @OneToMany(mappedBy = "companyId")
-    private Set<Rating> ratingSet;
-    
-    @OneToMany(mappedBy = "companyId")
     private Set<Comment> commentSet;
     
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
-    
-    @OneToMany(mappedBy = "companyId")
-    private Set<Follow> followSet;
     
     @OneToMany(mappedBy = "companyId")
     private Set<Job> jobSet;
@@ -195,6 +189,7 @@ public class Company implements Serializable {
     
     @Transient
     private String confirmPassword;
+
     
     public Company() {
     }
@@ -296,15 +291,6 @@ public class Company implements Serializable {
     }
 
     @XmlTransient
-    public Set<Rating> getRatingSet() {
-        return ratingSet;
-    }
-
-    public void setRatingSet(Set<Rating> ratingSet) {
-        this.ratingSet = ratingSet;
-    }
-
-    @XmlTransient
     public Set<Comment> getCommentSet() {
         return commentSet;
     }
@@ -319,15 +305,6 @@ public class Company implements Serializable {
 
     public void setAccountId(Account accountId) {
         this.accountId = accountId;
-    }
-
-    @XmlTransient
-    public Set<Follow> getFollowSet() {
-        return followSet;
-    }
-
-    public void setFollowSet(Set<Follow> followSet) {
-        this.followSet = followSet;
     }
 
     @XmlTransient

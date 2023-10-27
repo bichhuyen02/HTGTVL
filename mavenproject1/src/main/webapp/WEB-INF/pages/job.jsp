@@ -238,7 +238,6 @@
                 </c:forEach>
             </div>
         </div>
-
     </section>
 
 </se:authorize>

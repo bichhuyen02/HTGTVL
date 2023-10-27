@@ -97,40 +97,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUser(Map<String, String> params, MultipartFile avatar) {
-        User u = new User();
-        Account acc = new Account();
-        u.setName(params.get("name"));
-        try {
-            u.setBirthDate(this.simpleDateFormat.parse(params.get("birthDate")));
-        } catch (ParseException ex) {
-            Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        u.setMajors(params.get("majors"));
-        u.setGender(params.get("gender"));
-        u.setExperience(params.get("experience"));
-        u.setPhone(params.get("phone"));
-        u.setMail(params.get("mail"));
-
-        acc.setUsername(params.get("username"));
-        acc.setPassword(this.passwordEncoder.encode(params.get("password")));
-        acc.setUserRole("ROLE_USER");
-        acc.setActive(Boolean.TRUE);
-        if (!avatar.isEmpty()) {
-            try {
-                Map res = this.cloudinary.uploader().upload(avatar.getBytes(),
-                        ObjectUtils.asMap("resource_type", "auto"));
-                u.setAvatar(res.get("secure_url").toString());
-            } catch (IOException ex) {
-                Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        this.userRepo.addUser(u, acc);
-        return u;
-    }
-
-    @Override
     public boolean updateUser(User user) {
         if (!user.getFile().isEmpty()) {
             Map res;

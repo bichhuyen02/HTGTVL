@@ -8,6 +8,7 @@ import com.htran.pojo.Account;
 import com.htran.pojo.User;
 import com.htran.repository.AccountRepository;
 import com.htran.repository.UserRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
@@ -40,13 +41,44 @@ public class UserRepositoryImpl implements UserRepository {
     private AccountRepository accRepo;
 
     @Override
-    public List<User> getUsers(Map<String, String> map) {
+    public List<User> getUsers(Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<User> q = b.createQuery(User.class);
         Root root = q.from(User.class);
         q.select(root);
 
+        if (params != null) {
+            List<Predicate> predicates = new ArrayList<>();
+
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                predicates.add(b.like(root.get("title"), String.format("%%%s%%", kw)));
+            }
+
+            String experience = params.get("experience");
+            if (experience != null && !experience.isEmpty()) {
+                predicates.add(b.equal(root.get("experience"), String.format("%%%s%%", experience)));
+            }
+
+            String majors = params.get("majors");
+            if (majors != null && !majors.isEmpty()) {
+                predicates.add(b.equal(root.get("majors"), String.format("%%%s%%",majors)));
+            }
+
+            String gender = params.get("gender");
+            if (gender != null && !gender.isEmpty()) {
+                predicates.add(b.equal(root.get("gender"), String.format("%%%s%%",gender)));
+            }
+//
+//            String cateId = params.get("categoryId");
+//            if (cateId != null && !cateId.isEmpty()) {
+//                predicates.add(b.equal(root.get("categoryId"), Integer.parseInt(cateId)));
+//            }
+
+            q.where(predicates.toArray(Predicate[]::new));
+        }
+        
         Query query = s.createQuery(q);
 
         List<User> users = query.getResultList();
@@ -129,17 +161,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User addUser(User u, Account acc) {
-        Session s = this.factory.getObject().getCurrentSession();
-        s.save(acc);
-        u.setAccountId(acc);
-        s.save(u);
-        return u;
-    }
-
-    @Override
     public boolean updateUser(User user) {
-         Session s = this.factory.getObject().getCurrentSession();
+     Session s = this.factory.getObject().getCurrentSession();
         try {
             s.update(user);
             return true;

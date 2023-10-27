@@ -43,9 +43,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
     "com.htran.repository",
     "com.htran.service",
     "com.htran.formatters",
-    "com.htran.handlers",
-    "com.htran.components",
-    "com.htran.filters"
+    "com.htran.handlers"
 })
 @PropertySource("classpath:configs.properties")
 public class WebAppContextConfig implements WebMvcConfigurer{

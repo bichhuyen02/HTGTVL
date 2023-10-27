@@ -166,6 +166,20 @@ public class Account implements Serializable {
         this.gender = gender;
     }
 
+    /**
+     * @return the level
+     */
+    public String getLevel() {
+        return level;
+    }
+
+    /**
+     * @param level the level to set
+     */
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -199,8 +213,8 @@ public class Account implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<User> userSet;
-
-    @Transient
+    
+     @Transient
     private int uId;
     
     @Transient
@@ -227,6 +241,9 @@ public class Account implements Serializable {
     @Transient
     private String gender;
     
+    @Transient
+    private String level;
+
     public Account() {
     }
 

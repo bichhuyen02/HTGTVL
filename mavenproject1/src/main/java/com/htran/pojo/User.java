@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,9 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "User.findByAvatar", query = "SELECT u FROM User u WHERE u.avatar = :avatar"),
     @NamedQuery(name = "User.findByMajors", query = "SELECT u FROM User u WHERE u.majors = :majors"),
     @NamedQuery(name = "User.findByExperience", query = "SELECT u FROM User u WHERE u.experience = :experience"),
-    @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender")})
+    @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender"),
+    @NamedQuery(name = "User.findByLevel", query = "SELECT u FROM User u WHERE u.level = :level"),
+    @NamedQuery(name = "User.findByAvtive", query = "SELECT u FROM User u WHERE u.avtive = :avtive")})
 public class User implements Serializable {
 
     /**
@@ -160,20 +163,21 @@ public class User implements Serializable {
     @Column(name = "gender")
     private String gender;
     
+    @Size(max = 255)
+    @Column(name = "level")
+    private String level;
+    
+    @Column(name = "avtive")
+    private Boolean avtive;
+    
     @OneToMany(mappedBy = "userId")
     private Set<Cv> cvSet;
     
-    @OneToMany(mappedBy = "userId")
-    private Set<Rating> ratingSet;
-    
-    @OneToMany(mappedBy = "userId")
-    private Set<Save> saveSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Set<Post> postSet;
     
     @OneToMany(mappedBy = "userId")
     private Set<Comment> commentSet;
-    
-    @OneToMany(mappedBy = "userId")
-    private Set<Follow> followSet;
     
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -281,6 +285,22 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public Boolean getAvtive() {
+        return avtive;
+    }
+
+    public void setAvtive(Boolean avtive) {
+        this.avtive = avtive;
+    }
+
     @XmlTransient
     public Set<Cv> getCvSet() {
         return cvSet;
@@ -291,21 +311,12 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Set<Rating> getRatingSet() {
-        return ratingSet;
+    public Set<Post> getPostSet() {
+        return postSet;
     }
 
-    public void setRatingSet(Set<Rating> ratingSet) {
-        this.ratingSet = ratingSet;
-    }
-
-    @XmlTransient
-    public Set<Save> getSaveSet() {
-        return saveSet;
-    }
-
-    public void setSaveSet(Set<Save> saveSet) {
-        this.saveSet = saveSet;
+    public void setPostSet(Set<Post> postSet) {
+        this.postSet = postSet;
     }
 
     @XmlTransient
@@ -315,15 +326,6 @@ public class User implements Serializable {
 
     public void setCommentSet(Set<Comment> commentSet) {
         this.commentSet = commentSet;
-    }
-
-    @XmlTransient
-    public Set<Follow> getFollowSet() {
-        return followSet;
-    }
-
-    public void setFollowSet(Set<Follow> followSet) {
-        this.followSet = followSet;
     }
 
     public Account getAccountId() {

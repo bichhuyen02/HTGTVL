@@ -13,15 +13,26 @@
     <div class="container-fluid ">
         <a class="navbar-brand text-white" href="${action}">JOB24H-WEBSITE</a>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav me-auto"> 
+            <ul class="navbar-nav me-auto">
+                <se:authorize access="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link  " href="<c:url value="/jobss"/>"><strong>Công Việc</strong></a>
+                    </li>
+                </se:authorize>
+
                 <se:authorize access="isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link  " href="<c:url value="/jobs"/>"><strong>Công Việc</strong></a>
                     </li>                       
                 </se:authorize>
+
                 <se:authorize access="hasRole('ROLE_EMP')">
                     <li class="nav-item text-danger"  >
                         <a class="nav-link  " href="<c:url value="/cv"/>"><strong>Xem CV</strong></a>
+                    </li>
+                    
+                    <li class="nav-item text-danger"  >
+                        <a class="nav-link  " href="<c:url value="/search"/>"><strong>Tìm ứng viên</strong></a>
                     </li>
                 </se:authorize>
 
@@ -30,6 +41,12 @@
                         <a class="nav-link" href="<c:url value="/companies"/>"><strong>Doanh Nghiệp</strong></a>
                     </li>
 
+                </se:authorize>
+
+                <se:authorize access="hasRole('ROLE_USER')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/post/${sessionScope.currentUser.uId}"/>"><strong>Tìm việc</strong></a>
+                    </li>
                 </se:authorize>
 
                 <se:authorize access="hasRole('ROLE_ADMIN')">

@@ -34,6 +34,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/index.jsp" />
     </definition>
     
+    <definition name="jobss" extends="baseLayout3">
+        <put-attribute name="title" value="Công Viêc 1" />
+        <put-attribute name="content" value="/WEB-INF/pages/jobs.jsp" />
+    </definition>
+    
     <definition name="jobs" extends="baseLayout3">
         <put-attribute name="title" value="Công Viêc" />
         <put-attribute name="content" value="/WEB-INF/pages/job.jsp" />
@@ -92,6 +97,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
     <definition name="users" extends="baseLayout">
         <put-attribute name="title" value="người dùng" />
         <put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
+    </definition>
+    
+    <definition name="post" extends="baseLayout3">
+        <put-attribute name="title" value="Đăng tin" />
+        <put-attribute name="content" value="/WEB-INF/pages/post.jsp" />
+    </definition>
+    
+    <definition name="search" extends="baseLayout3">
+        <put-attribute name="title" value="Tìm ứng viên" />
+        <put-attribute name="content" value="/WEB-INF/pages/search.jsp" />
     </definition>
     
     <definition name="profiles" extends="baseLayout">
