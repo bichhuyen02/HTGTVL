@@ -88,3 +88,7 @@
         </div>
     </div>
 </div>
+                    
+<div>
+    <b-form-checkbox switch size="lg">Large</b-form-checkbox> 
+</div>

@@ -63,17 +63,17 @@ public class UserRepositoryImpl implements UserRepository {
 
             String majors = params.get("majors");
             if (majors != null && !majors.isEmpty()) {
-                predicates.add(b.equal(root.get("majors"), String.format("%%%s%%",majors)));
+                predicates.add(b.equal(root.get("majors"), String.format("%%%s%%", majors)));
             }
 
             String gender = params.get("gender");
             if (gender != null && !gender.isEmpty()) {
-                predicates.add(b.equal(root.get("gender"), String.format("%%%s%%",gender)));
+                predicates.add(b.equal(root.get("gender"), String.format("%%%s%%", gender)));
             }
-            
+
             String level = params.get("level");
             if (level != null && !level.isEmpty()) {
-                predicates.add(b.equal(root.get("level"), String.format("%%%s%%",level)));
+                predicates.add(b.equal(root.get("level"), String.format("%%%s%%", level)));
             }
 //
 //            String cateId = params.get("categoryId");
@@ -83,7 +83,7 @@ public class UserRepositoryImpl implements UserRepository {
 
             q.where(predicates.toArray(Predicate[]::new));
         }
-        
+
         Query query = s.createQuery(q);
 
         List<User> users = query.getResultList();
@@ -106,6 +106,7 @@ public class UserRepositoryImpl implements UserRepository {
                 int id = u.getAccountId().getId();
                 acc = this.accRepo.getAccountById(id);
 
+                u.setAvtive(Boolean.FALSE);
                 acc.setUsername(u.getUsername());
                 acc.setPassword(u.getPassword());
                 acc.setUserRole("ROLE_USER");
@@ -167,9 +168,93 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean updateUser(User user) {
-     Session s = this.factory.getObject().getCurrentSession();
+        Session s = this.factory.getObject().getCurrentSession();
         try {
             s.update(user);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public List<User> getUsersByActive() {
+        Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<User> q = b.createQuery(User.class);
+        Root root = q.from(User.class);
+        q.select(root);
+        Predicate predicates = b.equal(root.get("active"), true);
+
+        q.where(predicates);
+
+        org.hibernate.query.Query query = s.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<User> searchUsers(Map<String, String> params) {
+        Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<User> q = b.createQuery(User.class);
+        Root root = q.from(User.class);
+        q.select(root);
+
+        if (params != null) {
+            List<Predicate> predicates = new ArrayList<>();
+
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                predicates.add(b.like(root.get("title"), String.format("%%%s%%", kw)));
+            }
+
+            String experience = params.get("experience");
+            if (experience != null && !experience.isEmpty()) {
+                predicates.add(b.equal(root.get("experience"), String.format("%%%s%%", experience)));
+            }
+
+            String majors = params.get("majors");
+            if (majors != null && !majors.isEmpty()) {
+                predicates.add(b.equal(root.get("majors"), String.format("%%%s%%", majors)));
+            }
+
+            String gender = params.get("gender");
+            if (gender != null && !gender.isEmpty()) {
+                predicates.add(b.equal(root.get("gender"), String.format("%%%s%%", gender)));
+            }
+
+            String level = params.get("level");
+            if (level != null && !level.isEmpty()) {
+                predicates.add(b.equal(root.get("level"), String.format("%%%s%%", level)));
+            }
+
+            q.where(predicates.toArray(Predicate[]::new));
+        }
+
+        Query query = s.createQuery(q);
+
+        List<User> users = query.getResultList();
+        List<User> us = this.getUsersByActive();
+        for (User u : users) {
+            for (User uu : us) {
+                if (uu.getId() == u.getId()) {
+                    u.setUsername(u.getAccountId().getUsername());
+                    u.setPassword(u.getAccountId().getPassword());
+                    u.setConfirmPassword(u.getAccountId().getPassword());
+                }
+            }
+        }
+        return users;
+    }
+
+    @Override
+    public boolean updateUserActive(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        User u = this.getUserById(id);
+        try {
+            u.setAvtive(Boolean.TRUE);
+            s.update(u);
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
