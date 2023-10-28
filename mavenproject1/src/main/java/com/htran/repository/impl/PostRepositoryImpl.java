@@ -4,39 +4,39 @@
  */
 package com.htran.repository.impl;
 
-import com.htran.pojo.Category;
-import com.htran.repository.CategoryRepository;
+import com.htran.pojo.Post;
+import com.htran.repository.PostRepository;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author ACER
+ * @author Admin
  */
 @Repository
 @Transactional
-public class CategoryRepositoryImpl implements CategoryRepository {
+public class PostRepositoryImpl implements PostRepository{
 
     @Autowired
     private LocalSessionFactoryBean factory;
     
     @Override
-    public List<Category> getCategories(Map<String, String> map) {
+    public List<Post> getPosts(Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<Category> q = b.createQuery(Category.class);
-        Root root = q.from(Category.class);
+        CriteriaQuery<Post> q = b.createQuery(Post.class);
+        Root root = q.from(Post.class);
         q.select(root);
 
         Query query = s.createQuery(q);
@@ -44,15 +44,10 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     @Override
-    public boolean addOrUpdateCategory(Category c) {
+    public boolean addPost(Post p) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
-            if (c.getId() == null) {
-                s.save(c);
-            } 
-            else {
-                s.update(c);
-            }
+            s.save(p);
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
@@ -61,21 +56,37 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     @Override
-    public Category getCategoryById(int id) {
-        Session s = this.factory.getObject().getCurrentSession();
-         return s.get(Category.class, id);
+    public Post getPostById(int id) {
+    Session s = this.factory.getObject().getCurrentSession();
+         return s.get(Post.class, id);
     }
-    
+
     @Override
-    public boolean deleteCategory(int id) {
-        Session s = this.factory.getObject().getCurrentSession();
+    public boolean deletePost(int id) {
+    Session s = this.factory.getObject().getCurrentSession();
       try {
-            Category c = this.getCategoryById(id);
-            s.delete(c);
+            Post p = this.getPostById(id);
+            s.delete(p);
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;
         }
     }
+
+    @Override
+    public List<Post> getPostByUserId(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<Post> q = b.createQuery(Post.class);
+        Root root = q.from(Post.class);
+        q.select(root);
+        Predicate predicates = b.equal(root.get("userId"), id);
+
+        q.where(predicates);
+
+        Query query = s.createQuery(q);
+        return query.getResultList();
+    }
+    
 }

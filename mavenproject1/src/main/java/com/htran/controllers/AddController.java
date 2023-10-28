@@ -10,6 +10,7 @@ import com.htran.pojo.Company;
 import com.htran.pojo.Cv;
 import com.htran.pojo.Job;
 import com.htran.pojo.Location;
+import com.htran.pojo.Post;
 import com.htran.pojo.User;
 import com.htran.service.AccountService;
 import com.htran.service.CategoryService;
@@ -18,6 +19,7 @@ import com.htran.service.CvService;
 import com.htran.service.JobService;
 import com.htran.service.LocationService;
 import com.htran.service.PositionService;
+import com.htran.service.PostService;
 //import com.htran.service.SaveService;
 import com.htran.service.UserService;
 import java.security.Principal;
@@ -67,9 +69,10 @@ public class AddController {
 
     @Autowired
     private CvService cvService;
+    
+    @Autowired
+    private PostService postService;
 
-//    @Autowired
-//    private SaveService saService;
     @Autowired
     private JavaMailSender mailSender;
 
@@ -388,30 +391,27 @@ public class AddController {
     //---------------------------------------post-------------------------------------------
     @GetMapping("/post/{id}")
     public String post(Model model, @PathVariable(value = "id") int id) {
-//      model.addAttribute("addCv", new Cv());
+        model.addAttribute("addPost", new Post());
         model.addAttribute("u", this.userService.getUserById(id));
 
         return "post";
     }
 
-//    @PostMapping("/post/{id}/applyCv")
-//    public String addPost(@ModelAttribute(value = "addCv") Cv cv,
-//            @PathVariable(value = "id") int id, Principal pricipal) {
-//        Account acc = this.accService.getAccountByUsername(pricipal.getName());
-//        User u = new User();
-//        u = this.userService.getUserByAccId(acc.getId());
-//        cv.setUserId(u);
-//        Job j = this.jobService.getJobById(id);
-//        cv.setJobId(j);
-//
-//        if (this.cvService.addCv(cv) == true) {
-//            SimpleMailMessage simpleMail = new SimpleMailMessage();
-//            simpleMail.setTo(u.getMail());
-//            simpleMail.setSubject("Thông báo");
-//            simpleMail.setText(u.getName() + " đã nộp Cv cho " + j.getTitle() + " thành công");
-//            return "redirect:/jobDetail/{id}";
-//        }
-//        return "post";
-//    }
+    @PostMapping("/post/{id}")
+    public String addPost(@ModelAttribute(value = "addPost") Post p,
+            @PathVariable(value = "id") int id) {
+        User u = new User();
+        u = this.userService.getUserByAccId(id);
+        p.setUserId(u);
+
+        if (this.postService.addPost(p) == true) {
+            SimpleMailMessage simpleMail = new SimpleMailMessage();
+            simpleMail.setTo(u.getMail());
+            simpleMail.setSubject("Thông báo");
+            simpleMail.setText(u.getName() + " đã nộp Cv cho "  + " thành công");
+            return "redirect:/jobDetail/{id}";
+        }
+        return "post";
+    }
     //-------------------------------------end post-----------------------------------------
 }

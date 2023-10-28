@@ -144,7 +144,23 @@
                     </form:select>
                 </div>
 
+                <div class="form-group input-group">
+                    <form:select  class="form-select" id="location" name="location" path="location">
+                        <c:forEach items="${locations}" var="l">
+                            <c:choose>
 
+                                <c:when test="${l.name == addjobs.location}">
+                                    <option value="${l.id}" selected>${l.name}</option>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <option value="${l.id}">${l.name}</option>
+                                </c:otherwise>
+
+                            </c:choose>
+                        </c:forEach>
+                    </form:select>
+                </div>
 
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="file" class="form-control" path="file" id="file" placeholder="avatar" name="file" />

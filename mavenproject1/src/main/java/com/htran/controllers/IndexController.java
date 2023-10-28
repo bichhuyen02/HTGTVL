@@ -9,6 +9,7 @@ import com.htran.service.CompanyService;
 import com.htran.service.JobService;
 import com.htran.service.LocationService;
 import com.htran.service.PositionService;
+import com.htran.service.PostService;
 import com.htran.service.UserService;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -47,6 +48,9 @@ public class IndexController {
     @Autowired
     private PositionService posiService;
     
+    @Autowired
+    private PostService postService;
+    
     @ModelAttribute
     public void commonAttr(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("companies", this.companyService.getCompaniesByAccIdT());
@@ -55,6 +59,7 @@ public class IndexController {
         model.addAttribute("categories", this.cateService.getCategories(params));
         model.addAttribute("users", this.userService.getUsers(params));
         model.addAttribute("positions", this.posiService.getPositions(params));
+        model.addAttribute("post", this.postService.getPosts(params));
     }
     
     @GetMapping("/")

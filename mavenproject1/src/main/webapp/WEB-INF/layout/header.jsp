@@ -45,7 +45,7 @@
 
                 <se:authorize access="hasRole('ROLE_USER')">
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/post/${sessionScope.currentUser.uId}"/>"><strong>Tìm việc</strong></a>
+                        <a class="nav-link" href="<c:url value="/post/${sessionScope.currentUser.uId}"/>"><strong>Đăng tin</strong></a>
                     </li>
                 </se:authorize>
 

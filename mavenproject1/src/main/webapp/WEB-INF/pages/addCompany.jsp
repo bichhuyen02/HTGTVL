@@ -19,7 +19,7 @@
 
     <div class="card nen">
         <article class="card-body mx-auto" style="width: 50%;">
-            <h2 class="card-title  text-center text-white">QUẢN LÝ DOANH NGHIỆP</h2>
+            <h2 class="card-title  text-center text-white">DOANH NGHIỆP</h2>
             <form> 
                 <c:if test="${errMsg != null}">
                     <div class="alert alert-danger msg">

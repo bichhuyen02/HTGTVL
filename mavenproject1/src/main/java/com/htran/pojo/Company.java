@@ -177,7 +177,7 @@ public class Company implements Serializable {
     
     @OneToMany(mappedBy = "companyId")
     private Set<Job> jobSet;
-
+    
     @Transient
     private MultipartFile file;
     
@@ -190,7 +190,6 @@ public class Company implements Serializable {
     @Transient
     private String confirmPassword;
 
-    
     public Company() {
     }
 

@@ -40,6 +40,9 @@ account
     @Transient
     private String gender;
 
+    @Transient
+    private String level;
+
 
 Cv
 @Transient

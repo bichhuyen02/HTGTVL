@@ -18,9 +18,9 @@
         <ul class="pagination ">
             <c:if test="${counter > 1}">
                 <ul class="pagination mt-1">
-                    <li class="page-item"><a class="page-link" href="<c:url value="/jobs"/>">Tất cả</a></li>
+                    <li class="page-item"><a class="page-link" href="<c:url value="/jobss"/>">Tất cả</a></li>
                         <c:forEach begin="1" end="${counter}" var="i">
-                            <c:url value="/jobs" var="pageUrl">
+                            <c:url value="/jobss" var="pageUrl">
                                 <c:param name="page" value="${i}" />
                             </c:url>
                         <li class="page-item"><a class="page-link" href="${pageUrl}">${i}</a></li>
@@ -32,7 +32,7 @@
 </div>
 <!--tim-->
 <section class="d-flex" style=" justify-content: center; margin-left: 12%; ">   
-    <c:url value="/jobs" var="action" />
+    <c:url value="/jobss" var="action" />
     <form class="row" action="${action}">
         <div class="col">
             <select class="form-select mb-2" name="companyId" id="companyId">

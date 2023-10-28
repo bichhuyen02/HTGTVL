@@ -15,6 +15,7 @@ import com.htran.service.CommentService;
 import com.htran.service.CompanyService;
 import com.htran.service.CvService;
 import com.htran.service.JobService;
+import com.htran.service.PostService;
 import com.htran.service.UserService;
 import java.security.Principal;
 import java.util.Map;
@@ -60,6 +61,9 @@ public class Controllers {
 
     @Autowired
     private CommentService cmtService;
+    
+    @Autowired
+    private PostService postService;
 
     @Resource
     private Environment env;
@@ -158,8 +162,6 @@ public class Controllers {
             Job j = this.jobService.getJobById(id);
             Account acc = this.accService.getAccountByUsername(username);
             User u = this.userService.getUserByAccId(acc.getId());
-//            model.addAttribute("save",
-//                    this.saService.getSaveByUserAndJob(j, u));
         }
         return "jobDetail";
     }
@@ -169,6 +171,7 @@ public class Controllers {
     @GetMapping("/search")
     public String search(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("u", this.userService.getUsers(params));
+        model.addAttribute("post", this.postService.getPosts(params));
         return "search";
     }
     //------------------------------------end Search---------------------------------

@@ -17,7 +17,7 @@
 
     <div class="card nen frm ">
         <article class="card-body mx-auto" style="width: 50%;">
-            <h2 class="card-title  text-center text-white">QUẢN LÝ NGÀNH NGHỀ</h2>
+            <h2 class="card-title  text-center text-white">QUẢN LÝ KHU VỰC</h2>
             <div class="form-floating mb-3 mt-3">
                 <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên Khu Vực" name="name" />
                 <label for="name">Tên Khu Vực </label>

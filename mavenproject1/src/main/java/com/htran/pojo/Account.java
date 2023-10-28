@@ -214,7 +214,7 @@ public class Account implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<User> userSet;
     
-     @Transient
+    @Transient
     private int uId;
     
     @Transient
@@ -240,7 +240,7 @@ public class Account implements Serializable {
     
     @Transient
     private String gender;
-    
+
     @Transient
     private String level;
 

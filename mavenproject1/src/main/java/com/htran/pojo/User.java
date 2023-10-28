@@ -49,7 +49,7 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "User.findByExperience", query = "SELECT u FROM User u WHERE u.experience = :experience"),
     @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender"),
     @NamedQuery(name = "User.findByLevel", query = "SELECT u FROM User u WHERE u.level = :level"),
-    @NamedQuery(name = "User.findByAvtive", query = "SELECT u FROM User u WHERE u.avtive = :avtive")})
+    @NamedQuery(name = "User.findByLocation", query = "SELECT u FROM User u WHERE u.location = :location")})
 public class User implements Serializable {
 
     /**
@@ -163,12 +163,17 @@ public class User implements Serializable {
     @Column(name = "gender")
     private String gender;
     
-    @Size(max = 255)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "level")
     private String level;
     
-    @Column(name = "avtive")
-    private Boolean avtive;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "location")
+    private String location;
     
     @OneToMany(mappedBy = "userId")
     private Set<Cv> cvSet;
@@ -182,7 +187,7 @@ public class User implements Serializable {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
-
+    
     @Transient
     private MultipartFile file;
     
@@ -194,7 +199,7 @@ public class User implements Serializable {
     
     @Transient
     private String confirmPassword;
-    
+
     public User() {
     }
 
@@ -202,7 +207,7 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String name, String mail, Date birthDate, String phone, String majors, String experience, String gender) {
+    public User(Integer id, String name, String mail, Date birthDate, String phone, String majors, String experience, String gender, String level, String location) {
         this.id = id;
         this.name = name;
         this.mail = mail;
@@ -211,6 +216,8 @@ public class User implements Serializable {
         this.majors = majors;
         this.experience = experience;
         this.gender = gender;
+        this.level = level;
+        this.location = location;
     }
 
     public Integer getId() {
@@ -293,12 +300,12 @@ public class User implements Serializable {
         this.level = level;
     }
 
-    public Boolean getAvtive() {
-        return avtive;
+    public String getLocation() {
+        return location;
     }
 
-    public void setAvtive(Boolean avtive) {
-        this.avtive = avtive;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @XmlTransient

@@ -118,19 +118,4 @@ public class UserServiceImpl implements UserService {
         }
         return this.userRepo.updateUser(user);
     }
-
-    @Override
-    public List<User> getUsersByActive() {
-        return this.userRepo.getUsersByActive();
-    }
-
-    @Override
-    public List<User> searchUsers(Map<String, String> params) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean updateUserActive(int id) {
-        return this.userRepo.updateUserActive(id);
-    }
 }

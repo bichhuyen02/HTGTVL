@@ -89,10 +89,10 @@ public class Cv implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
-
+    
     @Transient
     private MultipartFile file;
-    
+
     public Cv() {
     }
 
