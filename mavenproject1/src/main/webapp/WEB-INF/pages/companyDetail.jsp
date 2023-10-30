@@ -24,10 +24,42 @@
                             <img alt="" style="width:300px;" title="" class="rounded-circle img-thumbnail isTooltip " src="${copaDetails.image}" data-original-title="Usuario"> 
                         </div>
                         <h3>${copaDetails.name}</h3>
-                        <button type="button" class="btn btn-outline-success  "> + Theo dõi công ty</button>
+
                     </div>                        
                 </div>
 
+                <div class="card">
+                    <div class="header">
+                        <h2>Việc làm đang tuyển</h2>
+                    </div>
+                    <div class="body">
+                        <ul class="comment-reply list-unstyled">
+                            <li class="row clearfix">
+                                <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
+                                <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                    <h5 class="m-b-0">Gigi Hadid </h5>
+                                    <p>Why are there so many tutorials on how to decouple WordPress? how fast and easy it is to get it running (and keep it running!) and its massive ecosystem. </p>
+                                    <ul class="list-inline">
+                                        <li><a href="javascript:void(0);">Mar 09 2018</a></li>
+                                        <li><a href="javascript:void(0);">Reply</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="row clearfix">
+                                <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Awesome Image"></div>
+                                <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                    <h5 class="m-b-0">Christian Louboutin</h5>
+                                    <p>Great tutorial but few issues with it? If i try open post i get following errors. Please can you help me?</p>
+                                    <ul class="list-inline">
+                                        <li><a href="javascript:void(0);">Mar 12 2018</a></li>
+                                        <li><a href="javascript:void(0);">Reply</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>                                        
+                    </div>
+                </div>
                 <div class="card">
                     <div class="header">
                         <h2>Bình Luận</h2>
@@ -116,13 +148,8 @@
                                         </ul>
                                     </div>                                            
                                 </div>
-                                <div class="single_post">
-                                    <p class="m-b-0">Bản đồ</p>
 
-                                    <div class="img-post">
-                                        <img src="https://www.bootdey.com/image/280x280/87CEFA/000000" alt="Awesome Image">                                            
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>

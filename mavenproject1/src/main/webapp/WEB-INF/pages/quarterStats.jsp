@@ -9,25 +9,26 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<h1 class="text-center text-info">THỐNG KÊ DOANH THU THEO QUÝ</h1>
+<h1 class="text-center text-info">THỐNG KÊ CV THEO QUÝ</h1>
 <br><br>
 <c:url value="/admin/quarterStats" var="action" />
-<form action="${action}" class="d-flex searchStats">
-    <select class="form-control" name="quarter">
+<form action="${action}" class="d-flex searchStats" style="margin-left: 65%; width: 30%;">
+    <select class="form-control mr-2" name="quarter">
         <option selected disabled>Chọn quý</option>
         <c:forEach begin="1" end="4" var="i">
             <option value="${i}">${i}</option>
         </c:forEach>
     </select>
-    <input type="number" class="form-control" placeholder="Nhập năm..." name="year">
-    <button type="submit" class="btn btn-primary">Lọc dữ liệu</button>
+    <input type="number" class="form-control " placeholder="Nhập năm..." name="year">
+    <button type="submit" class="btn btn-primary ml-2">Lọc </button>
 </form>
-<div class="row">
-    <div class="col-md-5 col-xs-12">
+    <br>
+<div class="row" style="margin-left:6%">
+    <div class="col-md-4 col-xs-12">
         <h2 class="section-title2 section-title-center">
             <b></b>
             <span class="section-title-main" style="color:rgb(210, 80, 0);">
-                BẢNG DOANH THU THEO QUÝ
+                BẢNG THỐNG KÊ CV 
             </span>
             <b></b>
         </h2>
@@ -47,10 +48,10 @@
         </table>
     </div>
     <div class="col-md-7 col-xs-12">
-        <h2 class="section-title2 section-title-center">
+        <h2 class="section-title2 text-center">
             <b></b>
             <span class="section-title-main" style="color:rgb(210, 80, 0);">
-                BIỂU ĐỒ DOANH THU THEO QUÝ
+                BIỂU ĐỒ THỐNG KÊ
             </span>
             <b></b>
         </h2>
@@ -65,7 +66,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="<c:url value="/js/stats.js" />"></script>
 <script>
-     let data1 = [], label1 = [];
+    let data1 = [], label1 = [];
     <c:forEach items="${quarterStats}" var="c">
     label1.push('${c[1]}');
     data1.push(${c[2]});

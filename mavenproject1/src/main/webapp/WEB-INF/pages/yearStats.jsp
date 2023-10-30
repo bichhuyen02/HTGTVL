@@ -8,19 +8,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h1 class="text-center text-info">THỐNG KÊ DOANH THU THEO NĂM</h1>
+<h1 class="text-center text-info">THỐNG KÊ CV THEO NĂM</h1>
 <br><br>
 <c:url value="/admin/yearStats" var="action" />
 <form action="${action}" class=" searchStats d-flex" style="margin-left: 65%; width: 30%;">
     <input type="number" class="form-control" placeholder="Nhập năm..." name="year">
-    <button type="submit" class=" btn btn-primary ml-2">Thống kê</button>
+    <button type="submit" class=" btn btn-primary ml-2">Lọc</button>
 </form>
+    <br>
 <div class="row" style="margin-left:6%">
     <div class="col-md-4 col-xs-12">
         <h2 class="section-title2 section-title-center">
             <b></b>
             <span class="section-title-main" style="color:rgb(210, 80, 0);">
-                BẢNG THỐNG KÊ DOANH THU THEO NĂM
+                BẢNG THỐNG KÊ CV 
             </span>
             <b></b>
         </h2>
@@ -43,7 +44,7 @@
         <h2 class="section-title2 text-center">
             <b></b>
             <span class="section-title-main" style="color:rgb(210, 80, 0);">
-                BIỂU ĐỒ DOANH THU THEO NĂM
+                BIỂU ĐỒ THỐNG KÊ
             </span>
             <b></b>
         </h2>
