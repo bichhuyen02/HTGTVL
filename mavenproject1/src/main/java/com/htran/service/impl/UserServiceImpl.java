@@ -64,6 +64,11 @@ public class UserServiceImpl implements UserService {
         Date currentDate = new Date();
         if (user.getId() == null) {
             user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        } else {
+            String pass = this.accRepo.getAccountById(user.getId()).getPassword();
+            if (pass != user.getPassword()) {
+                user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+            }
         }
         if (!user.getFile().isEmpty()) {
             try {
@@ -98,18 +103,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updateUser(User user) {
-        if (!user.getFile().isEmpty()) {
-            Map res;
-            try {
-                res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                user.setAvatar(res.get("secure_url").toString());
-            } catch (IOException ex) {
-                Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            User u = this.userRepo.getUserById(user.getId());
-            user.setAvatar(u.getAvatar());
-        }
         try {
             user.setBirthDate(this.simpleDateFormat
                     .parse(this.simpleDateFormat.format(user.getBirthDate())));

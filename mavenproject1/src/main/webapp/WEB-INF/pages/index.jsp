@@ -43,7 +43,13 @@
                                 ổn định tương lai</h4>
                             <p>Tiếp cận 10,000+ doanh nghiệp tuyển dụng uy tín.  <br>
                                 Việc làm mới mỗi ngày với mức lương cao, hấp dẫn, chế độ đãi ngộ cực tốt!</p>
-                            <a href="<c:url value="/addCompany" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> </div>
+                                <se:authorize access="!isAuthenticated()">
+                                <a href="<c:url value="/addCompany" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> 
+                                </se:authorize>  
+                                <se:authorize access="hasRole('ROLE_EMP')">
+                                <a href="<c:url value="/addJob" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                </se:authorize>
+                        </div>
                         <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://myxteam.vn/wp-content/uploads/2020/08/4-ky%CC%83-na%CC%86ng-gia%CC%89i-quye%CC%82%CC%81t-ma%CC%82u-thua%CC%82%CC%89n-ca%CC%82%CC%80n-bie%CC%82%CC%81t-khi-la%CC%80m-vie%CC%A3%CC%82c-nho%CC%81m.png" class="mx-auto" alt="slide"></div>
                     </div>
                 </div>
@@ -58,7 +64,13 @@
                                 tin tuyển dụng mới nhất</h4>
                             <p>Tiếp cận 10,000+ doanh nghiệp tuyển dụng uy tín.  <br>
                                 Việc làm mới mỗi ngày với mức lương cao, hấp dẫn, chế độ đãi ngộ cực tốt!</p>
-                            <a href="<c:url value="/addCompany" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> </div>
+                                <se:authorize access="!isAuthenticated()">
+                                <a href="<c:url value="/addCompany" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a> 
+                                </se:authorize>  
+                                <se:authorize access="hasRole('ROLE_EMP')">
+                                <a href="<c:url value="/addJob" />">ĐĂNG TUYỂN    <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                </se:authorize> 
+                        </div>
                         <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://myxteam.vn/wp-content/uploads/2020/08/8.Qua%CC%89n-ly%CC%81-tho%CC%9B%CC%80i-gian-trong-la%CC%80m-vie%CC%A3%CC%82c-nho%CC%81m-B.png" class="mx-auto" alt="slide"></div>
                     </div>
                 </div>
@@ -224,5 +236,5 @@
 
 
 
-s
+
 

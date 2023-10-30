@@ -65,7 +65,19 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="major">Chuyên ngành</label>
-                                    <form:input type="text" path="majors" class="form-control" id="website" placeholder="${u.majors}"/>
+                                    <form:select type="text" path="majors" class="form-control" id="website" placeholder="${u.majors}">
+                                        <c:forEach items="${categories}" var="c">
+                                            <c:choose>
+                                                <c:when test="${c.name == u.majors}">
+                                                    <option value="${c.name}" selected>${c.name}</option>
+                                                </c:when>
+
+                                                <c:otherwise>
+                                                    <option value="${c.name}">${c.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </form:select>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +93,12 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="text">Kinh nghiệm</label>
-                                    <form:input type="text" path="experience" class="form-control" id="ciTy" placeholder="Enter City"/>
+                                    <form:select type="text" class="form-control" path="experience" id="experience" name="experience" >                    
+                                        <form:option value="Không có">Không có</form:option>
+                                        <form:option value="Dưới 1 năm">Dưới 1 năm</form:option>
+                                        <form:option value="Từ 2-5 năm">Từ 2-5 năm</form:option>
+                                        <form:option value="Trên 5 năm">Trên 5 năm</form:option>
+                                    </form:select>
                                 </div>
                             </div>
 

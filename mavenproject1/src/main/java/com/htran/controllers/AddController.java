@@ -69,7 +69,7 @@ public class AddController {
 
     @Autowired
     private CvService cvService;
-    
+
     @Autowired
     private PostService postService;
 
@@ -163,51 +163,105 @@ public class AddController {
                     errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";
                 }
             }
-        }else
-        {
-             if (c.getDateOfIncorporation() != null && currentDate.compareTo(c.getDateOfIncorporation()) > 0) {
-                if (c.getPhone().length() == 10 && c.getPhone().codePointAt(0) == 48) {
+        } else {
+            if (c.getDateOfIncorporation() != null && currentDate.compareTo(c.getDateOfIncorporation()) > 0) {  //1
+                if (c.getPhone().length() == 10 && c.getPhone().codePointAt(0) == 48) { //2
                     String name = this.accService.getAccountById(c.getId()).getUsername();
-                    if(name!=c.getUsername()){
-                        if (this.accService.getAccountByUsern(c.getUsername()) == false) {
-                            
-                        }
-                    }
-                    if (this.accService.getAccountByUsern(c.getUsername()) == false) {
-                        if (c.getPassword() != null && c.getUsername() != null) {
-                            if (c.getPassword().length() >= 6 && c.getPassword().length() <= 10) {
-                                if (c.getPassword().equals(c.getConfirmPassword())) {
-                                    if (!rs.hasErrors()) {
-                                        if (this.compaService.addOrUpdateCompany(c) == true) {
-                                            SimpleMailMessage simpleMail = new SimpleMailMessage();
-                                            simpleMail.setTo(c.getMail());
-                                            simpleMail.setSubject("Thông báo");
-                                            simpleMail.setText(c.getName() + " đã đăng kí thông tin của công ty thành công và hãy chờ quản trị duyệt");
+                    if (name != c.getUsername()) { //3
+                        if (this.accService.getAccountByUsern(c.getUsername()) == false) { //4
+                            String pass = this.accService.getAccountById(c.getId()).getPassword();
+                            if (pass != c.getPassword()) { //5
+                                if (c.getPassword() != null && c.getUsername() != null) { //6
+                                    if (c.getPassword().length() >= 6 && c.getPassword().length() <= 10) { //7
+                                        if (c.getPassword().equals(c.getConfirmPassword())) { //8
+                                            if (!rs.hasErrors()) {
+                                                if (this.compaService.addOrUpdateCompany(c) == true) {
+                                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                                    simpleMail.setTo(c.getMail());
+                                                    simpleMail.setSubject("Thông báo");
+                                                    simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công.");
 
-                                            mailSender.send(simpleMail);
-                                            return "redirect:/";
+                                                    mailSender.send(simpleMail);
+                                                    return "redirect:/";
+                                                }
+                                            }
+                                        } else { //8
+                                            errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
                                         }
+                                    } else { //7
+                                        errMsg = errMsg + " Kí tự mật khẩu không được <6 và >10 (^-^) !!!";
                                     }
-                                } else {
-                                    errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                                } else { //6
+                                    if (c.getPassword() == null) {
+                                        errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
+                                    } else {
+                                        errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
+                                    }
                                 }
-                            } else {
-                                errMsg = errMsg + " Kí tự mật khẩu không được <6 và >10 (^-^) !!!";
+                            } else { //5
+                                if (!rs.hasErrors()) {
+                                    if (this.compaService.addOrUpdateCompany(c) == true) {
+                                        SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                        simpleMail.setTo(c.getMail());
+                                        simpleMail.setSubject("Thông báo");
+                                        simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công.");
+
+                                        mailSender.send(simpleMail);
+                                        return "redirect:/";
+                                    }
+                                }
                             }
-                        } else {
-                            if (c.getPassword() == null) {
-                                errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
-                            } else {
-                                errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
+                        } else { //4
+                            errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
+                        }
+                    } else { //3
+                        String pass = this.accService.getAccountById(c.getId()).getPassword();
+                        if (pass != c.getPassword()) { //5
+                            if (c.getPassword() != null && c.getUsername() != null) { //6
+                                if (c.getPassword().length() >= 6 && c.getPassword().length() <= 10) { //7
+                                    if (c.getPassword().equals(c.getConfirmPassword())) { //8
+                                        if (!rs.hasErrors()) {
+                                            if (this.compaService.addOrUpdateCompany(c) == true) {
+                                                SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                                simpleMail.setTo(c.getMail());
+                                                simpleMail.setSubject("Thông báo");
+                                                simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công.");
+
+                                                mailSender.send(simpleMail);
+                                                return "redirect:/";
+                                            }
+                                        }
+                                    } else { //8
+                                        errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                                    }
+                                } else { //7
+                                    errMsg = errMsg + " Kí tự mật khẩu không được <6 và >10 (^-^) !!!";
+                                }
+                            } else { //6
+                                if (c.getPassword() == null) {
+                                    errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
+                                } else {
+                                    errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
+                                }
+                            }
+                        } else { //5
+                            if (!rs.hasErrors()) {
+                                if (this.compaService.addOrUpdateCompany(c) == true) {
+                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                    simpleMail.setTo(c.getMail());
+                                    simpleMail.setSubject("Thông báo");
+                                    simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công.");
+
+                                    mailSender.send(simpleMail);
+                                    return "redirect:/";
+                                }
                             }
                         }
-                    } else {
-                        errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
                     }
-                } else {
+                } else { //2
                     errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
                 }
-            } else {
+            } else { //1
                 if (c.getDateOfIncorporation() == null) {
                     errMsg = errMsg + "Ngày thành lập không được để trống (^-^) !!!";
                 } else {
@@ -244,7 +298,8 @@ public class AddController {
     }
 
     @PostMapping("/addJob")
-    public String addJ(Model model, @ModelAttribute(value = "addjobs") @Valid Job j,
+    public String addJ(Model model, @ModelAttribute(value = "addjobs")
+            @Valid Job j,
             BindingResult rs) {
         String errMsg = "";
         Date currentDate = new Date();
@@ -280,7 +335,8 @@ public class AddController {
     }
 
     @PostMapping("/addLocation")
-    public String addLoca(@ModelAttribute(value = "addLocations") @Valid Location lctn,
+    public String addLoca(@ModelAttribute(value = "addLocations")
+            @Valid Location lctn,
             BindingResult rs) {
         if (!rs.hasErrors()) {
             if (this.locationService.addOrUpdateLocation(lctn) == true) {
@@ -305,51 +361,158 @@ public class AddController {
     }
 
     @PostMapping("/addUser")
-    public String addU(Model model, @ModelAttribute(value = "addUsers") @Valid User u,
-            BindingResult rs) {
+    public String addU(Model model, @ModelAttribute(value = "addUsers")
+            @Valid User u, BindingResult rs) {
         String errMsg = "";
         Date currentDate = new Date();
-        if (u.getBirthDate() != null && currentDate.compareTo(u.getBirthDate()) > 0) {
-            if (u.getPhone().length() == 10 && u.getPhone().codePointAt(0) == 48) {
-                if (u.getPassword() != null && u.getUsername() != null) {
-                    if (u.getPassword().length() >= 6 && u.getPassword().length() <= 10) {
-                        if (u.getPassword().equals(u.getConfirmPassword())) {
-                            if (this.accService.getAccountByUsern(u.getUsername()) == false) {
+        if (u.getId() == null) {
+            if (u.getBirthDate() != null && currentDate.compareTo(u.getBirthDate()) > 0) {
+                if (u.getPhone().length() == 10 && u.getPhone().codePointAt(0) == 48) {
+                    if (u.getPassword() != null && u.getUsername() != null) {
+                        if (u.getPassword().length() >= 6 && u.getPassword().length() <= 10) {
+                            if (u.getPassword().equals(u.getConfirmPassword())) {
+                                if (this.accService.getAccountByUsern(u.getUsername()) == false) {
+                                    if (!rs.hasErrors()) {
+                                        if (this.userService.addOrUpdateUser(u) == true) {
+                                            SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                            simpleMail.setTo(u.getMail());
+                                            simpleMail.setSubject("Thông báo");
+                                            simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
+
+                                            mailSender.send(simpleMail);
+                                            return "redirect:/";
+                                        }
+                                    }
+                                } else {
+                                    errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
+                                }
+                            } else {
+                                errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                            }
+                        } else {
+                            errMsg = errMsg + " Kí tự mật khẩu không được <6 và >10 (^-^) !!!";
+                        }
+                    } else {
+                        if (u.getPassword() == null) {
+                            errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
+                        } else {
+                            errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
+                        }
+                    }
+                } else {
+                    errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
+                }
+            } else {
+                if (u.getBirthDate() == null) {
+                    errMsg = errMsg + "Ngày sinh không được để trống (^-^) !!!";
+                } else {
+                    errMsg = errMsg + "Ngày sinh không thể lớn hơn ngày hiện tại (^-^) !!!";
+                }
+            }
+        } else {
+            if (u.getBirthDate() != null && currentDate.compareTo(u.getBirthDate()) > 0) {  //1
+                if (u.getPhone().length() == 10 && u.getPhone().codePointAt(0) == 48) { //2
+                    String name = this.accService.getAccountById(u.getId()).getUsername();
+                    if (name != u.getUsername()) { //3
+                        if (this.accService.getAccountByUsern(u.getUsername()) == false) { //4
+                            String pass = this.accService.getAccountById(u.getId()).getPassword();
+                            if (pass != u.getPassword()) { //5
+                                if (u.getPassword() != null && u.getUsername() != null) { //6
+                                    if (u.getPassword().length() >= 6 && u.getPassword().length() <= 10) { //7
+                                        if (u.getPassword().equals(u.getConfirmPassword())) { //8
+                                            if (!rs.hasErrors()) {
+                                                if (this.userService.addOrUpdateUser(u) == true) {
+                                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                                    simpleMail.setTo(u.getMail());
+                                                    simpleMail.setSubject("Thông báo");
+                                                    simpleMail.setText(u.getName() + " thông tin đã được cập nhật lại thành công.");
+
+                                                    mailSender.send(simpleMail);
+                                                    return "redirect:/";
+                                                }
+                                            }
+                                        } else { //8
+                                            errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                                        }
+                                    } else { //7
+                                        errMsg = errMsg + " Kí tự mật khẩu không được <6 và >10 (^-^) !!!";
+                                    }
+                                } else { //6
+                                    if (u.getPassword() == null) {
+                                        errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
+                                    } else {
+                                        errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
+                                    }
+                                }
+                            } else { //5
                                 if (!rs.hasErrors()) {
                                     if (this.userService.addOrUpdateUser(u) == true) {
                                         SimpleMailMessage simpleMail = new SimpleMailMessage();
                                         simpleMail.setTo(u.getMail());
                                         simpleMail.setSubject("Thông báo");
-                                        simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
+                                        simpleMail.setText(u.getName() + " đã đăng kí thông tin của bạn thành công.");
 
                                         mailSender.send(simpleMail);
                                         return "redirect:/";
                                     }
                                 }
-                            } else {
-                                errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
                             }
-                        } else {
-                            errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                        } else { //4
+                            errMsg = errMsg + "Tên đăng nhập này đã tồn tại(^-^) !!!";
                         }
-                    } else {
-                        errMsg = errMsg + " Kí tự mật khẩu không được <6 và >10 (^-^) !!!";
+                    } else { //3
+                        String pass = this.accService.getAccountById(u.getId()).getPassword();
+                        if (pass != u.getPassword()) { //5
+                            if (u.getPassword() != null && u.getUsername() != null) { //6
+                                if (u.getPassword().length() >= 6 && u.getPassword().length() <= 10) { //7
+                                    if (u.getPassword().equals(u.getConfirmPassword())) { //8
+                                        if (!rs.hasErrors()) {
+                                            if (this.userService.addOrUpdateUser(u) == true) {
+                                                SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                                simpleMail.setTo(u.getMail());
+                                                simpleMail.setSubject("Thông báo");
+                                                simpleMail.setText(u.getName() + "thông tin đã được cập nhật lại thành công.");
+
+                                                mailSender.send(simpleMail);
+                                                return "redirect:/";
+                                            }
+                                        }
+                                    } else { //8
+                                        errMsg = errMsg + " Mật khẩu nhập không khớp (^-^) !!!";
+                                    }
+                                } else { //7
+                                    errMsg = errMsg + " Kí tự mật khẩu không được <6 và >10 (^-^) !!!";
+                                }
+                            } else { //6
+                                if (u.getPassword() == null) {
+                                    errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
+                                } else {
+                                    errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
+                                }
+                            }
+                        } else { //5
+                            if (!rs.hasErrors()) {
+                                if (this.userService.addOrUpdateUser(u) == true) {
+                                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                    simpleMail.setTo(u.getMail());
+                                    simpleMail.setSubject("Thông báo");
+                                    simpleMail.setText(u.getName() + " thông tin đã được cập nhật lại thành công.");
+
+                                    mailSender.send(simpleMail);
+                                    return "redirect:/";
+                                }
+                            }
+                        }
                     }
-                } else {
-                    if (u.getPassword() == null) {
-                        errMsg = errMsg + " Mật khẩu không được để trống (^-^) !!!";
-                    } else {
-                        errMsg = errMsg + " Tên đăng nhập không được để trống (^-^) !!!";
-                    }
+                } else { //2
+                    errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
                 }
-            } else {
-                errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
-            }
-        } else {
-            if (u.getBirthDate() == null) {
-                errMsg = errMsg + "Ngày thành lập không được để trống (^-^) !!!";
-            } else {
-                errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";
+            } else { //1
+                if (u.getBirthDate() == null) {
+                    errMsg = errMsg + "Ngày sinh không được để trống (^-^) !!!";
+                } else {
+                    errMsg = errMsg + "Ngày sinh không thể lớn hơn ngày hiện tại (^-^) !!!";
+                }
             }
         }
         model.addAttribute(
@@ -408,7 +571,7 @@ public class AddController {
             SimpleMailMessage simpleMail = new SimpleMailMessage();
             simpleMail.setTo(u.getMail());
             simpleMail.setSubject("Thông báo");
-            simpleMail.setText(u.getName() + " đã nộp Cv cho "  + " thành công");
+            simpleMail.setText(u.getName() + " đã nộp Cv cho " + " thành công");
             return "redirect:/jobDetail/{id}";
         }
         return "post";
