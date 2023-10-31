@@ -37,7 +37,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NamedQueries({
     @NamedQuery(name = "Cv.findAll", query = "SELECT c FROM Cv c"),
     @NamedQuery(name = "Cv.findById", query = "SELECT c FROM Cv c WHERE c.id = :id"),
-    @NamedQuery(name = "Cv.findByCv", query = "SELECT c FROM Cv c WHERE c.cv = :cv"),
+    @NamedQuery(name = "Cv.findByName", query = "SELECT c FROM Cv c WHERE c.name = :name"),
     @NamedQuery(name = "Cv.findByDayCreate", query = "SELECT c FROM Cv c WHERE c.dayCreate = :dayCreate"),
     @NamedQuery(name = "Cv.findByActive", query = "SELECT c FROM Cv c WHERE c.active = :active")})
 public class Cv implements Serializable {
@@ -66,8 +66,14 @@ public class Cv implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "cv")
-    private String cv;
+    @Column(name = "name")
+    private String name;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Column(name = "data")
+    private byte[] data;
     
     @Lob
     @Size(max = 2147483647)
@@ -100,9 +106,10 @@ public class Cv implements Serializable {
         this.id = id;
     }
 
-    public Cv(Integer id, String cv) {
+    public Cv(Integer id, String name, byte[] data) {
         this.id = id;
-        this.cv = cv;
+        this.name = name;
+        this.data = data;
     }
 
     public Integer getId() {
@@ -113,12 +120,20 @@ public class Cv implements Serializable {
         this.id = id;
     }
 
-    public String getCv() {
-        return cv;
+    public String getName() {
+        return name;
     }
 
-    public void setCv(String cv) {
-        this.cv = cv;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
     public String getContent() {

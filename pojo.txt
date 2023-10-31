@@ -1,5 +1,5 @@
 User and company
-@Transient
+   @Transient
     private MultipartFile file;
     
     @Transient

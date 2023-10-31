@@ -7,6 +7,7 @@ package com.htran.controllers;
 import com.htran.pojo.Account;
 import com.htran.pojo.Comment;
 import com.htran.pojo.Company;
+import com.htran.pojo.Cv;
 import com.htran.pojo.Job;
 import com.htran.pojo.User;
 import com.htran.service.AccountService;
@@ -25,6 +26,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -90,7 +97,7 @@ public class Controllers {
         model.addAttribute("copaDetails", this.compaService.getCompanyById(id));
         Company com = this.compaService.getCompanyById(id);
         model.addAttribute("cmts", this.cmtService.getCommentsbyCompanyId(com));
-
+        model.addAttribute("job", this.jobService.getJobsByComId(com));
         return "companyDetail";
     }
 
@@ -175,4 +182,45 @@ public class Controllers {
         return "search";
     }
     //------------------------------------end Search---------------------------------
+    
+    //----------------------------------Show, Dowload PDF------------------------------------
+    @GetMapping("/download/{id}")
+    public ResponseEntity<org.springframework.core.io.Resource> downloadFile(Model model, @PathVariable("id") int id) {
+
+        Cv p = this.cvService.getCvById(id);
+        if (p == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        ByteArrayResource resource = new ByteArrayResource(p.getData());
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + p.getName())
+                .contentType(MediaType.APPLICATION_PDF)
+                .contentLength(p.getData().length)
+                .body(resource);
+    }
+    
+    @GetMapping("/pdf/{id}/data")
+    public ResponseEntity<byte[]> getPdfData(@PathVariable("id") int id) {
+        Cv pdfFile = this.cvService.getCvById(id);
+
+        if (pdfFile != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDisposition(ContentDisposition.builder("inline").filename(pdfFile.getName()).build());
+            headers.setContentLength(pdfFile.getData().length);
+
+            return new ResponseEntity<>(pdfFile.getData(), headers, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/pdf/view/{id}")
+    public String viewPdf(@PathVariable("id") int id, Model model) {
+        model.addAttribute("pdf", this.cvService.getCvById(id));
+        return "pdf";
+    }
+    //---------------------------------end Show, Dowload PDF---------------------------------
 }

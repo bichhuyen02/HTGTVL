@@ -32,8 +32,6 @@
                 <label for="avatar">Địa chỉ </label>
             </div>
 
-
-
             <div class="form-floating mb-3 mt-3">
                 <input type="text" class="form-control" id="file" disabled="true"
                        placeholder="CV" name="file" value="${jobDetails.experience}" />
@@ -47,10 +45,10 @@
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:input type="file" class="form-control" path="file" id="file"
-                            placeholder="CV" name="file" />
+                            placeholder="Tải file pdf" name="file" accept=".pdf"/>
                 <label for="avatar">CV </label>
             </div>
-            <form:errors path="file" element="div" cssClass="text-danger" />
+            <form:errors path="content" element="div" cssClass="text-danger" />
 
             <div class="form-floating mb-3 mt-3">
                 <form:textarea class="form-control" path="content" id="content" 
@@ -67,4 +65,18 @@
         </article>
     </div>
 </form:form>
+
+<script>
+    const fileInput = document.querySelector('input[type="file"]');
+
+    fileInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const fileType = file.type;
+
+        if (fileType !== 'application/pdf') {
+            alert('Vui lòng chọn một tệp PDF.');
+            fileInput.value = '';
+        }
+    });
+</script>
 

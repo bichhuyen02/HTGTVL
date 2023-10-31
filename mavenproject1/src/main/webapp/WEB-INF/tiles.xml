@@ -125,8 +125,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
     </definition>
     
     <definition name="CV" extends="baseLayout">
-        <put-attribute name="title" value="xem cv" />
+        <put-attribute name="title" value="cv" />
         <put-attribute name="content" value="/WEB-INF/pages/cv.jsp" />
+    </definition>
+    
+     <definition name="pdf" extends="baseLayout">
+        <put-attribute name="title" value="xem cv" />
+        <put-attribute name="content" value="/WEB-INF/pages/pdf.jsp" />
     </definition>
     
     <definition name="stats" extends="baseLayout3">

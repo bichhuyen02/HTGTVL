@@ -8,7 +8,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
-<link rel="stylesheet" href="<c:url value="/css/cv.css" />"/>
 
 <div class="text-primary mt-4 mb-4 text-center"><h2> DANH SÁCH HỒ SƠ ỨNG TUYỂN </h2></div>
 <div class="container bootstrap snippets bootdey">
@@ -39,7 +38,7 @@
                                         <th>Mail</th>
                                         <th>SĐT</th>
                                         <th>Cv</th>
-                                        <th>Thư</th>
+                                        <th>Tải</th>
                                         <th>Thao tác </th>
                                     </tr>
                                 </thead>
@@ -50,15 +49,15 @@
                                                 <td>${c.userId.name}</td>
                                                 <td>${c.userId.mail}</td>
                                                 <td>${c.userId.phone}</td>
+                                           
                                                 <td>
-                                                   <img style="width: 50px; height: 50px; " src="${c.cv}" alt="${c.userId.name}" class="myImg avatar-sm rounded-circle me-2"/>
-                                                    <div id="myModal" class="modal">
-                                                        <span class="close">&times;</span>
-                                                        <img class="modal-content" id="img01">
-                                                    </div>
-                                                    
+                                                   <a href="<c:url value="/pdf/view/${c.id}"/>" target="_blank">${c.name}</a>                                                    
                                                 </td>
-                                                <td>${c.content}</td>
+                                                <td>
+                                                   <a href="<c:url value="/download/${c.id}"/>">
+                                                       <i class="fa-solid fa-circle-down">rr</i>
+                                                   </a>                                                    
+                                                </td>
                                                 <td>
                                                     <c:url value="/cv/${c.id}" var="api" />
                                                     <button class="btn btn-danger " onclick="updateActive('${api}')">Duyệt</button>
@@ -76,9 +75,13 @@
                                                 <td>${c.userId.mail}</td>
                                                 <td>${c.userId.phone}</td>
                                                 <td>
-                                                    <img style="width: 50px; height: 50px; " src="${c.cv}" alt="${c.userId.name}" class="avatar-sm rounded-circle me-2"/>
+                                                    <a href="<c:url value="/pdf/view/${c.id}"/>" target="_blank">${c.name}</a>      
                                                 </td>
-                                                <td>${c.content}</td>
+                                                <td>
+                                                   <a href="<c:url value="/download/${c.id}"/>">
+                                                       <i class="fa-solid fa-circle-down">rr</i>
+                                                   </a>                                                    
+                                                </td>
                                                 <td>
                                                     Đã duyệt
                                                 </td>
@@ -95,26 +98,4 @@
         <br>
     </c:forEach>
 </div>
-<script>
-// Get the modal
-    var modals = document.getElementsByClassName("modal");
-    var imgs = document.getElementsByClassName("myImg");
-    var modalImgs = document.getElementsByClassName("modal-content");
-    for (var i = 0; i < imgs.length; i++) {
-        imgs[i].addEventListener("click", function () {
-            var modal = this.nextElementSibling;
-            modal.style.display = "block";
-            modal.querySelector(".modal-content").src = this.src;
-        });
-    }
-
-// Get the <span> element that closes the modal
-    var spans = document.getElementsByClassName("close");
-    for (var i = 0; i < spans.length; i++) {
-        spans[i].addEventListener("click", function () {
-            var modal = this.parentNode;
-            modal.style.display = "none";
-        });
-    }
-</script>
 <script src="<c:url value="/js/main.js" />"></script>

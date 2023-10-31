@@ -44,10 +44,13 @@ public class CvServiceImpl implements CvService {
             try {
                 cv.setDayCreate(this.simpleDateFormat
                         .parse(this.simpleDateFormat.format(currentDate)));
-                Map res = this.cloudinary.uploader().upload(cv.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                cv.setCv(res.get("secure_url").toString());
-            } catch (IOException ex) {
-                Logger.getLogger(CvServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+              
+            cv.setName(cv.getFile().getOriginalFilename());
+             try {
+                 cv.setData(cv.getFile().getBytes());
+             } catch (IOException ex) {
+                 Logger.getLogger(CvServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+             }
 
             } catch (ParseException ex) {
                 Logger.getLogger(CvServiceImpl.class.getName()).log(Level.SEVERE, null, ex);

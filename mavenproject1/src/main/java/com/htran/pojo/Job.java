@@ -148,6 +148,8 @@ public class Job implements Serializable {
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     @ManyToOne
     private Position positionId;
+    
+    
 
     public Job() {
     }
