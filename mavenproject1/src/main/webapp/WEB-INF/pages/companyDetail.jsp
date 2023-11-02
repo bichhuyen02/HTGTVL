@@ -17,11 +17,12 @@
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12 left-box mt-4">
                 <div class="card single_post">
-                    <div class="body">
-                        <div class="img-post">
+                    <div class="body" style="margin-left: 25%">
+                        <div class="img-post ">
                             <img alt="${copaDetails.name}" style="width:300px;" title="" class="rounded-circle img-thumbnail isTooltip " src="${copaDetails.image}" data-original-title="Usuario"> 
                         </div>
                         <h3>${copaDetails.name}</h3>
+
                     </div>                        
                 </div>
                 <div class="card">
@@ -110,7 +111,11 @@
                     </div>
                     <div class="body widget">
                         <ul class="list-unstyled categories-clouds m-b-0">
-                            <li><a href="<c:url value="${copaDetails.linkCompany}"/>">Trang chủ công ty</a></li>
+                            <li class="d-flex">
+                                <a href="<c:url value="${copaDetails.linkCompany}"/>">Trang chủ công ty</a>
+                                <c:url value="/profileCompany/" var="api" />
+                                <a href="${api}" class="btn btn-info ml-2">Cập nhật</a>
+                            </li>
                             <li>Ngày thành lập: ${copaDetails.dateOfIncorporation}</li>
                             <li>Nhân lực: ${copaDetails.scale}</li>
                             <li>Mô tả: ${copaDetails.description}</li>                

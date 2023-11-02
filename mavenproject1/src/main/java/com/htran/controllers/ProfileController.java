@@ -7,6 +7,7 @@ package com.htran.controllers;
 import com.htran.pojo.User;
 import com.htran.service.UserService;
 import java.util.Date;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -24,17 +26,23 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class ProfileController {
-     @Autowired
+
+    @Autowired
     private UserService userService;
-     
-     @Autowired
+
+    @Autowired
     private JavaMailSender mailSender;
-     
+
     @GetMapping("/profile/{id}")
     public String profile(Model model, @PathVariable(value = "id") int id, HttpSession session) {
         model.addAttribute("currentUser", session.getAttribute("currentUser"));
         model.addAttribute("u", userService.getUserById(id));
         return "profiles";
+    }
+
+    @GetMapping("/profileCompany")
+    public String profileCompany (Model model, @RequestParam Map<String, String> params) {
+        return "profileCompany";
     }
 
     @PostMapping("/profile/{id}")
@@ -47,7 +55,7 @@ public class ProfileController {
                     SimpleMailMessage simpleMail = new SimpleMailMessage();
                     simpleMail.setTo(u.getMail());
                     simpleMail.setSubject("Thông báo");
-                    simpleMail.setText( "Thông tin của bạn đã được cập nhật");
+                    simpleMail.setText("Thông tin của bạn đã được cập nhật");
 
                     mailSender.send(simpleMail);
                     return "redirect:/profile/{id}";
@@ -62,4 +70,5 @@ public class ProfileController {
                 "errMsg", errMsg);
         return "profiles";
     }
+
 }
