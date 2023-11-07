@@ -565,7 +565,7 @@ public class AddController {
         return "applyCv";
     }
     //-------------------------------------end cv-----------------------------------------
-
+//
     //---------------------------------------post-------------------------------------------
     @GetMapping("/post/{id}")
     public String post(Model model, @PathVariable(value = "id") int id) {
@@ -576,18 +576,18 @@ public class AddController {
     }
 
     @PostMapping("/post/{id}")
-    public String addPost(@ModelAttribute(value = "addPost") Post p,
+    public String addPost(@ModelAttribute(value = "addPost") Post p, 
             @PathVariable(value = "id") int id) {
         User u = new User();
-        u = this.userService.getUserByAccId(id);
+        u = this.userService.getUserById(id);
         p.setUserId(u);
 
         if (this.postService.addPost(p) == true) {
             SimpleMailMessage simpleMail = new SimpleMailMessage();
             simpleMail.setTo(u.getMail());
             simpleMail.setSubject("Thông báo");
-            simpleMail.setText(u.getName() + " đã nộp Cv cho " + " thành công");
-            return "redirect:/jobDetail/{id}";
+            simpleMail.setText(u.getName() + " đã đăng tin " + "thành công");
+            return "redirect:/jobs";
         }
         return "post";
     }

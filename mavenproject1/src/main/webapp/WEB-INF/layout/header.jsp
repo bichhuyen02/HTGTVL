@@ -14,6 +14,7 @@
         <a class="navbar-brand text-white" href="${action}">JOB24H-WEBSITE</a>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav me-auto">
+
                 <se:authorize access="!isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link  " href="<c:url value="/jobss"/>"><strong>Công Việc</strong></a>
@@ -30,7 +31,7 @@
                     <li class="nav-item text-danger"  >
                         <a class="nav-link  " href="<c:url value="/cv"/>"><strong>Xem CV</strong></a>
                     </li>
-                    
+
                     <li class="nav-item text-danger"  >
                         <a class="nav-link  " href="<c:url value="/search"/>"><strong>Tìm ứng viên</strong></a>
                     </li>

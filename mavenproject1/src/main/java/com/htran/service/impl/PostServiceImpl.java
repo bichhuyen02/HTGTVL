@@ -45,7 +45,7 @@ public class PostServiceImpl implements PostService{
          Date currentDate = new Date();
         try {
             p.setCreateTime(this.simpleDateFormat
-                    .parse(this.simpleDateFormat.format(p.getCreateTime())));
+                    .parse(this.simpleDateFormat.format(currentDate)));
         } catch (ParseException ex) {
             Logger.getLogger(PostServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
