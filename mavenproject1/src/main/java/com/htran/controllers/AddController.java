@@ -91,11 +91,17 @@ public class AddController {
     }
 
     @PostMapping("/addCate")
-    public String addCa(@ModelAttribute(value = "addCates") @Valid Category c,
+    public String addCa(Model model, @ModelAttribute(value = "addCates") @Valid Category c,
             BindingResult rs) {
-        if (this.cateService.addOrUpdateCategory(c) == true) {
-            return "redirect:/categories";
+        String errMsg = "";
+        if (this.locationService.getLocationByName(c.getName()) == false) {
+            if (this.cateService.addOrUpdateCategory(c) == true) {
+                return "redirect:/admin/categories";
+            }
+        } else {
+            errMsg = errMsg + " Tên đã tồn tại (^-^) !!!";
         }
+         model.addAttribute("errMsg", errMsg);
         return "addCate";
     }
     //---------------------------------end category---------------------------------------
@@ -179,7 +185,7 @@ public class AddController {
                                                     SimpleMailMessage simpleMail = new SimpleMailMessage();
                                                     simpleMail.setTo(c.getMail());
                                                     simpleMail.setSubject("Thông báo");
-                                                    simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công.");
+                                                    simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công bởi người quản trị.");
 
                                                     mailSender.send(simpleMail);
                                                     return "redirect:/";
@@ -204,7 +210,7 @@ public class AddController {
                                         SimpleMailMessage simpleMail = new SimpleMailMessage();
                                         simpleMail.setTo(c.getMail());
                                         simpleMail.setSubject("Thông báo");
-                                        simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công.");
+                                        simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công bởi người quản trị.");
 
                                         mailSender.send(simpleMail);
                                         return "redirect:/";
@@ -225,7 +231,7 @@ public class AddController {
                                                 SimpleMailMessage simpleMail = new SimpleMailMessage();
                                                 simpleMail.setTo(c.getMail());
                                                 simpleMail.setSubject("Thông báo");
-                                                simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công.");
+                                                simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công bởi người quản trị.");
 
                                                 mailSender.send(simpleMail);
                                                 return "redirect:/";
@@ -250,7 +256,7 @@ public class AddController {
                                     SimpleMailMessage simpleMail = new SimpleMailMessage();
                                     simpleMail.setTo(c.getMail());
                                     simpleMail.setSubject("Thông báo");
-                                    simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công.");
+                                    simpleMail.setText(c.getName() + " thông tin đã được cập nhật lại thành công bởi người quản trị.");
 
                                     mailSender.send(simpleMail);
                                     return "redirect:/";
@@ -299,15 +305,18 @@ public class AddController {
 
     @PostMapping("/addJob")
     public String addJ(Model model, @ModelAttribute(value = "addjobs")
-            @Valid Job j,
-            BindingResult rs) {
+            @Valid Job j,BindingResult rs) {
         String errMsg = "";
         Date currentDate = new Date();
         if (j.getOutOffTime() != null && currentDate.compareTo(j.getOutOffTime()) < 0) {
-            if (!rs.hasErrors()) {
-                if (this.jobService.addOrUpdateJob(j) == true) {
-                    return "redirect:/jobs";
+            if (j.getQuantity() > 0) {
+                if (!rs.hasErrors()) {
+                    if (this.jobService.addOrUpdateJob(j) == true) {
+                        return "redirect:/jobs";
+                    }
                 }
+            } else {
+                errMsg = errMsg + "Số lượng tuyển không thể 0(^-^) !!!";
             }
         } else {
             if (j.getOutOffTime() == null) {
@@ -316,6 +325,7 @@ public class AddController {
                 errMsg = errMsg + "Ngày hết hạn không được nhỏ hơn ngày hiện tại(^-^) !!!";
             }
         }
+        model.addAttribute("errMsg", errMsg);
         return "addJob";
     }
     //------------------------------------end job-----------------------------------------
@@ -335,14 +345,19 @@ public class AddController {
     }
 
     @PostMapping("/addLocation")
-    public String addLoca(@ModelAttribute(value = "addLocations")
-            @Valid Location lctn,
-            BindingResult rs) {
-        if (!rs.hasErrors()) {
-            if (this.locationService.addOrUpdateLocation(lctn) == true) {
-                return "redirect:/admin/location";
+    public String addLoca(Model model, @ModelAttribute(value = "addLocations")
+            @Valid Location lctn, BindingResult rs) {
+        String errMsg = "";
+        if (this.locationService.getLocationByName(lctn.getName()) == false) {
+            if (!rs.hasErrors()) {
+                if (this.locationService.addOrUpdateLocation(lctn) == true) {
+                    return "redirect:/admin/location";
+                }
             }
+        } else {
+            errMsg = errMsg + " Tên đã tồn tại (^-^) !!!";
         }
+         model.addAttribute("errMsg", errMsg);
         return "addLocation";
     }
     //---------------------------------end location---------------------------------------
@@ -377,7 +392,7 @@ public class AddController {
                                             SimpleMailMessage simpleMail = new SimpleMailMessage();
                                             simpleMail.setTo(u.getMail());
                                             simpleMail.setSubject("Thông báo");
-                                            simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công");
+                                            simpleMail.setText(u.getName() + " đã đăng kí tài khoản thành công bởi người quản trị");
 
                                             mailSender.send(simpleMail);
                                             return "redirect:/";
@@ -425,7 +440,7 @@ public class AddController {
                                                     SimpleMailMessage simpleMail = new SimpleMailMessage();
                                                     simpleMail.setTo(u.getMail());
                                                     simpleMail.setSubject("Thông báo");
-                                                    simpleMail.setText(u.getName() + " thông tin đã được cập nhật lại thành công.");
+                                                    simpleMail.setText(u.getName() + " thông tin đã được cập nhật lại thành công bởi người quản trị.");
 
                                                     mailSender.send(simpleMail);
                                                     return "redirect:/";
@@ -450,7 +465,7 @@ public class AddController {
                                         SimpleMailMessage simpleMail = new SimpleMailMessage();
                                         simpleMail.setTo(u.getMail());
                                         simpleMail.setSubject("Thông báo");
-                                        simpleMail.setText(u.getName() + " đã đăng kí thông tin của bạn thành công.");
+                                        simpleMail.setText(u.getName() + " đã đăng kí thông tin của bạn thành công bởi người quản trị.");
 
                                         mailSender.send(simpleMail);
                                         return "redirect:/";
@@ -471,7 +486,7 @@ public class AddController {
                                                 SimpleMailMessage simpleMail = new SimpleMailMessage();
                                                 simpleMail.setTo(u.getMail());
                                                 simpleMail.setSubject("Thông báo");
-                                                simpleMail.setText(u.getName() + "thông tin đã được cập nhật lại thành công.");
+                                                simpleMail.setText(u.getName() + "thông tin đã được cập nhật lại thành công bởi người quản trị.");
 
                                                 mailSender.send(simpleMail);
                                                 return "redirect:/";
@@ -496,7 +511,7 @@ public class AddController {
                                     SimpleMailMessage simpleMail = new SimpleMailMessage();
                                     simpleMail.setTo(u.getMail());
                                     simpleMail.setSubject("Thông báo");
-                                    simpleMail.setText(u.getName() + " thông tin đã được cập nhật lại thành công.");
+                                    simpleMail.setText(u.getName() + " thông tin đã được cập nhật lại thành công bởi người quản trị.");
 
                                     mailSender.send(simpleMail);
                                     return "redirect:/";

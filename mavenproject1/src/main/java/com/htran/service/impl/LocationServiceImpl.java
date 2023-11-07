@@ -41,5 +41,10 @@ public class LocationServiceImpl implements LocationService{
     public boolean deleteLocation(int id) {
        return this.locationRepo.deleteLocation(id);
     }
+
+    @Override
+    public boolean getLocationByName(String name) {
+        return this.locationRepo.getLocationByName(name);
+    }
     
 }

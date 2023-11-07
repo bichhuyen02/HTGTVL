@@ -13,8 +13,14 @@ import java.util.Map;
  * @author ACER
  */
 public interface LocationService {
-     List<Location> getLocations(Map<String, String> params);
-     boolean addOrUpdateLocation(Location lctn);
+
+    List<Location> getLocations(Map<String, String> params);
+
+    boolean addOrUpdateLocation(Location lctn);
+
     Location getLocationById(int id);
+
     boolean deleteLocation(int id);
+    
+    boolean getLocationByName(String name);
 }

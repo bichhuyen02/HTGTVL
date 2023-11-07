@@ -42,5 +42,10 @@ public class CategoryServiceImpl implements CategoryService{
         return this.cateRepo.deleteCategory(id);
     }
 
+    @Override
+    public boolean getCategoryByName(String name) {
+        return this.cateRepo.getCategoryByName(name);
+    }
+
     
 }

@@ -17,4 +17,5 @@ public interface LocationRepository {
     boolean addOrUpdateLocation(Location lctn);
     boolean deleteLocation(int id);
     Location getLocationById(int id);
+    boolean getLocationByName(String name);
 }

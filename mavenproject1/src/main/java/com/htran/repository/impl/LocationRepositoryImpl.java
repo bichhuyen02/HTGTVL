@@ -15,6 +15,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import java.util.ArrayList;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -83,6 +84,22 @@ public class LocationRepositoryImpl implements LocationRepository {
             Location lctn = this.getLocationById(id);
             s.delete(lctn);
             return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean getLocationByName(String name) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Location Where name=:un");
+        try {
+            q.setParameter("un", name);
+            q.getSingleResult();
+            return true;
+        } catch (NoResultException ex) {
+            return false;
         } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;

@@ -4,11 +4,11 @@
  */
 package com.htran.controllers;
 
+import com.htran.pojo.Company;
 import com.htran.pojo.User;
+import com.htran.service.CompanyService;
 import com.htran.service.UserService;
 import java.util.Date;
-import java.util.Map;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -29,20 +28,17 @@ public class ProfileController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private CompanyService compaService;
 
     @Autowired
     private JavaMailSender mailSender;
 
     @GetMapping("/profile/{id}")
-    public String profile(Model model, @PathVariable(value = "id") int id, HttpSession session) {
-        model.addAttribute("currentUser", session.getAttribute("currentUser"));
+    public String profile(Model model, @PathVariable(value = "id") int id) {
         model.addAttribute("u", userService.getUserById(id));
         return "profiles";
-    }
-
-    @GetMapping("/profileCompany")
-    public String profileCompany (Model model, @RequestParam Map<String, String> params) {
-        return "profileCompany";
     }
 
     @PostMapping("/profile/{id}")
@@ -71,4 +67,35 @@ public class ProfileController {
         return "profiles";
     }
 
+    @GetMapping("/profileCompany/{id}")
+    public String profileCompany (Model model, @PathVariable(value = "id") int id) {
+        model.addAttribute("c", this.compaService.getCompanyById(id));
+        return "profileCompany";
+    }
+    
+    @PostMapping("/profileCompany/{id}")
+     public String update(Model model, @ModelAttribute(value = "c") Company c) {
+        String errMsg = "";
+        Date currentDate = new Date();
+        if (currentDate.compareTo(c.getDateOfIncorporation()) > 0) {
+            if (c.getPhone().length() == 10 && c.getPhone().codePointAt(0) == 48) {
+                if (this.compaService.updateCompany(c) == true) {
+                    SimpleMailMessage simpleMail = new SimpleMailMessage();
+                    simpleMail.setTo(c.getMail());
+                    simpleMail.setSubject("Thông báo");
+                    simpleMail.setText("Thông tin của bạn đã được cập nhật");
+
+                    mailSender.send(simpleMail);
+                    return "redirect:/profileCompany/{id}";
+                }
+            } else {
+                errMsg = errMsg + "Số điện thoại sai định dạng (^-^) !!!";
+            }
+        } else {
+            errMsg = errMsg + "Ngày thành lập không thể lớn hơn ngày hiện tại (^-^) !!!";
+        }
+        model.addAttribute(
+                "errMsg", errMsg);
+        return "profileCompany";
+    }
 }

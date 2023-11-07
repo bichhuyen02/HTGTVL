@@ -23,5 +23,6 @@ public interface CompanyRepository {
      boolean UpdateActive(int id);
      boolean deleteCompany(int id);
      Company getCompanyById(int id);
+     boolean updateCompany(Company c);
 }
 

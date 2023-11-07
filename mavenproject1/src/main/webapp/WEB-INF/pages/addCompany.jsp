@@ -48,6 +48,7 @@
                     <form:input type="text" class="form-control" path="address" id="address" placeholder="Địa chỉ" name="address" />
                     <label for="address">Địa chỉ</label>
                 </div>
+                    <form:errors path="address" element="div" cssClass="text-danger" />
 
                 <div class="form-floating mb-3 mt-3">
                     <form:input type="date" class="form-control" path="dateOfIncorporation" id="dateOfIncorporation" placeholder="Địa chỉ" name="dateOfIncorporation" />

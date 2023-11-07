@@ -8,6 +8,7 @@ import com.htran.pojo.Category;
 import com.htran.repository.CategoryRepository;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -73,6 +74,22 @@ public class CategoryRepositoryImpl implements CategoryRepository {
             Category c = this.getCategoryById(id);
             s.delete(c);
             return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean getCategoryByName(String name) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Category Where name=:un");
+        try {
+            q.setParameter("un", name);
+            q.getSingleResult();
+            return true;
+        } catch (NoResultException ex) {
+            return false;
         } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;

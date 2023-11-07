@@ -22,4 +22,5 @@ public interface CompanyService {
      Company getCompanyByAccId(int id);
      boolean deleteCompany(int id);
      int countCompany();
+     boolean updateCompany(Company c);
 }

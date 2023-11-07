@@ -13,9 +13,14 @@ import java.util.Map;
  * @author ACER
  */
 public interface CategoryService {
+
     List<Category> getCategories(Map<String, String> params);
-    
+
     boolean addOrUpdateCategory(Category c);
+
     Category getCategoryById(int id);
+
     boolean deleteCategory(int id);
+
+    boolean getCategoryByName(String name);
 }

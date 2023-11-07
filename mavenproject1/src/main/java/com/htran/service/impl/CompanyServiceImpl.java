@@ -69,7 +69,6 @@ public class CompanyServiceImpl implements CompanyService {
                 c.setImage(res.get("secure_url").toString());
                 c.setDateOfIncorporation(this.simpleDateFormat
                         .parse(this.simpleDateFormat.format(c.getDateOfIncorporation())));
-
             } catch (IOException ex) {
                 Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
@@ -113,5 +112,16 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public int countCompany() {
           return this.companyRepo.countCompany();
+    }
+
+    @Override
+    public boolean updateCompany(Company c) {
+        try {
+            c.setDateOfIncorporation(this.simpleDateFormat
+                    .parse(this.simpleDateFormat.format(c.getDateOfIncorporation())));
+        } catch (ParseException ex) {
+            Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this.companyRepo.updateCompany(c);
     }
 }

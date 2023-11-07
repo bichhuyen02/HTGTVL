@@ -170,8 +170,7 @@ public class User implements Serializable {
     private String level;
     
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size( max = 100)
     @Column(name = "location")
     private String location;
     

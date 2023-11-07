@@ -29,7 +29,6 @@ import org.springframework.context.annotation.PropertySource;
  *
  * @author ACER
  */
-@PropertySource("classpath:configs.properties")
 @Repository
 @Transactional
 public class CompanyRepositoryImpl implements CompanyRepository {
@@ -207,6 +206,18 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         q.setParameter("un", id);
 
         return (Company) q.getSingleResult();
+    }
+
+    @Override
+    public boolean updateCompany(Company c) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.update(c);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
 }

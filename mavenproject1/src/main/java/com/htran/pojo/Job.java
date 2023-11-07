@@ -58,20 +58,20 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255,message = "{job.title.lenErr}")
     @Column(name = "title")
     private String title;
     
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 2147483647, message = "{job.description.lenErr}")
     @Column(name = "description")
     private String description;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "{job.address.lenErr}")
     @Column(name = "address")
     private String address;
     
@@ -83,7 +83,7 @@ public class Job implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 45, message = "{job.salary.lenErr}")
     @Column(name = "salary")
     private String salary;
     
@@ -119,14 +119,14 @@ public class Job implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 2147483647, message = "{job.benefits.lenErr}")
     @Column(name = "benefits")
     private String benefits;
     
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 2147483647, message = "{job.skill.lenErr}")
     @Column(name = "skill")
     private String skill;
     

@@ -18,11 +18,16 @@
     <div class="card nen frm ">
         <article class="card-body mx-auto" style="width: 50%;">
             <h2 class="card-title  text-center text-white">QUẢN LÝ KHU VỰC</h2>
+            <c:if test="${errMsg != null}">
+                <div class="alert alert-danger msg">
+                    ${errMsg}
+                </div>    
+            </c:if>
             <div class="form-floating mb-3 mt-3">
                 <form:input type="text" class="form-control" path="name" id="name" placeholder="Tên Khu Vực" name="name" />
                 <label for="name">Tên Khu Vực </label>
             </div>
-                <form:errors path="name" element="div" cssClass="text-danger" />
+            <form:errors path="name" element="div" cssClass="text-danger" />
 
             <div class="form-floating mb-3 mt-3">
                 <form:textarea rows="3" type="text" class="form-control" path="description" id="description" placeholder="Mô Tả" name="description" />

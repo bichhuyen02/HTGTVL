@@ -55,8 +55,8 @@
                         <h2>Bình Luận</h2>
                     </div>
                     <div class="body">
-                        <c:set var="jo" value="0"/>
                         <ul class="comment-reply list-unstyled">
+                            <c:set var="jout" value="0"/>
                             <c:forEach items="${cmts}" var="c">
                                 <c:if test="${jout < 4}">
                                     <li class="row clearfix">
@@ -69,7 +69,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <c:set var="jout" value="${jo+1}"/>
+                                    <c:set var="jout" value="${jout+1}"/>
                                 </c:if>
                             </c:forEach>
                         </ul>                                        
@@ -112,9 +112,10 @@
                     <div class="body widget">
                         <ul class="list-unstyled categories-clouds m-b-0">
                             <li class="d-flex">
-                                <a href="<c:url value="${copaDetails.linkCompany}"/>">Trang chủ công ty</a>
-                                <c:url value="/profileCompany/" var="api" />
-                                <a href="${api}" class="btn btn-info ml-2">Cập nhật</a>
+                                <a href="<c:url value="${copaDetails.linkCompany}"/>">Trang chủ công ty</a>      
+                                <se:authorize access="hasRole('ROLE_EMP')"> 
+                                    <a href="<c:url value="/profileCompany/${copaDetails.id}" />" class="btn btn-info ml-2">Cập nhật</a>
+                                </se:authorize>
                             </li>
                             <li>Ngày thành lập: ${copaDetails.dateOfIncorporation}</li>
                             <li>Nhân lực: ${copaDetails.scale}</li>

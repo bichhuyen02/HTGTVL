@@ -8,14 +8,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <link rel="stylesheet" href="<c:url value="/css/index1.css" />"/>
-<c:url value="/profile/${sessionScope.currentUser.id}" var="action" />
+<c:url value="/profile/${u.id}" var="action" />
 
 <div class="text-primary mt-2 mb-4 text-center"><h2>THÔNG TIN NGƯỜI DÙNG</h2></div>
 <form:form modelAttribute="u" action="${action}" method="post" enctype="multipart/form-data">
     <form:hidden path="id" />
     <form:hidden path="accountId" />
     <form:hidden path="avatar" />
-
+    <c:if test="${errMsg != null}">
+        <div class="alert alert-danger msg">
+            ${errMsg}
+        </div>    
+    </c:if>
     <div class="container">
         <div class="row gutters">
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -89,6 +93,7 @@
                                     <form:input type="date" class="form-control" path="birthDate" id="birthDate" 
                                                 placeholder="Ngày sinh" name="birthDate" />
                                 </div>
+                                
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
@@ -125,9 +130,7 @@
                                     </form:select>
                                 </div>
                             </div>
-
                         </div>
-
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">

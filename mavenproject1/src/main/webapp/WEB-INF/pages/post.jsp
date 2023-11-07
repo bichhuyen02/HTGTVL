@@ -68,8 +68,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <form:form cssClass="container " modelAttribute="addPost" action="${action}" method="post" enctype="multipart/form-data">
+                                                    <form:form cssClass="container " modelAttribute="addPost" 
+                                                               action="${action}" method="post" enctype="multipart/form-data">
+                                                        <div class="row">
                                                             <div class="col mb-3">
                                                                 <div class="form-group">
                                                                     <label>Ghi chú</label>
@@ -77,15 +78,16 @@
                                                                                    rows="5" placeholder="Nhập..."></form:textarea>
                                                                     </div>
                                                                 </div>
-                                                        </form:form>
+
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-end">
-                                                    <button class="btn btn-primary" type="submit">Đồng ý</button>
-                                                </div>
-                                            </div>
+                                                    <div class="row">
+                                                        <div class="col d-flex justify-content-end">
+                                                            <button class="btn btn-primary" type="submit">Đồng ý</button>
+                                                        </div>
+                                                    </div>
+                                            </form:form>
                                         </form>
                                     </div>
                                 </div>

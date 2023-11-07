@@ -8,14 +8,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <link rel="stylesheet" href="<c:url value="/css/profileC.css" />"/>
+<c:url value="/profileCompany/${c.id}" var="action" />
 <div class="container bootstrap snippets bootdey">
     <hr>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="well profile">
-                <img class="user img-circle pull-left clearfix" height="54" src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-                <h3 class="name pull-left clearfix">Tên</h3>
+                <img class="user img-circle pull-left clearfix" height="54" src="${c.image}" alt="${c.name}">
+                <h3 class="name pull-left clearfix">${co.name}</h3>
                 <div class="clearfix"></div>
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -36,8 +37,7 @@
                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                 <p>
                                     <br>
-                                    " đọc phần Giới thiệu"
-                                    Praesent non tincidunt nisi. Nulla eu arcu ornare, gravida augue vel, commodo orci. Integer quis erat mauris. Integer nisl risus, sodales in laoreet eget, laoreet at nunc. Ut quis libero id orci semper porta ac vel ante. In nec laoreet sapien. Nunc hendrerit ligula at massa sodales, ullamcorper rutrum orci semper. Donec at massa eget odio ultrices convallis vel volutpat leo. Nulla rhoncus lacus tortor, vel tincidunt dolor eleifend et. Ut consequat elit quam, iaculis volutpat ipsum fermentum pulvinar. Pellentesque nec sem vel arcu ornare faucibus.
+                                    ${c.description}
                                     <br>
                                 </p>
                                 <hr>
@@ -49,48 +49,82 @@
                             <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="basic">
-                                        <form class="form-horizontal" role="form">
-                                            <div class="form-group">
-                                                <label for="inputfullname" class="col-lg-2 control-label">First Name</label>
-                                                <div class="col-lg-10">
-                                                    <input type="email" class="form-control" id="inputfullname" placeholder="First Name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputlastname" class="col-lg-2 control-label">Last Name</label>
-                                                <div class="col-lg-10">
-                                                    <input type="email" class="form-control" id="inputlastname" placeholder="Last Name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputemail" class="col-lg-2 control-label">Email</label>
-                                                <div class="col-lg-10">
-                                                    <input type="email" class="form-control" id="inputemail" placeholder="Email">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputpassword" class="col-lg-2 control-label">Password</label>
-                                                <div class="col-lg-10">
-                                                    <input type="password" class="form-control" id="inputpassword" placeholder="Password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="col-lg-2 control-label">Photo</label>
-                                                <div class="col-lg-10">
-                                                    
-                                                    <div class="bootstrap-filestyle input-group">
-                                                       <input type="text" class="form-control " disabled="" placeholder="Choose file"> 
-                                                        <span class="input-group-btn" tabindex="0"> 
-                                                            <label for="filestyle-0" class="btn btn-outline-secondary btn-lg">   
-                                                                <span class="fa fa-folder-open"></span>   
-                                                            </label>
-
-                                                        </span>
-                                                    </div>
+                                        <form:form class="form-horizontal" modelAttribute="c" action="${action}" 
+                                                   method="post" enctype="multipart/form-data">
+                                            <form:hidden path="id" />
+                                            <form:hidden path="accountId" />
+                                            <form:hidden path="image" />
+                                            <c:if test="${errMsg != null}">
+                                                <div class="alert alert-danger msg">
+                                                    ${errMsg}
                                                 </div>    
-                                                <button type="submit" class="btn btn-success ml-3 mt-3 ">Cập nhật</button>
+                                            </c:if>
+                                            <!--                                        <form  role="form">-->
+                                            <div class="form-group">
+                                                <label for="inputfullname" class="col-lg-2 control-label">Tên</label>
+                                                <div class="col-lg-10">
+                                                    <form:input path="name" type="text" class="form-control" id="name" placeholder="Tên"/>
+                                                </div>
                                             </div>
-                                        </form>
+                                            <div class="form-group">
+                                                <label for="inputlastname" class="col-lg-2 control-label">Mail</label>
+                                                <div class="col-lg-10">
+                                                    <form:input path="mail" type="email" class="form-control" id="mail" placeholder="Mail"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputemail" class="col-lg-2 control-label">Giới thiệu</label>
+                                                <div class="col-lg-10">
+                                                    <form:textarea row="4" path="description" class="form-control" 
+                                                                   id="description" placeholder="Thông tin" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputpassword" class="col-lg-2 control-label">Nhân lực</label>
+                                                <div class="col-lg-10">
+                                                    <form:input path="scale" type="text" class="form-control" id="scale" placeholder="Nhân lực" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputpassword" class="col-lg-2 control-label">Địa chỉ</label>
+                                                <div class="col-lg-10">
+                                                    <form:input path="address" type="text" class="form-control" id="address" placeholder="Địa chỉ"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputpassword" class="col-lg-2 control-label">Ngày thành lập</label>
+                                                <div class="col-lg-10">
+                                                    <form:input path="dateOfIncorporation" type="date" class="form-control" 
+                                                                id="dateOfIncorporation" placeholder="Ngày thành lập"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputpassword" class="col-lg-2 control-label">Số điện thoại</label>
+                                                <div class="col-lg-10">
+                                                    <form:input path="phone" type="number" class="form-control" id="phone" placeholder="SĐT"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputpassword" class="col-lg-2 control-label">Link Công ty</label>
+                                                <div class="col-lg-10">
+                                                    <form:input path="linkCompany" type="text" class="form-control" id="linkCompany" placeholder="Link Công ty"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--<label  class="col-lg-2 control-label">Logo</label>-->
+                                                <%-- <div class="col-lg-10">
+                                                    <div class="bootstrap-filestyle input-group">
+                                                        <form:input type="file" class="form-control" path="file" 
+                                                                    id="file" placeholder="logo" name="file" />
+                                                        <c:if test="${c.image != null}">
+                                                            <img src="${c.image}" width="120" height="100" />
+                                                        </c:if>
+                                                    </div>
+                                                </div>  --%>  
+                                            </div>
+                                            <button type="submit" class="btn btn-success ml-3 mt-3 ">Cập nhật</button>
+                                            <!--                                        </form>-->
+                                        </form:form>
                                     </div>
                                 </div>
                             </div>

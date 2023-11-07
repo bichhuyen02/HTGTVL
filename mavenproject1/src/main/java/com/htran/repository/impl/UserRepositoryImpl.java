@@ -31,7 +31,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-@PropertySource("classpath:configs.properties")
 public class UserRepositoryImpl implements UserRepository {
 
     @Autowired

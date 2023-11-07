@@ -44,7 +44,7 @@
                 <label for="avatar">Loại </label>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <form:input type="file" class="form-control" path="file" id="file"
+                <form:input type="file" required="true" class="form-control" path="file" id="file"
                             placeholder="Tải file pdf" name="file" accept=".pdf"/>
                 <label for="avatar">CV </label>
             </div>
