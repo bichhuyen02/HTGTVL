@@ -52,27 +52,32 @@ public class UserRepositoryImpl implements UserRepository {
 
             String kw = params.get("kw");
             if (kw != null && !kw.isEmpty()) {
-                predicates.add(b.like(root.get("title"), String.format("%%%s %% ", kw)));
+                predicates.add(b.like(root.get("name"), kw));
             }
 
             String experience = params.get("experience");
             if (experience != null && !experience.isEmpty()) {
-                predicates.add(b.equal(root.get("experience"), String.format("%%%s %% ", experience)));
+                predicates.add(b.equal(root.get("experience"), experience));
             }
 
             String majors = params.get("majors");
             if (majors != null && !majors.isEmpty()) {
-                predicates.add(b.equal(root.get("majors"), String.format("%%%s %% ", majors)));
+                predicates.add(b.equal(root.get("majors"), majors));
             }
 
             String gender = params.get("gender");
             if (gender != null && !gender.isEmpty()) {
-                predicates.add(b.equal(root.get("gender"), String.format("%%%s %%", gender)));
+                predicates.add(b.equal(root.get("gender"),gender));
             }
 
             String level = params.get("level");
             if (level != null && !level.isEmpty()) {
-                predicates.add(b.equal(root.get("level"), String.format("%%%s %%", level)));
+                predicates.add(b.equal(root.get("level"), level));
+            }
+            
+            String location = params.get("location");
+            if (level != null && !level.isEmpty()) {
+                predicates.add(b.equal(root.get("location"),  location));
             }
 
             q.where(predicates.toArray(Predicate[]::new));

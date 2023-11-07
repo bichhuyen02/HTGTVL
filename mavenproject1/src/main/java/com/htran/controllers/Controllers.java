@@ -32,6 +32,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,6 +73,9 @@ public class Controllers {
     
     @Autowired
     private PostService postService;
+    
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Resource
     private Environment env;
@@ -176,9 +181,29 @@ public class Controllers {
     
     //--------------------------------------Search-----------------------------------
     @GetMapping("/search")
-    public String search(Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("u", this.userService.getUsers(params));
+    public String search(Model model,@RequestParam Map<String, String> params) {
+        
+        model.addAttribute("us", this.userService.getUsers(params));
         model.addAttribute("post", this.postService.getPosts(params));
+        return "search";
+    }
+    
+    @GetMapping("/search/{id}")
+    public String mail(Model model, @PathVariable(value = "id") int id,
+            @RequestParam Map<String, String> params, Principal pricipal) {
+        model.addAttribute("us", this.userService.getUsers(params));
+        Account acc = this.accService.getAccountByUsername(pricipal.getName());
+        Company c = this.compaService.getCompanyByAccId(acc.getId());
+        User u = this.userService.getUserById(id);
+        SimpleMailMessage simpleMail = new SimpleMailMessage();
+                                            simpleMail.setTo(u.getMail());
+                                            simpleMail.setSubject("Thông báo");
+                                            simpleMail.setText("Sau khi công ty " + c.getName() + " xem thông tin của bạn"
+                                                    + " cảm thấy bạn có nhiều tiêu chí phù hợp với yêu cầu bên công ty."
+                                                    + " Nếu bạn có hứng thú với bên công ty bạn có thể nộp CV thông qua mail "
+                                                    + c.getMail() + " và đợi thông báo bên công ty.");
+
+                                            mailSender.send(simpleMail);
         return "search";
     }
     //------------------------------------end Search---------------------------------

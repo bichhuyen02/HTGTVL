@@ -57,7 +57,6 @@
             </select>
         </div>
 
-
         <div class="col">
             <button class="btn btn-primary mb-2" type="submit">Tìm kiếm</button>
         </div>
@@ -68,26 +67,28 @@
     <div class="container">
 
         <div class="row ">
-            <c:forEach items="${users}" var="u">
+            <c:forEach items="${us}" var="u">
+
                 <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-                    <div class="card border-0 bg-light rounded shadow">
-                        <div class="card-body p-4">
-                            <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">${u.level}</span>
-                            <h5>${u.name}</h5>
-                            <div class="mt-3">
-                                <span class="text-muted d-block"> <i class="fa fa-calendar" aria-hidden="true"></i> ${u.birthDate}</span>
+                    <a href="<c:url value="/profile/${u.id}" />">
+                        <div class="card border-0 bg-light rounded shadow">
+                            <div class="card-body p-4">
+                                <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">${u.level}</span>
+                                <h5>${u.name}</h5>
+                                <div class="mt-3">
+                                    <span class="text-muted d-block"> <i class="fa fa-calendar" aria-hidden="true"></i> ${u.birthDate}</span>
 
-                                <span class="text-muted d-block"> <i class="fa fa-map-marker" aria-hidden="true"></i> ${u.location}</span>
+                                    <span class="text-muted d-block"> <i class="fa fa-map-marker" aria-hidden="true"></i> ${u.location}</span>
 
-                                <span class="text-muted d-block"> <i class="fa fa-address-book" aria-hidden="true"></i> ${u.majors}</span>
-                                
+                                    <span class="text-muted d-block"> <i class="fa fa-address-book" aria-hidden="true"></i> ${u.majors}</span>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </c:forEach>
         </div>
     </div>
 </section>
-    
-    
+
